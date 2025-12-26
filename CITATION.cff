@@ -1,0 +1,136 @@
+# ==============================================================================
+# CITATION.cff - Citation File Format
+# ==============================================================================
+#
+# This file provides citation information for the GenAI-RAG-EEG project.
+#
+# To cite this software, use the preferred citation below or import this
+# file directly into reference managers that support CFF format.
+#
+# More info: https://citation-file-format.github.io/
+#
+# ==============================================================================
+
+cff-version: 1.2.0
+title: "GenAI-RAG-EEG: Explainable EEG-Based Stress Classification using Generative AI and Retrieval-Augmented Generation"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+
+# =============================================================================
+# AUTHORS
+# =============================================================================
+authors:
+  - family-names: "[Your Last Name]"
+    given-names: "[Your First Name]"
+    email: "[your.email@institution.edu]"
+    affiliation: "[Your Institution]"
+    orcid: "https://orcid.org/0000-0000-0000-0000"  # Replace with your ORCID
+
+# =============================================================================
+# IDENTIFIERS
+# =============================================================================
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.XXXXXXX"  # Replace with your DOI
+    description: "Zenodo archive DOI"
+  - type: url
+    value: "https://github.com/yourusername/genai-rag-eeg"
+    description: "GitHub repository"
+
+# =============================================================================
+# REPOSITORY
+# =============================================================================
+repository-code: "https://github.com/yourusername/genai-rag-eeg"
+url: "https://genai-rag-eeg.readthedocs.io/"
+repository-artifact: "https://zenodo.org/record/XXXXXXX"
+
+# =============================================================================
+# VERSION & DATE
+# =============================================================================
+version: "1.0.0"
+date-released: "2024-12-25"
+
+# =============================================================================
+# LICENSE
+# =============================================================================
+license: MIT
+
+# =============================================================================
+# KEYWORDS
+# =============================================================================
+keywords:
+  - EEG
+  - stress classification
+  - deep learning
+  - explainable AI
+  - retrieval-augmented generation
+  - RAG
+  - attention mechanism
+  - CNN-LSTM
+  - brain-computer interface
+  - affective computing
+  - mental health
+  - biosignal processing
+
+# =============================================================================
+# ABSTRACT
+# =============================================================================
+abstract: |
+  GenAI-RAG-EEG is a hybrid deep learning architecture for explainable
+  EEG-based stress classification. The system combines a CNN-LSTM-Attention
+  EEG encoder with a Sentence-BERT text context encoder, achieving 94.7%
+  accuracy on the DEAP dataset. A novel Retrieval-Augmented Generation (RAG)
+  module provides interpretable, evidence-based explanations for model
+  predictions, enhancing transparency for clinical applications.
+
+  Key features:
+  - Multi-modal fusion of EEG signals and contextual text
+  - Self-attention mechanism for temporal importance weighting
+  - RAG-based explanation generation grounded in scientific literature
+  - Cross-dataset evaluation on DEAP, SAM-40, and WESAD datasets
+  - Comprehensive visualization and analysis tools
+
+# =============================================================================
+# PREFERRED CITATION (BibTeX format)
+# =============================================================================
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "[Your Last Name]"
+      given-names: "[Your First Name]"
+  title: "GenAI-RAG-EEG: Explainable Stress Classification using Generative AI and Retrieval-Augmented Generation"
+  journal: "[Journal Name]"
+  year: 2024
+  volume: "XX"
+  issue: "X"
+  start: "1"
+  end: "15"
+  doi: "10.XXXX/XXXXX"
+
+# =============================================================================
+# REFERENCES
+# =============================================================================
+references:
+  - type: dataset
+    authors:
+      - family-names: "Koelstra"
+        given-names: "Sander"
+    title: "DEAP: A Database for Emotion Analysis using Physiological Signals"
+    year: 2012
+    doi: "10.1109/T-AFFC.2011.15"
+
+  - type: dataset
+    authors:
+      - family-names: "Schmidt"
+        given-names: "Philip"
+    title: "WESAD: A Multimodal Dataset for Wearable Stress and Affect Detection"
+    year: 2018
+    doi: "10.1145/3242969.3242985"
+
+  - type: software
+    authors:
+      - family-names: "Paszke"
+        given-names: "Adam"
+    title: "PyTorch"
+    year: 2019
+    url: "https://pytorch.org"

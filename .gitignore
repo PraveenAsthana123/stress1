@@ -1,0 +1,251 @@
+# ==============================================================================
+# GenAI-RAG-EEG .gitignore
+# ==============================================================================
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# =============================================================================
+# ENVIRONMENTS
+# =============================================================================
+.env
+.env.local
+.env.*.local
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+Pipfile.lock
+
+# =============================================================================
+# IDE / EDITORS
+# =============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Rope
+.ropeproject
+
+# vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# =============================================================================
+# DATA FILES
+# =============================================================================
+# Raw datasets (large files)
+data/raw/
+data/deap/
+data/sam40/
+data/wesad/
+data/eegmat/
+
+# Processed data
+data/processed/
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+
+# Vector database
+data/vectordb/
+*.faiss
+*.index
+
+# =============================================================================
+# MODEL FILES
+# =============================================================================
+# Checkpoints and saved models
+checkpoints/
+models/checkpoints/
+models/exported/
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.safetensors
+
+# Pretrained models (downloaded)
+.cache/
+~/.cache/huggingface/
+~/.cache/torch/
+
+# =============================================================================
+# LOGS & OUTPUTS
+# =============================================================================
+logs/
+*.log
+tensorboard/
+wandb/
+mlruns/
+
+# Results
+results/
+outputs/
+
+# =============================================================================
+# LATEX / PAPER
+# =============================================================================
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+
+# Keep the main PDF
+!eeg-stress-rag.pdf
+
+# =============================================================================
+# SYSTEM FILES
+# =============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# =============================================================================
+# SECRETS & CREDENTIALS
+# =============================================================================
+*.pem
+*.key
+*.crt
+secrets.yaml
+credentials.json
+*.credentials
+api_keys.txt
+
+# =============================================================================
+# TEMPORARY FILES
+# =============================================================================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# =============================================================================
+# DOCUMENTATION BUILD
+# =============================================================================
+docs/_build/
+site/
+
+# =============================================================================
+# DOCKER
+# =============================================================================
+.docker/
+
+# =============================================================================
+# MISC
+# =============================================================================
+# Claude Code
+.claude/
+
+# Large files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Figures (optional - uncomment if figures are generated)
+# figures_extracted/
