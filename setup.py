@@ -116,7 +116,7 @@ setup(
     # PACKAGE METADATA
     # =========================================================================
     name="genai-rag-eeg",
-    version="1.0.0",
+    version="3.0.0",
     author="[Your Name]",
     author_email="[your.email@institution.edu]",
     description="Explainable EEG-Based Stress Classification using GenAI-RAG Architecture",
