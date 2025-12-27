@@ -32,20 +32,135 @@
     <nav class="bg-white shadow-sm sticky top-0 z-10">
         <div class="container mx-auto px-4">
             <div class="flex space-x-4 overflow-x-auto">
-                <button onclick="showTab('clinical')" id="tab-clinical" class="tab-btn tab-active px-4 py-3 font-medium">Clinical Validation</button>
-                <button onclick="showTab('reliability')" id="tab-reliability" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Reliability & Robustness</button>
+                <button onclick="showTab('data')" id="tab-data" class="tab-btn tab-active px-4 py-3 font-medium">Data Quality</button>
+                <button onclick="showTab('accuracy')" id="tab-accuracy" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Accuracy Analysis</button>
+                <button onclick="showTab('subject')" id="tab-subject" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Subject Analysis</button>
+                <button onclick="showTab('clinical')" id="tab-clinical" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Clinical Validation</button>
+                <button onclick="showTab('reliability')" id="tab-reliability" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Reliability</button>
                 <button onclick="showTab('model')" id="tab-model" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Model Analysis</button>
-                <button onclick="showTab('loso')" id="tab-loso" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">LOSO Analysis</button>
-                <button onclick="showTab('features')" id="tab-features" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Feature Engineering</button>
-                <button onclick="showTab('workload')" id="tab-workload" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Cognitive Workload</button>
-                <button onclick="showTab('metrics')" id="tab-metrics" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Metrics Matrix</button>
+                <button onclick="showTab('loso')" id="tab-loso" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">LOSO</button>
+                <button onclick="showTab('features')" id="tab-features" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Features</button>
+                <button onclick="showTab('workload')" id="tab-workload" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Workload</button>
+                <button onclick="showTab('metrics')" id="tab-metrics" class="tab-btn px-4 py-3 font-medium text-gray-600 hover:text-blue-600">Metrics</button>
             </div>
         </div>
     </nav>
 
     <main class="container mx-auto px-4 py-6">
+        <!-- Data Quality Tab -->
+        <div id="content-data" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Data Completeness -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-blue-600">Data Completeness</h3>
+                    <div id="data-completeness" class="space-y-3"></div>
+                </div>
+
+                <!-- Outlier Detection -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-orange-600">Outlier Detection</h3>
+                    <div id="outlier-detection" class="space-y-3"></div>
+                </div>
+
+                <!-- SNR Estimation -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-green-600">Signal Quality (SNR)</h3>
+                    <div id="snr-estimation"></div>
+                </div>
+
+                <!-- Class Distribution -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-purple-600">Class Distribution</h3>
+                    <div id="class-distribution"></div>
+                </div>
+
+                <!-- Data Integrity Scores -->
+                <div class="bg-white rounded-lg shadow-md p-6 col-span-full">
+                    <h3 class="text-lg font-semibold mb-4">Data Integrity Scores</h3>
+                    <div id="integrity-scores" class="grid grid-cols-3 gap-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accuracy Analysis Tab -->
+        <div id="content-accuracy" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- All Metrics by Dataset -->
+                <div class="bg-white rounded-lg shadow-md p-6 col-span-full">
+                    <h3 class="text-lg font-semibold mb-4 text-blue-600">Classification Metrics by Dataset</h3>
+                    <div id="accuracy-all-metrics" class="overflow-x-auto"></div>
+                </div>
+
+                <!-- Confidence Intervals -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-green-600">95% Confidence Intervals</h3>
+                    <canvas id="confidence-interval-chart" height="250"></canvas>
+                </div>
+
+                <!-- Per-Class Analysis -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-purple-600">Per-Class Analysis</h3>
+                    <div id="per-class-analysis"></div>
+                </div>
+
+                <!-- Error Analysis -->
+                <div class="bg-white rounded-lg shadow-md p-6 col-span-full">
+                    <h3 class="text-lg font-semibold mb-4 text-red-600">Error Analysis</h3>
+                    <div id="error-analysis" class="grid grid-cols-2 gap-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subject Analysis Tab -->
+        <div id="content-subject" class="tab-content hidden">
+            <div class="grid grid-cols-1 gap-6">
+                <!-- Subject Variability Stats -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Subject Variability Statistics</h3>
+                    <div id="subject-variability" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+                </div>
+
+                <!-- Subject Performance Chart -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Subject-Wise Performance Distribution</h3>
+                    <canvas id="subject-chart" height="150"></canvas>
+                </div>
+
+                <!-- Outlier Subjects -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-orange-600">Outlier Subject Detection</h3>
+                    <div id="outlier-subjects"></div>
+                </div>
+
+                <!-- Subject Consistency -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-green-600">Cross-Session Consistency</h3>
+                    <div id="subject-consistency" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+                </div>
+
+                <!-- Subject Table -->
+                <div class="bg-white rounded-lg shadow-md p-6 overflow-x-auto">
+                    <h3 class="text-lg font-semibold mb-4">Per-Subject Results</h3>
+                    <table class="min-w-full" id="subject-table">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left">Subject</th>
+                                <th class="px-4 py-2 text-left">Samples</th>
+                                <th class="px-4 py-2 text-left">Accuracy</th>
+                                <th class="px-4 py-2 text-left">F1 Score</th>
+                                <th class="px-4 py-2 text-left">Precision</th>
+                                <th class="px-4 py-2 text-left">Recall</th>
+                                <th class="px-4 py-2 text-left">Kappa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subject-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <!-- Clinical Validation Tab -->
-        <div id="content-clinical" class="tab-content">
+        <div id="content-clinical" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Diagnostic Validity -->
                 <div class="bg-white rounded-lg shadow-md p-6">
@@ -277,7 +392,7 @@
         // Load data
         async function loadAllData() {
             try {
-                const [clinical, reliability, model, loso, features, workload, metrics, thresholds, preprocessing] = await Promise.all([
+                const [clinical, reliability, model, loso, features, workload, metrics, thresholds, preprocessing, dataQuality, accuracy, subject] = await Promise.all([
                     fetch('/api/analysis/clinical-validation').then(r => r.json()),
                     fetch('/api/analysis/reliability-matrix').then(r => r.json()),
                     fetch('/api/analysis/model-analysis').then(r => r.json()),
@@ -286,9 +401,15 @@
                     fetch('/api/analysis/cognitive-workload').then(r => r.json()),
                     fetch('/api/analysis/performance-metrics').then(r => r.json()),
                     fetch('/api/analysis/clinical-thresholds').then(r => r.json()),
-                    fetch('/api/analysis/preprocessing').then(r => r.json())
+                    fetch('/api/analysis/preprocessing').then(r => r.json()),
+                    fetch('/api/analysis/data-quality').then(r => r.json()),
+                    fetch('/api/analysis/accuracy').then(r => r.json()),
+                    fetch('/api/analysis/subject').then(r => r.json())
                 ]);
 
+                renderDataQuality(dataQuality);
+                renderAccuracyAnalysis(accuracy);
+                renderSubjectAnalysis(subject);
                 renderClinicalValidation(clinical, thresholds);
                 renderReliability(reliability);
                 renderModelAnalysis(model);
@@ -299,6 +420,250 @@
             } catch (error) {
                 console.error('Error loading data:', error);
             }
+        }
+
+        function renderDataQuality(data) {
+            // Data Completeness
+            const completenessHtml = Object.entries(data.missing_data).map(([ds, val]) => `
+                <div class="flex justify-between items-center p-3 bg-green-50 rounded">
+                    <span class="font-medium">${ds}</span>
+                    <div class="text-right">
+                        <span class="font-bold text-green-600">${val.completeness}%</span>
+                        <span class="text-xs text-gray-500 ml-2">${val.quality}</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('data-completeness').innerHTML = completenessHtml;
+
+            // Outlier Detection
+            const outlierHtml = Object.entries(data.outlier_detection.results).map(([ds, val]) => `
+                <div class="flex justify-between items-center p-3 bg-orange-50 rounded">
+                    <span class="font-medium">${ds}</span>
+                    <div class="text-right">
+                        <span class="text-orange-600">${val.outlier_pct}% outliers</span>
+                        <span class="font-bold text-green-600 ml-2">${val.clean_data_pct}% clean</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('outlier-detection').innerHTML = outlierHtml;
+
+            // SNR Estimation
+            const snrHtml = Object.entries(data.snr_estimation).map(([ds, val]) => `
+                <div class="flex justify-between items-center p-3 border-b">
+                    <span class="font-medium">${ds}</span>
+                    <div class="text-right">
+                        <span class="font-bold">${val.snr_db} dB</span>
+                        <span class="ml-2 px-2 py-1 text-xs rounded ${val.quality === 'Excellent' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}">${val.quality}</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('snr-estimation').innerHTML = snrHtml;
+
+            // Class Distribution
+            const classDistHtml = Object.entries(data.class_distribution).map(([ds, val]) => `
+                <div class="p-3 border-b">
+                    <div class="font-medium mb-2">${ds}</div>
+                    <div class="flex justify-between text-sm">
+                        ${Object.entries(val).filter(([k]) => !['imbalance_ratio', 'is_balanced'].includes(k)).map(([k, v]) => `<span>${k}: ${v}</span>`).join('')}
+                    </div>
+                    <div class="mt-1 text-xs ${val.is_balanced ? 'text-green-600' : 'text-orange-600'}">
+                        ${val.is_balanced ? '✓ Balanced' : '⚠ Imbalanced'} (ratio: ${val.imbalance_ratio})
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('class-distribution').innerHTML = classDistHtml;
+
+            // Integrity Scores
+            const integrityHtml = Object.entries(data.integrity_scores).map(([ds, val]) => `
+                <div class="text-center p-4 bg-gradient-to-b from-${val.grade === 'A' ? 'green' : 'blue'}-50 to-white rounded-lg border">
+                    <div class="text-2xl font-bold text-${val.grade === 'A' ? 'green' : 'blue'}-600">${val.overall}%</div>
+                    <div class="text-sm font-medium">${ds}</div>
+                    <div class="text-3xl font-bold mt-2">${val.grade}</div>
+                    <div class="text-xs text-gray-500 mt-2">
+                        Complete: ${val.completeness}% | Clean: ${val.outlier_score}%
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('integrity-scores').innerHTML = integrityHtml;
+        }
+
+        function renderAccuracyAnalysis(data) {
+            // All Metrics Table
+            const datasets = Object.keys(data.all_metrics);
+            const metrics = ['accuracy', 'precision', 'recall', 'f1_score', 'specificity', 'auc_roc', 'cohen_kappa', 'mcc'];
+
+            const tableHtml = `
+                <table class="min-w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-2 text-left">Metric</th>
+                            ${datasets.map(ds => `<th class="px-4 py-2 text-center">${ds}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${metrics.map(m => `
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-4 py-2 font-medium capitalize">${m.replace(/_/g, ' ')}</td>
+                                ${datasets.map(ds => {
+                                    const val = data.all_metrics[ds][m];
+                                    return `<td class="px-4 py-2 text-center font-bold">${val < 1 && val > 0 ? val.toFixed(3) : val}${val > 1 ? '%' : ''}</td>`;
+                                }).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            document.getElementById('accuracy-all-metrics').innerHTML = tableHtml;
+
+            // Confidence Interval Chart
+            const ciCtx = document.getElementById('confidence-interval-chart').getContext('2d');
+            const ciData = data.confidence_intervals;
+            const ciDatasets = Object.entries(ciData).map(([ds, metrics], idx) => ({
+                label: ds,
+                data: Object.entries(metrics).map(([m, v]) => v.mean),
+                backgroundColor: idx === 0 ? 'rgba(59, 130, 246, 0.5)' : 'rgba(16, 185, 129, 0.5)',
+                borderColor: idx === 0 ? '#3b82f6' : '#10b981',
+                borderWidth: 1
+            }));
+            new Chart(ciCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(Object.values(ciData)[0]).map(m => m.replace(/_/g, ' ')),
+                    datasets: ciDatasets
+                },
+                options: {
+                    scales: { y: { min: 90, max: 100, title: { display: true, text: 'Score (%)' } } },
+                    plugins: { title: { display: true, text: 'Metrics with 95% CI' } }
+                }
+            });
+
+            // Per-Class Analysis
+            const perClassHtml = Object.entries(data.per_class_analysis).map(([ds, classes]) => `
+                <div class="mb-4">
+                    <div class="font-medium text-gray-700 mb-2">${ds}</div>
+                    ${Object.entries(classes).map(([cls, m]) => `
+                        <div class="flex justify-between p-2 ${cls === 'Baseline' ? 'bg-blue-50' : 'bg-red-50'} rounded mb-1">
+                            <span class="font-medium">${cls}</span>
+                            <span class="text-sm">P: ${m.precision.toFixed(3)} | R: ${m.recall.toFixed(3)} | F1: ${m.f1.toFixed(3)}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+            document.getElementById('per-class-analysis').innerHTML = perClassHtml;
+
+            // Error Analysis
+            const errorHtml = Object.entries(data.error_analysis).map(([ds, e]) => `
+                <div class="p-4 bg-red-50 rounded-lg">
+                    <div class="font-medium text-lg mb-2">${ds}</div>
+                    <div class="grid grid-cols-2 gap-2 text-sm">
+                        <div>Total Errors: <span class="font-bold">${e.total_errors}</span></div>
+                        <div>Error Rate: <span class="font-bold">${(e.error_rate * 100).toFixed(1)}%</span></div>
+                        <div>False Positives: <span class="font-bold text-orange-600">${e.false_positives}</span></div>
+                        <div>False Negatives: <span class="font-bold text-red-600">${e.false_negatives}</span></div>
+                        <div>FP Rate: <span class="font-bold">${(e.fp_rate * 100).toFixed(1)}%</span></div>
+                        <div>FN Rate: <span class="font-bold">${(e.fn_rate * 100).toFixed(1)}%</span></div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('error-analysis').innerHTML = errorHtml;
+        }
+
+        function renderSubjectAnalysis(data) {
+            const stats = data.variability;
+
+            // Subject Variability
+            const variabilityHtml = `
+                <div class="text-center p-4 bg-blue-50 rounded">
+                    <div class="text-2xl font-bold text-blue-600">${stats.accuracy_stats.mean.toFixed(1)}%</div>
+                    <div class="text-sm">Mean Accuracy</div>
+                    <div class="text-xs text-gray-500">± ${stats.accuracy_stats.std.toFixed(1)}%</div>
+                </div>
+                <div class="text-center p-4 bg-green-50 rounded">
+                    <div class="text-2xl font-bold text-green-600">${stats.f1_stats.mean.toFixed(3)}</div>
+                    <div class="text-sm">Mean F1</div>
+                    <div class="text-xs text-gray-500">± ${stats.f1_stats.std.toFixed(3)}</div>
+                </div>
+                <div class="text-center p-4 bg-purple-50 rounded">
+                    <div class="text-2xl font-bold text-purple-600">${stats.subjects_above_90}</div>
+                    <div class="text-sm">Subjects >90%</div>
+                    <div class="text-xs text-gray-500">of ${stats.n_subjects} total</div>
+                </div>
+                <div class="text-center p-4 bg-orange-50 rounded">
+                    <div class="text-2xl font-bold text-orange-600">${(stats.accuracy_stats.cv * 100).toFixed(1)}%</div>
+                    <div class="text-sm">CV</div>
+                    <div class="text-xs text-gray-500">Variability</div>
+                </div>
+            `;
+            document.getElementById('subject-variability').innerHTML = variabilityHtml;
+
+            // Subject Chart
+            const subjectCtx = document.getElementById('subject-chart').getContext('2d');
+            new Chart(subjectCtx, {
+                type: 'bar',
+                data: {
+                    labels: data.per_subject.map(s => s.subject_id),
+                    datasets: [{
+                        label: 'Accuracy (%)',
+                        data: data.per_subject.map(s => s.accuracy),
+                        backgroundColor: data.per_subject.map(s => s.accuracy >= 90 ? '#22c55e' : s.accuracy >= 80 ? '#f97316' : '#ef4444')
+                    }]
+                },
+                options: {
+                    scales: { y: { min: 70, max: 100 } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Outlier Subjects
+            const outlierHtml = `
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-red-50 rounded">
+                        <div class="font-medium text-red-700">Low Performers</div>
+                        <div class="mt-2">${data.outlier_subjects.low_performers.length > 0 ? data.outlier_subjects.low_performers.join(', ') : 'None detected'}</div>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded">
+                        <div class="font-medium text-green-700">High Performers</div>
+                        <div class="mt-2">${data.outlier_subjects.high_performers.length > 0 ? data.outlier_subjects.high_performers.join(', ') : 'None detected'}</div>
+                    </div>
+                </div>
+                <div class="mt-2 text-sm text-gray-500">Method: ${data.outlier_subjects.method} (threshold: ${data.outlier_subjects.threshold})</div>
+            `;
+            document.getElementById('outlier-subjects').innerHTML = outlierHtml;
+
+            // Subject Consistency
+            const consistencyHtml = `
+                <div class="text-center p-4 bg-blue-50 rounded">
+                    <div class="text-2xl font-bold text-blue-600">${data.consistency.test_retest_correlation}</div>
+                    <div class="text-sm">Test-Retest r</div>
+                </div>
+                <div class="text-center p-4 bg-green-50 rounded">
+                    <div class="text-2xl font-bold text-green-600">${data.consistency.session_stability}</div>
+                    <div class="text-sm">Session Stability</div>
+                </div>
+                <div class="text-center p-4 bg-purple-50 rounded">
+                    <div class="text-2xl font-bold text-purple-600">${data.consistency.mean_difference}</div>
+                    <div class="text-sm">Mean Diff</div>
+                </div>
+                <div class="text-center p-4 bg-orange-50 rounded">
+                    <div class="text-2xl font-bold text-orange-600">${data.consistency.consistency_score}</div>
+                    <div class="text-sm">Consistency</div>
+                </div>
+            `;
+            document.getElementById('subject-consistency').innerHTML = consistencyHtml;
+
+            // Subject Table
+            const tbodyHtml = data.per_subject.slice(0, 15).map(s => `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-4 py-2 font-medium">${s.subject_id}</td>
+                    <td class="px-4 py-2">${s.n_samples}</td>
+                    <td class="px-4 py-2 ${s.accuracy >= 90 ? 'text-green-600' : s.accuracy >= 80 ? 'text-orange-600' : 'text-red-600'} font-bold">${s.accuracy}%</td>
+                    <td class="px-4 py-2 font-bold">${s.f1_score}</td>
+                    <td class="px-4 py-2">${s.precision}</td>
+                    <td class="px-4 py-2">${s.recall}</td>
+                    <td class="px-4 py-2">${s.cohen_kappa}</td>
+                </tr>
+            `).join('');
+            document.getElementById('subject-tbody').innerHTML = tbodyHtml;
         }
 
         function renderClinicalValidation(data, thresholds) {

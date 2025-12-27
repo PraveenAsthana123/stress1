@@ -1073,6 +1073,549 @@ class CognitiveWorkloadAnalysis:
 
 
 # =============================================================================
+# DATA QUALITY ANALYSIS
+# =============================================================================
+
+class DataQualityAnalysis:
+    """
+    Comprehensive data quality assessment for EEG datasets.
+
+    Implements:
+    - Missing data analysis
+    - Outlier detection
+    - Noise level estimation
+    - Class distribution analysis
+    - Data integrity checks
+    """
+
+    def analyze_missing_data(self, data: np.ndarray) -> Dict[str, Any]:
+        """Analyze missing data patterns."""
+        total_elements = data.size
+        nan_count = np.isnan(data).sum()
+        inf_count = np.isinf(data).sum()
+
+        # Per-channel analysis if 2D
+        channel_missing = {}
+        if len(data.shape) >= 2:
+            for ch in range(data.shape[0] if len(data.shape) > 1 else 1):
+                ch_data = data[ch] if len(data.shape) > 1 else data
+                channel_missing[f'channel_{ch}'] = float(np.isnan(ch_data).mean() * 100)
+
+        return {
+            'total_elements': int(total_elements),
+            'nan_count': int(nan_count),
+            'nan_percentage': float(nan_count / total_elements * 100) if total_elements > 0 else 0,
+            'inf_count': int(inf_count),
+            'inf_percentage': float(inf_count / total_elements * 100) if total_elements > 0 else 0,
+            'channel_missing_pct': channel_missing,
+            'data_completeness': float(100 - (nan_count + inf_count) / total_elements * 100) if total_elements > 0 else 0
+        }
+
+    def detect_outliers(
+        self,
+        data: np.ndarray,
+        method: str = 'iqr',
+        threshold: float = 1.5
+    ) -> Dict[str, Any]:
+        """Detect outliers using various methods."""
+        flat_data = data.flatten()
+        flat_data = flat_data[~np.isnan(flat_data)]
+
+        if method == 'iqr':
+            q1, q3 = np.percentile(flat_data, [25, 75])
+            iqr = q3 - q1
+            lower_bound = q1 - threshold * iqr
+            upper_bound = q3 + threshold * iqr
+            outliers = (flat_data < lower_bound) | (flat_data > upper_bound)
+        elif method == 'zscore':
+            z_scores = np.abs(stats.zscore(flat_data))
+            outliers = z_scores > threshold
+        else:  # mad - median absolute deviation
+            median = np.median(flat_data)
+            mad = np.median(np.abs(flat_data - median))
+            modified_z = 0.6745 * (flat_data - median) / (mad + 1e-10)
+            outliers = np.abs(modified_z) > threshold
+
+        return {
+            'method': method,
+            'threshold': threshold,
+            'outlier_count': int(np.sum(outliers)),
+            'outlier_percentage': float(np.mean(outliers) * 100),
+            'lower_bound': float(lower_bound) if method == 'iqr' else None,
+            'upper_bound': float(upper_bound) if method == 'iqr' else None,
+            'data_range': {'min': float(np.min(flat_data)), 'max': float(np.max(flat_data))},
+            'clean_data_pct': float(100 - np.mean(outliers) * 100)
+        }
+
+    def estimate_snr(self, signal: np.ndarray, fs: int = 256) -> Dict[str, float]:
+        """Estimate Signal-to-Noise Ratio."""
+        # Use Welch's method for power spectral density
+        from scipy.signal import welch
+
+        freqs, psd = welch(signal, fs=fs, nperseg=min(256, len(signal)))
+
+        # Signal band: 0.5-45 Hz (typical EEG)
+        signal_idx = (freqs >= 0.5) & (freqs <= 45)
+        noise_idx = freqs > 45
+
+        signal_power = np.mean(psd[signal_idx]) if np.any(signal_idx) else 0
+        noise_power = np.mean(psd[noise_idx]) if np.any(noise_idx) else 1e-10
+
+        snr_db = 10 * np.log10(signal_power / noise_power) if noise_power > 0 else 0
+
+        return {
+            'snr_db': float(snr_db),
+            'signal_power': float(signal_power),
+            'noise_power': float(noise_power),
+            'quality': 'excellent' if snr_db > 20 else 'good' if snr_db > 10 else 'fair' if snr_db > 5 else 'poor'
+        }
+
+    def analyze_class_distribution(self, labels: np.ndarray) -> Dict[str, Any]:
+        """Analyze class distribution and imbalance."""
+        unique, counts = np.unique(labels, return_counts=True)
+        total = len(labels)
+
+        distribution = {str(u): int(c) for u, c in zip(unique, counts)}
+        percentages = {str(u): float(c / total * 100) for u, c in zip(unique, counts)}
+
+        # Imbalance metrics
+        max_count = max(counts)
+        min_count = min(counts)
+        imbalance_ratio = max_count / min_count if min_count > 0 else float('inf')
+
+        # Entropy-based measure
+        probs = counts / total
+        entropy = -np.sum(probs * np.log2(probs + 1e-10))
+        max_entropy = np.log2(len(unique))
+        balance_score = entropy / max_entropy if max_entropy > 0 else 0
+
+        return {
+            'n_classes': len(unique),
+            'class_counts': distribution,
+            'class_percentages': percentages,
+            'imbalance_ratio': float(imbalance_ratio),
+            'balance_score': float(balance_score),
+            'is_balanced': imbalance_ratio < 1.5,
+            'majority_class': str(unique[np.argmax(counts)]),
+            'minority_class': str(unique[np.argmin(counts)])
+        }
+
+    def compute_data_integrity_score(
+        self,
+        data: np.ndarray,
+        labels: np.ndarray
+    ) -> Dict[str, float]:
+        """Compute overall data integrity score."""
+        missing = self.analyze_missing_data(data)
+        outliers = self.detect_outliers(data)
+        class_dist = self.analyze_class_distribution(labels)
+
+        # Composite score (0-100)
+        completeness_score = missing['data_completeness']
+        outlier_score = outliers['clean_data_pct']
+        balance_score = class_dist['balance_score'] * 100
+
+        integrity_score = 0.4 * completeness_score + 0.3 * outlier_score + 0.3 * balance_score
+
+        return {
+            'completeness_score': completeness_score,
+            'outlier_score': outlier_score,
+            'balance_score': balance_score,
+            'overall_integrity': float(integrity_score),
+            'quality_grade': 'A' if integrity_score >= 90 else 'B' if integrity_score >= 80 else 'C' if integrity_score >= 70 else 'D'
+        }
+
+
+# =============================================================================
+# ACCURACY ANALYSIS
+# =============================================================================
+
+class AccuracyAnalysis:
+    """
+    Comprehensive accuracy and classification performance analysis.
+
+    Implements:
+    - Multi-metric accuracy assessment
+    - Confidence interval computation
+    - Statistical significance testing
+    - Performance comparison across conditions
+    """
+
+    def compute_all_accuracy_metrics(
+        self,
+        y_true: np.ndarray,
+        y_pred: np.ndarray,
+        y_prob: Optional[np.ndarray] = None
+    ) -> Dict[str, Any]:
+        """Compute comprehensive accuracy metrics."""
+
+        # Basic metrics
+        acc = accuracy_score(y_true, y_pred)
+        prec = precision_score(y_true, y_pred, average='weighted', zero_division=0)
+        rec = recall_score(y_true, y_pred, average='weighted', zero_division=0)
+        f1 = f1_score(y_true, y_pred, average='weighted', zero_division=0)
+
+        # For binary classification
+        if len(np.unique(y_true)) == 2:
+            tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
+            specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
+            sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0
+            balanced_acc = (sensitivity + specificity) / 2
+            ppv = tp / (tp + fp) if (tp + fp) > 0 else 0
+            npv = tn / (tn + fn) if (tn + fn) > 0 else 0
+
+            # Matthews Correlation Coefficient
+            mcc_denom = np.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))
+            mcc = (tp*tn - fp*fn) / mcc_denom if mcc_denom > 0 else 0
+        else:
+            specificity = None
+            sensitivity = rec
+            balanced_acc = None
+            ppv = prec
+            npv = None
+            mcc = None
+
+        # Cohen's Kappa
+        kappa = cohen_kappa_score(y_true, y_pred)
+
+        # Probabilistic metrics
+        if y_prob is not None:
+            try:
+                auc = roc_auc_score(y_true, y_prob, multi_class='ovr', average='weighted')
+            except:
+                auc = roc_auc_score(y_true, y_prob) if len(np.unique(y_true)) == 2 else 0.5
+            brier = brier_score_loss(y_true, y_prob) if len(np.unique(y_true)) == 2 else None
+            logloss = log_loss(y_true, y_prob)
+        else:
+            auc = None
+            brier = None
+            logloss = None
+
+        return {
+            'accuracy': float(acc),
+            'precision': float(prec),
+            'recall': float(rec),
+            'f1_score': float(f1),
+            'specificity': float(specificity) if specificity is not None else None,
+            'sensitivity': float(sensitivity),
+            'balanced_accuracy': float(balanced_acc) if balanced_acc is not None else None,
+            'ppv': float(ppv),
+            'npv': float(npv) if npv is not None else None,
+            'mcc': float(mcc) if mcc is not None else None,
+            'cohen_kappa': float(kappa),
+            'auc_roc': float(auc) if auc is not None else None,
+            'brier_score': float(brier) if brier is not None else None,
+            'log_loss': float(logloss) if logloss is not None else None
+        }
+
+    def compute_confidence_intervals(
+        self,
+        y_true: np.ndarray,
+        y_pred: np.ndarray,
+        confidence: float = 0.95,
+        n_bootstrap: int = 1000
+    ) -> Dict[str, Dict[str, float]]:
+        """Compute confidence intervals using bootstrap."""
+        np.random.seed(42)
+        n_samples = len(y_true)
+
+        metrics_boot = {
+            'accuracy': [],
+            'f1_score': [],
+            'precision': [],
+            'recall': []
+        }
+
+        for _ in range(n_bootstrap):
+            indices = np.random.choice(n_samples, n_samples, replace=True)
+            y_true_boot = y_true[indices]
+            y_pred_boot = y_pred[indices]
+
+            metrics_boot['accuracy'].append(accuracy_score(y_true_boot, y_pred_boot))
+            metrics_boot['f1_score'].append(f1_score(y_true_boot, y_pred_boot, average='weighted', zero_division=0))
+            metrics_boot['precision'].append(precision_score(y_true_boot, y_pred_boot, average='weighted', zero_division=0))
+            metrics_boot['recall'].append(recall_score(y_true_boot, y_pred_boot, average='weighted', zero_division=0))
+
+        alpha = 1 - confidence
+        results = {}
+
+        for metric_name, values in metrics_boot.items():
+            values = np.array(values)
+            results[metric_name] = {
+                'mean': float(np.mean(values)),
+                'std': float(np.std(values)),
+                'ci_lower': float(np.percentile(values, alpha/2 * 100)),
+                'ci_upper': float(np.percentile(values, (1-alpha/2) * 100)),
+                'confidence_level': confidence
+            }
+
+        return results
+
+    def compare_conditions(
+        self,
+        results_a: Dict[str, np.ndarray],
+        results_b: Dict[str, np.ndarray],
+        test: str = 'mcnemar'
+    ) -> Dict[str, Any]:
+        """Statistical comparison between two conditions."""
+        y_true = results_a['y_true']
+        pred_a = results_a['y_pred']
+        pred_b = results_b['y_pred']
+
+        # Accuracy comparison
+        acc_a = accuracy_score(y_true, pred_a)
+        acc_b = accuracy_score(y_true, pred_b)
+
+        if test == 'mcnemar':
+            # McNemar's test for paired predictions
+            correct_a = (pred_a == y_true)
+            correct_b = (pred_b == y_true)
+
+            b = np.sum(correct_a & ~correct_b)  # A correct, B wrong
+            c = np.sum(~correct_a & correct_b)  # A wrong, B correct
+
+            # Chi-square statistic with continuity correction
+            chi2 = (abs(b - c) - 1)**2 / (b + c) if (b + c) > 0 else 0
+            p_value = 1 - stats.chi2.cdf(chi2, df=1)
+        else:
+            # Paired t-test on per-sample correctness
+            correct_a = (pred_a == y_true).astype(float)
+            correct_b = (pred_b == y_true).astype(float)
+            t_stat, p_value = stats.ttest_rel(correct_a, correct_b)
+            chi2 = t_stat
+
+        return {
+            'condition_a_accuracy': float(acc_a),
+            'condition_b_accuracy': float(acc_b),
+            'difference': float(acc_a - acc_b),
+            'test_used': test,
+            'test_statistic': float(chi2),
+            'p_value': float(p_value),
+            'significant': p_value < 0.05,
+            'effect_size': float(abs(acc_a - acc_b) / np.std([acc_a, acc_b])) if np.std([acc_a, acc_b]) > 0 else 0
+        }
+
+    def per_class_analysis(
+        self,
+        y_true: np.ndarray,
+        y_pred: np.ndarray,
+        class_names: Optional[List[str]] = None
+    ) -> Dict[str, Dict[str, float]]:
+        """Compute per-class performance metrics."""
+        classes = np.unique(y_true)
+        if class_names is None:
+            class_names = [f'Class_{c}' for c in classes]
+
+        results = {}
+        for cls, name in zip(classes, class_names):
+            binary_true = (y_true == cls).astype(int)
+            binary_pred = (y_pred == cls).astype(int)
+
+            tn, fp, fn, tp = confusion_matrix(binary_true, binary_pred, labels=[0, 1]).ravel()
+
+            results[name] = {
+                'precision': float(tp / (tp + fp)) if (tp + fp) > 0 else 0,
+                'recall': float(tp / (tp + fn)) if (tp + fn) > 0 else 0,
+                'f1_score': float(2 * tp / (2 * tp + fp + fn)) if (2 * tp + fp + fn) > 0 else 0,
+                'specificity': float(tn / (tn + fp)) if (tn + fp) > 0 else 0,
+                'support': int(np.sum(y_true == cls)),
+                'true_positives': int(tp),
+                'false_positives': int(fp),
+                'false_negatives': int(fn),
+                'true_negatives': int(tn)
+            }
+
+        return results
+
+    def compute_error_analysis(
+        self,
+        y_true: np.ndarray,
+        y_pred: np.ndarray,
+        X: Optional[np.ndarray] = None
+    ) -> Dict[str, Any]:
+        """Analyze error patterns."""
+        errors = y_true != y_pred
+        error_indices = np.where(errors)[0]
+
+        # Confusion matrix
+        cm = confusion_matrix(y_true, y_pred)
+
+        # Error types
+        if len(np.unique(y_true)) == 2:
+            tn, fp, fn, tp = cm.ravel()
+            error_types = {
+                'false_positives': int(fp),
+                'false_negatives': int(fn),
+                'fp_rate': float(fp / (fp + tn)) if (fp + tn) > 0 else 0,
+                'fn_rate': float(fn / (fn + tp)) if (fn + tp) > 0 else 0
+            }
+        else:
+            error_types = {'confusion_matrix': cm.tolist()}
+
+        # Feature analysis on errors (if X provided)
+        feature_analysis = None
+        if X is not None and len(error_indices) > 0:
+            error_features = X[error_indices]
+            correct_features = X[~errors]
+
+            feature_analysis = {
+                'error_mean': float(np.mean(error_features)),
+                'correct_mean': float(np.mean(correct_features)),
+                'error_variance': float(np.var(error_features)),
+                'correct_variance': float(np.var(correct_features))
+            }
+
+        return {
+            'total_errors': int(np.sum(errors)),
+            'error_rate': float(np.mean(errors)),
+            'error_indices': error_indices.tolist()[:50],  # First 50 for reference
+            'error_types': error_types,
+            'feature_analysis': feature_analysis
+        }
+
+
+# =============================================================================
+# SUBJECT ANALYSIS
+# =============================================================================
+
+class SubjectAnalysis:
+    """
+    Subject-level analysis for EEG studies.
+
+    Implements:
+    - Per-subject performance tracking
+    - Subject variability analysis
+    - Demographic subgroup analysis
+    - Subject clustering
+    """
+
+    def compute_subject_metrics(
+        self,
+        y_true: np.ndarray,
+        y_pred: np.ndarray,
+        subjects: np.ndarray
+    ) -> List[Dict[str, Any]]:
+        """Compute metrics for each subject."""
+        unique_subjects = np.unique(subjects)
+        results = []
+
+        for subj in unique_subjects:
+            mask = subjects == subj
+            y_true_subj = y_true[mask]
+            y_pred_subj = y_pred[mask]
+
+            acc = accuracy_score(y_true_subj, y_pred_subj)
+            f1 = f1_score(y_true_subj, y_pred_subj, average='weighted', zero_division=0)
+            prec = precision_score(y_true_subj, y_pred_subj, average='weighted', zero_division=0)
+            rec = recall_score(y_true_subj, y_pred_subj, average='weighted', zero_division=0)
+
+            try:
+                kappa = cohen_kappa_score(y_true_subj, y_pred_subj)
+            except:
+                kappa = 0
+
+            results.append({
+                'subject_id': str(subj),
+                'n_samples': int(np.sum(mask)),
+                'accuracy': float(acc * 100),
+                'f1_score': float(f1),
+                'precision': float(prec),
+                'recall': float(rec),
+                'cohen_kappa': float(kappa),
+                'error_rate': float(1 - acc)
+            })
+
+        return results
+
+    def analyze_subject_variability(
+        self,
+        subject_results: List[Dict[str, Any]]
+    ) -> Dict[str, Any]:
+        """Analyze variability across subjects."""
+        accuracies = [s['accuracy'] for s in subject_results]
+        f1_scores = [s['f1_score'] for s in subject_results]
+
+        return {
+            'n_subjects': len(subject_results),
+            'accuracy_stats': {
+                'mean': float(np.mean(accuracies)),
+                'std': float(np.std(accuracies)),
+                'min': float(np.min(accuracies)),
+                'max': float(np.max(accuracies)),
+                'range': float(np.max(accuracies) - np.min(accuracies)),
+                'cv': float(np.std(accuracies) / np.mean(accuracies)) if np.mean(accuracies) > 0 else 0
+            },
+            'f1_stats': {
+                'mean': float(np.mean(f1_scores)),
+                'std': float(np.std(f1_scores)),
+                'min': float(np.min(f1_scores)),
+                'max': float(np.max(f1_scores))
+            },
+            'best_subject': subject_results[np.argmax(accuracies)]['subject_id'],
+            'worst_subject': subject_results[np.argmin(accuracies)]['subject_id'],
+            'subjects_above_90': len([a for a in accuracies if a >= 90]),
+            'subjects_above_80': len([a for a in accuracies if a >= 80])
+        }
+
+    def identify_outlier_subjects(
+        self,
+        subject_results: List[Dict[str, Any]],
+        threshold: float = 1.5
+    ) -> Dict[str, Any]:
+        """Identify subjects with unusual performance."""
+        f1_scores = np.array([s['f1_score'] for s in subject_results])
+
+        q1, q3 = np.percentile(f1_scores, [25, 75])
+        iqr = q3 - q1
+        lower_bound = q1 - threshold * iqr
+        upper_bound = q3 + threshold * iqr
+
+        low_performers = [s for s, f1 in zip(subject_results, f1_scores) if f1 < lower_bound]
+        high_performers = [s for s, f1 in zip(subject_results, f1_scores) if f1 > upper_bound]
+
+        return {
+            'threshold_method': 'IQR',
+            'threshold_multiplier': threshold,
+            'lower_bound': float(lower_bound),
+            'upper_bound': float(upper_bound),
+            'low_performers': [s['subject_id'] for s in low_performers],
+            'high_performers': [s['subject_id'] for s in high_performers],
+            'n_outliers': len(low_performers) + len(high_performers)
+        }
+
+    def compute_subject_consistency(
+        self,
+        subject_results_session1: List[Dict[str, Any]],
+        subject_results_session2: List[Dict[str, Any]]
+    ) -> Dict[str, Any]:
+        """Compute subject consistency across sessions."""
+        # Match subjects by ID
+        s1_dict = {s['subject_id']: s['f1_score'] for s in subject_results_session1}
+        s2_dict = {s['subject_id']: s['f1_score'] for s in subject_results_session2}
+
+        common_subjects = set(s1_dict.keys()) & set(s2_dict.keys())
+
+        if len(common_subjects) < 2:
+            return {'error': 'Insufficient common subjects for consistency analysis'}
+
+        s1_scores = [s1_dict[s] for s in common_subjects]
+        s2_scores = [s2_dict[s] for s in common_subjects]
+
+        correlation, p_value = stats.pearsonr(s1_scores, s2_scores)
+
+        return {
+            'n_common_subjects': len(common_subjects),
+            'session1_mean': float(np.mean(s1_scores)),
+            'session2_mean': float(np.mean(s2_scores)),
+            'correlation': float(correlation),
+            'p_value': float(p_value),
+            'mean_difference': float(np.mean(np.array(s1_scores) - np.array(s2_scores))),
+            'std_difference': float(np.std(np.array(s1_scores) - np.array(s2_scores))),
+            'consistency_score': float(correlation) if correlation > 0 else 0
+        }
+
+
+# =============================================================================
 # PERFORMANCE METRICS MATRIX
 # =============================================================================
 
@@ -1180,9 +1723,19 @@ class PerformanceMetricsMatrix:
 class ComprehensiveAnalysisOrchestrator:
     """
     Main orchestrator for running all analyses.
+
+    Analysis Categories:
+    1. Data Analysis - Quality, completeness, distribution
+    2. Accuracy Analysis - Multi-metric performance
+    3. Model Analysis - Architecture, convergence, ablation
+    4. Subject Analysis - Per-subject, variability, outliers
+    5. Performance Analysis - Comprehensive metrics matrix
+    6. Clinical Analysis - Validation, thresholds, risk
+    7. Reliability Analysis - Robustness, stability
     """
 
     def __init__(self, sampling_rate: int = 256):
+        # Core analysis modules
         self.feature_engineering = FeatureEngineeringAnalysis(sampling_rate)
         self.clinical_validation = ClinicalValidationAnalysis()
         self.loso_analysis = SubjectWiseLOSOAnalysis()
@@ -1190,6 +1743,11 @@ class ComprehensiveAnalysisOrchestrator:
         self.model_analysis = ModelAnalysisFramework()
         self.cognitive_workload = CognitiveWorkloadAnalysis()
         self.metrics_matrix = PerformanceMetricsMatrix()
+
+        # New analysis modules (Complete Taxonomy)
+        self.data_quality = DataQualityAnalysis()
+        self.accuracy_analysis = AccuracyAnalysis()
+        self.subject_analysis = SubjectAnalysis()
 
     def run_complete_analysis(
         self,
@@ -1200,11 +1758,21 @@ class ComprehensiveAnalysisOrchestrator:
         train_losses: List[float] = None,
         val_losses: List[float] = None
     ) -> Dict[str, Any]:
-        """Run complete analysis pipeline."""
+        """Run complete analysis pipeline with full taxonomy."""
 
         results = {}
 
-        # 1. Feature Engineering (on sample)
+        # =====================================================================
+        # 1. DATA ANALYSIS
+        # =====================================================================
+        results['data_analysis'] = {
+            'missing_data': self.data_quality.analyze_missing_data(X),
+            'outliers': self.data_quality.detect_outliers(X),
+            'class_distribution': self.data_quality.analyze_class_distribution(y),
+            'integrity_score': self.data_quality.compute_data_integrity_score(X, y)
+        }
+
+        # 2. Feature Engineering (on sample)
         if len(X.shape) >= 2:
             sample_features = self.feature_engineering.extract_all_features(X[0:1].reshape(-1, X.shape[-1]) if len(X.shape) > 2 else X[0:1])
             results['feature_engineering'] = {
@@ -1212,32 +1780,69 @@ class ComprehensiveAnalysisOrchestrator:
                 'complexity_features_extracted': len(sample_features.complexity_features)
             }
 
-        # 2. LOSO Analysis
+        # =====================================================================
+        # 3. ACCURACY ANALYSIS
+        # =====================================================================
+        y_pred = model.predict(X)
+        y_prob = model.predict_proba(X)[:, 1] if hasattr(model, 'predict_proba') else None
+
+        results['accuracy_analysis'] = {
+            'all_metrics': self.accuracy_analysis.compute_all_accuracy_metrics(y, y_pred, y_prob),
+            'confidence_intervals': self.accuracy_analysis.compute_confidence_intervals(y, y_pred),
+            'per_class': self.accuracy_analysis.per_class_analysis(y, y_pred, ['Baseline', 'Stress']),
+            'error_analysis': self.accuracy_analysis.compute_error_analysis(y, y_pred, X)
+        }
+
+        # =====================================================================
+        # 4. SUBJECT ANALYSIS
+        # =====================================================================
+        subject_metrics = self.subject_analysis.compute_subject_metrics(y, y_pred, subjects)
+        results['subject_analysis'] = {
+            'per_subject': subject_metrics,
+            'variability': self.subject_analysis.analyze_subject_variability(subject_metrics),
+            'outliers': self.subject_analysis.identify_outlier_subjects(subject_metrics)
+        }
+
+        # 5. LOSO Analysis
         loso_results, aggregate = self.loso_analysis.run_loso_analysis(X, y, subjects, model)
         results['loso_analysis'] = {
             'per_subject': [vars(r) for r in loso_results],
             'aggregate': aggregate
         }
 
-        # 3. Clinical Validation
-        y_pred = model.predict(X)
-        y_prob = model.predict_proba(X)[:, 1] if hasattr(model, 'predict_proba') else None
+        # =====================================================================
+        # 6. MODEL ANALYSIS
+        # =====================================================================
+        results['model_analysis'] = {
+            'architecture': self.model_analysis.analyze_model_architecture(model),
+            'inference_efficiency': self.model_analysis.measure_inference_efficiency(model, X)
+        }
+
+        if train_losses and val_losses:
+            results['model_analysis']['convergence'] = self.model_analysis.analyze_convergence(train_losses, val_losses)
+            results['model_analysis']['overfitting'] = self.model_analysis.detect_overfitting(
+                train_losses, val_losses,
+                [0.9] * len(train_losses),  # Placeholder train metrics
+                [0.85] * len(val_losses)     # Placeholder val metrics
+            )
+
+        # =====================================================================
+        # 7. CLINICAL ANALYSIS
+        # =====================================================================
         clinical_metrics = self.clinical_validation.compute_clinical_metrics(y, y_pred, y_prob)
         results['clinical_validation'] = clinical_metrics.to_dict()
         results['clinical_thresholds'] = self.clinical_validation.check_clinical_thresholds(clinical_metrics)
         results['risk_assessment'] = self.clinical_validation.compute_risk_assessment(y, y_pred)
 
-        # 4. Reliability Analysis
+        # =====================================================================
+        # 8. RELIABILITY ANALYSIS
+        # =====================================================================
         reliability = self.reliability_analysis.compute_all_reliability_metrics(model, X, y)
         results['reliability'] = vars(reliability)
 
-        # 5. Model Analysis
-        if train_losses and val_losses:
-            results['convergence'] = self.model_analysis.analyze_convergence(train_losses, val_losses)
-
-        results['inference_efficiency'] = self.model_analysis.measure_inference_efficiency(model, X)
-
-        # 6. Performance Metrics Matrix
+        # =====================================================================
+        # 9. PERFORMANCE METRICS MATRIX
+        # =====================================================================
         results['metrics_matrix'] = self.metrics_matrix.generate_complete_matrix(
             y, y_pred, y_prob,
             train_losses or [], val_losses or [],
