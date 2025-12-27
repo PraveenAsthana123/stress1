@@ -177,6 +177,22 @@ from .research_visualization import (
     EEG_BANDS
 )
 
+# LaTeX Research Tools (PhD-Grade)
+from .latex_research_tools import (
+    # Master suite
+    LaTeXResearchSuite,
+
+    # Sub-modules
+    LaTeXTableGenerator,
+    PDFFigureExporter,
+    PGFPlotsGenerator,
+    BeamerGenerator,
+
+    # Utilities
+    apply_latex_style,
+    PDF_RCPARAMS
+)
+
 __all__ = [
     # Signal analysis
     'compute_psd',
@@ -285,5 +301,12 @@ __all__ = [
     'apply_publication_style',
     'PUBLICATION_RCPARAMS',
     'PUBLICATION_COLORS',
-    'EEG_BANDS'
+    'EEG_BANDS',
+
+    # LaTeX Research Tools (PhD-Grade)
+    'LaTeXResearchSuite',
+    'LaTeXTableGenerator',
+    'PDFFigureExporter',
+    'PGFPlotsGenerator',
+    'BeamerGenerator'
 ]
