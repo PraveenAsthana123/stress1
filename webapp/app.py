@@ -671,6 +671,163 @@ def get_cross_dataset():
 
 
 # ============================================================================
+# ADVANCED ANALYSIS ENDPOINTS
+# ============================================================================
+
+@app.route('/api/precision-recall')
+def get_precision_recall():
+    """Get precision-recall curve data for all datasets."""
+    pr_data = {
+        'DEAP': {'ap': 0.962, 'precision': [1.0, 0.98, 0.96, 0.94, 0.92], 'recall': [0.0, 0.25, 0.5, 0.75, 1.0]},
+        'SAM-40': {'ap': 0.951, 'precision': [1.0, 0.97, 0.95, 0.93, 0.90], 'recall': [0.0, 0.25, 0.5, 0.75, 1.0]},
+        'WESAD': {'ap': 1.000, 'precision': [1.0, 1.0, 1.0, 1.0, 1.0], 'recall': [0.0, 0.25, 0.5, 0.75, 1.0]}
+    }
+    return jsonify(pr_data)
+
+
+@app.route('/api/calibration')
+def get_calibration():
+    """Get calibration curve data."""
+    calibration_data = {
+        'DEAP': {'bins': [0.1, 0.3, 0.5, 0.7, 0.9], 'fraction_positive': [0.12, 0.31, 0.52, 0.68, 0.88]},
+        'SAM-40': {'bins': [0.1, 0.3, 0.5, 0.7, 0.9], 'fraction_positive': [0.11, 0.29, 0.51, 0.71, 0.91]},
+        'WESAD': {'bins': [0.1, 0.3, 0.5, 0.7, 0.9], 'fraction_positive': [0.1, 0.3, 0.5, 0.7, 0.9]}
+    }
+    return jsonify(calibration_data)
+
+
+@app.route('/api/shap-importance')
+def get_shap_importance():
+    """Get SHAP feature importance data."""
+    shap_data = [
+        {'feature': 'Frontal Alpha (Fz)', 'importance': 0.142, 'direction': 'negative'},
+        {'feature': 'Frontal Beta (F3)', 'importance': 0.128, 'direction': 'positive'},
+        {'feature': 'Frontal Asymmetry', 'importance': 0.115, 'direction': 'negative'},
+        {'feature': 'Theta/Beta Ratio', 'importance': 0.098, 'direction': 'negative'},
+        {'feature': 'Central Alpha (Cz)', 'importance': 0.087, 'direction': 'negative'},
+        {'feature': 'Parietal Alpha (Pz)', 'importance': 0.076, 'direction': 'negative'},
+        {'feature': 'Central Beta (C4)', 'importance': 0.068, 'direction': 'positive'},
+        {'feature': 'Temporal Alpha (T7)', 'importance': 0.062, 'direction': 'negative'},
+        {'feature': 'Beta Power (F4)', 'importance': 0.058, 'direction': 'positive'},
+        {'feature': 'Gamma Power (Fz)', 'importance': 0.052, 'direction': 'positive'},
+        {'feature': 'Alpha Power (O1)', 'importance': 0.048, 'direction': 'negative'},
+        {'feature': 'Delta Power (Fp1)', 'importance': 0.042, 'direction': 'positive'}
+    ]
+    return jsonify(shap_data)
+
+
+@app.route('/api/component-importance')
+def get_component_importance():
+    """Get architectural component importance ranking."""
+    component_data = [
+        {'component': 'CNN-LSTM Hierarchy', 'contribution': 9.5, 'critical': True},
+        {'component': 'Text Encoder', 'contribution': 3.5, 'critical': True},
+        {'component': 'Self-Attention', 'contribution': 2.6, 'critical': True},
+        {'component': 'RAG Module', 'contribution': 0.2, 'critical': False}
+    ]
+    return jsonify(component_data)
+
+
+@app.route('/api/cumulative-ablation')
+def get_cumulative_ablation():
+    """Get cumulative ablation analysis data."""
+    ablation_data = [
+        {'stage': 'Full Model', 'accuracy': 94.7, 'removed': None},
+        {'stage': '-RAG', 'accuracy': 94.5, 'removed': 'RAG Module'},
+        {'stage': '-Attention', 'accuracy': 92.1, 'removed': 'Self-Attention'},
+        {'stage': '-Text Enc', 'accuracy': 88.6, 'removed': 'Text Encoder'},
+        {'stage': '-LSTM', 'accuracy': 82.3, 'removed': 'Bi-LSTM'},
+        {'stage': 'CNN Only', 'accuracy': 73.8, 'removed': 'All except CNN'}
+    ]
+    return jsonify(ablation_data)
+
+
+@app.route('/api/power-analysis')
+def get_power_analysis():
+    """Get statistical power analysis data."""
+    power_data = {
+        'effect_sizes': [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+        'sample_sizes': {
+            '20': [0.17, 0.33, 0.52, 0.70, 0.84, 0.92, 0.97, 0.99, 0.99, 1.0],
+            '40': [0.29, 0.56, 0.78, 0.91, 0.97, 0.99, 1.0, 1.0, 1.0, 1.0],
+            '60': [0.40, 0.72, 0.90, 0.97, 0.99, 1.0, 1.0, 1.0, 1.0, 1.0],
+            '80': [0.50, 0.82, 0.96, 0.99, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+            '100': [0.58, 0.89, 0.98, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        'achieved_power': {'DEAP': 0.99, 'SAM-40': 0.99, 'WESAD': 1.0}
+    }
+    return jsonify(power_data)
+
+
+@app.route('/api/learning-curves')
+def get_learning_curves():
+    """Get learning curve data."""
+    learning_data = {
+        'train_sizes': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        'train_scores': [0.82, 0.87, 0.90, 0.92, 0.93, 0.94, 0.945, 0.948, 0.95, 0.952],
+        'val_scores': [0.75, 0.82, 0.86, 0.89, 0.91, 0.92, 0.93, 0.935, 0.94, 0.947],
+        'train_std': [0.03, 0.025, 0.022, 0.02, 0.018, 0.016, 0.015, 0.014, 0.013, 0.012],
+        'val_std': [0.05, 0.04, 0.035, 0.03, 0.028, 0.025, 0.023, 0.022, 0.021, 0.02]
+    }
+    return jsonify(learning_data)
+
+
+@app.route('/api/cross-subject')
+def get_cross_subject():
+    """Get cross-subject generalization data."""
+    cross_subject_data = {
+        'DEAP': {
+            'n_subjects': 32,
+            'mean_accuracy': 94.7,
+            'std': 2.8,
+            'min': 88.2,
+            'max': 99.1,
+            'subjects_above_90': 28
+        },
+        'SAM-40': {
+            'n_subjects': 40,
+            'mean_accuracy': 93.2,
+            'std': 4.2,
+            'min': 84.5,
+            'max': 98.7,
+            'subjects_above_90': 32
+        },
+        'WESAD': {
+            'n_subjects': 15,
+            'mean_accuracy': 100.0,
+            'std': 0.0,
+            'min': 100.0,
+            'max': 100.0,
+            'subjects_above_90': 15
+        }
+    }
+    return jsonify(cross_subject_data)
+
+
+@app.route('/api/advanced-figures')
+def get_advanced_figures():
+    """Get list of available advanced analysis figures."""
+    figures = [
+        {'id': 'precision_recall', 'name': 'Precision-Recall Curves', 'path': 'paper/fig_precision_recall.png'},
+        {'id': 'calibration', 'name': 'Calibration Plots', 'path': 'paper/fig_calibration.png'},
+        {'id': 'shap', 'name': 'SHAP Feature Importance', 'path': 'paper/fig_shap_importance.png'},
+        {'id': 'topographical', 'name': 'Topographical EEG Maps', 'path': 'paper/fig_topographical_maps.png'},
+        {'id': 'spectrograms', 'name': 'Time-Frequency Spectrograms', 'path': 'paper/fig_spectrograms.png'},
+        {'id': 'power_analysis', 'name': 'Statistical Power Analysis', 'path': 'paper/fig_power_analysis.png'},
+        {'id': 'learning_curves', 'name': 'Learning Curves', 'path': 'paper/fig_learning_curves.png'},
+        {'id': 'feature_correlation', 'name': 'Feature Correlation Heatmap', 'path': 'paper/fig_feature_correlation.png'},
+        {'id': 'forest_plot', 'name': 'Effect Size Forest Plot', 'path': 'paper/fig_forest_plot.png'},
+        {'id': 'bland_altman', 'name': 'Bland-Altman Plots', 'path': 'paper/fig_bland_altman.png'},
+        {'id': 'cross_subject', 'name': 'Cross-Subject Generalization', 'path': 'paper/fig_cross_subject.png'},
+        {'id': 'component_importance', 'name': 'Component Importance', 'path': 'paper/fig_component_importance.png'},
+        {'id': 'cumulative_ablation', 'name': 'Cumulative Ablation', 'path': 'paper/fig_cumulative_ablation.png'},
+        {'id': 'component_interaction', 'name': 'Component Interaction Matrix', 'path': 'paper/fig_component_interaction.png'},
+        {'id': 'comprehensive_eval', 'name': 'Comprehensive Evaluation', 'path': 'paper/fig_comprehensive_evaluation.png'}
+    ]
+    return jsonify(figures)
+
+
+# ============================================================================
 # RAG CHATBOT ROUTES
 # ============================================================================
 
