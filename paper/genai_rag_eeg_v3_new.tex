@@ -47,7 +47,11 @@ Sarita Singh Gond\IEEEauthorrefmark{3}}
 %% ABSTRACT
 %% ============================================================================
 \begin{abstract}
-Cognitive stress significantly impairs human performance and health, yet objective real-time detection remains challenging. This paper introduces a comprehensive multimodal framework for EEG-based cognitive stress detection that uniquely integrates: (1) a hierarchical deep learning architecture combining spatial convolutions, temporal recurrence, and self-attention mechanisms; (2) neurophysiological signal biomarkers validated across multiple stress paradigms; and (3) retrieval-augmented generation (RAG) for evidence-grounded explainability. We conduct the first systematic cross-paradigm evaluation across three distinct stress induction protocols---emotional arousal (DEAP, 32 subjects), cognitive task load (SAM-40, 40 subjects), and physiological stress response (WESAD, 15 subjects)---revealing both universal biomarkers and paradigm-specific signatures. Our framework achieves classification accuracies of 94.7\% (DEAP), 93.2\% (SAM-40), and 100\% (WESAD), with consistent alpha suppression (31--33\%, $p < 0.0001$), theta/beta ratio modulation ($-8\%$ to $-14\%$), and frontal asymmetry shifts. Cross-dataset transfer analysis reveals 14--27\% performance degradation, quantifying domain shift between stress constructs. The RAG module generates clinically meaningful explanations achieving 89.8\% expert agreement while maintaining computational efficiency suitable for real-time brain-computer interface deployment. Statistical validation employs leave-one-subject-out cross-validation, bootstrap confidence intervals, and effect size quantification. This work establishes a reproducible benchmark for explainable stress detection with implications for occupational health monitoring, clinical assessment, and adaptive human-computer interaction.
+Stress chips away at both productivity and wellbeing, yet pinning it down objectively---in real time, no less---remains surprisingly difficult. We present a multi-pronged solution combining brain signal analysis with modern AI techniques. At the core sits a neural network architecture that stacks spatial convolutions atop bidirectional recurrent units, capped with self-attention layers. This encoder partners with a separate text encoder processing contextual metadata, and the whole system links to a retrieval-augmented explanation generator that justifies its predictions by fetching relevant scientific literature.
+
+We tested this framework across three publicly available EEG datasets, each representing a fundamentally different flavor of stress: music-video-induced emotional arousal (DEAP, 32 people), challenging cognitive tasks (SAM-40, 40 people), and controlled psychosocial stress via the Trier protocol (WESAD, 15 people). Classification hit 94.7\%, 93.2\%, and 100\% respectively. Across all three paradigms, we observed consistent neurophysiological patterns: alpha power dropping 31--33\% ($p < 0.0001$), theta-to-beta ratios shifting $-8\%$ to $-14\%$, and frontal asymmetry tilting rightward. Training on one dataset and testing on another revealed 14--27\% accuracy drops---concrete evidence that different stress types genuinely differ at the neural level.
+
+The explanation module earned 89.8\% agreement from domain experts who rated its outputs for scientific accuracy and clinical relevance. Validation throughout employed leave-one-subject-out partitioning, bootstrap confidence intervals, and formal effect size calculations. We share our preprocessing pipelines and evaluation code to enable reproducibility.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -59,29 +63,29 @@ Electroencephalography, cognitive stress, deep learning, explainable artificial 
 %% ============================================================================
 \section{Introduction}
 
-\IEEEPARstart{C}{ognitive} stress represents a complex psychophysiological state arising from perceived demands exceeding adaptive capacity~\cite{lazarus1984stress}. The global burden of stress-related disorders costs an estimated \$300 billion annually in healthcare and productivity losses~\cite{who2023mental}. Chronic stress exposure contributes to cardiovascular disease, metabolic dysfunction, immune suppression, and mental health disorders including anxiety and depression. The World Health Organization has identified workplace stress as a major occupational health hazard affecting over 300 million workers globally. Traditional stress assessment relies on subjective self-reports susceptible to recall bias, social desirability effects, demand characteristics, and inability to capture real-time temporal dynamics~\cite{cohen1983global}. These fundamental limitations motivate the development of objective, continuous, and non-invasive stress monitoring systems capable of real-time deployment.
+\IEEEPARstart{W}{hen} environmental demands surpass an individual's perceived coping resources, a multifaceted neurobiological response emerges that we term cognitive stress~\cite{lazarus1984stress}. Contemporary estimates suggest stress-related conditions extract approximately \$300 billion from global economies through healthcare expenditures and diminished workforce productivity~\cite{who2023mental}. Prolonged exposure precipitates cascading pathophysiology spanning cardiovascular irregularities, metabolic perturbations, immunological compromise, and psychiatric sequelae including anxiety spectrum and depressive disorders. International health authorities now recognize occupational stress as a preeminent workplace hazard impacting upwards of 300 million workers worldwide. Conventional assessment paradigms depend upon retrospective self-enumeration, introducing systematic distortions from memory degradation, impression management tendencies, experimental reactivity, and temporal insensitivity~\cite{cohen1983global}. These methodological constraints underscore the imperative for developing objective, temporally continuous, and minimally invasive neural monitoring platforms amenable to ecological deployment.
 
-Electroencephalography (EEG) offers a uniquely promising avenue for objective stress monitoring, providing millisecond temporal resolution that captures the rapid dynamics of neural stress responses~\cite{niedermeyer2005electroencephalography}. Unlike other physiological measures such as heart rate variability, skin conductance, or cortisol sampling, EEG directly measures cortical neural activity associated with cognitive and emotional processing. This direct measurement of brain activity provides insight into the central nervous system mechanisms underlying stress, rather than peripheral autonomic or endocrine responses that may lag the subjective experience by seconds to minutes.
+Brain electrical recordings through scalp electrodes---electroencephalography or EEG---present compelling advantages for tracking mental strain objectively~\cite{niedermeyer2005electroencephalography}. What makes EEG particularly attractive? Its sub-second temporal precision captures neural fluctuations as they unfold, something heart rate monitors, sweat gland sensors, or blood cortisol tests simply cannot match. While those peripheral measures tell us about body-wide responses occurring seconds or minutes after the brain initiates them, EEG taps directly into the cortical generators of cognition and emotion themselves.
 
-The neurophysiological correlates of stress manifest across multiple EEG frequency bands with distinct functional significance. Alpha band (8--13 Hz) power suppression reflects reduced cortical idling and increased vigilance, representing one of the most robust and reproducible stress biomarkers~\cite{klimesch1999alpha}. Beta band (13--30 Hz) enhancement indicates heightened cognitive processing, cortical arousal, and active problem-solving engagement~\cite{engel2001dynamic}. Theta band (4--8 Hz) modulation, particularly in frontal midline regions, relates to executive control demands, error monitoring, and working memory load~\cite{cavanagh2014frontal}. Additionally, hemispheric asymmetries in frontal alpha power reflect approach-withdrawal motivation according to Davidson's model, with relative right-hemisphere activation associated with negative affect and withdrawal behaviors characteristic of stress states~\cite{davidson2004well}. These spectral signatures, individually validated across decades of psychophysiology research, collectively provide a rich multivariate feature space for machine learning classification.
+How does stress actually appear in brain rhythms? The picture involves several frequency bands, each telling a different part of the story. When alpha waves (those 8--13 Hz oscillations) drop in power, researchers interpret this as the cortex shifting from an idle, internally-focused state toward heightened external vigilance---a pattern consistently linked to stress across numerous studies~\cite{klimesch1999alpha}. Meanwhile, faster beta rhythms (13--30 Hz) tend to increase, signaling ramped-up cognitive engagement and mental effort~\cite{engel2001dynamic}. Frontal theta waves (4--8 Hz) fluctuate in ways connected to executive demands, error detection, and working memory taxation~\cite{cavanagh2014frontal}. Perhaps most intriguingly, the two brain hemispheres often show asymmetric alpha patterns during stress---Davidson's influential model links stronger right-frontal activity to avoidance motivation and negative emotional states~\cite{davidson2004well}. Decades of psychophysiological research have validated these spectral markers individually; together, they constitute a rich signal landscape ripe for computational pattern recognition.
 
-Recent advances in deep learning have revolutionized EEG analysis, enabling end-to-end feature learning that consistently surpasses traditional handcrafted feature approaches~\cite{craik2019deep}. Convolutional neural networks (CNNs) effectively capture spatial patterns across electrode arrays and temporal features within signals through hierarchical filter learning~\cite{schirrmeister2017deep}. Recurrent architectures, particularly Long Short-Term Memory (LSTM) networks, model the long-range temporal dependencies critical for understanding EEG dynamics that unfold over seconds~\cite{bashivan2016learning}. More recently, attention mechanisms have further enhanced classification performance by dynamically weighting relevant signal segments, enabling models to focus on discriminative time periods and frequency components while suppressing noise~\cite{zhang2019making}. However, despite impressive classification accuracies, the clinical translation of these sophisticated deep learning models remains fundamentally impeded by their black-box nature and lack of interpretable explanations~\cite{tonekaboni2019clinicians}. Healthcare practitioners and regulatory bodies require understanding of model reasoning---not just predictions---before trusting automated diagnoses that may influence patient care.
+The machine learning landscape for brain signal analysis has shifted dramatically in recent years. Neural network architectures now learn discriminative patterns directly from raw or minimally processed recordings, frequently outperforming laboriously engineered feature sets that dominated earlier approaches~\cite{craik2019deep}. Convolution-based networks excel at detecting spatial arrangements across electrode montages and extracting hierarchical temporal motifs through layered filtering operations~\cite{schirrmeister2017deep}. For capturing how brain states evolve across longer timescales---seconds rather than milliseconds---recurrent designs like LSTM prove invaluable, maintaining information about earlier signal segments that inform interpretation of later ones~\cite{bashivan2016learning}. Attention modules represent the latest refinement, letting models dynamically emphasize the most classification-relevant portions of input sequences while downweighting uninformative stretches~\cite{zhang2019making}. Yet a stubborn problem persists: these sophisticated systems achieve remarkable accuracy but offer clinicians little insight into why they reach particular conclusions~\cite{tonekaboni2019clinicians}. Doctors, nurses, and medical regulators understandably hesitate to trust opaque algorithms with patient welfare. They need to peek inside the black box.
 
-The emergence of Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG)~\cite{lewis2020retrieval} introduces transformative opportunities for explainable AI in biomedical applications. By grounding model predictions in retrieved scientific evidence from curated knowledge bases, RAG enables generation of clinically meaningful natural language explanations that enhance trust, facilitate human oversight, and support clinical decision-making~\cite{jin2024health}. This approach bridges the critical gap between high-performing black-box deep learning models and the interpretability requirements essential for responsible clinical deployment.
+Enter large language models and retrieval-augmented generation---technologies that may finally crack the explainability puzzle for biomedical AI~\cite{lewis2020retrieval}. The core insight behind RAG involves anchoring model outputs to retrieved passages from scientific literature or clinical knowledge repositories. Rather than generating explanations from scratch (risking hallucination), the system retrieves relevant evidence first, then synthesizes coherent natural-language rationales grounded in that retrieved content~\cite{jin2024health}. For stress classification specifically, this means explanations can reference established neurophysiological mechanisms, cite supporting research, and present reasoning in terms clinicians recognize and can evaluate.
 
 \subsection{Related Work and Research Gaps}
 
-Table~\ref{tab:related} summarizes recent EEG-based stress and emotion recognition methods, highlighting their methodological approaches, datasets, performance, and explainability capabilities. Song et al.~\cite{song2020eeg} employed dynamical graph convolutional neural networks (DGCNN) to model inter-channel relationships as dynamic graph structures, achieving 90.4\% accuracy on the SEED emotion dataset. Their approach effectively captured the topological relationships between electrodes but provided no mechanism for explaining individual predictions. Tao et al.~\cite{tao2020attention} incorporated channel-wise and temporal attention mechanisms, reaching 88.7\% on DEAP and demonstrating the value of selective attention for EEG classification. However, attention weights alone provide limited clinical interpretability. Li et al.~\cite{li2023domain} explored domain adaptation techniques for cross-subject generalization, addressing the significant inter-subject variability that challenges EEG-based systems, but their method similarly lacked explainability components. Lawhern et al.~\cite{lawhern2018eegnet} proposed EEGNet, an elegantly compact CNN architecture achieving competitive performance with dramatically fewer parameters, enabling deployment on resource-constrained devices---yet interpretability remained unaddressed.
+Table~\ref{tab:related} surveys notable recent contributions to automated brain signal classification for emotional and stress states. Song and colleagues~\cite{song2020eeg} treated electrode relationships as evolving graph structures, applying dynamical graph convolutions to achieve 90.4\% on the SEED benchmark---an elegant approach capturing topological dependencies but offering users no window into prediction rationales. Tao's group~\cite{tao2020attention} wove attention mechanisms into their recurrent architecture, hitting 88.7\% on DEAP data; while attention maps hint at which temporal segments mattered most, they fall short of the textual, evidence-backed explanations practitioners actually need. Li's team~\cite{li2023domain} tackled the notoriously difficult cross-subject generalization problem through domain adaptation strategies, yet explanation capabilities remained absent from their pipeline. The influential EEGNet work by Lawhern and co-authors~\cite{lawhern2018eegnet} demonstrated that surprisingly compact convolutional designs could rival larger models while fitting within embedded system constraints---but again, interpretability received no attention.
 
-Despite these promising classification accuracies, several critical research gaps persist in the current literature that limit clinical translation:
+Looking across this landscape, several stubborn gaps impede moving these algorithms from research prototypes into clinical tools:
 
-\textbf{Limited Explainability}: Existing methods provide no mechanism for generating clinically meaningful explanations that practitioners can verify and trust. Attention visualizations, while informative, do not constitute the evidence-grounded textual explanations required for clinical decision support.
+\textbf{The Explanation Deficit}: Current systems offer predictions without justifications. Attention heatmaps provide some insight but hardly constitute the narrative, literature-grounded explanations a neurologist or psychiatrist would find convincing. Practitioners cannot verify what they cannot understand.
 
-\textbf{Inconsistent Evaluation Protocols}: Different studies employ varying preprocessing pipelines, cross-validation schemes, and performance metrics, fundamentally hindering reproducibility and fair comparison across methods.
+\textbf{Methodological Fragmentation}: Every research group seemingly reinvents preprocessing choices, validation partitioning, and reporting conventions. Reproducing published results---let alone comparing methods fairly---becomes an exercise in frustration.
 
-\textbf{Conflation of Stress Constructs}: Existing work often conflates distinct stress constructs---emotional arousal, cognitive workload, and physiological stress response---without acknowledging their differential neural signatures and potentially different optimal classification approaches.
+\textbf{Lumping Disparate Stress Types}: Papers routinely blur boundaries between emotional arousal, mental workload, and acute physiological stress as if these represented interchangeable phenomena. Neurobiologically, they are not. Optimal detection strategies may well differ across these constructs.
 
-\textbf{Absence of Statistical Rigor}: Many studies report only point estimates of accuracy without confidence intervals, effect sizes, or appropriate corrections for multiple comparisons, limiting the reliability and generalizability of reported findings.
+\textbf{Statistical Sloppiness}: Too many publications parade single-number accuracies without uncertainty quantification---no confidence bounds, no effect magnitudes, no correction for testing multiple hypotheses. Such reporting undermines confidence in generalizability claims.
 
 \begin{table}[t]
 \centering
@@ -126,11 +130,11 @@ This paper makes five principal contributions to the field of EEG-based affectiv
 
 We employ three publicly available benchmark datasets representing fundamentally distinct stress constructs and induction paradigms, enabling comprehensive cross-paradigm evaluation (Table~\ref{tab:datasets}).
 
-\textbf{DEAP (Database for Emotion Analysis using Physiological signals)}~\cite{koelstra2012deap}: This widely-used affective computing benchmark comprises 32 healthy participants (16 female, mean age 26.9 $\pm$ 4.8 years) who watched 40 one-minute music video excerpts carefully selected to elicit a range of emotional responses spanning the valence-arousal space. EEG was recorded using 32 active AgCl electrodes placed according to the international 10-20 system at 512 Hz, subsequently downsampled to 128 Hz for distribution. Participants provided self-reported ratings on the 1--9 Self-Assessment Manikin (SAM) scale for arousal, valence, dominance, and liking immediately after each video. For stress classification, we binarized arousal ratings with a threshold of 5: high arousal ($>$5) serves as a stress proxy, reflecting the heightened physiological activation characteristic of acute stress states. This operationalization aligns with dimensional emotion theories linking high arousal to stress-related negative affect.
+\textbf{DEAP---Emotion Through Music Videos}~\cite{koelstra2012deap}: Thirty-two volunteers (half female, averaging 27 years old) watched forty carefully curated minute-long music clips designed to span the emotional spectrum from calm to excited, pleasant to unpleasant. Scalp potentials were captured via 32 silver-chloride sensors arranged per international conventions, initially sampled at 512 Hz then decimated to 128 Hz for public release. After each clip, viewers rated their subjective experience across arousal, valence, and other dimensions using pictorial scales ranging from 1 to 9. We treat elevated arousal ratings (exceeding 5) as stress indicators---a reasonable proxy given that physiological activation accompanies most acute stress episodes. This interpretation draws support from circumplex models placing stressful states in high-arousal quadrants.
 
-\textbf{SAM-40 (Stress Assessment and Monitoring)}~\cite{gupta2016relevance}: This dataset specifically targets cognitive stress through validated task-based induction. Forty participants performed three well-established cognitive stress tasks: Stroop color-word conflict tests (inducing cognitive interference and response inhibition demands), mental arithmetic under time pressure (requiring sustained attention and working memory), and mirror tracing tasks (demanding fine motor control and frustration tolerance). EEG was recorded with 32 channels following the 10-20 montage at 256 Hz sampling rate. Ground truth stress labels were rigorously derived from NASA Task Load Index (NASA-TLX) subjective workload assessments combined with physiological validation through concurrent skin conductance response measurements, providing robust multi-modal stress state identification.
+\textbf{SAM-40---Cognitive Challenge Under Pressure}~\cite{gupta2016relevance}: Forty individuals tackled a battery of mentally taxing exercises specifically chosen to ramp up psychological strain. These included Stroop interference trials (where conflicting color-word combinations demand inhibitory control), timed mental calculations (taxing working memory and concentration), and mirror-tracing puzzles (frustrating motor coordination challenges). Brain activity was monitored through 32 electrodes sampling at 256 Hz. Crucially, stress verification came from two independent sources: participants' own NASA-TLX workload questionnaires plus objective skin conductance measurements tracking autonomic arousal. This dual-validation strengthens confidence in the ground-truth labels.
 
-\textbf{WESAD (Wearable Stress and Affect Detection)}~\cite{schmidt2018introducing}: This multimodal dataset comprises 15 participants who underwent the Trier Social Stress Test (TSST)~\cite{kirschbaum1993trier}, a standardized and extensively validated laboratory protocol for inducing acute psychosocial stress. The TSST involves public speaking and mental arithmetic performed before an evaluative audience panel, reliably producing robust hypothalamic-pituitary-adrenal (HPA) axis activation and subjective stress. Multimodal physiological signals were recorded at 700 Hz including electrocardiogram (ECG), electrodermal activity (EDA), respiration, and three-axis accelerometry. We utilize the physiologically-validated binary stress/baseline labels derived from the experimental protocol phases.
+\textbf{WESAD---Controlled Psychosocial Stress}~\cite{schmidt2018introducing}: Fifteen subjects experienced the Trier Social Stress Test~\cite{kirschbaum1993trier}---arguably the gold standard for laboratory stress induction. Participants delivered impromptu speeches and performed mental arithmetic before an unsympathetic panel of evaluators, a procedure known to reliably activate the hypothalamic-pituitary-adrenal axis and trigger subjective distress. Physiological monitoring occurred at 700 Hz, capturing cardiac rhythms, electrodermal fluctuations, breathing patterns, and body motion. Binary stress/calm labels map directly onto protocol phases: TSST segments versus recovery baselines.
 
 \begin{table}[t]
 \centering
@@ -150,21 +154,21 @@ WESAD & 15 & 14 & 700 & 4,215 & 45:55 & Physio. \\
 
 \subsection{Signal Preprocessing Pipeline}
 
-Raw EEG signals undergo a comprehensive standardized preprocessing pipeline designed to remove artifacts while preserving physiologically relevant information:
+Before feeding brain signals into any classifier, we clean them up through several standard steps---nothing revolutionary here, but essential nonetheless.
 
-\textbf{Step 1 - Bandpass Filtering}: A 4th-order Butterworth bandpass filter with cutoff frequencies of 0.5--45 Hz removes DC drift and slow baseline wander below 0.5 Hz while eliminating high-frequency noise above 45 Hz. This passband preserves all canonical EEG frequency bands from delta through gamma while attenuating muscle artifact contamination.
+First comes frequency filtering. We keep signals between 0.5 and 45 Hz using a fourth-order Butterworth design. Why these cutoffs? Anything below half a Hertz reflects electrode drift rather than brain activity; anything above 45 Hz introduces muscle contamination without adding relevant neural information. The familiar delta, theta, alpha, beta, and low gamma bands all fall comfortably within this range.
 
-\textbf{Step 2 - Notch Filtering}: A notch filter centered at 50 Hz (quality factor Q=30) eliminates power line interference ubiquitous in laboratory EEG recordings. For datasets recorded in regions with 60 Hz power systems, the notch frequency is adjusted accordingly.
+Power line hum plagues virtually every EEG recording made near electrical outlets. A narrow notch at 50 Hz (or 60 Hz for North American labs) excises this nuisance while leaving neighboring frequencies intact.
 
-\textbf{Step 3 - Artifact Rejection}: Segments containing amplitude excursions exceeding $\pm$100 $\mu$V are rejected, removing epochs contaminated by eye blinks, muscle artifacts, electrode pops, and movement artifacts. This threshold-based approach provides robust artifact removal without requiring computationally expensive blind source separation.
+Electrodes sometimes go haywire---an eye blink creates a massive deflection, a muscle twitch saturates the amplifier, a loose sensor pops. Rather than deploying sophisticated blind source separation (computational overkill for our purposes), we simply toss any segment where voltages exceed $\pm$100 microvolts. Crude but effective.
 
-\textbf{Step 4 - Segmentation}: Continuous EEG is segmented into 4-second epochs (1024 samples at 256 Hz) with 50\% overlap between consecutive segments. This window length provides sufficient frequency resolution (0.25 Hz) for accurate spectral estimation while maintaining adequate temporal resolution for capturing stress dynamics.
+We then slice continuous recordings into four-second chunks, overlapping consecutive windows by half their length. Four seconds gives us 0.25 Hz frequency resolution---plenty for distinguishing alpha from theta---while still tracking how stress states evolve across minutes.
 
-\textbf{Step 5 - Normalization}: Z-score normalization is applied independently per channel, ensuring zero mean and unit variance. Channel-wise normalization preserves relative amplitude differences between electrodes reflecting genuine topographical patterns while standardizing the input range for stable neural network training.
+Finally, each electrode channel gets standardized to zero mean and unit variance. This per-channel normalization keeps genuine topographical differences (some regions naturally show more power) while putting all inputs on equal footing for the neural network.
 
 \subsection{Proposed Architecture}
 
-Figure~\ref{fig:architecture} illustrates the GenAI-RAG-EEG framework comprising four integrated modules: EEG Encoder, Context Encoder, Fusion Classifier, and RAG Explainer. The complete architecture processes raw EEG segments and outputs both classification predictions and natural language explanations grounded in scientific evidence.
+Our system---which we call GenAI-RAG-EEG---chains together four major components, diagrammed in Figure~\ref{fig:architecture}. Brain signals enter the EEG Encoder, which extracts patterns through convolutions and recurrent layers. Meanwhile, a Context Encoder digests textual metadata about the recording session. These two streams merge in a Fusion Classifier that renders stress/non-stress verdicts. But we don't stop at predictions: a RAG Explainer module fetches relevant scientific literature and weaves it into plain-English justifications for why the model decided what it decided.
 
 \begin{figure}[t]
 \centering
@@ -201,51 +205,42 @@ Figure~\ref{fig:architecture} illustrates the GenAI-RAG-EEG framework comprising
 \end{figure}
 
 \subsubsection{EEG Encoder}
-The EEG encoder extracts hierarchical spatiotemporal features through three sequential processing stages designed to capture patterns at multiple scales:
+The brain signal encoder stacks three processing stages, each designed to tease out patterns at different timescales.
 
-\textbf{Convolutional Feature Extraction}: Three convolutional blocks progressively extract increasingly abstract features from raw EEG signals. Each block comprises 1D convolution, batch normalization for training stability, ReLU activation for non-linearity, and max-pooling for dimensionality reduction:
+\textbf{Convolution Layers}: Think of these as learnable template matchers sliding across the EEG waveform. Our first block applies 32 filters spanning 7 time points---at 256 Hz sampling, that's roughly 27 milliseconds, enough to catch one full alpha wave. Batch normalization steadies training, ReLU adds nonlinearity, and max-pooling compresses the representation:
 \begin{equation}
 \mathbf{h}^{(l)} = \text{MaxPool}(\text{ReLU}(\text{BN}(\text{Conv1D}(\mathbf{h}^{(l-1)}))))
 \end{equation}
+Subsequent blocks (64 filters with kernels of 5, then 3) progressively zoom in on finer temporal details while building more abstract feature combinations.
 
-Block 1 uses 32 filters with kernel size 7, capturing broad temporal patterns spanning approximately 27 ms at 256 Hz---sufficient to capture individual alpha cycles. Block 2 uses 64 filters with kernel size 5, extracting intermediate features. Block 3 uses 64 filters with kernel size 3, capturing fine-grained temporal details. The progressive reduction in kernel size with increasing filter count enables learning increasingly abstract and spatially localized features.
-
-\textbf{Bidirectional LSTM}: The flattened convolutional output feeds into a two-layer bidirectional LSTM with 64 hidden units per direction:
-\begin{equation}
-\overrightarrow{\mathbf{h}_t} = \text{LSTM}_{\rightarrow}(\mathbf{x}_t, \overrightarrow{\mathbf{h}_{t-1}}), \quad
-\overleftarrow{\mathbf{h}_t} = \text{LSTM}_{\leftarrow}(\mathbf{x}_t, \overleftarrow{\mathbf{h}_{t+1}})
-\end{equation}
+\textbf{Bidirectional Recurrence}: Convolutions capture local patterns but miss the bigger picture of how brain states unfold over seconds. Enter the bidirectional LSTM: one copy reads the sequence forward, another reads backward, and we concatenate their outputs:
 \begin{equation}
 \mathbf{h}_t = [\overrightarrow{\mathbf{h}_t}; \overleftarrow{\mathbf{h}_t}]
 \end{equation}
+With 64 hidden units running each direction, we get 128-dimensional state vectors encoding both what came before and what comes after each moment.
 
-The bidirectional architecture captures both past and future context for each time step, yielding 128-dimensional hidden states encoding long-range temporal dependencies essential for EEG dynamics that unfold over seconds.
-
-\textbf{Self-Attention Mechanism}: Following Vaswani et al.~\cite{vaswani2017attention}, we apply scaled dot-product self-attention to dynamically weight the importance of different temporal positions:
+\textbf{Attention Pooling}: Not all time points matter equally for classification. Following the now-standard attention recipe~\cite{vaswani2017attention}, we compute relevance scores:
 \begin{equation}
-e_t = \mathbf{v}^\top \tanh(\mathbf{W}\mathbf{h}_t + \mathbf{b})
+\alpha_t = \frac{\exp(e_t)}{\sum_{k} \exp(e_k)}, \quad \mathbf{c} = \sum_{t} \alpha_t \mathbf{h}_t
 \end{equation}
-\begin{equation}
-\alpha_t = \frac{\exp(e_t)}{\sum_{k=1}^{T} \exp(e_k)}, \quad \mathbf{c} = \sum_{t=1}^{T} \alpha_t \mathbf{h}_t
-\end{equation}
-where $\mathbf{h}_t$ is the bidirectional LSTM hidden state at time $t$, $\mathbf{W} \in \mathbb{R}^{d_a \times 2d_h}$ and $\mathbf{v} \in \mathbb{R}^{d_a}$ are learnable parameters, and $\alpha_t$ represents the attention weight for position $t$. The context vector $\mathbf{c}$ aggregates attended features into a fixed 128-dimensional representation.
+The final context vector $\mathbf{c}$ (128 dimensions) summarizes the entire segment, weighted toward the most discriminative moments.
 
 \subsubsection{Context Encoder}
-Contextual metadata including task type, recording conditions, and available subject demographics are encoded using Sentence-BERT~\cite{reimers2019sentence} (all-MiniLM-L6-v2 variant). Pre-trained weights remain frozen to preserve semantic understanding while a learnable linear projection maps 384-dimensional sentence embeddings to 128 dimensions:
+Beyond raw brain signals, we incorporate metadata---what task the person performed, environmental conditions, basic demographics if available. Sentence-BERT~\cite{reimers2019sentence} (specifically the compact all-MiniLM-L6-v2 variant) digests these text snippets into 384-dimensional vectors. We keep SBERT's pretrained weights frozen and simply learn a projection layer that shrinks these embeddings down to 128 dimensions:
 \begin{equation}
 \mathbf{e}_{\text{ctx}} = \mathbf{W}_{\text{proj}} \cdot \text{SBERT}(\text{context}) + \mathbf{b}_{\text{proj}}
 \end{equation}
 
 \subsubsection{Fusion and Classification}
-EEG and context embeddings are concatenated forming a 256-dimensional multimodal representation processed through fully-connected layers (256$\rightarrow$64$\rightarrow$32$\rightarrow$2) with dropout regularization (rate=0.3) and softmax output:
+Now we glue everything together. The 128-dimensional EEG embedding meets the 128-dimensional context embedding, producing a 256-dimensional joint representation. This feeds through three fully-connected layers (shrinking from 256 to 64 to 32 to 2), punctuated by ReLU activations and 30\% dropout to combat overfitting. A softmax at the end yields stress probabilities:
 \begin{equation}
-\hat{y} = \text{softmax}(\mathbf{W}_3 \cdot \text{ReLU}(\mathbf{W}_2 \cdot \text{ReLU}(\mathbf{W}_1 \mathbf{z} + \mathbf{b}_1) + \mathbf{b}_2) + \mathbf{b}_3)
+\hat{y} = \text{softmax}(\text{MLP}([\mathbf{c}_{\text{eeg}}; \mathbf{e}_{\text{ctx}}]))
 \end{equation}
 
 \subsubsection{RAG Explainer Module}
-The explanation module generates evidence-grounded natural language explanations through three stages:
+Making predictions is one thing; justifying them is another. Our explanation engine operates in three steps.
 
-\textbf{Knowledge Base Construction}: Scientific literature on EEG-based stress detection, neurophysiological biomarkers, and clinical stress assessment is chunked into 512-token segments with 64-token overlap using semantic boundary detection.
+\textbf{Building the Knowledge Library}: We assembled a corpus of stress neuroscience literature---papers on EEG biomarkers, clinical stress assessment, neural correlates of arousal. These documents get chopped into overlapping 512-token chunks (64-token overlap ensures no important passage falls through the cracks).
 
 \textbf{Retrieval}: FAISS~\cite{johnson2019billion} performs efficient approximate nearest neighbor search, retrieving top-5 passages most relevant to the current prediction based on embedding similarity.
 
@@ -300,34 +295,34 @@ Gamma & +0.48 & +0.51 & +0.41 & $<$.05 \\
 
 \subsection{Alpha Suppression Index}
 
-Alpha suppression quantifies the stress-induced percentage reduction in 8--13 Hz power, representing one of the most robust and reproducible EEG biomarkers of stress and cognitive engagement:
+When someone gets stressed, their alpha rhythms typically drop. We quantify this by computing how much 8--13 Hz power falls during stress compared to baseline:
 \begin{equation}
 \text{Suppression} = \frac{\bar{P}_{\alpha,\text{baseline}} - \bar{P}_{\alpha,\text{stress}}}{\bar{P}_{\alpha,\text{baseline}}} \times 100\%
 \end{equation}
 
-Results demonstrate remarkably consistent suppression magnitudes across all three paradigms: 31.4\% (DEAP, 95\% CI: [28.7, 34.1]), 33.3\% (SAM-40, 95\% CI: [30.8, 35.8]), and 31.7\% (WESAD, 95\% CI: [27.9, 35.5]). All comparisons yield $p < 0.0001$ with independent $t$-tests and Bonferroni correction. This striking consistency across emotional arousal, cognitive load, and physiological stress paradigms strongly validates alpha suppression as a universal stress biomarker, supporting the cortical idling hypothesis~\cite{klimesch1999alpha}.
+Here's what surprised us: the numbers came out almost identical across three very different stress situations. DEAP showed 31.4\% suppression (confidence interval 28.7--34.1\%), SAM-40 hit 33.3\% (30.8--35.8\%), and WESAD landed at 31.7\% (27.9--35.5\%). Whether people watched unsettling videos, struggled with mental math, or gave speeches in front of stern judges, their alpha rhythms dropped by roughly a third. Every comparison cleared $p < 0.0001$ after Bonferroni correction. This convergence across such disparate paradigms makes a strong case for alpha suppression as something close to a universal stress signature~\cite{klimesch1999alpha}.
 
 \subsection{Theta/Beta Ratio Modulation}
 
-The theta/beta ratio (TBR) reflects the balance between slow-wave theta activity (associated with drowsiness, internal focus, and reduced arousal) and fast-wave beta activity (associated with alertness, external focus, and cognitive engagement)~\cite{putman2014eeg}:
+Another useful metric divides theta power (the slow 4--8 Hz stuff linked to drowsiness and daydreaming) by beta power (faster 13--30 Hz activity signaling alertness)~\cite{putman2014eeg}:
 \begin{equation}
 \text{TBR} = \frac{P_\theta}{P_\beta}
 \end{equation}
 
-Stress significantly reduces TBR across all datasets: 14.0\% reduction in DEAP ($d$=$-$0.58, 95\% CI: [$-$0.72, $-$0.44]), 11.2\% in SAM-40 ($d$=$-$0.52, 95\% CI: [$-$0.64, $-$0.40]), and 8.2\% in WESAD ($d$=$-$0.45, 95\% CI: [$-$0.61, $-$0.29]). Decreased TBR indicates heightened cortical arousal, increased external vigilance, and reduced prefrontal inhibitory control characteristic of acute stress states. This biomarker has been independently associated with anxiety disorders, ADHD, and executive function deficits, suggesting broader clinical utility.
+Under stress, this ratio shrinks---beta ramps up while theta holds steady or dips. DEAP subjects showed 14\% drops (Cohen's $d$ = $-$0.58), SAM-40 about 11\% ($d$ = $-$0.52), WESAD around 8\% ($d$ = $-$0.45). Translation: stressed brains become more externally vigilant, less internally focused. Interestingly, researchers have linked low TBR to anxiety and attention deficits in other contexts, hinting that this marker might prove clinically useful beyond stress detection.
 
 \subsection{Frontal Alpha Asymmetry}
 
-Frontal alpha asymmetry (FAA) indexes approach-withdrawal motivation according to Davidson's influential neuropsychological model~\cite{davidson2004well}. Because alpha power inversely relates to cortical activation:
+Davidson's approach-withdrawal model~\cite{davidson2004well} suggests the left and right frontal lobes play different emotional roles. We measured asymmetry by comparing log-transformed alpha between hemispheres:
 \begin{equation}
 \text{FAA} = \ln(P_{\alpha,\text{F4}}) - \ln(P_{\alpha,\text{F3}})
 \end{equation}
 
-Negative FAA values (greater right than left frontal alpha, implying greater left hemispheric activation) associate with approach motivation and positive affect. Positive FAA (greater left alpha) reflects withdrawal motivation and negative affect. Stress consistently shifts FAA toward right hemispheric dominance across all datasets: $\Delta$FAA = $-$0.26 (DEAP, $p<$0.001), $-$0.27 (SAM-40, $p<$0.001), $-$0.22 (WESAD, $p<$0.001). This pattern confirms stress-related withdrawal motivation and negative affective engagement consistent with decades of affective neuroscience research.
+Since alpha inversely tracks activation, more left-hemisphere alpha (positive FAA) means relatively greater right-hemisphere engagement---supposedly linked to avoidance and negative emotions. Stress pushed FAA in exactly this direction: shifts of $-$0.26 (DEAP), $-$0.27 (SAM-40), and $-$0.22 (WESAD), all statistically rock-solid ($p<$0.001). The stressed brain, it seems, literally tilts toward withdrawal mode.
 
 \subsection{Topographical Distribution Analysis}
 
-Analysis of spatial patterns across the electrode array reveals that frontal and central scalp regions exhibit the most pronounced stress-related changes. Frontal electrodes (Fp1, Fp2, F3, F4, Fz) demonstrate the largest alpha suppression magnitudes, consistent with prefrontal cortex involvement in stress regulation, executive function, and emotional control. Central electrodes (C3, C4, Cz) show pronounced beta enhancement, reflecting sensorimotor arousal and response preparation. Parietal regions display moderate effects, while occipital changes are minimal, indicating that stress effects are predominantly localized to anterior cortical regions involved in cognitive control and emotional regulation rather than primary sensory processing areas.
+Where on the scalp do these stress signatures appear most strongly? Frontal electrodes (Fp1, Fp2, F3, F4, Fz) win the alpha-suppression contest hands down, which makes neurobiological sense---the prefrontal cortex handles executive control, emotion regulation, and stress appraisal. Central sites (C3, C4, Cz) light up with beta enhancement, perhaps reflecting motor preparation or heightened sensorimotor vigilance. Parietal regions show moderate effects; occipital areas barely budge. The overall picture suggests stress primarily reshapes activity in brain regions governing cognition and emotion, leaving basic sensory processing relatively untouched.
 
 %% ============================================================================
 %% SECTION IV: EXPERIMENTAL RESULTS
@@ -336,7 +331,7 @@ Analysis of spatial patterns across the electrode array reveals that frontal and
 
 \subsection{Classification Performance}
 
-Table~\ref{tab:classification} presents comprehensive LOSO cross-validation results across all three datasets. The GenAI-RAG-EEG framework achieves state-of-the-art classification performance: 94.7\% accuracy on DEAP (emotional arousal paradigm), 93.2\% on SAM-40 (cognitive stress paradigm), and 100\% on WESAD (physiological stress paradigm). High Cohen's $\kappa$ values (0.864--1.000) indicate excellent inter-rater agreement substantially beyond chance levels, while AUC-ROC scores (95.8--100\%) demonstrate robust discrimination across the full range of classification thresholds.
+So how well does the system actually work? Table~\ref{tab:classification} lays out the numbers from leave-one-subject-out testing. On DEAP (the music video dataset), we hit 94.7\% accuracy. SAM-40 (cognitive tasks) came in at 93.2\%. And WESAD (the Trier stress protocol)? A perfect 100\%---every single sample classified correctly. Cohen's kappa scores ranging from 0.864 to 1.0 confirm these aren't flukes; the agreement goes way beyond what you'd expect by chance. AUC-ROC values above 95\% across the board mean the model discriminates well regardless of where you set the decision threshold.
 
 \begin{table}[t]
 \centering
@@ -356,7 +351,7 @@ WESAD & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 & 1.000 \\
 \end{tabular}
 \end{table}
 
-Figure~\ref{fig:roc_curves} presents the Receiver Operating Characteristic (ROC) curves for all three datasets, illustrating the excellent discrimination capability across varying classification thresholds. The area under the curve (AUC) values of 96.7\% (DEAP), 95.8\% (SAM-40), and 100\% (WESAD) demonstrate robust performance across the full sensitivity-specificity trade-off space.
+Figure~\ref{fig:roc_curves} plots the familiar ROC curves. WESAD hugs the top-left corner perfectly (AUC = 100\%), while DEAP and SAM-40 trace nearly-ideal arcs with AUCs of 96.7\% and 95.8\% respectively. No matter how aggressively or conservatively you tune the classifier, it maintains strong performance.
 
 \begin{figure}[t]
 \centering
@@ -365,7 +360,7 @@ Figure~\ref{fig:roc_curves} presents the Receiver Operating Characteristic (ROC)
 \label{fig:roc_curves}
 \end{figure}
 
-Figure~\ref{fig:confusion_matrices} displays the confusion matrices for each dataset, providing detailed insight into classification errors. The matrices reveal high true positive and true negative rates across all paradigms, with minimal false classifications concentrated in ambiguous borderline cases.
+The confusion matrices (Figure~\ref{fig:confusion_matrices}) tell the same story in grid form: most samples land on the diagonal, meaning correct classifications. The handful of mistakes tend to cluster around borderline cases---people whose stress responses didn't quite fit the typical pattern.
 
 \begin{figure}[t]
 \centering
@@ -374,11 +369,11 @@ Figure~\ref{fig:confusion_matrices} displays the confusion matrices for each dat
 \label{fig:confusion_matrices}
 \end{figure}
 
-The perfect 100\% classification performance on WESAD reflects the Trier Social Stress Test protocol's pronounced and robust physiological stress response---public speaking and mental arithmetic performed under social evaluation reliably produce strong, easily distinguishable stress states with clear neurophysiological signatures. The slightly lower (though still excellent) performance on SAM-40 may reflect the subtler and more variable manifestations of cognitive task-induced stress compared to emotional arousal (DEAP) or acute psychosocial stress (WESAD).
+Why the flawless WESAD results? The Trier protocol hits hard---standing before a disapproving panel while doing mental arithmetic triggers unambiguous physiological arousal. The neural signatures become unmistakable. SAM-40's cognitive stressors produce more subtle, variable responses; different people cope differently with math problems or tracing tasks. Hence the slightly lower (still excellent) numbers there.
 
 \subsection{LOSO Per-Subject Analysis}
 
-Figure~\ref{fig:loso_results} visualizes the per-subject accuracy distribution from LOSO cross-validation. The SAM-40 dataset exhibits the highest inter-subject variance (SD=4.2\%) attributable to individual differences in cognitive stress response patterns and coping styles. DEAP shows moderate variance (SD=2.8\%), while WESAD achieves perfect classification for all subjects, reflecting the consistency of TSST-induced physiological activation.
+When we break down accuracy by individual subject (Figure~\ref{fig:loso_results}), an interesting pattern emerges. SAM-40 shows the widest spread (standard deviation 4.2\%)---some folks' cognitive stress just doesn't manifest the same way as others'. DEAP falls in the middle (SD = 2.8\%). WESAD? Every single subject hit 100\%. The Trier protocol apparently stresses everyone in roughly the same neurobiological way.
 
 \begin{figure}[t]
 \centering
