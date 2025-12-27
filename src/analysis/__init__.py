@@ -193,6 +193,34 @@ from .latex_research_tools import (
     PDF_RCPARAMS
 )
 
+# Research Format Configuration (Publisher-Ready)
+from .research_formats import (
+    # Enums
+    FigureFormat,
+    Resolution,
+    ColorMode,
+
+    # Configuration dictionaries
+    COLORBLIND_PALETTES,
+    PUBLISHER_CONFIGS,
+    FIGURE_TYPE_FORMAT,
+    DEFAULT_PALETTE,
+
+    # Classes
+    FileNamer,
+    ResearchFigureExporter,
+    ResearchTableFormatter,
+    ResearchFormatConfig,
+
+    # Functions
+    get_publication_rcparams,
+    apply_publisher_style,
+    check_colorblind_safety,
+    get_colorblind_palette,
+    setup_research_environment,
+    get_publisher_config
+)
+
 __all__ = [
     # Signal analysis
     'compute_psd',
@@ -308,5 +336,24 @@ __all__ = [
     'LaTeXTableGenerator',
     'PDFFigureExporter',
     'PGFPlotsGenerator',
-    'BeamerGenerator'
+    'BeamerGenerator',
+
+    # Research Format Configuration (Publisher-Ready)
+    'FigureFormat',
+    'Resolution',
+    'ColorMode',
+    'COLORBLIND_PALETTES',
+    'PUBLISHER_CONFIGS',
+    'FIGURE_TYPE_FORMAT',
+    'DEFAULT_PALETTE',
+    'FileNamer',
+    'ResearchFigureExporter',
+    'ResearchTableFormatter',
+    'ResearchFormatConfig',
+    'get_publication_rcparams',
+    'apply_publisher_style',
+    'check_colorblind_safety',
+    'get_colorblind_palette',
+    'setup_research_environment',
+    'get_publisher_config',
 ]
