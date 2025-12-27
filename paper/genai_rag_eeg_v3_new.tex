@@ -418,6 +418,15 @@ Figure~\ref{fig:training_curves} presents the training and validation loss curve
 \label{fig:training_curves}
 \end{figure}
 
+Figure~\ref{fig:precision_recall} presents precision-recall curves providing complementary evaluation to ROC analysis.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{fig_precision_recall.png}
+\caption{Precision-Recall curves across datasets with Average Precision (AP) scores. All datasets achieve AP $>$ 0.90.}
+\label{fig:precision_recall}
+\end{figure}
+
 \subsection{Baseline Comparison}
 
 Table~\ref{tab:baselines} comprehensively compares our approach against traditional machine learning methods (SVM with RBF kernel, Random Forest, XGBoost) and state-of-the-art deep learning architectures (CNN, LSTM, CNN-LSTM, EEGNet, DGCNN) on the SAM-40 dataset. GenAI-RAG-EEG achieves 12.6\% absolute accuracy improvement over the strongest baseline (DGCNN at 80.6\%), demonstrating the substantial efficacy of our hierarchical spatiotemporal modeling architecture combined with attention mechanisms.
@@ -683,6 +692,15 @@ Figure~\ref{fig:band_power} visualizes the stress-induced changes in EEG band po
 \includegraphics[width=0.85\columnwidth]{fig18_band_power_chart.png}
 \caption{Spectral band power comparison between stress and baseline conditions. Alpha band shows consistent suppression ($-$31 to $-$33\%) while beta band shows enhancement (+18 to +24\%) across all three stress paradigms.}
 \label{fig:band_power}
+\end{figure}
+
+Figure~\ref{fig:shap_importance} presents SHAP-based feature importance analysis, confirming that frontal alpha and beta features are the most discriminative for stress classification.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{fig_shap_importance.png}
+\caption{SHAP feature importance showing frontal alpha and beta as primary discriminative features, consistent with stress neuroscience.}
+\label{fig:shap_importance}
 \end{figure}
 
 \subsection{Statistical Validation Summary}

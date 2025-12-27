@@ -1186,6 +1186,28 @@ Figure~\ref{fig:roc_curves} presents ROC curves demonstrating discriminative abi
 \label{fig:roc_curves}
 \end{figure}
 
+\subsubsection{Precision-Recall Analysis}
+
+Figure~\ref{fig:precision_recall} presents precision-recall curves, providing complementary evaluation to ROC analysis particularly for imbalanced datasets.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\columnwidth]{figures_extracted/fig_precision_recall.png}
+\caption{Precision-Recall curves across datasets with Average Precision (AP) scores. All datasets achieve AP $>$ 0.90, demonstrating robust classification performance across varying decision thresholds.}
+\label{fig:precision_recall}
+\end{figure}
+
+\subsubsection{Model Calibration Analysis}
+
+Figure~\ref{fig:calibration} presents calibration curves assessing the reliability of predicted probabilities.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\columnwidth]{figures_extracted/fig_calibration.png}
+\caption{Calibration curves (reliability diagrams) comparing predicted probabilities against actual outcomes. Closer alignment to the diagonal indicates better calibration.}
+\label{fig:calibration}
+\end{figure}
+
 \clearpage
 \subsection{Signal-Level EEG Analysis}
 
@@ -1427,6 +1449,28 @@ Occipital & O1,O2 & .028 & .042 & 0.34 \\
 \end{tabular}
 \end{table}
 
+\subsubsection{Topographical EEG Maps}
+
+Figure~\ref{fig:topomaps} presents topographical scalp maps showing the spatial distribution of stress-related EEG activity changes across frequency bands.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_topographical_maps.png}
+\caption{Topographical scalp maps showing stress-induced changes in EEG power across alpha and beta bands. Blue indicates decreased power (alpha suppression), red indicates increased power (beta enhancement).}
+\label{fig:topomaps}
+\end{figure}
+
+\subsubsection{Time-Frequency Spectrograms}
+
+Figure~\ref{fig:spectrograms} presents time-frequency spectrograms comparing baseline and stress conditions.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_spectrograms.png}
+\caption{Time-frequency spectrograms showing spectral power evolution. Stress conditions show characteristic alpha suppression (8--13 Hz) and beta enhancement (13--30 Hz) patterns.}
+\label{fig:spectrograms}
+\end{figure}
+
 \clearpage
 \subsection{Feature Engineering Analysis}
 
@@ -1550,6 +1594,28 @@ Occipital (O1, Oz, O2) & 0.008 & 0.021 & 0.028 & 0.024 & 0.015 & 0.096 \\
 \item \textbf{Top Channel-Band Pair}: Frontal Alpha (14.2\%) --- alpha suppression is primary stress biomarker
 \item \textbf{Neurophysiological Validity}: Feature importance aligns with established EEG stress markers~\cite{klimesch1999alpha}
 \end{itemize}
+
+\subsubsection{SHAP Feature Importance Analysis}
+
+Figure~\ref{fig:shap_importance} presents SHAP (SHapley Additive exPlanations) analysis providing model-agnostic feature importance with directionality information.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_shap_importance.png}
+\caption{SHAP summary plot showing feature importance and directionality. Frontal alpha and beta features show the strongest contributions to stress classification, consistent with neurophysiological expectations.}
+\label{fig:shap_importance}
+\end{figure}
+
+\subsubsection{Feature Correlation Analysis}
+
+Figure~\ref{fig:feature_correlation} presents the correlation matrix between top EEG features, revealing inter-feature relationships.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_feature_correlation.png}
+\caption{Feature correlation heatmap showing relationships between top discriminative EEG features. High correlation within frequency bands suggests complementary spatial information.}
+\label{fig:feature_correlation}
+\end{figure}
 
 \subsection{Confound Analysis}
 
@@ -1686,6 +1752,39 @@ CNN Baseline & 86.5\% & 0.858 & $-$8.2\% & $<$0.001 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsubsection{Component Importance Analysis}
+
+Figure~\ref{fig:component_importance} presents the ranked importance of each architectural component based on ablation analysis.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_component_importance.png}
+\caption{Architectural component importance ranking based on accuracy contribution. The hierarchical CNN-LSTM feature extraction provides the largest contribution (+9.5\%), followed by self-attention (+2.6\%).}
+\label{fig:component_importance}
+\end{figure}
+
+\subsubsection{Cumulative Ablation Analysis}
+
+Figure~\ref{fig:cumulative_ablation} presents progressive component removal analysis, showing cumulative impact on model performance.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_cumulative_ablation.png}
+\caption{Cumulative ablation analysis showing progressive performance degradation as components are removed. The steep decline after LSTM removal confirms the critical role of temporal modeling.}
+\label{fig:cumulative_ablation}
+\end{figure}
+
+\subsubsection{Component Interaction Matrix}
+
+Figure~\ref{fig:component_interaction} presents pairwise component interactions, quantifying synergistic and redundant effects.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_component_interaction.png}
+\caption{Component interaction matrix showing synergy (+) and redundancy ($-$) between architectural modules. CNN-LSTM synergy (+2.4\%) confirms complementary spatial-temporal processing.}
+\label{fig:component_interaction}
+\end{figure}
 
 \subsection{Statistical Robustness Analysis}
 
@@ -1859,6 +1958,39 @@ EEGMAT & $<$.001 & $<$.001 & $<$.001 & 1.18 & 0.85 \\
 \item \textbf{Cohen's $d$}: Standardized mean difference; $d > 0.8$ indicates large effect
 \end{itemize}
 
+\subsubsection{Statistical Power Analysis}
+
+Figure~\ref{fig:power_analysis} presents post-hoc power analysis demonstrating adequate statistical power across all datasets.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_power_analysis.png}
+\caption{Statistical power analysis curves showing achieved power ($>$0.99) for observed effect sizes across all datasets. The dashed line indicates the conventional 0.80 power threshold.}
+\label{fig:power_analysis}
+\end{figure}
+
+\subsubsection{Effect Size Forest Plot}
+
+Figure~\ref{fig:forest_plot} presents a forest plot summarizing effect sizes with confidence intervals across all analyses.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_forest_plot.png}
+\caption{Forest plot of effect sizes (Cohen's $d$) across key comparisons. All comparisons show large effect sizes ($d > 0.8$) with non-overlapping confidence intervals from zero.}
+\label{fig:forest_plot}
+\end{figure}
+
+\subsubsection{Bland-Altman Agreement Analysis}
+
+Figure~\ref{fig:bland_altman} presents Bland-Altman plots assessing agreement between predicted probabilities and observed outcomes.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_bland_altman.png}
+\caption{Bland-Altman plots for each dataset showing the difference between predicted and actual values against their mean. Limits of agreement (LoA) are shown as dashed lines.}
+\label{fig:bland_altman}
+\end{figure}
+
 \subsection{Statistical Comparison with Baseline Methods}
 
 Table~\ref{tab:statistical_comparison} presents detailed statistical comparison with confidence intervals and effect sizes.
@@ -1913,6 +2045,17 @@ Model Size & 1.2 MB & $<$10 MB \\
 \end{itemize}
 
 \textbf{Transfer Learning Efficiency}: Domain adaptation experiments demonstrated that fine-tuning with only 10\% of target domain data recovered 95\% of full-training performance, reducing annotation requirements for new clinical populations.
+
+\subsubsection{Comprehensive Evaluation Summary}
+
+Figure~\ref{fig:comprehensive_evaluation} presents a comprehensive summary of evaluation metrics across all datasets and analyses.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_comprehensive_evaluation.png}
+\caption{Comprehensive evaluation summary showing classification performance, signal analysis metrics, and RAG explanation quality across all datasets. Radar chart format enables direct cross-dataset comparison.}
+\label{fig:comprehensive_evaluation}
+\end{figure}
 
 \subsection{Error and Sensitivity Analysis}
 
@@ -2351,6 +2494,39 @@ EEGMAT & 25 & 86.4\% & 5.4\% & 0.74 & 0.81 \\
 \end{itemize}
 
 \textbf{Performance Gap Analysis}: The 5.4\% accuracy drop from 10-fold CV to LOSO is smaller than comparable methods (DGCNN: 8.2\%, CNN-LSTM: 7.6\%), demonstrating superior cross-subject generalization through multimodal fusion and attention mechanisms.
+
+\subsubsection{Cross-Subject Generalization Analysis}
+
+Figure~\ref{fig:cross_subject} presents detailed cross-subject generalization analysis across all datasets.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_cross_subject.png}
+\caption{Cross-subject generalization analysis showing accuracy distribution across individual subjects. The consistent performance across subjects demonstrates robust generalization.}
+\label{fig:cross_subject}
+\end{figure}
+
+\subsubsection{Learning Curve Analysis}
+
+Figure~\ref{fig:learning_curves} presents learning curves demonstrating training efficiency and convergence behavior.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_learning_curves.png}
+\caption{Learning curves showing training and validation performance as a function of training set size. Rapid convergence indicates efficient sample utilization.}
+\label{fig:learning_curves}
+\end{figure}
+
+\subsubsection{Performance Distribution Analysis}
+
+Figure~\ref{fig:performance_distribution} presents the distribution of classification performance across cross-validation folds and subjects.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures_extracted/fig_performance_distribution.png}
+\caption{Performance distribution across datasets showing accuracy, precision, recall, and F1-score distributions via violin plots with embedded box plots.}
+\label{fig:performance_distribution}
+\end{figure}
 
 \subsection{Model Architecture and Parameter Analysis}
 
