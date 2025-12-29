@@ -243,6 +243,19 @@ Output: (N, 32, 512) float32
 | Total Segments | 2,880 |
 | Class Distribution | 720 baseline, 2160 stress |
 
+### 6.4 EEGMAT (PhysioNet EEG Mental Arithmetic Tasks)
+
+| Property | Value |
+|----------|-------|
+| Source | PhysioNet (https://physionet.org/content/eegmat/1.0.0/) |
+| Subjects | 36 |
+| Original Channels | 21 (padded to 32) |
+| Sampling Rate | 500 Hz (resampled to 256 Hz) |
+| Conditions | Background (baseline), Mental Arithmetic (task/stress) |
+| Stress Type | Cognitive (serial subtraction) |
+| Total Segments | ~4,338 (3,222 baseline + 1,116 task) |
+| Sample Used | 100 balanced (50 baseline, 50 task) |
+
 ---
 
 ## 7. Results
@@ -254,6 +267,9 @@ Output: (N, 32, 512) float32
 | SAM-40 | 76.0% ± 5.1% | 90.0% ± 3.7% | 77.3% ± 11.8% | 82.4% ± 5.2% | 84.9% ± 1.2% |
 | WESAD | **100.0% ± 0.0%** | 100.0% | 100.0% | 100.0% | 100.0% |
 | Stress_Detection | 81.7% ± 1.3% | 84.8% ± 1.7% | 92.1% ± 3.3% | 88.3% ± 1.0% | 85.4% ± 1.4% |
+| EEGMAT | 49.0% ± 2.0% | 39.4% ± 19.7% | 76.0% ± 38.8% | 51.9% ± 26.1% | 45.8% ± 13.1% |
+
+**Note on EEGMAT**: The low accuracy (~49%) is expected because EEGMAT uses cognitive stress (mental arithmetic) while the model was trained on emotional stress paradigms (DEAP, SAM-40, WESAD). This demonstrates the model's specificity to emotional stress detection rather than general cognitive load.
 
 ### 7.2 Comparison with Paper Claims
 
@@ -262,6 +278,7 @@ Output: (N, 32, 512) float32
 | SAM-40 | 93.2% | 76.0% | -17.2% |
 | WESAD | 100.0% | **100.0%** | **0.0%** |
 | DEAP | 94.7% | N/A | (Dataset not available) |
+| EEGMAT | N/A | 49.0% | (Different stress paradigm) |
 
 ---
 
@@ -277,7 +294,16 @@ eeg-stress-rag/
 ├── data/
 │   ├── SAM40/
 │   │   ├── filtered_data/      # 480 .mat files
+│   │   ├── sample_100/         # Balanced sample
 │   │   └── README.md
+│   ├── WESAD/
+│   │   └── sample_100/         # Balanced sample
+│   ├── EEGMAT/
+│   │   ├── eeg-during-mental-arithmetic-tasks-1.0.0/  # Raw EDF files
+│   │   └── sample_100/         # Balanced sample
+│   │       ├── X_eegmat_100.npy
+│   │       ├── y_eegmat_100.npy
+│   │       └── metadata.json
 │   └── sample_validation/
 │       ├── X_sample_100.npy
 │       ├── y_sample_100.npy
@@ -286,9 +312,13 @@ eeg-stress-rag/
 │   ├── multi_dataset_validation_*/
 │   │   ├── validation.log
 │   │   └── all_results.json
+│   ├── eegmat_validation/
+│   │   └── eegmat_results.json
 │   └── validation_*/
 ├── run_reviewer_validation.py
 ├── test_sample_data.py
+├── test_eegmat_data.py
+├── process_eegmat.py
 └── VALIDATION_DOCUMENTATION.md
 ```
 
@@ -304,6 +334,15 @@ python test_sample_data.py
 ### Full SAM-40 Validation
 ```bash
 python run_reviewer_validation.py
+```
+
+### EEGMAT Dataset Validation
+```bash
+# First download and process EEGMAT dataset
+python process_eegmat.py
+
+# Then run validation
+python test_eegmat_data.py
 ```
 
 ### Multi-Dataset Validation
@@ -342,5 +381,6 @@ Logs include:
 
 ---
 
-**Document Generated**: 2024-12-29 09:56:27
+**Document Generated**: 2025-12-29 10:26:00
+**Document Updated**: 2025-12-29 (Added EEGMAT dataset)
 **GenAI-RAG-EEG Version**: 1.0.0

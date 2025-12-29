@@ -1,0 +1,39 @@
+{
+  "dataset": "EEGMAT (PhysioNet EEG Mental Arithmetic Tasks)",
+  "source": "https://physionet.org/content/eegmat/1.0.0/",
+  "timestamp": "2025-12-29 10:25:18",
+  "n_samples": 100,
+  "n_folds": 5,
+  "metrics": {
+    "accuracy": {
+      "mean": 0.49000000000000005,
+      "std": 0.019999999999999997
+    },
+    "precision": {
+      "mean": 0.3941176470588236,
+      "std": 0.19738778512426491
+    },
+    "recall": {
+      "mean": 0.76,
+      "std": 0.3878143885933063
+    },
+    "f1": {
+      "mean": 0.5185185185185185,
+      "std": 0.26084173128383714
+    },
+    "auc_roc": {
+      "mean": 0.458,
+      "std": 0.131057239403247
+    }
+  },
+  "confusion_matrix": [
+    [
+      11,
+      39
+    ],
+    [
+      12,
+      38
+    ]
+  ]
+}

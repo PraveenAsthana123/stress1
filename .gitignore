@@ -122,6 +122,12 @@ data/eegmat/
 # Keep SAM40 for reviewer validation (uppercase)
 !data/SAM40/
 
+# EEGMAT raw data (large EDF files)
+data/EEGMAT/eeg-during-mental-arithmetic-tasks-1.0.0/
+data/EEGMAT/*.zip
+# Keep EEGMAT sample for validation
+!data/EEGMAT/sample_100/
+
 # Processed data
 data/processed/
 *.pkl
