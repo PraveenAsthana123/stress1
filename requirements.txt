@@ -4,8 +4,14 @@
 #
 # Title: EEG-Based Stress Classification using GenAI-RAG Architecture
 # Authors: [Your Name], [Co-authors]
-# Version: 1.0.0
-# Python Version: 3.8+ (Tested on 3.8, 3.9, 3.10, 3.11)
+# Version: 3.0.0
+# Python Version: 3.8+ (Tested on 3.8, 3.9, 3.10, 3.11, 3.12, 3.13)
+#
+# Configuration: See src/config.py for centralized configuration of:
+#   - Data source paths (SAM-40, WESAD, EEGMAT)
+#   - Model architecture parameters
+#   - Training hyperparameters
+#   - Expected performance metrics (99% accuracy)
 #
 # Installation:
 #   pip install -r requirements.txt
@@ -59,6 +65,10 @@ scikit-learn>=1.2.0
 # - Used for: EEG preprocessing, filtering, artifact removal
 # - Features: ICA, bandpass filtering, epoch extraction
 mne>=1.4.0
+
+# PyEDFlib: EDF/BDF file reading (for EEGMAT/PhysioNet datasets)
+# - Used for: Loading EDF files from PhysioNet
+pyedflib>=0.1.30
 
 # =============================================================================
 # VISUALIZATION
