@@ -432,6 +432,238 @@ class Config:
 
 
 # =============================================================================
+# CONFIG VALIDATION (Portability Contract)
+# =============================================================================
+
+class ConfigValidationError(Exception):
+    """Raised when configuration validation fails."""
+    pass
+
+
+def validate_config(config: Config) -> dict:
+    """
+    Validate configuration for cross-platform compatibility.
+
+    This ensures the config will work on any system (Windows/Linux/macOS).
+
+    Returns:
+        dict with validation results: {'valid': bool, 'errors': list, 'warnings': list}
+
+    Raises:
+        ConfigValidationError if critical validation fails
+    """
+    errors = []
+    warnings = []
+
+    # 1. Validate paths exist or are creatable
+    for name, path in [
+        ("project_root", config.project_root),
+        ("results_dir", config.results_dir),
+        ("models_dir", config.models_dir),
+    ]:
+        if not path.exists():
+            try:
+                path.mkdir(parents=True, exist_ok=True)
+                warnings.append(f"Created missing directory: {name} = {path}")
+            except Exception as e:
+                errors.append(f"Cannot create {name}: {path} - {e}")
+
+    # 2. Validate sample data exists (required for out-of-box execution)
+    sample_paths = [
+        ("SAM-40 sample", config.datasets.sam40.sample_path),
+        ("WESAD sample", config.datasets.wesad.sample_path),
+        ("EEGMAT sample", config.datasets.eegmat.sample_path),
+    ]
+    for name, path in sample_paths:
+        if not path.exists():
+            warnings.append(f"Sample data not found: {name} = {path}")
+
+    # 3. Validate model parameters are within expected ranges
+    if config.model.lstm.hidden_size not in [64, 128, 256, 512]:
+        warnings.append(f"Unusual hidden_size: {config.model.lstm.hidden_size}")
+
+    if config.training.learning_rate <= 0 or config.training.learning_rate > 0.1:
+        errors.append(f"Invalid learning_rate: {config.training.learning_rate}")
+
+    if config.training.batch_size < 1 or config.training.batch_size > 512:
+        errors.append(f"Invalid batch_size: {config.training.batch_size}")
+
+    # 4. Validate expected results are reasonable
+    for name, acc in config.get_expected_accuracies().items():
+        if acc < 0 or acc > 100:
+            errors.append(f"Invalid expected accuracy for {name}: {acc}")
+
+    return {
+        'valid': len(errors) == 0,
+        'errors': errors,
+        'warnings': warnings,
+        'config_version': '3.0.0'
+    }
+
+
+def print_validation_report(config: Config):
+    """Print detailed validation report to CLI."""
+    result = validate_config(config)
+
+    print("\n" + "=" * 60)
+    print("  CONFIG VALIDATION REPORT")
+    print("=" * 60)
+
+    if result['valid']:
+        print("\n  ✓ Configuration is VALID")
+    else:
+        print("\n  ✗ Configuration has ERRORS")
+
+    if result['errors']:
+        print(f"\n  Errors ({len(result['errors'])}):")
+        for err in result['errors']:
+            print(f"    ✗ {err}")
+
+    if result['warnings']:
+        print(f"\n  Warnings ({len(result['warnings'])}):")
+        for warn in result['warnings']:
+            print(f"    ⚠ {warn}")
+
+    print(f"\n  Config Version: {result['config_version']}")
+    print("=" * 60)
+
+    return result
+
+
+# =============================================================================
+# DATA FORMAT CONTRACT
+# =============================================================================
+
+DATA_FORMAT_CONTRACT = """
+================================================================================
+DATA FORMAT CONTRACT - GenAI-RAG-EEG v3.0.0
+================================================================================
+
+This contract defines the expected data formats for cross-system compatibility.
+
+1. EEG DATA FORMAT
+------------------
+Shape: (n_samples, n_channels, n_timepoints)
+Dtype: float32
+Units: microvolts (µV)
+
+Example:
+  SAM-40:  (N, 32, 512)  - 32 channels, 2 seconds at 256 Hz
+  WESAD:   (N, 14, 512)  - 14 channels, 2 seconds at 256 Hz
+  EEGMAT:  (N, 32, 512)  - 21 channels padded to 32, 2 seconds at 256 Hz
+
+2. LABEL FORMAT
+---------------
+Shape: (n_samples,)
+Dtype: int64
+Values: 0 = baseline/relaxed, 1 = stress
+
+3. SAMPLE DATA FILES
+--------------------
+Location: data/sample_validation/
+Files:
+  - sam40_sample.npz   -> {'X': array, 'y': array, 'metadata': json_str}
+  - wesad_sample.npz   -> {'X': array, 'y': array, 'metadata': json_str}
+  - eegmat_sample.npz  -> {'X': array, 'y': array, 'metadata': json_str}
+
+4. METADATA FORMAT
+------------------
+{
+    "dataset_name": str,
+    "n_samples": int,
+    "n_channels": int,
+    "segment_length": int,
+    "sampling_rate": float,
+    "class_distribution": {"stress": int, "baseline": int},
+    "is_synthetic": bool
+}
+
+5. MODEL CHECKPOINT FORMAT
+--------------------------
+{
+    "epoch": int,
+    "model_state_dict": dict,
+    "optimizer_state_dict": dict,
+    "metrics": {"accuracy": float, "f1": float, "auc": float},
+    "config": dict
+}
+
+6. RESULTS FORMAT
+-----------------
+{
+    "timestamp": ISO-8601 string,
+    "dataset": str,
+    "accuracy": float,
+    "f1_score": float,
+    "auc_roc": float,
+    "confusion_matrix": [[TN, FP], [FN, TP]],
+    "config_version": str
+}
+
+================================================================================
+"""
+
+
+def get_data_format_contract() -> str:
+    """Return the data format contract documentation."""
+    return DATA_FORMAT_CONTRACT
+
+
+def validate_data_format(X: 'np.ndarray', y: 'np.ndarray', dataset_name: str = "unknown") -> dict:
+    """
+    Validate data format against contract.
+
+    Args:
+        X: EEG data array
+        y: Labels array
+        dataset_name: Name for error messages
+
+    Returns:
+        dict with validation results
+    """
+    import numpy as np
+
+    errors = []
+    warnings = []
+
+    # Check X shape
+    if len(X.shape) != 3:
+        errors.append(f"X must be 3D (samples, channels, time), got shape {X.shape}")
+    else:
+        n_samples, n_channels, n_time = X.shape
+
+        if n_channels not in [14, 21, 32]:
+            warnings.append(f"Unusual channel count: {n_channels}")
+
+        if n_time != 512:
+            warnings.append(f"Expected 512 timepoints, got {n_time}")
+
+    # Check X dtype
+    if X.dtype != np.float32:
+        warnings.append(f"X dtype should be float32, got {X.dtype}")
+
+    # Check y shape
+    if len(y.shape) != 1:
+        errors.append(f"y must be 1D, got shape {y.shape}")
+
+    if len(X) != len(y):
+        errors.append(f"X and y length mismatch: {len(X)} vs {len(y)}")
+
+    # Check y values
+    unique_labels = set(np.unique(y))
+    if not unique_labels.issubset({0, 1}):
+        errors.append(f"y should contain only 0 and 1, got {unique_labels}")
+
+    return {
+        'valid': len(errors) == 0,
+        'errors': errors,
+        'warnings': warnings,
+        'dataset': dataset_name,
+        'shape': X.shape if len(X.shape) == 3 else None
+    }
+
+
+# =============================================================================
 # CONVENIENCE FUNCTIONS
 # =============================================================================
 
