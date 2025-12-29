@@ -1,0 +1,35 @@
+{
+  "test_date": "2025-12-26T13:32:46.194974",
+  "status": "SUCCESS",
+  "data_source": "SYNTHETIC Synthetic DATASET",
+  "datasets_tested": [
+    "Synthetic"
+  ],
+  "total_samples": 400,
+  "classification": {
+    "Synthetic": {
+      "accuracy": 100.0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0,
+      "auc_roc": 100.0,
+      "specificity": 100.0,
+      "balanced_accuracy": 100.0,
+      "cohens_kappa": 1.0,
+      "mcc": 1.0,
+      "confusion_matrix": {
+        "tn": 200,
+        "fp": 0,
+        "fn": 0,
+        "tp": 200
+      }
+    }
+  },
+  "signal_analysis": {
+    "Synthetic": {
+      "alpha_suppression": 32.15,
+      "tbr_change": -58.57,
+      "faa_delta": 0.0346
+    }
+  }
+}

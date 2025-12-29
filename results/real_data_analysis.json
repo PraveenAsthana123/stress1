@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-26T13:32:46.194606",
+    "dataset": "Synthetic",
+    "data_source": "SYNTHETIC",
+    "n_samples": 400,
+    "n_stress": 200,
+    "n_baseline": 200,
+    "sampling_rate": 256.0
+  },
+  "signal_analysis": {
+    "band_power": [
+      {
+        "band": "delta",
+        "freq_range": "0.5-4 Hz",
+        "baseline_mean": 0.07,
+        "baseline_std": 0.0035,
+        "stress_mean": 0.0575,
+        "stress_std": 0.0031,
+        "t_statistic": 37.7344,
+        "p_value": 1.5413767458273887e-133,
+        "effect_size_d": -3.7829,
+        "significant": true
+      },
+      {
+        "band": "theta",
+        "freq_range": "4-8 Hz",
+        "baseline_mean": 0.0641,
+        "baseline_std": 0.0031,
+        "stress_mean": 0.0477,
+        "stress_std": 0.0025,
+        "t_statistic": 57.8239,
+        "p_value": 9.209167240134145e-196,
+        "effect_size_d": -5.7969,
+        "significant": true
+      },
+      {
+        "band": "alpha",
+        "freq_range": "8-13 Hz",
+        "baseline_mean": 0.0366,
+        "baseline_std": 0.0015,
+        "stress_mean": 0.0248,
+        "stress_std": 0.0012,
+        "t_statistic": 88.6373,
+        "p_value": 3.689051442737888e-264,
+        "effect_size_d": -8.886,
+        "significant": true
+      },
+      {
+        "band": "beta",
+        "freq_range": "13-30 Hz",
+        "baseline_mean": 0.0179,
+        "baseline_std": 0.0007,
+        "stress_mean": 0.0321,
+        "stress_std": 0.001,
+        "t_statistic": -166.1644,
+        "p_value": 0.0,
+        "effect_size_d": 16.6581,
+        "significant": true
+      },
+      {
+        "band": "gamma",
+        "freq_range": "30-45 Hz",
+        "baseline_mean": 0.0031,
+        "baseline_std": 0.0002,
+        "stress_mean": 0.0053,
+        "stress_std": 0.0004,
+        "t_statistic": -62.3467,
+        "p_value": 1.734435409366563e-207,
+        "effect_size_d": 6.2503,
+        "significant": true
+      }
+    ],
+    "alpha_suppression": {
+      "baseline_mean": 0.0366,
+      "baseline_std": 0.0015,
+      "stress_mean": 0.0248,
+      "stress_std": 0.0012,
+      "suppression_percent": 32.15,
+      "t_statistic": 88.6373,
+      "p_value": 3.689051442737888e-264,
+      "significant": true
+    },
+    "theta_beta_ratio": {
+      "baseline_mean": 3.5878,
+      "baseline_std": 0.2305,
+      "stress_mean": 1.4864,
+      "stress_std": 0.0847,
+      "delta_percent": -58.57,
+      "effect_size_d": -12.1038,
+      "t_statistic": 120.7352,
+      "p_value": 1.220049856e-315,
+      "significant": true
+    },
+    "frontal_asymmetry": {
+      "baseline_mean": -0.031,
+      "baseline_std": 0.2465,
+      "stress_mean": 0.0036,
+      "stress_std": 0.2444,
+      "delta_faa": 0.0346,
+      "t_statistic": -1.4047,
+      "p_value": 0.16088502363659055,
+      "significant": false,
+      "interpretation": "Left dominance"
+    }
+  },
+  "classification": {
+    "accuracy": 100.0,
+    "precision": 100.0,
+    "recall": 100.0,
+    "f1_score": 100.0,
+    "auc_roc": 100.0,
+    "specificity": 100.0,
+    "balanced_accuracy": 100.0,
+    "cohens_kappa": 1.0,
+    "mcc": 1.0,
+    "confusion_matrix": {
+      "tn": 200,
+      "fp": 0,
+      "fn": 0,
+      "tp": 200
+    }
+  }
+}

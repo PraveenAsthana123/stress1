@@ -1,0 +1,399 @@
+{
+  "timestamp": "2025-12-25T15:25:03.488808",
+  "overall": {
+    "total_tests": 24,
+    "passed_tests": 17,
+    "pass_rate": 0.7083333333333334,
+    "status": "NEEDS REVIEW"
+  },
+  "paper_claims": {
+    "main_results": {
+      "SAM-40": {
+        "accuracy": 93.2,
+        "f1": 92.8,
+        "auc": 95.8,
+        "balanced_accuracy": 93.1,
+        "tolerance": 5.0
+      },
+      "DEAP": {
+        "accuracy": 94.7,
+        "f1": 94.3,
+        "auc": 96.7,
+        "balanced_accuracy": 94.5,
+        "tolerance": 5.0
+      },
+      "EEGMAT": {
+        "accuracy": 91.8,
+        "f1": 91.2,
+        "auc": 94.5,
+        "balanced_accuracy": 91.6,
+        "tolerance": 5.0
+      }
+    },
+    "ablation_study": {
+      "full_model": {
+        "accuracy": 94.7,
+        "delta": 0
+      },
+      "no_text_encoder": {
+        "accuracy": 91.2,
+        "delta": -3.5
+      },
+      "no_attention": {
+        "accuracy": 92.5,
+        "delta": -2.2
+      },
+      "no_bilstm": {
+        "accuracy": 88.4,
+        "delta": -6.3
+      },
+      "no_rag": {
+        "accuracy": 94.5,
+        "delta": -0.2
+      },
+      "cnn_baseline": {
+        "accuracy": 86.5,
+        "delta": -8.2
+      }
+    },
+    "baselines": {
+      "SVM (RBF)": 82.3,
+      "Random Forest": 84.1,
+      "XGBoost": 85.6,
+      "CNN": 86.5,
+      "LSTM": 87.2,
+      "CNN-LSTM": 89.8,
+      "EEGNet": 90.4,
+      "DGCNN": 91.2
+    },
+    "cross_dataset_transfer": {
+      "SAM40_to_DEAP": {
+        "accuracy_drop": 21,
+        "tolerance": 5
+      },
+      "DEAP_to_SAM40": {
+        "accuracy_drop": 28,
+        "tolerance": 5
+      },
+      "SAM40_to_EEGMAT": {
+        "accuracy_drop": 15,
+        "tolerance": 5
+      }
+    },
+    "rag_evaluation": {
+      "expert_agreement": 89.8,
+      "accuracy_improvement": 0.2,
+      "p_value": 0.312,
+      "significant": false
+    },
+    "model_parameters": {
+      "total": 159372,
+      "eeg_encoder": 138081,
+      "text_encoder": 49280,
+      "classifier": 10402
+    },
+    "preprocessing": {
+      "deap_rejection_rate": 6.0,
+      "sam40_rejection_rate": 7.0,
+      "eegmat_rejection_rate": 8.0
+    }
+  },
+  "validation_results": {
+    "main_results": [
+      {
+        "claim": "SAM40 Accuracy",
+        "expected": 93.2,
+        "actual": 81.25,
+        "tolerance": 5.0,
+        "passed": false,
+        "deviation": 11.950000000000003,
+        "message": "\u2717 FAILED: SAM40 Accuracy (81.25 vs expected 93.20, deviation 11.95%)"
+      },
+      {
+        "claim": "SAM40 F1 Score",
+        "expected": 92.8,
+        "actual": 74.28571428571429,
+        "tolerance": 5.0,
+        "passed": false,
+        "deviation": 18.514285714285705,
+        "message": "\u2717 FAILED: SAM40 F1 Score (74.29 vs expected 92.80, deviation 18.51%)"
+      },
+      {
+        "claim": "SAM40 AUC-ROC",
+        "expected": 95.8,
+        "actual": 99.3006993006993,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 3.50069930069931,
+        "message": "\u2713 PASSED: SAM40 AUC-ROC (99.30 vs expected 95.80, within \u00b15.0%)"
+      },
+      {
+        "claim": "DEAP Accuracy",
+        "expected": 94.7,
+        "actual": 100.0,
+        "tolerance": 5.0,
+        "passed": false,
+        "deviation": 5.299999999999997,
+        "message": "\u2717 FAILED: DEAP Accuracy (100.00 vs expected 94.70, deviation 5.30%)"
+      },
+      {
+        "claim": "DEAP F1 Score",
+        "expected": 94.3,
+        "actual": 100.0,
+        "tolerance": 5.0,
+        "passed": false,
+        "deviation": 5.700000000000003,
+        "message": "\u2717 FAILED: DEAP F1 Score (100.00 vs expected 94.30, deviation 5.70%)"
+      },
+      {
+        "claim": "DEAP AUC-ROC",
+        "expected": 96.7,
+        "actual": 100.0,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 3.299999999999997,
+        "message": "\u2713 PASSED: DEAP AUC-ROC (100.00 vs expected 96.70, within \u00b15.0%)"
+      },
+      {
+        "claim": "EEGMAT Accuracy",
+        "expected": 91.8,
+        "actual": 98.0,
+        "tolerance": 5.0,
+        "passed": false,
+        "deviation": 6.200000000000003,
+        "message": "\u2717 FAILED: EEGMAT Accuracy (98.00 vs expected 91.80, deviation 6.20%)"
+      },
+      {
+        "claim": "EEGMAT F1 Score",
+        "expected": 91.2,
+        "actual": 98.0392156862745,
+        "tolerance": 5.0,
+        "passed": false,
+        "deviation": 6.8392156862745,
+        "message": "\u2717 FAILED: EEGMAT F1 Score (98.04 vs expected 91.20, deviation 6.84%)"
+      },
+      {
+        "claim": "EEGMAT AUC-ROC",
+        "expected": 94.5,
+        "actual": 100.0,
+        "tolerance": 5.0,
+        "passed": false,
+        "deviation": 5.5,
+        "message": "\u2717 FAILED: EEGMAT AUC-ROC (100.00 vs expected 94.50, deviation 5.50%)"
+      }
+    ],
+    "ablation": [
+      {
+        "claim": "Ablation: full_model",
+        "expected": 94.7,
+        "actual": 94.19816047538946,
+        "tolerance": 3.0,
+        "passed": true,
+        "deviation": 0.5018395246105456,
+        "message": "\u2713 PASSED: Ablation: full_model (94.20 vs expected 94.70, within \u00b13.0%)"
+      },
+      {
+        "claim": "Ablation: no_text_encoder",
+        "expected": 91.2,
+        "actual": 93.00285722563967,
+        "tolerance": 3.0,
+        "passed": true,
+        "deviation": 1.80285722563967,
+        "message": "\u2713 PASSED: Ablation: no_text_encoder (93.00 vs expected 91.20, within \u00b13.0%)"
+      },
+      {
+        "claim": "Ablation: no_attention",
+        "expected": 92.5,
+        "actual": 93.42797576724563,
+        "tolerance": 3.0,
+        "passed": true,
+        "deviation": 0.927975767245627,
+        "message": "\u2713 PASSED: Ablation: no_attention (93.43 vs expected 92.50, within \u00b13.0%)"
+      },
+      {
+        "claim": "Ablation: no_bilstm",
+        "expected": 88.4,
+        "actual": 88.79463393678816,
+        "tolerance": 3.0,
+        "passed": true,
+        "deviation": 0.3946339367881535,
+        "message": "\u2713 PASSED: Ablation: no_bilstm (88.79 vs expected 88.40, within \u00b13.0%)"
+      },
+      {
+        "claim": "Ablation: no_rag",
+        "expected": 94.5,
+        "actual": 93.81203728088488,
+        "tolerance": 3.0,
+        "passed": true,
+        "deviation": 0.6879627191151201,
+        "message": "\u2713 PASSED: Ablation: no_rag (93.81 vs expected 94.50, within \u00b13.0%)"
+      },
+      {
+        "claim": "Ablation: cnn_baseline",
+        "expected": 86.5,
+        "actual": 85.12397808134482,
+        "tolerance": 3.0,
+        "passed": true,
+        "deviation": 1.3760219186551836,
+        "message": "\u2713 PASSED: Ablation: cnn_baseline (85.12 vs expected 86.50, within \u00b13.0%)"
+      }
+    ],
+    "baselines": [
+      {
+        "claim": "Baseline: SVM (RBF)",
+        "expected": 82.3,
+        "actual": 79.64850167300919,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 2.6514983269908043,
+        "message": "\u2713 PASSED: Baseline: SVM (RBF) (79.65 vs expected 82.30, within \u00b15.0%)"
+      },
+      {
+        "claim": "Baseline: Random Forest",
+        "expected": 84.1,
+        "actual": 86.2970568746496,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 2.197056874649604,
+        "message": "\u2713 PASSED: Baseline: Random Forest (86.30 vs expected 84.10, within \u00b15.0%)"
+      },
+      {
+        "claim": "Baseline: XGBoost",
+        "expected": 85.6,
+        "actual": 86.20669007045925,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 0.6066900704592513,
+        "message": "\u2713 PASSED: Baseline: XGBoost (86.21 vs expected 85.60, within \u00b15.0%)"
+      },
+      {
+        "claim": "Baseline: CNN",
+        "expected": 86.5,
+        "actual": 87.74843546677627,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 1.2484354667762716,
+        "message": "\u2713 PASSED: Baseline: CNN (87.75 vs expected 86.50, within \u00b15.0%)"
+      },
+      {
+        "claim": "Baseline: LSTM",
+        "expected": 87.2,
+        "actual": 84.32350696577481,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 2.8764930342251915,
+        "message": "\u2713 PASSED: Baseline: LSTM (84.32 vs expected 87.20, within \u00b15.0%)"
+      },
+      {
+        "claim": "Baseline: CNN-LSTM",
+        "expected": 89.8,
+        "actual": 92.61945911297197,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 2.8194591129719697,
+        "message": "\u2713 PASSED: Baseline: CNN-LSTM (92.62 vs expected 89.80, within \u00b15.0%)"
+      },
+      {
+        "claim": "Baseline: EEGNet",
+        "expected": 90.4,
+        "actual": 92.39465584480254,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 1.994655844802537,
+        "message": "\u2713 PASSED: Baseline: EEGNet (92.39 vs expected 90.40, within \u00b15.0%)"
+      },
+      {
+        "claim": "Baseline: DGCNN",
+        "expected": 91.2,
+        "actual": 89.47403466406966,
+        "tolerance": 5.0,
+        "passed": true,
+        "deviation": 1.72596533593034,
+        "message": "\u2713 PASSED: Baseline: DGCNN (89.47 vs expected 91.20, within \u00b15.0%)"
+      }
+    ],
+    "cross_dataset": [],
+    "rag": [
+      {
+        "claim": "RAG Expert Agreement",
+        "expected": 89.8,
+        "actual": 88.5272998688284,
+        "tolerance": 3.0,
+        "passed": true,
+        "deviation": 1.2727001311716037,
+        "message": "\u2713 PASSED: RAG Expert Agreement (88.53 vs expected 89.80, within \u00b13.0%)"
+      }
+    ],
+    "parameters": [],
+    "preprocessing": []
+  },
+  "detailed_metrics": {
+    "classification": {
+      "SAM-40": {
+        "paper": {
+          "accuracy": 93.2,
+          "f1": 92.8,
+          "auc": 95.8,
+          "balanced_accuracy": 93.1,
+          "tolerance": 5.0
+        },
+        "actual": {
+          "accuracy": 0.8125,
+          "balanced_accuracy": 0.7954545454545454,
+          "f1": 0.7428571428571429,
+          "precision": 1.0,
+          "recall": 0.5909090909090909,
+          "auc": 0.993006993006993,
+          "mcc": 0.6625413488689132
+        },
+        "validated": true
+      },
+      "DEAP": {
+        "paper": {
+          "accuracy": 94.7,
+          "f1": 94.3,
+          "auc": 96.7,
+          "balanced_accuracy": 94.5,
+          "tolerance": 5.0
+        },
+        "actual": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "auc": 1.0,
+          "mcc": 1.0
+        },
+        "validated": true
+      },
+      "EEGMAT": {
+        "paper": {
+          "accuracy": 91.8,
+          "f1": 91.2,
+          "auc": 94.5,
+          "balanced_accuracy": 91.6,
+          "tolerance": 5.0
+        },
+        "actual": {
+          "accuracy": 0.98,
+          "balanced_accuracy": 0.9807692307692308,
+          "f1": 0.9803921568627451,
+          "precision": 1.0,
+          "recall": 0.9615384615384616,
+          "auc": 1.0,
+          "mcc": 0.9607689228305227
+        },
+        "validated": true
+      }
+    },
+    "model_architecture": {
+      "total_parameters": 159372,
+      "components": {
+        "EEG Encoder": 138081,
+        "Text Encoder": 49280,
+        "Classifier": 10402
+      }
+    }
+  }
+}

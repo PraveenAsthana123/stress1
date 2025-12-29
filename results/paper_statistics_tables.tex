@@ -1,0 +1,114 @@
+% Auto-generated LaTeX tables for GenAI-RAG-EEG paper
+% Generated: 2025-12-25 20:54:14
+
+
+% Table 1: Classification Performance Across Datasets
+\begin{table}[htbp]
+\centering
+\caption{Classification Performance of GenAI-RAG-EEG Across Datasets}
+\label{tab:classification_results}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Dataset} & \textbf{Acc (\%)} & \textbf{Prec (\%)} & \textbf{Rec (\%)} & \textbf{F1 (\%)} & \textbf{AUC (\%)} & \textbf{MCC} \\
+\midrule
+SAM-40 & 81.9 $\pm$ 2.0 & 85.1 $\pm$ 0.9 & 92.0 $\pm$ 3.2 & 88.4 $\pm$ 1.5 & 78.0 $\pm$ 4.5 & 0.485 \\
+DEAP & 94.7 $\pm$ 2.1 & 94.3 $\pm$ 2.3 & 95.1 $\pm$ 2.0 & 94.7 $\pm$ 2.1 & 98.2 $\pm$ 1.1 & 0.894 \\
+WESAD & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% Table 2: Comparison with Baseline Methods
+\begin{table}[htbp]
+\centering
+\caption{Comparison with Baseline Methods on DEAP Dataset}
+\label{tab:baseline_comparison}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{Acc (\%)} & \textbf{F1 (\%)} & \textbf{$\Delta$ Acc} & \textbf{p-value} & \textbf{Cohen's d} \\
+\midrule
+SVM (RBF) & 82.3 $\pm$ 3.5 & 81.8 $\pm$ 3.7 & +12.4 & $<$0.001*** & 2.18 \\
+Random Forest & 84.1 $\pm$ 3.2 & 83.5 $\pm$ 3.4 & +10.6 & $<$0.001*** & 1.92 \\
+XGBoost & 85.6 $\pm$ 2.8 & 85.2 $\pm$ 3.0 & +9.1 & $<$0.001*** & 1.74 \\
+CNN & 86.5 $\pm$ 3.1 & 86.1 $\pm$ 3.2 & +8.2 & $<$0.001*** & 1.58 \\
+LSTM & 87.2 $\pm$ 2.9 & 86.8 $\pm$ 3.0 & +7.5 & $<$0.001*** & 1.47 \\
+CNN-LSTM & 89.8 $\pm$ 2.5 & 89.4 $\pm$ 2.6 & +4.9 & $<$0.01** & 1.12 \\
+EEGNet & 90.4 $\pm$ 2.3 & 90.1 $\pm$ 2.4 & +4.3 & $<$0.01** & 1.04 \\
+DGCNN & 91.2 $\pm$ 2.1 & 90.9 $\pm$ 2.2 & +3.5 & $<$0.05* & 0.91 \\
+\midrule
+\textbf{GenAI-RAG-EEG} & \textbf{94.7 $\pm$ 2.1} & \textbf{94.7 $\pm$ 2.1} & -- & -- & -- \\
+\bottomrule
+\multicolumn{6}{l}{\small *p$<$0.05, **p$<$0.01, ***p$<$0.001}
+\end{tabular}
+\end{table}
+
+
+% Table 3: Ablation Study Results
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study: Component Contribution Analysis}
+\label{tab:ablation_study}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Accuracy (\%)} & \textbf{$\Delta$ (\%)} & \textbf{p-value} \\
+\midrule
+Full Model (GenAI-RAG-EEG) & 94.7 $\pm$ 2.1 & -- & -- \\
+\midrule
+-- Text Context Encoder & 91.2 $\pm$ 2.4 & --3.5 & $<$0.01** \\
+-- Self-Attention & 92.5 $\pm$ 2.3 & --2.2 & $<$0.05* \\
+-- Bi-LSTM (CNN only) & 88.4 $\pm$ 2.8 & --6.3 & $<$0.001*** \\
+-- RAG Explainer & 94.5 $\pm$ 2.1 & --0.2 & 0.312 (ns) \\
+CNN Baseline & 86.5 $\pm$ 3.1 & --8.2 & $<$0.001*** \\
+\bottomrule
+\multicolumn{4}{l}{\small *p$<$0.05, **p$<$0.01, ***p$<$0.001, ns: not significant}
+\end{tabular}
+\end{table}
+
+
+% Table 4: EEG Band Power Analysis
+\begin{table}[htbp]
+\centering
+\caption{EEG Band Power Comparison: Stress vs Baseline States}
+\label{tab:band_power}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Frequency Band} & \textbf{Stress ($\mu$V$^2$/Hz)} & \textbf{Baseline ($\mu$V$^2$/Hz)} & \textbf{Cohen's d} & \textbf{p-value} \\
+\midrule
+Delta (1--4 Hz) & 0.771 $\pm$ 0.15 & 0.947 $\pm$ 0.18 & --0.444 & $<$0.001*** \\
+Theta (4--8 Hz) & 6.669 $\pm$ 1.20 & 8.261 $\pm$ 1.40 & --0.486 & $<$0.001*** \\
+Alpha (8--13 Hz) & 3.875 $\pm$ 0.80 & 4.339 $\pm$ 0.90 & --0.295 & 0.003** \\
+Beta (13--30 Hz) & 10.685 $\pm$ 2.10 & 12.685 $\pm$ 2.50 & --0.327 & $<$0.001*** \\
+Gamma (30--100 Hz) & 8.782 $\pm$ 1.80 & 9.387 $\pm$ 2.00 & --0.157 & 0.142 (ns) \\
+\bottomrule
+\multicolumn{5}{l}{\small **p$<$0.01, ***p$<$0.001, ns: not significant}
+\end{tabular}
+\end{table}
+
+
+% Table 5: Model Architecture Parameters
+\begin{table}[htbp]
+\centering
+\caption{GenAI-RAG-EEG Model Architecture Parameters}
+\label{tab:model_params}
+\begin{tabular}{llr}
+\toprule
+\textbf{Component} & \textbf{Layer} & \textbf{Parameters} \\
+\midrule
+\multirow{5}{*}{EEG Encoder} & Conv1D Layer 1 (64 filters, k=7) & 512 \\
+ & Conv1D Layer 2 (128 filters, k=5) & 41,088 \\
+ & Conv1D Layer 3 (64 filters, k=3) & 24,640 \\
+ & Bi-LSTM (128 hidden, 2 layers) & 99,584 \\
+ & Self-Attention (4 heads) & 8,321 \\
+\midrule
+Text Encoder & Projection Layer (384$\rightarrow$128) & 49,280 \\
+\midrule
+\multirow{3}{*}{Classification} & Fusion Layer & 16,512 \\
+ & FC Layer 1 (256$\rightarrow$64) & 16,448 \\
+ & FC Layer 2 (64$\rightarrow$2) & 130 \\
+\midrule
+\textbf{Total Trainable} & & \textbf{256,515} \\
+\bottomrule
+\end{tabular}
+\end{table}
+

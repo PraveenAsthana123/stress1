@@ -1,0 +1,720 @@
+{
+  "description": "Balanced sample dataset for testing GenAI-RAG-EEG",
+  "n_samples": 100,
+  "shape": [
+    100,
+    32,
+    512
+  ],
+  "n_channels": 32,
+  "segment_length": 512,
+  "sampling_rate": 256,
+  "class_distribution": {
+    "baseline": 50,
+    "stress": 50
+  },
+  "created": "2024-12-29",
+  "source": "SAM-40 filtered_data",
+  "samples": [
+    {
+      "subject": 15,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 2,
+      "file": "Relax_sub_15_trial1"
+    },
+    {
+      "subject": 15,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 0,
+      "file": "Arithmetic_sub_15_trial2"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 1,
+      "file": "Relax_sub_10_trial3"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 0,
+      "file": "Arithmetic_sub_12_trial2"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 0,
+      "file": "Arithmetic_sub_10_trial1"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 0,
+      "file": "Relax_sub_11_trial2"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 1,
+      "file": "Arithmetic_sub_14_trial2"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 0,
+      "file": "Relax_sub_12_trial1"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 2,
+      "file": "Relax_sub_14_trial3"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 1,
+      "file": "Arithmetic_sub_13_trial1"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 0,
+      "file": "Relax_sub_12_trial3"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 1,
+      "file": "Arithmetic_sub_12_trial3"
+    },
+    {
+      "subject": 15,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 1,
+      "file": "Relax_sub_15_trial1"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 2,
+      "file": "Arithmetic_sub_14_trial1"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 1,
+      "file": "Arithmetic_sub_14_trial1"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 1,
+      "file": "Arithmetic_sub_14_trial3"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 2,
+      "file": "Arithmetic_sub_11_trial3"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 1,
+      "file": "Arithmetic_sub_11_trial2"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 0,
+      "file": "Arithmetic_sub_13_trial2"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 0,
+      "file": "Arithmetic_sub_11_trial2"
+    },
+    {
+      "subject": 15,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 1,
+      "file": "Arithmetic_sub_15_trial1"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 1,
+      "file": "Relax_sub_11_trial1"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 2,
+      "file": "Relax_sub_11_trial1"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 0,
+      "file": "Arithmetic_sub_14_trial2"
+    },
+    {
+      "subject": 15,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 0,
+      "file": "Relax_sub_15_trial1"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 2,
+      "file": "Relax_sub_12_trial1"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 2,
+      "file": "Relax_sub_13_trial1"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 2,
+      "file": "Relax_sub_12_trial2"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 0,
+      "file": "Arithmetic_sub_14_trial3"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 1,
+      "file": "Relax_sub_12_trial2"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 1,
+      "file": "Relax_sub_11_trial2"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 2,
+      "file": "Relax_sub_13_trial3"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 0,
+      "file": "Relax_sub_14_trial2"
+    },
+    {
+      "subject": 15,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 2,
+      "file": "Arithmetic_sub_15_trial1"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 2,
+      "file": "Relax_sub_10_trial1"
+    },
+    {
+      "subject": 15,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 1,
+      "file": "Arithmetic_sub_15_trial2"
+    },
+    {
+      "subject": 15,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 1,
+      "file": "Relax_sub_15_trial2"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 1,
+      "file": "Relax_sub_13_trial2"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 1,
+      "file": "Relax_sub_14_trial1"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 2,
+      "file": "Arithmetic_sub_12_trial1"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 0,
+      "file": "Arithmetic_sub_11_trial1"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 0,
+      "file": "Relax_sub_14_trial3"
+    },
+    {
+      "subject": 15,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 0,
+      "file": "Arithmetic_sub_15_trial1"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 1,
+      "file": "Relax_sub_10_trial1"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 1,
+      "file": "Arithmetic_sub_10_trial2"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 2,
+      "file": "Arithmetic_sub_11_trial2"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 2,
+      "file": "Arithmetic_sub_14_trial3"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 2,
+      "file": "Arithmetic_sub_12_trial2"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 1,
+      "file": "Relax_sub_12_trial3"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 1,
+      "file": "Arithmetic_sub_12_trial1"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 2,
+      "file": "Arithmetic_sub_13_trial2"
+    },
+    {
+      "subject": 15,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 0,
+      "file": "Relax_sub_15_trial2"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 2,
+      "file": "Arithmetic_sub_13_trial3"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 2,
+      "file": "Arithmetic_sub_13_trial1"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 2,
+      "file": "Arithmetic_sub_10_trial2"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 2,
+      "file": "Relax_sub_12_trial3"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 2,
+      "file": "Relax_sub_14_trial1"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 1,
+      "file": "Arithmetic_sub_11_trial3"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 2,
+      "file": "Arithmetic_sub_10_trial3"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 0,
+      "file": "Arithmetic_sub_10_trial2"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 0,
+      "file": "Arithmetic_sub_14_trial1"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 2,
+      "file": "Arithmetic_sub_12_trial3"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 1,
+      "file": "Relax_sub_10_trial2"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 1,
+      "file": "Relax_sub_14_trial2"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 0,
+      "file": "Relax_sub_11_trial3"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 1,
+      "file": "Arithmetic_sub_11_trial1"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 2,
+      "file": "Relax_sub_13_trial2"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 2,
+      "file": "Relax_sub_10_trial2"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 1,
+      "file": "Arithmetic_sub_10_trial1"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 0,
+      "file": "Relax_sub_10_trial3"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 0,
+      "file": "Relax_sub_10_trial2"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 0,
+      "file": "Relax_sub_13_trial3"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 1,
+      "file": "Arithmetic_sub_13_trial3"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 1,
+      "file": "Arithmetic_sub_13_trial2"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 0,
+      "file": "Relax_sub_13_trial1"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 0,
+      "file": "Arithmetic_sub_12_trial3"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 1,
+      "file": "Relax_sub_13_trial3"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 0,
+      "file": "Arithmetic_sub_13_trial3"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 2,
+      "file": "Arithmetic_sub_10_trial1"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 0,
+      "file": "Relax_sub_12_trial2"
+    },
+    {
+      "subject": 14,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 2,
+      "file": "Arithmetic_sub_14_trial2"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 0,
+      "file": "Arithmetic_sub_12_trial1"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 2,
+      "file": "Arithmetic_sub_11_trial1"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 0,
+      "file": "Arithmetic_sub_10_trial3"
+    },
+    {
+      "subject": 10,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 1,
+      "file": "Arithmetic_sub_10_trial3"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 1,
+      "file": "Relax_sub_13_trial1"
+    },
+    {
+      "subject": 13,
+      "condition": "Arithmetic",
+      "trial": 1,
+      "segment": 0,
+      "file": "Arithmetic_sub_13_trial1"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 1,
+      "file": "Relax_sub_14_trial3"
+    },
+    {
+      "subject": 11,
+      "condition": "Arithmetic",
+      "trial": 3,
+      "segment": 0,
+      "file": "Arithmetic_sub_11_trial3"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 2,
+      "file": "Relax_sub_14_trial2"
+    },
+    {
+      "subject": 14,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 0,
+      "file": "Relax_sub_14_trial1"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 2,
+      "file": "Relax_sub_10_trial3"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 1,
+      "file": "Relax_sub_11_trial3"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 0,
+      "file": "Relax_sub_11_trial1"
+    },
+    {
+      "subject": 10,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 0,
+      "file": "Relax_sub_10_trial1"
+    },
+    {
+      "subject": 13,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 0,
+      "file": "Relax_sub_13_trial2"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 3,
+      "segment": 2,
+      "file": "Relax_sub_11_trial3"
+    },
+    {
+      "subject": 12,
+      "condition": "Relax",
+      "trial": 1,
+      "segment": 1,
+      "file": "Relax_sub_12_trial1"
+    },
+    {
+      "subject": 11,
+      "condition": "Relax",
+      "trial": 2,
+      "segment": 2,
+      "file": "Relax_sub_11_trial2"
+    },
+    {
+      "subject": 12,
+      "condition": "Arithmetic",
+      "trial": 2,
+      "segment": 1,
+      "file": "Arithmetic_sub_12_trial2"
+    }
+  ]
+}

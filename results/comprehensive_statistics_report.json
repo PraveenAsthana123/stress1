@@ -1,0 +1,294 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-25T20:54:14.944907",
+    "model": "GenAI-RAG-EEG",
+    "version": "1.0"
+  },
+  "model_architecture": {
+    "EEG Encoder": {
+      "Conv1D Layer 1": {
+        "filters": 64,
+        "kernel": 7,
+        "params": 512
+      },
+      "Conv1D Layer 2": {
+        "filters": 128,
+        "kernel": 5,
+        "params": 41088
+      },
+      "Conv1D Layer 3": {
+        "filters": 64,
+        "kernel": 3,
+        "params": 24640
+      },
+      "Bi-LSTM": {
+        "hidden": 128,
+        "layers": 2,
+        "params": 99584
+      },
+      "Self-Attention": {
+        "heads": 4,
+        "dim": 64,
+        "params": 8321
+      },
+      "Subtotal": 174145
+    },
+    "Text Context Encoder": {
+      "SBERT (frozen)": {
+        "dim": 384,
+        "params": 0
+      },
+      "Projection Layer": {
+        "in": 384,
+        "out": 128,
+        "params": 49280
+      },
+      "Subtotal": 49280
+    },
+    "Fusion & Classification": {
+      "Fusion Layer": {
+        "method": "concatenation",
+        "params": 16512
+      },
+      "FC Layer 1": {
+        "in": 256,
+        "out": 64,
+        "params": 16448
+      },
+      "FC Layer 2": {
+        "in": 64,
+        "out": 2,
+        "params": 130
+      },
+      "Subtotal": 33090
+    }
+  },
+  "classification_results": {
+    "SAM-40": {
+      "n_subjects": 40,
+      "n_samples": 480,
+      "metrics": {
+        "accuracy": {
+          "mean": 81.9,
+          "std": 2.0,
+          "ci_lower": 79.9,
+          "ci_upper": 83.9
+        },
+        "precision": {
+          "mean": 85.1,
+          "std": 0.9,
+          "ci_lower": 84.2,
+          "ci_upper": 86.0
+        },
+        "recall": {
+          "mean": 92.0,
+          "std": 3.2,
+          "ci_lower": 88.8,
+          "ci_upper": 95.2
+        },
+        "f1_score": {
+          "mean": 88.4,
+          "std": 1.5,
+          "ci_lower": 86.9,
+          "ci_upper": 89.9
+        },
+        "specificity": {
+          "mean": 51.7,
+          "std": 4.3,
+          "ci_lower": 47.4,
+          "ci_upper": 56.0
+        },
+        "auc_roc": {
+          "mean": 78.0,
+          "std": 4.5,
+          "ci_lower": 73.5,
+          "ci_upper": 82.5
+        },
+        "mcc": {
+          "mean": 0.485,
+          "std": 0.05,
+          "ci_lower": 0.435,
+          "ci_upper": 0.535
+        },
+        "cohens_kappa": {
+          "mean": 0.475,
+          "std": 0.045,
+          "ci_lower": 0.43,
+          "ci_upper": 0.52
+        }
+      },
+      "confusion_matrix": {
+        "tn": 62,
+        "fp": 58,
+        "fn": 29,
+        "tp": 331
+      }
+    },
+    "WESAD": {
+      "n_subjects": 15,
+      "n_samples": 984,
+      "metrics": {
+        "accuracy": {
+          "mean": 100.0,
+          "std": 0.0,
+          "ci_lower": 100.0,
+          "ci_upper": 100.0
+        },
+        "precision": {
+          "mean": 100.0,
+          "std": 0.0,
+          "ci_lower": 100.0,
+          "ci_upper": 100.0
+        },
+        "recall": {
+          "mean": 100.0,
+          "std": 0.0,
+          "ci_lower": 100.0,
+          "ci_upper": 100.0
+        },
+        "f1_score": {
+          "mean": 100.0,
+          "std": 0.0,
+          "ci_lower": 100.0,
+          "ci_upper": 100.0
+        },
+        "specificity": {
+          "mean": 100.0,
+          "std": 0.0,
+          "ci_lower": 100.0,
+          "ci_upper": 100.0
+        },
+        "auc_roc": {
+          "mean": 100.0,
+          "std": 0.0,
+          "ci_lower": 100.0,
+          "ci_upper": 100.0
+        },
+        "mcc": {
+          "mean": 1.0,
+          "std": 0.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0
+        },
+        "cohens_kappa": {
+          "mean": 1.0,
+          "std": 0.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0
+        }
+      },
+      "confusion_matrix": {
+        "tn": 479,
+        "fp": 0,
+        "fn": 0,
+        "tp": 505
+      }
+    },
+    "DEAP": {
+      "n_subjects": 32,
+      "n_samples": 1280,
+      "metrics": {
+        "accuracy": {
+          "mean": 94.7,
+          "std": 2.1,
+          "ci_lower": 92.6,
+          "ci_upper": 96.8
+        },
+        "precision": {
+          "mean": 94.3,
+          "std": 2.3,
+          "ci_lower": 92.0,
+          "ci_upper": 96.6
+        },
+        "recall": {
+          "mean": 95.1,
+          "std": 2.0,
+          "ci_lower": 93.1,
+          "ci_upper": 97.1
+        },
+        "f1_score": {
+          "mean": 94.7,
+          "std": 2.1,
+          "ci_lower": 92.6,
+          "ci_upper": 96.8
+        },
+        "specificity": {
+          "mean": 94.3,
+          "std": 2.4,
+          "ci_lower": 91.9,
+          "ci_upper": 96.7
+        },
+        "auc_roc": {
+          "mean": 98.2,
+          "std": 1.1,
+          "ci_lower": 97.1,
+          "ci_upper": 99.3
+        },
+        "mcc": {
+          "mean": 0.894,
+          "std": 0.042,
+          "ci_lower": 0.852,
+          "ci_upper": 0.936
+        },
+        "cohens_kappa": {
+          "mean": 0.893,
+          "std": 0.043,
+          "ci_lower": 0.85,
+          "ci_upper": 0.936
+        }
+      },
+      "confusion_matrix": {
+        "tn": 604,
+        "fp": 36,
+        "fn": 32,
+        "tp": 608
+      }
+    }
+  },
+  "baseline_comparison": {
+    "our_model": {
+      "mean": 94.7,
+      "std": 2.1
+    },
+    "baselines": {
+      "SVM (RBF)": {
+        "mean": 82.3,
+        "std": 3.5
+      },
+      "Random Forest": {
+        "mean": 84.1,
+        "std": 3.2
+      },
+      "XGBoost": {
+        "mean": 85.6,
+        "std": 2.8
+      },
+      "CNN": {
+        "mean": 86.5,
+        "std": 3.1
+      },
+      "LSTM": {
+        "mean": 87.2,
+        "std": 2.9
+      },
+      "CNN-LSTM": {
+        "mean": 89.8,
+        "std": 2.5
+      },
+      "EEGNet": {
+        "mean": 90.4,
+        "std": 2.3
+      },
+      "DGCNN": {
+        "mean": 91.2,
+        "std": 2.1
+      }
+    },
+    "significance_tests": [
+      {
+        "baseline": "SVM (RBF)",
+        "improvement": 12.400000000000006,
+        "t_statistic": 15.964199827839899,
+        "p_value": 6.559529463723428e-08,
+        "cohens_d": 5.048323247804201,
+        "significant": 

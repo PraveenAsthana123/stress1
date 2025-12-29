@@ -1,0 +1,156 @@
+2025-12-29 09:25:34 | INFO     | ======================================================================
+2025-12-29 09:25:34 | INFO     | GENAI-RAG-EEG COMPREHENSIVE VALIDATION
+2025-12-29 09:25:34 | INFO     | ======================================================================
+2025-12-29 09:25:34 | INFO     | Timestamp: 20251229_092534
+2025-12-29 09:25:34 | INFO     | Results directory: results/validation_20251229_092534
+2025-12-29 09:25:34 | INFO     | Random seed: 42
+2025-12-29 09:25:34 | INFO     | Device: CUDA
+2025-12-29 09:25:34 | INFO     | 
+--- Configuration ---
+2025-12-29 09:25:34 | INFO     |   BATCH_SIZE: 32
+2025-12-29 09:25:34 | INFO     |   DATA_PATH: data/SAM40/filtered_data
+2025-12-29 09:25:34 | INFO     |   DROPOUT: 0.3
+2025-12-29 09:25:34 | INFO     |   EARLY_STOPPING_PATIENCE: 15
+2025-12-29 09:25:34 | INFO     |   EPOCHS: 100
+2025-12-29 09:25:34 | INFO     |   LEARNING_RATE: 0.001
+2025-12-29 09:25:34 | INFO     |   N_CHANNELS: 32
+2025-12-29 09:25:34 | INFO     |   N_FOLDS: 5
+2025-12-29 09:25:34 | INFO     |   RESULTS_BASE_DIR: results
+2025-12-29 09:25:34 | INFO     |   SAMPLING_RATE: 256
+2025-12-29 09:25:34 | INFO     |   SAVE_CHECKPOINTS: True
+2025-12-29 09:25:34 | INFO     |   SAVE_PREDICTIONS: True
+2025-12-29 09:25:34 | INFO     |   SEGMENT_LENGTH: 512
+2025-12-29 09:25:34 | INFO     |   WEIGHT_DECAY: 1e-05
+2025-12-29 09:25:34 | INFO     | ======================================================================
+2025-12-29 09:25:34 | INFO     | LOADING SAM-40 DATASET
+2025-12-29 09:25:34 | INFO     | ======================================================================
+2025-12-29 09:25:34 | INFO     | Found 480 .mat files
+2025-12-29 09:25:37 | INFO     | Data dimensions: max_channels=32, min_samples=3200
+2025-12-29 09:25:37 | INFO     | Loaded 480 files, 0 failed
+2025-12-29 09:25:37 | INFO     | Total segments: 2880
+2025-12-29 09:25:37 | INFO     | Data shape: (2880, 32, 512)
+2025-12-29 09:25:37 | INFO     | Class distribution: Baseline=720, Stress=2160
+2025-12-29 09:25:37 | INFO     | Class balance: 75.0% stress
+2025-12-29 09:25:37 | INFO     | Unique subjects: 40
+2025-12-29 09:25:37 | INFO     | Conditions: {'Arithmetic', 'Stroop', 'Relax', 'Mirror_image'}
+2025-12-29 09:25:40 | INFO     | 
+======================================================================
+2025-12-29 09:25:40 | INFO     | MODEL ARCHITECTURE
+2025-12-29 09:25:40 | INFO     | ======================================================================
+2025-12-29 09:25:46 | INFO     | Total parameters: 22,910,850
+2025-12-29 09:25:46 | INFO     | Trainable parameters: 197,634
+2025-12-29 09:25:46 | INFO     | 
+======================================================================
+2025-12-29 09:25:46 | INFO     | 5-FOLD CROSS-VALIDATION
+2025-12-29 09:25:46 | INFO     | ======================================================================
+2025-12-29 09:25:46 | INFO     | 
+--- Fold 1/5 ---
+2025-12-29 09:25:46 | INFO     | Train samples: 2304, Validation samples: 576
+2025-12-29 09:25:48 | INFO     | Fold 1 | Epoch   1/100 | Train Loss: 0.5879 | Train Acc: 73.5% | Val Loss: 0.5556 | Val Acc: 75.0% | LR: 0.001000
+2025-12-29 09:25:56 | INFO     | Fold 1 | Epoch  10/100 | Train Loss: 0.4246 | Train Acc: 80.0% | Val Loss: 0.6471 | Val Acc: 62.3% | LR: 0.000500
+2025-12-29 09:26:04 | INFO     | Early stopping at epoch 19
+2025-12-29 09:26:04 | INFO     | 
+Fold 1 Results:
+2025-12-29 09:26:04 | INFO     |   Accuracy:  38.72%
+2025-12-29 09:26:04 | INFO     |   Precision: 95.40%
+2025-12-29 09:26:04 | INFO     |   Recall:    19.21%
+2025-12-29 09:26:04 | INFO     |   F1-Score:  31.98%
+2025-12-29 09:26:04 | INFO     |   AUC-ROC:   81.42%
+2025-12-29 09:26:04 | INFO     |   Checkpoint saved: results/validation_20251229_092534/model_checkpoints/model_fold1.pt
+2025-12-29 09:26:04 | INFO     | 
+--- Fold 2/5 ---
+2025-12-29 09:26:04 | INFO     | Train samples: 2304, Validation samples: 576
+2025-12-29 09:26:07 | INFO     | Fold 2 | Epoch   1/100 | Train Loss: 0.5982 | Train Acc: 69.8% | Val Loss: 0.5696 | Val Acc: 75.0% | LR: 0.001000
+2025-12-29 09:26:15 | INFO     | Fold 2 | Epoch  10/100 | Train Loss: 0.4383 | Train Acc: 79.6% | Val Loss: 0.5820 | Val Acc: 65.6% | LR: 0.000500
+2025-12-29 09:26:22 | INFO     | Early stopping at epoch 18
+2025-12-29 09:26:22 | INFO     | 
+Fold 2 Results:
+2025-12-29 09:26:22 | INFO     |   Accuracy:  48.26%
+2025-12-29 09:26:22 | INFO     |   Precision: 97.18%
+2025-12-29 09:26:22 | INFO     |   Recall:    31.94%
+2025-12-29 09:26:22 | INFO     |   F1-Score:  48.08%
+2025-12-29 09:26:22 | INFO     |   AUC-ROC:   83.01%
+2025-12-29 09:26:23 | INFO     |   Checkpoint saved: results/validation_20251229_092534/model_checkpoints/model_fold2.pt
+2025-12-29 09:26:23 | INFO     | 
+--- Fold 3/5 ---
+2025-12-29 09:26:23 | INFO     | Train samples: 2304, Validation samples: 576
+2025-12-29 09:26:25 | INFO     | Fold 3 | Epoch   1/100 | Train Loss: 0.5908 | Train Acc: 74.7% | Val Loss: 0.5590 | Val Acc: 75.0% | LR: 0.001000
+2025-12-29 09:26:33 | INFO     | Fold 3 | Epoch  10/100 | Train Loss: 0.4325 | Train Acc: 79.8% | Val Loss: 0.8655 | Val Acc: 48.3% | LR: 0.001000
+2025-12-29 09:26:42 | INFO     | Fold 3 | Epoch  20/100 | Train Loss: 0.3312 | Train Acc: 85.2% | Val Loss: 1.2580 | Val Acc: 37.3% | LR: 0.000250
+2025-12-29 09:26:42 | INFO     | Early stopping at epoch 20
+2025-12-29 09:26:42 | INFO     | 
+Fold 3 Results:
+2025-12-29 09:26:42 | INFO     |   Accuracy:  37.33%
+2025-12-29 09:26:42 | INFO     |   Precision: 100.00%
+2025-12-29 09:26:42 | INFO     |   Recall:    16.44%
+2025-12-29 09:26:42 | INFO     |   F1-Score:  28.23%
+2025-12-29 09:26:42 | INFO     |   AUC-ROC:   83.20%
+2025-12-29 09:26:42 | INFO     |   Checkpoint saved: results/validation_20251229_092534/model_checkpoints/model_fold3.pt
+2025-12-29 09:26:42 | INFO     | 
+--- Fold 4/5 ---
+2025-12-29 09:26:42 | INFO     | Train samples: 2304, Validation samples: 576
+2025-12-29 09:26:45 | INFO     | Fold 4 | Epoch   1/100 | Train Loss: 0.5900 | Train Acc: 74.2% | Val Loss: 0.5583 | Val Acc: 75.0% | LR: 0.001000
+2025-12-29 09:26:53 | INFO     | Fold 4 | Epoch  10/100 | Train Loss: 0.4263 | Train Acc: 79.6% | Val Loss: 0.5705 | Val Acc: 66.8% | LR: 0.001000
+2025-12-29 09:27:02 | INFO     | Fold 4 | Epoch  20/100 | Train Loss: 0.3601 | Train Acc: 83.7% | Val Loss: 1.0050 | Val Acc: 41.1% | LR: 0.000250
+2025-12-29 09:27:04 | INFO     | Early stopping at epoch 22
+2025-12-29 09:27:04 | INFO     | 
+Fold 4 Results:
+2025-12-29 09:27:04 | INFO     |   Accuracy:  37.85%
+2025-12-29 09:27:04 | INFO     |   Precision: 98.68%
+2025-12-29 09:27:04 | INFO     |   Recall:    17.36%
+2025-12-29 09:27:04 | INFO     |   F1-Score:  29.53%
+2025-12-29 09:27:04 | INFO     |   AUC-ROC:   83.05%
+2025-12-29 09:27:04 | INFO     |   Checkpoint saved: results/validation_20251229_092534/model_checkpoints/model_fold4.pt
+2025-12-29 09:27:04 | INFO     | 
+--- Fold 5/5 ---
+2025-12-29 09:27:04 | INFO     | Train samples: 2304, Validation samples: 576
+2025-12-29 09:27:06 | INFO     | Fold 5 | Epoch   1/100 | Train Loss: 0.5988 | Train Acc: 74.4% | Val Loss: 0.5741 | Val Acc: 75.0% | LR: 0.001000
+2025-12-29 09:27:14 | INFO     | Fold 5 | Epoch  10/100 | Train Loss: 0.4448 | Train Acc: 79.7% | Val Loss: 0.6164 | Val Acc: 59.2% | LR: 0.001000
+2025-12-29 09:27:23 | INFO     | Fold 5 | Epoch  20/100 | Train Loss: 0.3392 | Train Acc: 85.9% | Val Loss: 1.0334 | Val Acc: 41.5% | LR: 0.000500
+2025-12-29 09:27:24 | INFO     | Early stopping at epoch 21
+2025-12-29 09:27:24 | INFO     | 
+Fold 5 Results:
+2025-12-29 09:27:24 | INFO     |   Accuracy:  42.88%
+2025-12-29 09:27:24 | INFO     |   Precision: 98.13%
+2025-12-29 09:27:24 | INFO     |   Recall:    24.31%
+2025-12-29 09:27:24 | INFO     |   F1-Score:  38.96%
+2025-12-29 09:27:24 | INFO     |   AUC-ROC:   86.45%
+2025-12-29 09:27:24 | INFO     |   Checkpoint saved: results/validation_20251229_092534/model_checkpoints/model_fold5.pt
+2025-12-29 09:27:24 | INFO     | 
+======================================================================
+2025-12-29 09:27:24 | INFO     | CROSS-VALIDATION SUMMARY
+2025-12-29 09:27:24 | INFO     | ======================================================================
+2025-12-29 09:27:24 | INFO     | ACCURACY    : 41.01% ± 4.12%
+2025-12-29 09:27:24 | INFO     | PRECISION   : 97.88% ± 1.54%
+2025-12-29 09:27:24 | INFO     | RECALL      : 21.85% ± 5.73%
+2025-12-29 09:27:24 | INFO     | F1_SCORE    : 35.36% ± 7.36%
+2025-12-29 09:27:24 | INFO     | AUC_ROC     : 83.43% ± 1.65%
+2025-12-29 09:27:24 | INFO     | 
+--- Detailed Fold Results ---
+2025-12-29 09:27:24 | INFO     |  Fold  |  Accuracy  | Precision  |   Recall   |  F1-Score  |  AUC-ROC  
+2025-12-29 09:27:24 | INFO     | ----------------------------------------------------------------------
+2025-12-29 09:27:24 | INFO     |   1    |    38.72% |    95.40% |    19.21% |    31.98% |    81.42%
+2025-12-29 09:27:24 | INFO     |   2    |    48.26% |    97.18% |    31.94% |    48.08% |    83.01%
+2025-12-29 09:27:24 | INFO     |   3    |    37.33% |   100.00% |    16.44% |    28.23% |    83.20%
+2025-12-29 09:27:24 | INFO     |   4    |    37.85% |    98.68% |    17.36% |    29.53% |    83.05%
+2025-12-29 09:27:24 | INFO     |   5    |    42.88% |    98.13% |    24.31% |    38.96% |    86.45%
+2025-12-29 09:27:24 | INFO     | ----------------------------------------------------------------------
+2025-12-29 09:27:24 | INFO     |  Mean  |    41.01% |    97.88% |    21.85% |    35.36% |    83.43%
+2025-12-29 09:27:24 | INFO     |  Std   |     4.12% |     1.54% |     5.73% |     7.36% |     1.65%
+2025-12-29 09:27:24 | INFO     | 
+======================================================================
+2025-12-29 09:27:24 | INFO     | COMPARISON WITH PAPER-REPORTED RESULTS (SAM-40)
+2025-12-29 09:27:24 | INFO     | ======================================================================
+2025-12-29 09:27:24 | INFO     |    Metric    |    Paper     |   This Run   |  Difference 
+2025-12-29 09:27:24 | INFO     | -------------------------------------------------------
+2025-12-29 09:27:24 | INFO     |   accuracy   |       93.2% |      41.01% |    -52.19%
+2025-12-29 09:27:24 | INFO     |  precision   |       92.8% |      97.88% |     +5.08%
+2025-12-29 09:27:24 | INFO     |    recall    |       93.7% |      21.85% |    -71.85%
+2025-12-29 09:27:24 | INFO     |   f1_score   |       93.2% |      35.36% |    -57.84%
+2025-12-29 09:27:24 | INFO     |   auc_roc    |       95.8% |      83.43% |    -12.37%
+2025-12-29 09:27:24 | INFO     | 
+
+Results saved to: results/validation_20251229_092534
+2025-12-29 09:27:24 | INFO     | ======================================================================
+2025-12-29 09:27:24 | INFO     | VALIDATION COMPLETE
+2025-12-29 09:27:24 | INFO     | ======================================================================

@@ -1,0 +1,288 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-25T16:48:24.660813"
+  },
+  "tables": {
+    "band_power": {
+      "SAM-40": [
+        {
+          "band": "delta",
+          "low_stress_mean": 2.27,
+          "high_stress_mean": 2.28,
+          "t_statistic": -1.431,
+          "p_value": 0.153032,
+          "effect_size_d": 0.131
+        },
+        {
+          "band": "theta",
+          "low_stress_mean": 3.11,
+          "high_stress_mean": 3.12,
+          "t_statistic": -0.333,
+          "p_value": 0.739267,
+          "effect_size_d": 0.03
+        },
+        {
+          "band": "alpha",
+          "low_stress_mean": 316.57,
+          "high_stress_mean": 116.47,
+          "t_statistic": 1340.097,
+          "p_value": 0.0,
+          "effect_size_d": -122.589
+        },
+        {
+          "band": "beta",
+          "low_stress_mean": 45.18,
+          "high_stress_mean": 125.69,
+          "t_statistic": -837.348,
+          "p_value": 0.0,
+          "effect_size_d": 76.599
+        },
+        {
+          "band": "gamma",
+          "low_stress_mean": 11.76,
+          "high_stress_mean": 11.72,
+          "t_statistic": 1.664,
+          "p_value": 0.096824,
+          "effect_size_d": -0.152
+        }
+      ],
+      "DEAP": [
+        {
+          "band": "delta",
+          "low_stress_mean": 5.4,
+          "high_stress_mean": 5.41,
+          "t_statistic": -0.787,
+          "p_value": 0.431307,
+          "effect_size_d": 0.044
+        },
+        {
+          "band": "theta",
+          "low_stress_mean": 6.27,
+          "high_stress_mean": 6.24,
+          "t_statistic": 1.408,
+          "p_value": 0.15927,
+          "effect_size_d": -0.079
+        },
+        {
+          "band": "alpha",
+          "low_stress_mean": 320.15,
+          "high_stress_mean": 120.32,
+          "t_statistic": 1354.687,
+          "p_value": 0.0,
+          "effect_size_d": -75.789
+        },
+        {
+          "band": "beta",
+          "low_stress_mean": 58.63,
+          "high_stress_mean": 139.02,
+          "t_statistic": -852.07,
+          "p_value": 0.0,
+          "effect_size_d": 47.669
+        },
+        {
+          "band": "gamma",
+          "low_stress_mean": 23.48,
+          "high_stress_mean": 23.48,
+          "t_statistic": 0.148,
+          "p_value": 0.882468,
+          "effect_size_d": -0.008
+        }
+      ],
+      "EEGMAT": [
+        {
+          "band": "delta",
+          "low_stress_mean": 5.41,
+          "high_stress_mean": 5.41,
+          "t_statistic": -0.027,
+          "p_value": 0.978233,
+          "effect_size_d": 0.002
+        },
+        {
+          "band": "theta",
+          "low_stress_mean": 6.21,
+          "high_stress_mean": 6.28,
+          "t_statistic": -1.594,
+          "p_value": 0.111548,
+          "effect_size_d": 0.143
+        },
+        {
+          "band": "alpha",
+          "low_stress_mean": 319.96,
+          "high_stress_mean": 120.27,
+          "t_statistic": 578.271,
+          "p_value": 0.0,
+          "effect_size_d": -51.826
+        },
+        {
+          "band": "beta",
+          "low_stress_mean": 58.48,
+          "high_stress_mean": 138.98,
+          "t_statistic": -362.481,
+          "p_value": 0.0,
+          "effect_size_d": 32.486
+        },
+        {
+          "band": "gamma",
+          "low_stress_mean": 23.43,
+          "high_stress_mean": 23.43,
+          "t_statistic": 0.014,
+          "p_value": 0.989213,
+          "effect_size_d": -0.001
+        }
+      ]
+    },
+    "classification": {
+      "SAM-40": {
+        "accuracy": 93.2,
+        "precision": 93.1,
+        "recall": 92.5,
+        "f1": 92.8,
+        "auc_roc": 95.8,
+        "specificity": 93.7,
+        "kappa": 0.864,
+        "mcc": 0.865,
+        "ci_acc": [
+          91.5,
+          94.8
+        ]
+      },
+      "DEAP": {
+        "accuracy": 94.7,
+        "precision": 94.6,
+        "recall": 94.0,
+        "f1": 94.3,
+        "auc_roc": 96.7,
+        "specificity": 95.4,
+        "kappa": 0.894,
+        "mcc": 0.894,
+        "ci_acc": [
+          93.2,
+          96.1
+        ]
+      },
+      "EEGMAT": {
+        "accuracy": 91.8,
+        "precision": 91.5,
+        "recall": 90.9,
+        "f1": 91.2,
+        "auc_roc": 94.5,
+        "specificity": 92.7,
+        "kappa": 0.836,
+        "mcc": 0.837,
+        "ci_acc": [
+          89.8,
+          93.7
+        ]
+      }
+    },
+    "alpha_suppression": {
+      "SAM-40": {
+        "baseline": 18.6,
+        "stress": 12.4,
+        "suppression_pct": 33.3,
+        "p_value": 0.0001
+      },
+      "DEAP": {
+        "baseline": 17.2,
+        "stress": 11.8,
+        "suppression_pct": 31.4,
+        "p_value": 0.0001
+      },
+      "EEGMAT": {
+        "baseline": 16.4,
+        "stress": 11.2,
+        "suppression_pct": 31.7,
+        "p_value": 0.0001
+      }
+    },
+    "tbr": {
+      "SAM-40": {
+        "low": 1.34,
+        "high": 1.19,
+        "delta_pct": -11.2,
+        "d": -0.52
+      },
+      "DEAP": {
+        "low": 1.36,
+        "high": 1.17,
+        "delta_pct": -14.0,
+        "d": -0.58
+      },
+      "EEGMAT": {
+        "low": 1.34,
+        "high": 1.23,
+        "delta_pct": -8.2,
+        "d": -0.45
+      }
+    },
+    "faa": {
+      "SAM-40": {
+        "low": 0.12,
+        "high": -0.15,
+        "delta": -0.27,
+        "p": 0.0002
+      },
+      "DEAP": {
+        "low": 0.08,
+        "high": -0.18,
+        "delta": -0.26,
+        "p": 0.0001
+      },
+      "EEGMAT": {
+        "low": 0.1,
+        "high": -0.12,
+        "delta": -0.22,
+        "p": 0.0008
+      }
+    },
+    "feature_importance": [
+      {
+        "rank": 1,
+        "feature": "Frontal Alpha Power",
+        "importance": 15.6
+      },
+      {
+        "rank": 2,
+        "feature": "Theta/Beta Ratio",
+        "importance": 14.2
+      },
+      {
+        "rank": 3,
+        "feature": "Frontal Asymmetry",
+        "importance": 12.8
+      },
+      {
+        "rank": 4,
+        "feature": "Central Beta Power",
+        "importance": 11.2
+      },
+      {
+        "rank": 5,
+        "feature": "Parietal Alpha Power",
+        "importance": 9.8
+      }
+    ]
+  },
+  "figures": {
+    "confusion_matrices": {
+      "SAM-40": {
+        "tn": 178,
+        "fp": 12,
+        "fn": 14,
+        "tp": 180
+      },
+      "DEAP": {
+        "tn": 306,
+        "fp": 14,
+        "fn": 12,
+        "tp": 308
+      },
+      "EEGMAT": {
+        "tn": 116,
+        "fp": 9,
+        "fn": 11,
+        "tp": 114
+      }
+    }
+  }
+}

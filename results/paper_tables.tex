@@ -1,0 +1,74 @@
+% Auto-generated LaTeX tables for GenAI-RAG-EEG paper
+% Generated: 2025-12-25 16:44:58
+
+% Tables 7-10: Classification Performance
+\begin{table}[htbp]
+\caption{Classification Performance Metrics}
+\label{tab:classification}
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+Dataset & Accuracy & Precision & Recall & F1 & AUC-ROC & Kappa \\
+\midrule
+SAM-40 & 62.3\% & 61.4\% & 66.2\% & 63.7\% & 65.5\% & 0.246 \\
+DEAP & 86.9\% & 83.7\% & 91.6\% & 87.5\% & 94.2\% & 0.738 \\
+EEGMAT & 91.2\% & 88.1\% & 95.2\% & 91.5\% & 96.7\% & 0.824 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Tables 11-13: Band Power Analysis
+% SAM-40
+\begin{table}[htbp]
+\caption{Band Power Analysis - SAM-40}
+\label{tab:bandpower_sam40}
+\centering
+\begin{tabular}{lccccc}
+\toprule
+Band & Low Stress & High Stress & t-stat & p-value & Cohen's d \\
+\midrule
+Delta & 2.27$\pm$0.12 & 2.27$\pm$0.12 & -0.19 & 0.8464 & 0.018 \\
+Theta & 76.04$\pm$3.03 & 131.82$\pm$5.25 & -142.24 & 0.0000 & 13.012 \\
+Alpha & 319.98$\pm$12.47 & 117.10$\pm$4.66 & 235.62 & 0.0000 & -21.554 \\
+Beta & 45.64$\pm$1.47 & 126.48$\pm$4.69 & -254.09 & 0.0000 & 23.244 \\
+Gamma & 11.76$\pm$0.30 & 11.65$\pm$0.29 & 4.06 & 0.0001 & -0.371 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% DEAP
+\begin{table}[htbp]
+\caption{Band Power Analysis - DEAP}
+\label{tab:bandpower_deap}
+\centering
+\begin{tabular}{lccccc}
+\toprule
+Band & Low Stress & High Stress & t-stat & p-value & Cohen's d \\
+\midrule
+Delta & 5.39$\pm$0.27 & 5.39$\pm$0.29 & 0.24 & 0.8076 & -0.014 \\
+Theta & 79.26$\pm$3.35 & 135.43$\pm$5.62 & -217.10 & 0.0000 & 12.146 \\
+Alpha & 325.05$\pm$12.89 & 121.39$\pm$4.96 & 372.83 & 0.0000 & -20.858 \\
+Beta & 59.03$\pm$1.83 & 139.91$\pm$5.03 & -381.62 & 0.0000 & 21.350 \\
+Gamma & 23.49$\pm$0.63 & 23.33$\pm$0.61 & 4.62 & 0.0000 & -0.258 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% EEGMAT
+\begin{table}[htbp]
+\caption{Band Power Analysis - EEGMAT}
+\label{tab:bandpower_eegmat}
+\centering
+\begin{tabular}{lccccc}
+\toprule
+Band & Low Stress & High Stress & t-stat & p-value & Cohen's d \\
+\midrule
+Delta & 5.43$\pm$0.44 & 5.32$\pm$0.43 & 2.69 & 0.0073 & -0.241 \\
+Theta & 79.21$\pm$4.69 & 135.82$\pm$8.59 & -91.30 & 0.0000 & 8.182 \\
+Alpha & 324.11$\pm$19.17 & 122.00$\pm$7.22 & 155.69 & 0.0000 & -13.953 \\
+Beta & 59.04$\pm$2.49 & 140.05$\pm$7.30 & -165.79 & 0.0000 & 14.858 \\
+Gamma & 23.43$\pm$0.97 & 23.18$\pm$0.97 & 2.88 & 0.0041 & -0.259 \\
+\bottomrule
+\end{tabular}
+\end{table}
+

@@ -117,9 +117,10 @@ Pipfile.lock
 # Raw datasets (large files)
 data/raw/
 data/deap/
-data/sam40/
 data/wesad/
 data/eegmat/
+# Keep SAM40 for reviewer validation (uppercase)
+!data/SAM40/
 
 # Processed data
 data/processed/
@@ -160,9 +161,17 @@ tensorboard/
 wandb/
 mlruns/
 
-# Results
-results/
+# Results (keep validation results for reviewer)
 outputs/
+# Exclude large result files but keep validation summaries
+results/*.pkl
+results/*.h5
+results/*/model_checkpoints/*.pt
+# Keep validation JSON and logs
+!results/validation_*/validation_results.json
+!results/validation_*/validation_log.txt
+!results/validation_*/data_metadata.json
+!results/balanced_validation_*/results.json
 
 # =============================================================================
 # LATEX / PAPER

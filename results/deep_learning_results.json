@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-25T17:46:01.446806",
+    "model": "GenAI-RAG-EEG (CNN-LSTM-Attention)",
+    "training_config": {
+      "epochs": 50,
+      "batch_size": 32,
+      "learning_rate": 0.0001,
+      "optimizer": "AdamW",
+      "cv_folds": 5
+    }
+  },
+  "datasets": {
+    "SAM-40": {
+      "accuracy": 75.0,
+      "accuracy_std": 0.0,
+      "precision": 75.0,
+      "recall": 100.0,
+      "f1_score": 85.71,
+      "specificity": 0.0,
+      "auc_roc": 48.86,
+      "cohens_kappa": 0.0
+    },
+    "WESAD": {
+      "accuracy": 100.0,
+      "accuracy_std": 0.0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0,
+      "specificity": 100.0,
+      "auc_roc": 100.0,
+      "cohens_kappa": 1.0
+    }
+  }
+}

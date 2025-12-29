@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-25T17:19:22.204617",
+    "data_source": "REAL DATA",
+    "datasets": [
+      "SAM-40",
+      "WESAD"
+    ]
+  },
+  "datasets": {
+    "SAM-40": {
+      "dataset": "SAM-40",
+      "n_samples": 480,
+      "n_stress": 360,
+      "n_baseline": 120,
+      "n_channels": 32,
+      "sampling_rate": 256,
+      "band_power": [
+        {
+          "band": "delta",
+          "stress_mean": 0.7706523287509592,
+          "baseline_mean": 0.9474069603321961,
+          "effect_size_d": -0.444,
+          "p_value": 6e-06,
+          "significant": true
+        },
+        {
+          "band": "theta",
+          "stress_mean": 6.668587159204387,
+          "baseline_mean": 8.260577359996697,
+          "effect_size_d": -0.486,
+          "p_value": 0.0,
+          "significant": true
+        },
+        {
+          "band": "alpha",
+          "stress_mean": 3.875472363319038,
+          "baseline_mean": 4.339198356825952,
+          "effect_size_d": -0.295,
+          "p_value": 0.002728,
+          "significant": true
+        },
+        {
+          "band": "beta",
+          "stress_mean": 10.684710541731551,
+          "baseline_mean": 12.68460255419069,
+          "effect_size_d": -0.327,
+          "p_value": 0.000536,
+          "significant": true
+        },
+        {
+          "band": "gamma",
+          "stress_mean": 8.781621303852917,
+          "baseline_mean": 9.387053961890839,
+          "effect_size_d": -0.157,
+          "p_value": 0.141515,
+          "significant": false
+        }
+      ],
+      "alpha_suppression": {
+        "suppression_percent": 10.7,
+        "p_value": 0.002728,
+        "significant": true
+      },
+      "theta_beta_ratio": {
+        "delta_percent": -6.6,
+        "effect_size_d": -0.279,
+        "significant": true
+      },
+      "frontal_asymmetry": {
+        "delta_faa": 0.2616,
+        "interpretation": "Left dominance (baseline)",
+        "significant": true
+      },
+      "classification": {
+        "accuracy": 78.12,
+        "accuracy_cv": 74.79,
+        "accuracy_std": 0.63,
+        "precision": 77.42,
+        "recall": 100.0,
+        "f1_score": 87.27,
+        "specificity": 12.5,
+        "auc_roc": 99.52,
+        "cohens_kappa": 0.1765,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 105,
+          "fn": 0,
+          "tp": 360
+        }
+      }
+    },
+    "WESAD": {
+      "dataset": "WESAD",
+      "n_samples": 984,
+      "n_stress": 505,
+      "n_baseline": 479,
+      "n_channels": 14,
+      "sampling_rate": 256,
+      "band_power": [
+        {
+          "band": "delta",
+          "stress_mean": 0.004037652899388447,
+          "baseline_mean": 0.0030060728922855955,
+          "effect_size_d": 1.596,
+          "p_value": 0.0,
+          "significant": true
+        },
+        {
+          "band": "theta",
+          "stress_mean": 0.03241835111847002,
+          "baseline_mean": 0.09000387941706438,
+          "effect_size_d": -7.971,
+          "p_value": 0.0,
+          "significant": true
+        },
+        {
+          "band": "alpha",
+          "stress_mean": 0.04383242216874609,
+          "baseline_mean": 0.46600997227415303,
+          "effect_size_d": -20.554,
+          "p_value": 0.0,
+          "significant": true
+        },
+        {
+          "band": "beta",
+          "stress_mean": 0.505790619713117,
+          "baseline_mean": 0.052570900990184445,
+          "effect_size_d": 19.9,
+          "p_value": 0.0,
+          "significant": true
+        },
+        {
+          "band": "gamma",
+          "stress_mean": 0.0017605359275463003,
+          "baseline_mean": 0.0014536458809694527,
+          "effect_size_d": 2.68,
+          "p_value": 0.0,
+          "significant": true
+        }
+      ],
+      "alpha_suppression": {
+        "suppression_percent": 90.6,
+        "p_value": 0.0,
+        "significant": true
+      },
+      "theta_beta_ratio": {
+        "delta_percent": -96.3,
+        "effect_size_d": -14.498,
+        "significant": true
+      },
+      "frontal_asymmetry": {
+        "delta_faa": 0.0019,
+        "interpretation": "Left dominance (baseline)",
+        "significant": true
+      },
+      "classification": {
+        "accuracy": 100.0,
+        "accuracy_cv": 100.0,
+        "accuracy_std": 0.0,
+        "precision": 100.0,
+        "recall": 100.0,
+        "f1_score": 100.0,
+        "specificity": 100.0,
+        "auc_roc": 100.0,
+        "cohens_kappa": 1.0,
+        "confusion_matrix": {
+          "tn": 479,
+          "fp": 0,
+          "fn": 0,
+          "tp": 505
+        }
+      }
+    }
+  },
+  "summary": {
+    "n_datasets": 2,
+    "avg_accuracy": 89.06,
+    "avg_f1": 93.63,
+    "avg_alpha_suppression": 50.6
+  }
+}
