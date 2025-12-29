@@ -92,6 +92,7 @@ EXTRAS_REQUIRE = {
     # EEG processing
     "eeg": [
         "mne>=1.4.0",
+        "pyedflib>=0.1.30",
     ],
     # Web application
     "web": [
@@ -179,6 +180,8 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Topic :: Scientific/Engineering :: Medical Science Apps.",
         "Topic :: Scientific/Engineering :: Bio-Informatics",

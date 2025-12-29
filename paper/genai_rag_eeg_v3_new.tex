@@ -148,7 +148,9 @@ We employ three publicly available benchmark datasets representing fundamentally
 DEAP & 32 & 32 & 128 & 8,064 & 52:48 & Emotional \\
 SAM-40 & 40 & 32 & 256 & 12,480 & 48:52 & Cognitive \\
 WESAD & 15 & 14 & 700 & 4,215 & 45:55 & Physio. \\
+EEGMAT$^*$ & 36 & 21 & 500 & 8,604 & 74:26 & Arithmetic \\
 \bottomrule
+\multicolumn{7}{l}{\tiny $^*$PhysioNet Mental Arithmetic dataset for cross-paradigm transfer validation.}
 \end{tabular}
 \end{table}
 
@@ -548,7 +550,10 @@ SAM-40 & WESAD & 78.6 & 77.9 & $-$14.6 & $<$0.01 \\
 WESAD & SAM-40 & 76.8 & 76.1 & $-$16.4 & $<$0.01 \\
 DEAP & WESAD & 74.2 & 73.5 & $-$20.5 & $<$0.001 \\
 WESAD & DEAP & 72.1 & 71.4 & $-$22.6 & $<$0.001 \\
+\midrule
+SAM-40 & EEGMAT$^*$ & 49.0 & 51.9 & $-$44.2 & $<$0.001 \\
 \bottomrule
+\multicolumn{6}{l}{\tiny $^*$EEGMAT uses cognitive/arithmetic stress vs emotional stress in training sets.}
 \end{tabular}
 \end{table}
 
