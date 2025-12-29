@@ -1,19 +1,33 @@
 #!/usr/bin/env python3
 """
+================================================================================
 Process PhysioNet EEG Mental Arithmetic Tasks (EEGMAT) dataset.
+================================================================================
+
 Converts EDF files to numpy format compatible with GenAI-RAG-EEG model.
 
 Dataset: https://physionet.org/content/eegmat/1.0.0/
 - 36 subjects, 23 EEG channels
 - _1 files: baseline (background EEG)
 - _2 files: stress (mental arithmetic task)
+
+Cross-platform compatible (Windows/Linux/macOS).
+
+Author: GenAI-RAG-EEG Team
+Version: 3.0.0
+================================================================================
 """
 
 import os
+import sys
 import numpy as np
 from glob import glob
 import json
 from datetime import datetime
+from pathlib import Path
+
+# Add src to path for imports
+sys.path.insert(0, str(Path(__file__).parent))
 
 try:
     import mne
@@ -28,9 +42,16 @@ try:
 except ImportError:
     PYEDFLIB_AVAILABLE = False
 
-# Configuration
-DATA_DIR = "/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/EEGMAT/eeg-during-mental-arithmetic-tasks-1.0.0"
-OUTPUT_DIR = "/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/EEGMAT/sample_100"
+# Get paths from config (cross-platform)
+try:
+    from src.config import DATA_DIR as CONFIG_DATA_DIR
+    DATA_DIR = str(CONFIG_DATA_DIR / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0")
+    OUTPUT_DIR = str(CONFIG_DATA_DIR / "EEGMAT" / "sample_100")
+except ImportError:
+    # Fallback to relative paths
+    PROJECT_ROOT = Path(__file__).parent
+    DATA_DIR = str(PROJECT_ROOT / "data" / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0")
+    OUTPUT_DIR = str(PROJECT_ROOT / "data" / "EEGMAT" / "sample_100")
 TARGET_CHANNELS = 32
 TARGET_SAMPLES = 512
 TARGET_SR = 256  # Hz

@@ -27,6 +27,35 @@ import os
 
 
 # =============================================================================
+# CROSS-PLATFORM PATH UTILITIES
+# =============================================================================
+
+def get_project_root() -> Path:
+    """
+    Get project root directory dynamically.
+
+    Works on both Windows and Linux by finding the directory containing
+    this config.py file and going up one level.
+
+    Returns:
+        Path to project root directory
+    """
+    # This file is at: PROJECT_ROOT/src/config.py
+    # So go up 2 levels: config.py -> src -> PROJECT_ROOT
+    return Path(__file__).resolve().parent.parent
+
+
+def get_data_dir() -> Path:
+    """Get data directory (PROJECT_ROOT/data)."""
+    return get_project_root() / "data"
+
+
+# Project root for all path configurations
+PROJECT_ROOT = get_project_root()
+DATA_DIR = get_data_dir()
+
+
+# =============================================================================
 # DATA SOURCE CONFIGURATION
 # =============================================================================
 
@@ -34,9 +63,9 @@ import os
 class SAM40Config:
     """SAM-40 Dataset Configuration (Cognitive Stress)."""
     name: str = "SAM-40"
-    path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/SAM40"))
-    filtered_path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/SAM40/filtered_data"))
-    sample_path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/SAM40/sample_100"))
+    path: Path = field(default_factory=lambda: DATA_DIR / "SAM40")
+    filtered_path: Path = field(default_factory=lambda: DATA_DIR / "SAM40" / "filtered_data")
+    sample_path: Path = field(default_factory=lambda: DATA_DIR / "SAM40" / "sample_100")
 
     # Dataset specifications
     n_subjects: int = 40
@@ -63,8 +92,8 @@ class SAM40Config:
 class WESADConfig:
     """WESAD Dataset Configuration (Physiological Stress)."""
     name: str = "WESAD"
-    path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/WESAD"))
-    sample_path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/WESAD/sample_100"))
+    path: Path = field(default_factory=lambda: DATA_DIR / "WESAD")
+    sample_path: Path = field(default_factory=lambda: DATA_DIR / "WESAD" / "sample_100")
 
     # Dataset specifications
     n_subjects: int = 15
@@ -90,10 +119,10 @@ class WESADConfig:
 class EEGMATConfig:
     """EEGMAT Dataset Configuration (Mental Arithmetic - PhysioNet)."""
     name: str = "EEGMAT"
-    path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/EEGMAT"))
-    raw_path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/EEGMAT/eeg-during-mental-arithmetic-tasks-1.0.0"))
-    processed_path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/EEGMAT/processed"))
-    sample_path: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/EEGMAT/sample_100"))
+    path: Path = field(default_factory=lambda: DATA_DIR / "EEGMAT")
+    raw_path: Path = field(default_factory=lambda: DATA_DIR / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0")
+    processed_path: Path = field(default_factory=lambda: DATA_DIR / "EEGMAT" / "processed")
+    sample_path: Path = field(default_factory=lambda: DATA_DIR / "EEGMAT" / "sample_100")
 
     # Dataset specifications
     n_subjects: int = 36
@@ -343,11 +372,11 @@ class Config:
     training: TrainingConfig = field(default_factory=TrainingConfig)
     expected: ExpectedResults = field(default_factory=ExpectedResults)
 
-    # Project paths
-    project_root: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag"))
-    results_dir: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/results"))
-    models_dir: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/models"))
-    figures_dir: Path = field(default_factory=lambda: Path("/media/praveen/Asthana3/rajveer/eeg-stress-rag/figures"))
+    # Project paths (cross-platform compatible)
+    project_root: Path = field(default_factory=lambda: PROJECT_ROOT)
+    results_dir: Path = field(default_factory=lambda: PROJECT_ROOT / "results")
+    models_dir: Path = field(default_factory=lambda: PROJECT_ROOT / "models")
+    figures_dir: Path = field(default_factory=lambda: PROJECT_ROOT / "figures")
 
     def __post_init__(self):
         """Create directories if they don't exist."""

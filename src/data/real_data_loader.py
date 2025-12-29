@@ -76,10 +76,20 @@ def _print_data_summary(data: np.ndarray, labels: np.ndarray, metadata: Dict):
     print("=" * 60)
 
 
+def _get_default_sam40_path() -> str:
+    """Get default SAM-40 path from config or use project data directory."""
+    try:
+        from ..config import DATA_DIR
+        return str(DATA_DIR / "SAM40")
+    except ImportError:
+        # Fallback: use relative path from project root
+        return str(Path(__file__).resolve().parent.parent.parent / "data" / "SAM40")
+
+
 @dataclass
 class SAM40Config:
     """Configuration for SAM-40 dataset."""
-    base_path: str = "/media/praveen/Asthana3/ upgrad/synopysis/datasets/SAM40_Stress"
+    base_path: str = field(default_factory=_get_default_sam40_path)
     n_subjects: int = 40
     n_channels: int = 32
     sampling_rate: int = 256
@@ -266,12 +276,26 @@ def load_sam40_dataset(
 
 
 def load_stress_detection_dataset(
-    data_type: str = "filtered"
+    data_type: str = "filtered",
+    base_path: Optional[str] = None
 ) -> Tuple[np.ndarray, np.ndarray, Dict]:
     """
     Load the Stress Detection dataset (alternative location).
+
+    Args:
+        data_type: "raw" or "filtered" data
+        base_path: Override default path (optional)
+
+    Returns:
+        Same as load_sam40_dataset
     """
-    base_path = "/media/praveen/Asthana3/ upgrad/synopysis/datasets/Stress_Detection"
+    if base_path is None:
+        # Use data directory from config
+        try:
+            from ..config import DATA_DIR
+            base_path = str(DATA_DIR / "Stress_Detection")
+        except ImportError:
+            base_path = str(Path(__file__).resolve().parent.parent.parent / "data" / "Stress_Detection")
 
     config = SAM40Config(base_path=base_path)
     return load_sam40_dataset(data_type=data_type, config=config)

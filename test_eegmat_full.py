@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 """
+================================================================================
 Full validation script for EEGMAT dataset with enhanced training.
+================================================================================
 
 Uses the complete dataset for training with data augmentation and
 longer training epochs to achieve higher accuracy.
 
 Dataset: https://physionet.org/content/eegmat/1.0.0/
+
+Cross-platform compatible (Windows/Linux/macOS).
+
+Author: GenAI-RAG-EEG Team
+Version: 3.0.0
+================================================================================
 """
 
 import numpy as np
@@ -17,12 +25,23 @@ from sklearn.metrics import (accuracy_score, precision_score, recall_score,
                              f1_score, confusion_matrix, roc_auc_score)
 import json
 import os
+import sys
 from glob import glob
+from pathlib import Path
 
+# Add src to path for imports
+sys.path.insert(0, str(Path(__file__).parent))
 
-# Configuration
-DATA_DIR = "/media/praveen/Asthana3/rajveer/eeg-stress-rag/data/EEGMAT/eeg-during-mental-arithmetic-tasks-1.0.0"
-OUTPUT_DIR = "/media/praveen/Asthana3/rajveer/eeg-stress-rag/results/eegmat_validation"
+# Get paths from config (cross-platform)
+try:
+    from src.config import DATA_DIR as CONFIG_DATA_DIR, PROJECT_ROOT
+    DATA_DIR = str(CONFIG_DATA_DIR / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0")
+    OUTPUT_DIR = str(PROJECT_ROOT / "results" / "eegmat_validation")
+except ImportError:
+    # Fallback to relative paths
+    PROJECT_ROOT = Path(__file__).parent
+    DATA_DIR = str(PROJECT_ROOT / "data" / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0")
+    OUTPUT_DIR = str(PROJECT_ROOT / "results" / "eegmat_validation")
 TARGET_CHANNELS = 32
 TARGET_SAMPLES = 512
 TARGET_SR = 256

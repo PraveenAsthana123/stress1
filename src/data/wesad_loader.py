@@ -1,21 +1,39 @@
 #!/usr/bin/env python3
 """
+================================================================================
 WESAD (Wearable Stress and Affect Detection) Dataset Loader
+================================================================================
 
 Loads preprocessed WESAD data for stress detection.
-Dataset location: /media/praveen/Asthana3/ upgrad/synopysis/thesis_code/data/chapter5_wesad/
+Cross-platform compatible (Windows/Linux/macOS).
+
+Dataset: Place WESAD data in PROJECT_ROOT/data/WESAD/
+
+Author: GenAI-RAG-EEG Team
+Version: 3.0.0
+================================================================================
 """
 
 import numpy as np
 from pathlib import Path
 from typing import Dict, Tuple, Optional
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+
+def _get_default_wesad_path() -> str:
+    """Get default WESAD path from config or use project data directory."""
+    try:
+        from ..config import DATA_DIR
+        return str(DATA_DIR / "WESAD")
+    except ImportError:
+        # Fallback: use relative path from project root
+        return str(Path(__file__).resolve().parent.parent.parent / "data" / "WESAD")
 
 
 @dataclass
 class WESADConfig:
     """Configuration for WESAD dataset."""
-    base_path: str = "/media/praveen/Asthana3/ upgrad/synopysis/thesis_code/data/chapter5_wesad"
+    base_path: str = field(default_factory=_get_default_wesad_path)
     n_channels: int = 14
     sampling_rate: int = 256
     # WESAD labels: 0=baseline, 1=stress, 2=amusement, 3=meditation

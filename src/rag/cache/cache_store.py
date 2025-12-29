@@ -1,21 +1,35 @@
 #!/usr/bin/env python3
 """
+================================================================================
 Cache Module for RAG System
+================================================================================
+
+Cross-platform compatible (Windows/Linux/macOS).
 
 Supports:
 - Redis (production)
 - In-memory LRU cache
 - Disk-based cache
+
+Author: GenAI-RAG-EEG Team
+Version: 3.0.0
+================================================================================
 """
 
 import json
 import time
 import hashlib
+import tempfile
 from typing import Any, Optional, Dict
 from abc import ABC, abstractmethod
 from collections import OrderedDict
 from pathlib import Path
 import pickle
+
+
+def get_cache_dir() -> Path:
+    """Get cross-platform cache directory."""
+    return Path(tempfile.gettempdir()) / "genai_rag_eeg_cache"
 
 
 class BaseCache(ABC):
@@ -330,7 +344,7 @@ if __name__ == "__main__":
     # Test cache
     cache = CacheManager(
         l1_cache=LRUCache(max_size=10),
-        l2_cache=DiskCache(cache_dir="/tmp/rag_cache")
+        l2_cache=DiskCache(cache_dir=str(get_cache_dir()))
     )
 
     # Set values
