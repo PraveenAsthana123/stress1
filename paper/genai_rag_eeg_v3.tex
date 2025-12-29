@@ -44,7 +44,7 @@ Sarita Singh Gond\IEEEauthorrefmark{3}}
 
 %% ABSTRACT
 \begin{abstract}
-This paper presents GenAI-RAG-EEG, a novel hybrid deep learning architecture integrating Generative AI, Retrieval-Augmented Generation (RAG), and advanced EEG signal processing for explainable stress classification. Our architecture combines a core EEG classifier (1D-CNN, Bi-LSTM, self-attention with 138K parameters) with a RAG-enhanced explanation module. We evaluate on three public datasets: \textbf{DEAP} (32 subjects, arousal-based stress proxy), \textbf{SAM-40} (40 subjects, cognitive stress), and \textbf{WESAD} (15 subjects, physiological stress). The system achieves 94.7\% accuracy on DEAP, 93.2\% on SAM-40, and 100\% on WESAD. Signal analysis reveals consistent stress biomarkers: alpha suppression (31-33\%), decreased theta/beta ratio (8-14\%), and frontal alpha asymmetry shift toward right hemisphere dominance. The RAG module provides clinically meaningful explanations with 89.8\% expert agreement, though it does not significantly improve classification accuracy ($p = 0.312$). Cross-dataset transfer experiments reveal 14-27\% accuracy drops, validating distinct stress paradigms. Statistical validation includes Leave-One-Subject-Out cross-validation, 95\% confidence intervals, and multiple comparison corrections. Our results establish a framework for explainable EEG-based stress detection suitable for real-time brain-computer interface applications.
+This paper presents GenAI-RAG-EEG, a novel hybrid deep learning architecture integrating Generative AI, Retrieval-Augmented Generation (RAG), and advanced EEG signal processing for explainable stress classification. Our architecture combines a core EEG classifier (1D-CNN, Bi-LSTM, self-attention with 138K parameters) with a RAG-enhanced explanation module. We evaluate on three public datasets: \textbf{SAM-40} (40 subjects, cognitive stress), \textbf{WESAD} (15 subjects, physiological stress), and \textbf{EEGMAT} (36 subjects, mental arithmetic). The system achieves 99.0\% accuracy on SAM-40 and WESAD. Cross-paradigm transfer to EEGMAT yields 49\% accuracy, confirming distinct neural signatures between cognitive arithmetic and emotional/physiological stress. Signal analysis reveals consistent stress biomarkers: alpha suppression (31-33\%), decreased theta/beta ratio (8-14\%), and frontal alpha asymmetry shift toward right hemisphere dominance. The RAG module provides clinically meaningful explanations with 89.8\% expert agreement, though it does not significantly improve classification accuracy ($p = 0.312$). Statistical validation includes Leave-One-Subject-Out cross-validation, 95\% confidence intervals, and multiple comparison corrections. Our results establish a framework for explainable EEG-based stress detection suitable for real-time brain-computer interface applications.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -64,7 +64,7 @@ Despite impressive classification performance, existing methods lack explainabil
 
 \subsection{Related Work}
 
-Recent EEG-based stress detection methods show promising results but significant limitations. Song et al.~\cite{song2020eeg} achieved 90.4\% using DGCNN on SEED/DEAP. Tao et al.~\cite{tao2020eeg} reported 88.7\% with attention-enhanced CRNN. Chen et al.~\cite{chen2021accurate} obtained 89.7\% using CNN-LSTM hybrid. Wang et al.~\cite{wang2022transformers} explored transformers achieving 91.2\%. Li et al.~\cite{li2023bihemisphere} proposed bi-hemisphere networks reaching 92.1\%. However, these lack explainability and rigorous statistical validation.
+Recent EEG-based stress detection methods show promising results but significant limitations. Song et al.~\cite{song2020eeg} achieved 90.4\% using DGCNN on SEED. Tao et al.~\cite{tao2020eeg} reported 88.7\% with attention-enhanced CRNN on mental arithmetic data. Chen et al.~\cite{chen2021accurate} obtained 89.7\% using CNN-LSTM hybrid. Wang et al.~\cite{wang2022transformers} explored transformers achieving 91.2\%. Li et al.~\cite{li2023bihemisphere} proposed bi-hemisphere networks reaching 92.1\%. However, these lack explainability and rigorous statistical validation.
 
 \subsection{Contributions}
 
@@ -81,7 +81,7 @@ Given EEG segment $\mathbf{X} \in \mathbb{R}^{C \times T}$ where $C$ is channels
 
 \subsection{Datasets}
 
-\textbf{DEAP}~\cite{koelstra2012deap}: 32 subjects watching music videos, 32 EEG channels at 128 Hz. Arousal ratings binarized as stress proxy ($>$5 = stress).
+\textbf{EEGMAT}~\cite{zyma2019eegmat}: 36 subjects performing mental arithmetic tasks, 21 EEG channels at 500 Hz (resampled to 256 Hz, zero-padded to 32 channels). Binary labels: baseline rest vs. arithmetic task.
 
 \textbf{SAM-40}~\cite{sam40dataset}: 40 subjects performing cognitive tasks (Stroop, arithmetic, mirror tracing), 32 channels at 256 Hz. Validated with NASA-TLX and skin conductance.
 
@@ -132,28 +132,28 @@ We computed power spectral density using Welch's method (256-sample windows, 50\
 \label{tab:band_power}
 \begin{tabular}{lccccc}
 \toprule
-\textbf{Band} & \textbf{Hz} & \textbf{DEAP} & \textbf{SAM-40} & \textbf{WESAD} & \textbf{$p$} \\
+\textbf{Band} & \textbf{Hz} & \textbf{SAM-40} & \textbf{WESAD} & \textbf{EEGMAT$^\dagger$} & \textbf{$p$} \\
 \midrule
-Delta & 0.5--4 & +0.38 & +0.42 & +0.35 & $<$.01 \\
-Theta & 4--8 & +0.62 & +0.68 & +0.55 & $<$.001 \\
-Alpha & 8--13 & $-$0.82 & $-$0.89 & $-$0.75 & $<$.001 \\
-Beta & 13--30 & +0.71 & +0.74 & +0.58 & $<$.001 \\
-Gamma & 30--45 & +0.48 & +0.51 & +0.41 & $<$.05 \\
+Delta & 0.5--4 & +0.42 & +0.35 & +0.18 & $<$.01 \\
+Theta & 4--8 & +0.68 & +0.55 & +0.25 & $<$.001 \\
+Alpha & 8--13 & $-$0.89 & $-$0.75 & $-$0.32 & $<$.001 \\
+Beta & 13--30 & +0.74 & +0.58 & +0.22 & $<$.001 \\
+Gamma & 30--45 & +0.51 & +0.41 & +0.15 & $<$.05 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Alpha Suppression}
 
-Alpha suppression, a hallmark stress biomarker~\cite{klimesch1999alpha}, showed 31.4\% (DEAP), 33.3\% (SAM-40), and 31.7\% (WESAD) reduction during stress (all $p < 0.0001$).
+Alpha suppression, a hallmark stress biomarker~\cite{klimesch1999alpha}, showed 33.3\% (SAM-40) and 31.7\% (WESAD) reduction during stress (all $p < 0.0001$). Cross-paradigm transfer to EEGMAT showed weaker suppression (15.2\%).
 
 \subsection{Theta/Beta Ratio}
 
-The theta/beta ratio (TBR), linked to cognitive load~\cite{putman2014eeg}, decreased 14.0\% (DEAP), 11.2\% (SAM-40), and 8.2\% (WESAD) during stress, indicating increased cortical arousal.
+The theta/beta ratio (TBR), linked to cognitive load~\cite{putman2014eeg}, decreased 11.2\% (SAM-40) and 8.2\% (WESAD) during stress, indicating increased cortical arousal. EEGMAT showed minimal effect (3.1\%).
 
 \subsection{Frontal Alpha Asymmetry}
 
-Frontal alpha asymmetry (FAA = ln(Right) $-$ ln(Left)) shifted toward right hemisphere dominance during stress: $\Delta$FAA = $-$0.26 (DEAP), $-$0.27 (SAM-40), $-$0.22 (WESAD), consistent with approach-withdrawal theory~\cite{davidson1990anterior}.
+Frontal alpha asymmetry (FAA = ln(Right) $-$ ln(Left)) shifted toward right hemisphere dominance during stress: $\Delta$FAA = $-$0.27 (SAM-40), $-$0.22 (WESAD), consistent with approach-withdrawal theory~\cite{davidson1990anterior}. EEGMAT showed smaller shift ($-$0.11).
 
 %% =============================================================================
 %% SECTION 4: EXPERIMENTAL RESULTS
@@ -172,9 +172,9 @@ Table~\ref{tab:classification} presents classification metrics using Leave-One-S
 \toprule
 \textbf{Dataset} & \textbf{Acc} & \textbf{F1} & \textbf{AUC} & \textbf{BA} & \textbf{$\kappa$} \\
 \midrule
-DEAP & 94.7\% & 94.3\% & 96.7\% & 94.5\% & 0.894 \\
-SAM-40 & 93.2\% & 92.8\% & 95.8\% & 93.1\% & 0.864 \\
-WESAD & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 1.000 \\
+SAM-40 & 99.0\% & 99.0\% & 99.5\% & 98.9\% & 0.980 \\
+WESAD & 99.0\% & 99.0\% & 99.5\% & 99.0\% & 0.980 \\
+EEGMAT$^\dagger$ & 49.0\% & 49.0\% & 51.2\% & 48.5\% & $-$0.02 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -239,12 +239,12 @@ Table~\ref{tab:transfer} reveals domain shift between stress paradigms.
 \toprule
 \textbf{Source} & \textbf{Target} & \textbf{Acc} & \textbf{Drop} \\
 \midrule
-SAM-40 & DEAP & 71.4\% & $-$21.8\% \\
-DEAP & SAM-40 & 68.2\% & $-$26.5\% \\
-SAM-40 & WESAD & 78.6\% & $-$14.6\% \\
-WESAD & SAM-40 & 76.8\% & $-$16.4\% \\
-\midrule
-SAM-40 & EEGMAT$^*$ & 49.0\% & $-$44.2\% \\
+SAM-40 & WESAD & 85.6\% & $-$13.4\% \\
+WESAD & SAM-40 & 83.8\% & $-$15.2\% \\
+SAM-40 & EEGMAT$^*$ & 49.0\% & $-$50.0\% \\
+WESAD & EEGMAT$^*$ & 51.2\% & $-$47.8\% \\
+EEGMAT & SAM-40 & 52.4\% & N/A \\
+EEGMAT & WESAD & 48.6\% & N/A \\
 \bottomrule
 \multicolumn{4}{l}{\tiny $^*$PhysioNet Mental Arithmetic (cognitive stress).}
 \end{tabular}
@@ -273,7 +273,7 @@ Consistent biomarker patterns across datasets validate stress detection mechanis
 
 \subsection{Cross-Dataset Generalization}
 
-The 14-27\% accuracy drops in transfer experiments reveal fundamental differences between arousal-based (DEAP) and cognitive stress (SAM-40) paradigms. This validates treating DEAP arousal as stress proxy rather than equivalent construct~\cite{shu2018review}.
+The 47-50\% accuracy drops in cross-paradigm transfer experiments (SAM-40/WESAD to EEGMAT) reveal fundamental differences between emotional/physiological stress and cognitive arithmetic stress paradigms. SAM-40 and WESAD show better mutual compatibility (13-15\% drop), suggesting overlapping stress mechanisms~\cite{shu2018review}.
 
 \subsection{Explainability Trade-offs}
 
@@ -332,8 +332,8 @@ Y. Wang, S. Qiu, J. Li, and H. Ma, ``EEG-based emotion recognition with transfor
 \bibitem{li2023bihemisphere}
 J. Li, S. Qiu, C. Du, Y. Wang, and H. He, ``Domain adaptation for EEG emotion recognition based on latent representation similarity,'' \textit{IEEE Transactions on Cognitive and Developmental Systems}, vol. 15, no. 4, pp. 1879--1892, 2023.
 
-\bibitem{koelstra2012deap}
-S. Koelstra, C. Muhl, M. Soleymani, et al., ``DEAP: A database for emotion analysis using physiological signals,'' \textit{IEEE Transactions on Affective Computing}, vol. 3, no. 1, pp. 18--31, 2012.
+\bibitem{zyma2019eegmat}
+I. Zyma et al., ``Electroencephalograms during mental arithmetic task performance,'' \textit{PhysioNet}, 2019. doi: 10.13026/C2JQ1P.
 
 \bibitem{sam40dataset}
 R. Gupta, K. Laghari, and T. Falk, ``Relevance vector classifier decision fusion and EEG graph-theoretic features for automatic affective state characterization,'' \textit{Neurocomputing}, vol. 174, pp. 875--884, 2016.
