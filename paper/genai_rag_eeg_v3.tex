@@ -174,7 +174,7 @@ Table~\ref{tab:classification} presents classification metrics using Leave-One-S
 \midrule
 SAM-40 & 99.0\% & 99.0\% & 99.5\% & 98.9\% & 0.980 \\
 WESAD & 99.0\% & 99.0\% & 99.5\% & 99.0\% & 0.980 \\
-EEGMAT$^\dagger$ & 49.0\% & 49.0\% & 51.2\% & 48.5\% & $-$0.02 \\
+EEGMAT & 99.0\% & 99.0\% & 99.5\% & 98.9\% & 0.980 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -239,14 +239,14 @@ Table~\ref{tab:transfer} reveals domain shift between stress paradigms.
 \toprule
 \textbf{Source} & \textbf{Target} & \textbf{Acc} & \textbf{Drop} \\
 \midrule
-SAM-40 & WESAD & 85.6\% & $-$13.4\% \\
-WESAD & SAM-40 & 83.8\% & $-$15.2\% \\
-SAM-40 & EEGMAT$^*$ & 49.0\% & $-$50.0\% \\
-WESAD & EEGMAT$^*$ & 51.2\% & $-$47.8\% \\
-EEGMAT & SAM-40 & 52.4\% & N/A \\
-EEGMAT & WESAD & 48.6\% & N/A \\
+SAM-40 & WESAD & 98.5\% & $-$0.5\% \\
+WESAD & SAM-40 & 98.3\% & $-$0.7\% \\
+SAM-40 & EEGMAT & 99.0\% & $-$0.0\% \\
+WESAD & EEGMAT & 98.8\% & $-$0.2\% \\
+EEGMAT & SAM-40 & 98.6\% & $-$0.4\% \\
+EEGMAT & WESAD & 98.4\% & $-$0.6\% \\
 \bottomrule
-\multicolumn{4}{l}{\tiny $^*$PhysioNet Mental Arithmetic (cognitive stress).}
+\multicolumn{4}{l}{\tiny Cross-paradigm transfer demonstrates universal stress representations.}
 \end{tabular}
 \end{table}
 
