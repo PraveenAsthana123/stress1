@@ -342,6 +342,13 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import ReduceLROnPlateau, CosineAnnealingLR
 
+# Import custom logger for detailed CLI output
+try:
+    from ..utils.logger import setup_logger, get_logger, GenAILogger
+    CUSTOM_LOGGER_AVAILABLE = True
+except ImportError:
+    CUSTOM_LOGGER_AVAILABLE = False
+
 try:
     from sklearn.metrics import (
         accuracy_score,
@@ -434,16 +441,37 @@ class Trainer:
     Trainer for GenAI-RAG-EEG model.
 
     Handles training loop, validation, and metrics computation.
+
+    CLI Output Features:
+    - Color-coded status messages (green=success, yellow=warning, red=error)
+    - Progress bars with ETA for training epochs
+    - Real-time metrics display (loss, accuracy, F1, AUC)
+    - Configuration summary at startup
+    - Checkpoint save notifications
+    - Early stopping alerts
     """
 
     def __init__(
         self,
         model: nn.Module,
         config: Optional[TrainingConfig] = None,
-        logger: Optional[logging.Logger] = None
+        logger: Optional[logging.Logger] = None,
+        verbose: bool = True
     ):
         self.config = config or TrainingConfig()
         self.model = model.to(self.config.device)
+        self.verbose = verbose
+
+        # Setup detailed CLI logger if available
+        if CUSTOM_LOGGER_AVAILABLE and verbose:
+            self.cli_logger = setup_logger(
+                name="trainer",
+                log_file=Path(self.config.checkpoint_dir) / "training.log",
+                console_level="INFO"
+            )
+        else:
+            self.cli_logger = None
+
         self.logger = logger or logging.getLogger(__name__)
 
         # Loss function
@@ -582,6 +610,66 @@ class Trainer:
 
         return metrics
 
+    def _cli_print(self, message: str, level: str = "info"):
+        """Print detailed CLI message with formatting."""
+        if self.cli_logger:
+            getattr(self.cli_logger, level)(message)
+        else:
+            getattr(self.logger, level)(message)
+
+    def _print_config_summary(self):
+        """Print training configuration summary to CLI."""
+        config_dict = {
+            "Learning Rate": f"{self.config.learning_rate:.2e}",
+            "Weight Decay": f"{self.config.weight_decay:.2e}",
+            "Batch Size": self.config.batch_size,
+            "Max Epochs": self.config.n_epochs,
+            "Early Stop Patience": self.config.patience,
+            "Scheduler": self.config.scheduler_type,
+            "Device": self.config.device,
+            "Checkpoint Dir": self.config.checkpoint_dir
+        }
+
+        if self.cli_logger:
+            self.cli_logger.log_config(config_dict, title="Training Configuration")
+        else:
+            self.logger.info("=" * 60)
+            self.logger.info("TRAINING CONFIGURATION")
+            self.logger.info("=" * 60)
+            for key, val in config_dict.items():
+                self.logger.info(f"  {key}: {val}")
+            self.logger.info("=" * 60)
+
+    def _print_epoch_metrics(self, epoch: int, n_epochs: int, train_loss: float,
+                             train_acc: float, val_metrics: 'TrainingMetrics',
+                             lr: float, epoch_time: float):
+        """Print detailed epoch metrics to CLI."""
+        metrics_dict = {
+            "Train Loss": f"{train_loss:.4f}",
+            "Train Acc": f"{train_acc:.4f}",
+            "Val Loss": f"{val_metrics.loss:.4f}",
+            "Val Acc": f"{val_metrics.accuracy:.4f}",
+            "Val F1": f"{val_metrics.f1:.4f}",
+            "Val AUC": f"{val_metrics.auc:.4f}",
+            "LR": f"{lr:.2e}",
+            "Time": f"{epoch_time:.1f}s"
+        }
+
+        if self.cli_logger:
+            self.cli_logger.log_step(
+                step=epoch + 1,
+                total=n_epochs,
+                message=f"Epoch {epoch + 1}/{n_epochs}",
+                **{k: float(v.rstrip('s')) if v.endswith('s') else v for k, v in metrics_dict.items()}
+            )
+        else:
+            self.logger.info(
+                f"Epoch {epoch + 1}/{n_epochs} ({epoch_time:.1f}s) | "
+                f"Train: Loss={train_loss:.4f}, Acc={train_acc:.4f} | "
+                f"Val: Loss={val_metrics.loss:.4f}, Acc={val_metrics.accuracy:.4f}, "
+                f"F1={val_metrics.f1:.4f}, AUC={val_metrics.auc:.4f} | LR={lr:.2e}"
+            )
+
     def train(
         self,
         train_loader: DataLoader,
@@ -589,7 +677,7 @@ class Trainer:
         n_epochs: Optional[int] = None
     ) -> Dict:
         """
-        Full training loop.
+        Full training loop with detailed CLI output.
 
         Args:
             train_loader: Training data loader
@@ -598,10 +686,31 @@ class Trainer:
 
         Returns:
             Training history dictionary
+
+        CLI Output:
+            - Configuration summary at start
+            - Per-epoch metrics with progress indication
+            - Best model notifications
+            - Early stopping alerts
+            - Final summary with total time and best metrics
         """
         n_epochs = n_epochs or self.config.n_epochs
         best_val_acc = 0.0
         best_model_state = None
+
+        # Print startup banner
+        self._cli_print("=" * 70)
+        self._cli_print("  GenAI-RAG-EEG TRAINING STARTED")
+        self._cli_print("=" * 70)
+
+        # Print configuration summary
+        self._print_config_summary()
+
+        # Print data info
+        self._cli_print(f"\nDataset Info:")
+        self._cli_print(f"  Training batches: {len(train_loader)}")
+        self._cli_print(f"  Validation batches: {len(val_loader)}")
+        self._cli_print(f"  Samples per epoch: ~{len(train_loader) * self.config.batch_size}")
 
         self.logger.info(f"Starting training for {n_epochs} epochs")
         self.logger.info(f"Device: {self.config.device}")
@@ -633,19 +742,23 @@ class Trainer:
             self.history["val_f1"].append(val_metrics.f1)
             self.history["lr"].append(current_lr)
 
-            # Logging
+            # Logging with detailed CLI output
             epoch_time = time.time() - epoch_start
-            self.logger.info(
-                f"Epoch {epoch + 1}/{n_epochs} ({epoch_time:.1f}s) - "
-                f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}, "
-                f"Val Loss: {val_metrics.loss:.4f}, Val Acc: {val_metrics.accuracy:.4f}, "
-                f"Val F1: {val_metrics.f1:.4f}, LR: {current_lr:.2e}"
+            self._print_epoch_metrics(
+                epoch, n_epochs, train_loss, train_acc,
+                val_metrics, current_lr, epoch_time
             )
 
-            # Save best model
+            # Save best model with CLI notification
             if val_metrics.accuracy > best_val_acc:
+                improvement = val_metrics.accuracy - best_val_acc
                 best_val_acc = val_metrics.accuracy
                 best_model_state = {k: v.cpu().clone() for k, v in self.model.state_dict().items()}
+
+                self._cli_print(
+                    f"  ★ NEW BEST MODEL: Acc={val_metrics.accuracy:.4f} "
+                    f"(+{improvement:.4f})"
+                )
 
                 if self.config.save_best:
                     self.save_checkpoint(
@@ -653,9 +766,14 @@ class Trainer:
                         epoch,
                         val_metrics
                     )
+                    self._cli_print(f"  → Checkpoint saved to {self.config.checkpoint_dir}/best_model.pt")
 
-            # Early stopping
+            # Early stopping with CLI alert
             if self.early_stopping(val_metrics.accuracy):
+                self._cli_print("=" * 70)
+                self._cli_print(f"  ⚠ EARLY STOPPING triggered at epoch {epoch + 1}")
+                self._cli_print(f"  No improvement for {self.config.patience} epochs")
+                self._cli_print("=" * 70)
                 self.logger.info(f"Early stopping triggered at epoch {epoch + 1}")
                 break
 
@@ -671,7 +789,18 @@ class Trainer:
                 val_metrics
             )
 
+        # Print final summary
         total_time = time.time() - start_time
+        self._cli_print("\n" + "=" * 70)
+        self._cli_print("  TRAINING COMPLETED")
+        self._cli_print("=" * 70)
+        self._cli_print(f"  Total Time: {total_time:.1f}s ({total_time/60:.1f} min)")
+        self._cli_print(f"  Epochs Run: {epoch + 1}/{n_epochs}")
+        self._cli_print(f"  Best Val Accuracy: {best_val_acc:.4f} ({best_val_acc*100:.2f}%)")
+        self._cli_print(f"  Final Val F1: {val_metrics.f1:.4f}")
+        self._cli_print(f"  Final Val AUC: {val_metrics.auc:.4f}")
+        self._cli_print("=" * 70)
+
         self.logger.info(f"Training completed in {total_time:.1f}s")
         self.logger.info(f"Best validation accuracy: {best_val_acc:.4f}")
 

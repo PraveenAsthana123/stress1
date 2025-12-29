@@ -1,17 +1,79 @@
 #!/usr/bin/env python3
 """
+================================================================================
 Real Data Loader for SAM-40 EEG Stress Dataset
+================================================================================
 
-Loads the actual SAM-40 dataset from .mat files.
+Loads the actual SAM-40 dataset from .mat files with detailed CLI output.
 Dataset location: /media/praveen/Asthana3/ upgrad/synopysis/datasets/SAM40_Stress/
+
+CLI OUTPUT FEATURES:
+- Progress bar during file loading
+- Detailed statistics after loading
+- Error messages with file paths
+- Data quality summary
+- Memory usage information
+
+Author: GenAI-RAG-EEG Team
+Version: 3.0.0
+================================================================================
 """
 
 import os
+import sys
 import numpy as np
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 import scipy.io as sio
 from dataclasses import dataclass
+
+# Import custom logger for detailed CLI output
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+    from src.utils.logger import setup_logger, get_logger
+    CUSTOM_LOGGER_AVAILABLE = True
+except ImportError:
+    CUSTOM_LOGGER_AVAILABLE = False
+
+
+def _print_progress(current: int, total: int, prefix: str = "Loading", width: int = 40):
+    """Print a progress bar to CLI."""
+    percent = current / total
+    filled = int(width * percent)
+    bar = "█" * filled + "░" * (width - filled)
+    print(f"\r  {prefix}: [{bar}] {current}/{total} ({percent*100:.1f}%)", end="", flush=True)
+    if current == total:
+        print()  # New line at end
+
+
+def _print_data_summary(data: np.ndarray, labels: np.ndarray, metadata: Dict):
+    """Print detailed data summary to CLI."""
+    print("\n" + "=" * 60)
+    print("  DATA LOADING COMPLETE")
+    print("=" * 60)
+    print(f"\n  Shape Information:")
+    print(f"    Total samples: {data.shape[0]}")
+    print(f"    Channels: {data.shape[1]}")
+    print(f"    Time samples: {data.shape[2]}")
+    print(f"    Data type: {data.dtype}")
+
+    print(f"\n  Class Distribution:")
+    print(f"    Stress samples: {metadata['n_stress']} ({metadata['n_stress']/len(labels)*100:.1f}%)")
+    print(f"    Baseline samples: {metadata['n_baseline']} ({metadata['n_baseline']/len(labels)*100:.1f}%)")
+
+    print(f"\n  Signal Statistics:")
+    print(f"    Mean: {data.mean():.4f}")
+    print(f"    Std: {data.std():.4f}")
+    print(f"    Min: {data.min():.4f}")
+    print(f"    Max: {data.max():.4f}")
+
+    print(f"\n  Loading Statistics:")
+    print(f"    Files loaded: {metadata['files_loaded']}")
+    print(f"    Files failed: {metadata['files_failed']}")
+
+    memory_mb = data.nbytes / (1024 * 1024)
+    print(f"\n  Memory Usage: {memory_mb:.2f} MB")
+    print("=" * 60)
 
 
 @dataclass
@@ -45,19 +107,27 @@ def load_mat_file(filepath: str) -> np.ndarray:
 
 def load_sam40_dataset(
     data_type: str = "filtered",
-    config: Optional[SAM40Config] = None
+    config: Optional[SAM40Config] = None,
+    verbose: bool = True
 ) -> Tuple[np.ndarray, np.ndarray, Dict]:
     """
-    Load the complete SAM-40 dataset.
+    Load the complete SAM-40 dataset with detailed CLI output.
 
     Args:
         data_type: "raw" or "filtered" data
         config: Dataset configuration
+        verbose: Enable detailed CLI output
 
     Returns:
         data: EEG data array (n_epochs, n_channels, n_samples)
         labels: Binary labels (0=baseline, 1=stress)
         metadata: Additional information
+
+    CLI Output:
+        - Dataset path and configuration
+        - Progress bar during loading
+        - Per-file status (success/failure)
+        - Final statistics summary
     """
     if config is None:
         config = SAM40Config()
@@ -65,7 +135,24 @@ def load_sam40_dataset(
     data_folder = "filtered_data" if data_type == "filtered" else "raw_data"
     data_path = Path(config.base_path) / data_folder
 
+    # Print header
+    if verbose:
+        print("\n" + "=" * 60)
+        print("  SAM-40 DATASET LOADER")
+        print("=" * 60)
+        print(f"\n  Configuration:")
+        print(f"    Base path: {config.base_path}")
+        print(f"    Data type: {data_type}")
+        print(f"    Expected subjects: {config.n_subjects}")
+        print(f"    Channels: {config.n_channels}")
+        print(f"    Sampling rate: {config.sampling_rate} Hz")
+
     if not data_path.exists():
+        if verbose:
+            print(f"\n  ✗ ERROR: Data path not found!")
+            print(f"    Path: {data_path}")
+            print(f"\n  Please ensure the SAM-40 dataset is downloaded to:")
+            print(f"    {config.base_path}")
         raise FileNotFoundError(f"Data path not found: {data_path}")
 
     all_data = []
@@ -78,13 +165,22 @@ def load_sam40_dataset(
         "files_failed": 0
     }
 
-    print(f"Loading SAM-40 dataset from: {data_path}")
+    if verbose:
+        print(f"\n  Data path: {data_path}")
 
     # Get all .mat files
     mat_files = list(data_path.glob("*.mat"))
-    print(f"Found {len(mat_files)} .mat files")
 
-    for mat_file in sorted(mat_files):
+    if verbose:
+        print(f"  Found {len(mat_files)} .mat files")
+        print(f"\n  Loading files...")
+
+    total_files = len(mat_files)
+    for idx, mat_file in enumerate(sorted(mat_files)):
+        # Update progress bar
+        if verbose and total_files > 0:
+            _print_progress(idx + 1, total_files, prefix="Loading")
+
         filename = mat_file.stem
         parts = filename.split('_')
 
@@ -118,6 +214,8 @@ def load_sam40_dataset(
                 metadata["files_loaded"] += 1
             else:
                 metadata["files_failed"] += 1
+                if verbose:
+                    print(f"\n    ⚠ Failed to load: {filename}")
 
     if len(all_data) == 0:
         raise ValueError("No data was loaded successfully")
@@ -146,13 +244,23 @@ def load_sam40_dataset(
     metadata["sampling_rate"] = config.sampling_rate
     metadata["n_channels"] = data.shape[1]
     metadata["n_samples"] = data.shape[2]
+    metadata["unique_subjects"] = len(set(metadata["subjects"]))
+    metadata["unique_conditions"] = list(set(metadata["conditions"]))
 
-    print(f"\nDataset loaded successfully:")
-    print(f"  Shape: {data.shape}")
-    print(f"  Stress samples: {metadata['n_stress']}")
-    print(f"  Baseline samples: {metadata['n_baseline']}")
-    print(f"  Files loaded: {metadata['files_loaded']}")
-    print(f"  Files failed: {metadata['files_failed']}")
+    # Print detailed summary
+    if verbose:
+        _print_data_summary(data, labels, metadata)
+
+        # Print additional details
+        print(f"\n  Subject Information:")
+        print(f"    Unique subjects: {metadata['unique_subjects']}")
+        print(f"    Conditions: {', '.join(metadata['unique_conditions'])}")
+
+        # Print per-condition counts
+        print(f"\n  Per-Condition Distribution:")
+        for cond in metadata['unique_conditions']:
+            count = metadata['conditions'].count(cond)
+            print(f"    {cond}: {count} samples")
 
     return data, labels, metadata
 

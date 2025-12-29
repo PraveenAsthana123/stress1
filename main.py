@@ -203,8 +203,10 @@ DEPENDENCIES
 import argparse
 import logging
 import sys
+import platform
 from pathlib import Path
 from typing import Optional
+from datetime import datetime
 import yaml
 
 import numpy as np
@@ -212,6 +214,14 @@ import torch
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent))
+
+# Import custom logger for detailed CLI output
+try:
+    from src.utils.logger import setup_logger, GenAILogger
+    from src.utils.compatibility import CompatibilityLayer, check_system_requirements
+    CUSTOM_LOGGER_AVAILABLE = True
+except ImportError:
+    CUSTOM_LOGGER_AVAILABLE = False
 
 from src.models import create_model, create_context_string
 from src.data import (
@@ -223,10 +233,57 @@ from src.data import (
 from src.training import Trainer, TrainingConfig, train_loso
 
 
-def setup_logging(log_dir: str = "logs", level: int = logging.INFO) -> logging.Logger:
-    """Setup logging configuration."""
+def print_startup_banner():
+    """Print detailed startup banner with system information."""
+    print("\n" + "=" * 70)
+    print("  ╔═══════════════════════════════════════════════════════════════╗")
+    print("  ║           GenAI-RAG-EEG Stress Classification System          ║")
+    print("  ║          Hybrid Deep Learning with RAG Explanations           ║")
+    print("  ╚═══════════════════════════════════════════════════════════════╝")
+    print("=" * 70)
+
+    print(f"\n  System Information:")
+    print(f"    Date/Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"    Platform: {platform.system()} {platform.release()}")
+    print(f"    Python: {platform.python_version()}")
+    print(f"    PyTorch: {torch.__version__}")
+    print(f"    NumPy: {np.__version__}")
+
+    # GPU info
+    if torch.cuda.is_available():
+        gpu_name = torch.cuda.get_device_name(0)
+        gpu_mem = torch.cuda.get_device_properties(0).total_memory / (1024**3)
+        print(f"    GPU: {gpu_name} ({gpu_mem:.1f} GB)")
+    else:
+        print(f"    GPU: Not available (using CPU)")
+
+    print("=" * 70)
+
+
+def setup_logging(log_dir: str = "logs", level: int = logging.INFO, verbose: bool = True) -> logging.Logger:
+    """
+    Setup logging configuration with detailed CLI output.
+
+    Args:
+        log_dir: Directory for log files
+        level: Logging level
+        verbose: Enable verbose CLI output
+
+    Returns:
+        Logger instance
+    """
     Path(log_dir).mkdir(parents=True, exist_ok=True)
 
+    # Use custom logger if available
+    if CUSTOM_LOGGER_AVAILABLE and verbose:
+        logger = setup_logger(
+            name="genai_rag_eeg",
+            log_file=Path(log_dir) / "training.log",
+            console_level="DEBUG" if level == logging.DEBUG else "INFO"
+        )
+        return logger
+
+    # Fallback to standard logging
     logging.basicConfig(
         level=level,
         format="%(asctime)s [%(levelname)s] %(message)s",
@@ -500,7 +557,7 @@ def demo(
 
 
 def main():
-    """Main entry point."""
+    """Main entry point with detailed CLI output."""
     parser = argparse.ArgumentParser(
         description="GenAI-RAG-EEG: Explainable EEG Stress Classification",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -517,6 +574,9 @@ Examples:
 
   Run demo:
     python main.py --mode demo
+
+  Verbose output:
+    python main.py --mode train --synthetic --verbose
         """
     )
 
@@ -569,11 +629,36 @@ Examples:
         help="Logging level"
     )
 
+    parser.add_argument(
+        "--verbose", "-v",
+        action="store_true",
+        default=True,
+        help="Enable verbose CLI output (default: True)"
+    )
+
+    parser.add_argument(
+        "--quiet", "-q",
+        action="store_true",
+        help="Disable verbose output (minimal logging)"
+    )
+
     args = parser.parse_args()
+
+    # Determine verbosity
+    verbose = args.verbose and not args.quiet
+
+    # Print startup banner
+    if verbose:
+        print_startup_banner()
+        print(f"\n  Mode: {args.mode.upper()}")
+        print(f"  Log Level: {args.log_level}")
+        if args.mode == "train":
+            print(f"  Dataset: {args.dataset if not args.synthetic else 'Synthetic'}")
+        print()
 
     # Setup logging
     log_level = getattr(logging, args.log_level)
-    logger = setup_logging(level=log_level)
+    logger = setup_logging(level=log_level, verbose=verbose)
 
     # Load config
     config_path = Path(args.config)

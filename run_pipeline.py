@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
+================================================================================
 GenAI-RAG-EEG: Comprehensive Pipeline Runner
+================================================================================
 
-This script runs the complete ML pipeline:
+This script runs the complete ML pipeline with detailed CLI output:
 1. Data Generation & Preprocessing
 2. 1D/2D Conversion & Standardization/Normalization
 3. Exploratory Data Analysis (EDA)
@@ -12,7 +14,19 @@ This script runs the complete ML pipeline:
 7. Benchmarking
 8. Report Generation
 
+CLI OUTPUT:
+- Step-by-step progress with timing
+- Color-coded status messages
+- Detailed metrics at each stage
+- Final summary report
+
 Usage: python run_pipeline.py
+       python run_pipeline.py --verbose
+       python run_pipeline.py --quiet
+
+Author: GenAI-RAG-EEG Team
+Version: 3.0.0
+================================================================================
 """
 
 import os
@@ -20,6 +34,7 @@ import sys
 import time
 import json
 import warnings
+import platform
 from pathlib import Path
 from datetime import datetime
 from dataclasses import dataclass, asdict
@@ -33,11 +48,66 @@ warnings.filterwarnings('ignore')
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-print("=" * 70)
-print("GenAI-RAG-EEG: Comprehensive Pipeline Runner")
-print("=" * 70)
-print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-print()
+# Import custom logger for detailed CLI output
+try:
+    from src.utils.logger import setup_logger, GenAILogger
+    from src.utils.compatibility import CompatibilityLayer
+    CUSTOM_LOGGER_AVAILABLE = True
+except ImportError:
+    CUSTOM_LOGGER_AVAILABLE = False
+
+
+def print_pipeline_banner():
+    """Print detailed pipeline banner with system info."""
+    print("\n" + "=" * 70)
+    print("  ╔═══════════════════════════════════════════════════════════════╗")
+    print("  ║       GenAI-RAG-EEG: Comprehensive Pipeline Runner            ║")
+    print("  ║         Complete ML Pipeline with Detailed Logging            ║")
+    print("  ╚═══════════════════════════════════════════════════════════════╝")
+    print("=" * 70)
+
+    print(f"\n  Pipeline Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  Platform: {platform.system()} {platform.release()}")
+    print(f"  Python: {platform.python_version()}")
+
+    # Check for GPU
+    try:
+        import torch
+        if torch.cuda.is_available():
+            gpu_name = torch.cuda.get_device_name(0)
+            print(f"  GPU: {gpu_name}")
+        else:
+            print(f"  GPU: Not available (using CPU)")
+    except ImportError:
+        print(f"  GPU: PyTorch not available")
+
+    print("\n  Pipeline Steps:")
+    print("    [1] Environment Setup")
+    print("    [2] Data Generation & Preprocessing")
+    print("    [3] 1D/2D Conversion & Normalization")
+    print("    [4] Exploratory Data Analysis (EDA)")
+    print("    [5] Model Training")
+    print("    [6] Model Validation")
+    print("    [7] Model Testing")
+    print("    [8] Report Generation")
+    print("=" * 70)
+    print()
+
+
+def print_step_header(step_num: int, total: int, title: str):
+    """Print formatted step header."""
+    print(f"\n{'─' * 70}")
+    print(f"  [{step_num}/{total}] {title}")
+    print(f"{'─' * 70}")
+
+
+def print_step_complete(step_num: int, title: str, elapsed: float, status: str = "DONE"):
+    """Print step completion message."""
+    print(f"  ✓ {title} completed in {elapsed:.2f}s [{status}]")
+
+
+# Print startup banner
+print_pipeline_banner()
 
 # ============================================================================
 # SECTION 1: IMPORTS AND SETUP
