@@ -1,0 +1,20 @@
+{
+  "description": "WESAD balanced sample (100 samples)",
+  "created": "2024-12-29",
+  "n_samples": 100,
+  "shape": [
+    100,
+    32,
+    512
+  ],
+  "original_channels": 14,
+  "padded_channels": 32,
+  "original_time": 256,
+  "padded_time": 512,
+  "class_distribution": {
+    "baseline": 50,
+    "stress": 50
+  },
+  "source": "WESAD chapter5_wesad",
+  "notes": "Channels padded from 14 to 32, time padded from 256 to 512"
+}
