@@ -1,0 +1,149 @@
+{
+  "generation_date": "2025-12-29T11:43:18.126222",
+  "generator_version": "3.0.0",
+  "total_samples": 300,
+  "datasets": {
+    "SAM-40": {
+      "dataset_name": "SAM-40",
+      "n_samples": 100,
+      "n_channels": 32,
+      "n_channels_original": 32,
+      "segment_length": 512,
+      "sampling_rate": 256,
+      "channel_names": [
+        "Fp1",
+        "Fp2",
+        "F7",
+        "F3",
+        "Fz",
+        "F4",
+        "F8",
+        "FC5",
+        "FC1",
+        "FC2",
+        "FC6",
+        "T7",
+        "C3",
+        "Cz",
+        "C4",
+        "T8",
+        "TP9",
+        "CP5",
+        "CP1",
+        "CP2",
+        "CP6",
+        "TP10",
+        "P7",
+        "P3",
+        "Pz",
+        "P4",
+        "P8",
+        "PO9",
+        "O1",
+        "Oz",
+        "O2",
+        "PO10"
+      ],
+      "stress_type": "cognitive",
+      "description": "Cognitive stress from Stroop, Arithmetic, Mirror tasks",
+      "class_distribution": {
+        "stress": 50,
+        "baseline": 50
+      },
+      "generation_date": "2025-12-29T11:43:16.862413",
+      "seed": 42,
+      "is_synthetic": true,
+      "data_shape": [
+        100,
+        32,
+        512
+      ],
+      "dtype": "float32"
+    },
+    "WESAD": {
+      "dataset_name": "WESAD",
+      "n_samples": 100,
+      "n_channels": 14,
+      "n_channels_original": 14,
+      "segment_length": 512,
+      "sampling_rate": 256,
+      "channel_names": [
+        "AF3",
+        "F7",
+        "F3",
+        "FC5",
+        "T7",
+        "P7",
+        "O1",
+        "O2",
+        "P8",
+        "T8",
+        "FC6",
+        "F4",
+        "F8",
+        "AF4"
+      ],
+      "stress_type": "physiological",
+      "description": "Physiological stress from Trier Social Stress Test (TSST)",
+      "class_distribution": {
+        "stress": 50,
+        "baseline": 50
+      },
+      "generation_date": "2025-12-29T11:43:17.442265",
+      "seed": 42,
+      "is_synthetic": true,
+      "data_shape": [
+        100,
+        14,
+        512
+      ],
+      "dtype": "float32"
+    },
+    "EEGMAT": {
+      "dataset_name": "EEGMAT",
+      "n_samples": 100,
+      "n_channels": 32,
+      "n_channels_original": 21,
+      "segment_length": 512,
+      "sampling_rate": 256,
+      "channel_names": [
+        "Fp1",
+        "Fp2",
+        "F3",
+        "F4",
+        "C3",
+        "C4",
+        "P3",
+        "P4",
+        "O1",
+        "O2",
+        "F7",
+        "F8",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "Fz",
+        "Cz",
+        "Pz",
+        "A1",
+        "A2"
+      ],
+      "stress_type": "cognitive_arithmetic",
+      "description": "Mental arithmetic stress (serial subtraction by 7)",
+      "class_distribution": {
+        "stress": 50,
+        "baseline": 50
+      },
+      "generation_date": "2025-12-29T11:43:17.892047",
+      "seed": 42,
+      "is_synthetic": true,
+      "data_shape": [
+        100,
+        32,
+        512
+      ],
+      "dtype": "float32"
+    }
+  }
+}

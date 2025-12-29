@@ -1,20 +1,46 @@
 {
-  "description": "EEGMAT (PhysioNet EEG Mental Arithmetic Tasks) balanced sample dataset",
-  "source": "https://physionet.org/content/eegmat/1.0.0/",
-  "created": "2025-12-29 10:23:42",
+  "dataset_name": "EEGMAT",
   "n_samples": 100,
-  "shape": [
+  "n_channels": 32,
+  "n_channels_original": 21,
+  "segment_length": 512,
+  "sampling_rate": 256,
+  "channel_names": [
+    "Fp1",
+    "Fp2",
+    "F3",
+    "F4",
+    "C3",
+    "C4",
+    "P3",
+    "P4",
+    "O1",
+    "O2",
+    "F7",
+    "F8",
+    "T3",
+    "T4",
+    "T5",
+    "T6",
+    "Fz",
+    "Cz",
+    "Pz",
+    "A1",
+    "A2"
+  ],
+  "stress_type": "cognitive_arithmetic",
+  "description": "Mental arithmetic stress (serial subtraction by 7)",
+  "class_distribution": {
+    "stress": 50,
+    "baseline": 50
+  },
+  "generation_date": "2025-12-29T11:43:17.892047",
+  "seed": 42,
+  "is_synthetic": true,
+  "data_shape": [
     100,
     32,
     512
   ],
-  "original_channels": 23,
-  "padded_channels": 32,
-  "segment_length": 512,
-  "sampling_rate": 256,
-  "class_distribution": {
-    "baseline": 50,
-    "task_stress": 50
-  },
-  "notes": "Baseline=background EEG, Task=mental arithmetic stress condition. Channels padded from 23 to 32."
+  "dtype": "float32"
 }
