@@ -417,7 +417,7 @@ Your expertise includes:
 - Stress biomarkers: Alpha suppression, Theta/Beta Ratio (TBR), Frontal Alpha Asymmetry (FAA)
 - Signal processing: Filtering, artifact removal, feature extraction
 - Machine learning: SVM, Random Forest, Deep Learning (CNN, LSTM, Transformers)
-- Datasets: SAM-40, WESAD, DEAP, SEED
+- Datasets: SAM-40, EEGMAT, DEAP, SEED
 
 When answering:
 1. Be precise about frequency ranges and biomarker interpretations
@@ -455,12 +455,12 @@ When answering:
                 "title": "SAM-40 Dataset"
             },
             {
-                "text": """WESAD (Wearable Stress and Affect Detection) is a multimodal dataset for stress detection.
+                "text": """EEGMAT (Wearable Stress and Affect Detection) is a multimodal dataset for stress detection.
                 It includes chest-worn and wrist-worn physiological sensors.
                 EEG is not included, but ECG, EMG, EDA, temperature, respiration, and accelerometer data are available.
                 The dataset contains recordings from 15 subjects during baseline, stress, and amusement conditions.""",
-                "source": "WESAD Dataset",
-                "title": "WESAD Multimodal Dataset"
+                "source": "EEGMAT Dataset",
+                "title": "EEGMAT Multimodal Dataset"
             },
             {
                 "text": """Deep learning approaches for EEG stress classification include:

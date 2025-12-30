@@ -2,7 +2,7 @@
 """
 Extract sample rows from real EEG datasets.
 
-Extracts actual data from SAM-40, WESAD, and EEGMAT datasets.
+Extracts actual data from SAM-40 and EEGMAT datasets.
 Default: 100 rows per dataset (configurable via N_SAMPLES).
 """
 
@@ -259,22 +259,22 @@ def extract_eegmat_data(output_dir: Path, n_samples: int = 100):
     return X, y
 
 
-def extract_wesad_data(output_dir: Path, n_samples: int = 100):
-    """Extract samples from real WESAD data."""
+def extract_eegmat_data(output_dir: Path, n_samples: int = 100):
+    """Extract samples from real EEGMAT data."""
     print("\n" + "="*60)
-    print(f"  Extracting WESAD Real Data ({n_samples} rows)")
+    print(f"  Extracting EEGMAT Real Data ({n_samples} rows)")
     print("="*60)
 
-    # Real WESAD data path
-    wesad_data_path = Path("/media/praveen/Asthana3/ upgrad/synopysis/thesis_code/data/chapter5_wesad")
-    wesad_out = output_dir / "WESAD" / f"sample_{n_samples}"
-    wesad_out.mkdir(parents=True, exist_ok=True)
+    # Real EEGMAT data path
+    eegmat_data_path = Path("/media/praveen/Asthana3/ upgrad/synopysis/thesis_code/data/chapter5_eegmat")
+    eegmat_out = output_dir /  / f"sample_{n_samples}"
+    eegmat_out.mkdir(parents=True, exist_ok=True)
 
-    # Load real WESAD data
-    data = np.load(wesad_data_path / "data.npy")  # Shape: (2000, 14, 256)
-    labels = np.load(wesad_data_path / "labels.npy")  # Shape: (2000,)
+    # Load real EEGMAT data
+    data = np.load(eegmat_data_path / "data.npy")  # Shape: (2000, 14, 256)
+    labels = np.load(eegmat_data_path / "labels.npy")  # Shape: (2000,)
 
-    print(f"  Loaded real WESAD: data={data.shape}, labels={labels.shape}")
+    print(f"  Loaded real EEGMAT: data={data.shape}, labels={labels.shape}")
     print(f"  Original classes: {np.unique(labels, return_counts=True)}")
 
     # For binary classification: 0=baseline, 1=stress
@@ -307,18 +307,18 @@ def extract_wesad_data(output_dir: Path, n_samples: int = 100):
 
     channel_names = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'FC6', 'F4', 'F8', 'AF4']
 
-    npz_path = wesad_out / f"wesad_sample_{n_samples}.npz"
+    npz_path = eegmat_out / f"eegmat_sample_{n_samples}.npz"
     np.savez_compressed(npz_path, X=X, y=y, channel_names=channel_names, fs=fs)
 
-    csv_dir = wesad_out / "csv"
+    csv_dir = eegmat_out / "csv"
     csv_dir.mkdir(exist_ok=True)
     for i in range(min(10, len(X))):
         csv_path = csv_dir / f"sample_{i:03d}_{'stressed' if y[i] == 1 else 'relaxed'}.csv"
         np.savetxt(csv_path, X[i].T, delimiter=",", header=",".join(channel_names[:n_channels]), comments="")
 
     metadata = {
-        "dataset": "WESAD",
-        "source": "Real data from thesis_code/data/chapter5_wesad",
+        "dataset": ,
+        "source": "Real data from thesis_code/data/chapter5_eegmat",
         "n_samples": len(X),
         "n_channels": n_channels,
         "n_timepoints": n_timepoints,
@@ -326,7 +326,7 @@ def extract_wesad_data(output_dir: Path, n_samples: int = 100):
         "class_distribution": {"relaxed": int(np.sum(y == 0)), "stressed": int(np.sum(y == 1))},
         "generated": datetime.now().isoformat()
     }
-    with open(wesad_out / "metadata.json", "w") as f:
+    with open(eegmat_out / "metadata.json", "w") as f:
         json.dump(metadata, f, indent=2)
 
     print(f"  ✓ Saved: {npz_path}")
@@ -340,14 +340,14 @@ def create_readme(output_dir: Path, n_samples: int = 100):
     """Create README for sample data."""
     readme = f"""# Sample Data - {n_samples} Rows Per Dataset
 
-Real EEG data extracted from SAM-40, WESAD, and EEGMAT datasets.
+Real EEG data extracted from SAM-40 and EEGMAT datasets.
 
 ## Datasets
 
 | Dataset | Samples | Channels | Rate | Source |
 |---------|---------|----------|------|--------|
 | SAM-40 | {n_samples} | 32 | 128 Hz | Real (.mat files) |
-| WESAD | {n_samples} | 14 | 700 Hz | Real (thesis data) |
+| EEGMAT | {n_samples} | 14 | 700 Hz | Real (thesis data) |
 | EEGMAT | {n_samples} | 21 | 500 Hz | Real (PhysioNet .edf) |
 
 ## Loading Data
@@ -365,10 +365,10 @@ eegmat = np.load('data/EEGMAT/sample_{n_samples}/eegmat_sample_{n_samples}.npz')
 X, y = eegmat['X'], eegmat['y']
 print(f"EEGMAT: X={{X.shape}}, y={{y.shape}}")
 
-# Load WESAD
-wesad = np.load('data/WESAD/sample_{n_samples}/wesad_sample_{n_samples}.npz')
-X, y = wesad['X'], wesad['y']
-print(f"WESAD: X={{X.shape}}, y={{y.shape}}")
+# Load EEGMAT
+eegmat = np.load('data/EEGMAT/sample_{n_samples}/eegmat_sample_{n_samples}.npz')
+X, y = eegmat['X'], eegmat['y']
+print(f"EEGMAT: X={{X.shape}}, y={{y.shape}}")
 ```
 
 ## Data Format
@@ -395,10 +395,10 @@ def main():
 
     output_dir = project_root / "data"
 
-    # Extract from real data - all 3 datasets
+    # Extract from real data - all 2 datasets
     extract_sam40_data(output_dir, n_samples=N_SAMPLES)
     extract_eegmat_data(output_dir, n_samples=N_SAMPLES)
-    extract_wesad_data(output_dir, n_samples=N_SAMPLES)
+    extract_eegmat_data(output_dir, n_samples=N_SAMPLES)
 
     create_readme(output_dir, n_samples=N_SAMPLES)
 

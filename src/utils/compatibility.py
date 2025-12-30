@@ -595,7 +595,7 @@ if __name__ == "__main__":
     test_paths = [
         "~/data/SAM40",
         "./results",
-        "data\\WESAD",  # Windows style
+        "data\\EEGMAT",  # Windows style
     ]
     print("\nPath normalization:")
     for p in test_paths:

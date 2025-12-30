@@ -245,7 +245,7 @@ def check_sample_data() -> CheckResult:
         )
 
     # Check for sample files
-    expected_files = ['sam40_sample.npz', 'wesad_sample.npz', 'eegmat_sample.npz']
+    expected_files = ['sam40_sample.npz', 'eegmat_sample.npz', 'eegmat_sample.npz']
     missing = [f for f in expected_files if not (sample_dir / f).exists()]
 
     if missing:

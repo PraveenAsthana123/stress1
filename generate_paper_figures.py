@@ -56,7 +56,7 @@ COLORS = {
     'baseline': '#3498DB',
     'deap': '#E74C3C',
     'sam40': '#27AE60',
-    'wesad': '#3498DB',
+    'eegmat': '#3498DB',
     'primary': '#2C3E50',
     'highlight': '#F39C12',
 }
@@ -64,7 +64,7 @@ COLORS = {
 DATASET_COLORS = {
     'DEAP': '#E74C3C',
     'SAM-40': '#27AE60',
-    'WESAD': '#3498DB',
+    : '#3498DB',
 }
 
 BAND_COLORS = {
@@ -94,7 +94,7 @@ def get_simulated_results():
                      'f1': 0.943, 'auc': 0.967, 'kappa': 0.894},
             'SAM-40': {'accuracy': 0.932, 'precision': 0.930, 'recall': 0.926,
                        'f1': 0.928, 'auc': 0.958, 'kappa': 0.864},
-            'WESAD': {'accuracy': 1.000, 'precision': 1.000, 'recall': 1.000,
+            : {'accuracy': 1.000, 'precision': 1.000, 'recall': 1.000,
                       'f1': 1.000, 'auc': 1.000, 'kappa': 1.000},
         },
         'band_power': {
@@ -121,10 +121,10 @@ def get_simulated_results():
         'transfer': {
             ('SAM-40', 'DEAP'): 71.4,
             ('DEAP', 'SAM-40'): 68.2,
-            ('SAM-40', 'WESAD'): 78.6,
-            ('WESAD', 'SAM-40'): 76.8,
-            ('DEAP', 'WESAD'): 74.2,
-            ('WESAD', 'DEAP'): 72.1,
+            ('SAM-40'): 78.6,
+            ('SAM-40'): 76.8,
+            ('DEAP'): 74.2,
+            ('DEAP'): 72.1,
         },
         'component_importance': {
             'Bi-LSTM': 6.3,
@@ -143,7 +143,7 @@ def get_simulated_results():
 # =============================================================================
 
 def plot_roc_curves(results: Dict, save_path: str):
-    """Generate ROC curves for all three datasets."""
+    """Generate ROC curves for all two datasets."""
     fig, ax = plt.subplots(figsize=(8, 6))
 
     for dataset, color in DATASET_COLORS.items():
@@ -195,10 +195,10 @@ def plot_roc_curves(results: Dict, save_path: str):
 # =============================================================================
 
 def plot_confusion_matrices(results: Dict, save_path: str):
-    """Generate confusion matrices for all three datasets."""
+    """Generate confusion matrices for all two datasets."""
     fig, axes = plt.subplots(1, 3, figsize=(14, 4))
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
 
     for idx, (dataset, ax) in enumerate(zip(datasets, axes)):
         acc = results['classification'][dataset]['accuracy']
@@ -251,7 +251,7 @@ def plot_training_curves(save_path: str):
     """Generate training and validation loss curves."""
     fig, axes = plt.subplots(1, 3, figsize=(14, 4))
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     final_losses = [0.15, 0.18, 0.05]
 
     for idx, (dataset, ax, final_loss) in enumerate(zip(datasets, axes, final_losses)):
@@ -348,7 +348,7 @@ def plot_transfer_heatmap(results: Dict, save_path: str):
     """Generate cross-dataset transfer learning heatmap."""
     fig, ax = plt.subplots(figsize=(8, 6))
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     n = len(datasets)
 
     # Build transfer matrix
@@ -357,15 +357,15 @@ def plot_transfer_heatmap(results: Dict, save_path: str):
     # Diagonal: within-dataset performance
     transfer_matrix[0, 0] = results['classification']['DEAP']['accuracy'] * 100
     transfer_matrix[1, 1] = results['classification']['SAM-40']['accuracy'] * 100
-    transfer_matrix[2, 2] = results['classification']['WESAD']['accuracy'] * 100
+    transfer_matrix[2, 2] = results['classification'][]['accuracy'] * 100
 
     # Off-diagonal: transfer performance
     transfer_matrix[0, 1] = results['transfer'][('DEAP', 'SAM-40')]
     transfer_matrix[1, 0] = results['transfer'][('SAM-40', 'DEAP')]
-    transfer_matrix[0, 2] = results['transfer'][('DEAP', 'WESAD')]
-    transfer_matrix[2, 0] = results['transfer'][('WESAD', 'DEAP')]
-    transfer_matrix[1, 2] = results['transfer'][('SAM-40', 'WESAD')]
-    transfer_matrix[2, 1] = results['transfer'][('WESAD', 'SAM-40')]
+    transfer_matrix[0, 2] = results['transfer'][('DEAP')]
+    transfer_matrix[2, 0] = results['transfer'][('DEAP')]
+    transfer_matrix[1, 2] = results['transfer'][('SAM-40')]
+    transfer_matrix[2, 1] = results['transfer'][('SAM-40')]
 
     im = ax.imshow(transfer_matrix, cmap='RdYlGn', vmin=65, vmax=100, aspect='auto')
 
@@ -403,7 +403,7 @@ def plot_tsne_visualization(save_path: str):
     """Generate t-SNE visualization of learned representations."""
     fig, axes = plt.subplots(1, 3, figsize=(14, 4))
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     separations = [2.5, 2.2, 4.0]  # How separated the clusters are
 
     for idx, (dataset, ax, sep) in enumerate(zip(datasets, axes, separations)):
@@ -716,7 +716,7 @@ def plot_performance_distribution(results: Dict, save_path: str):
     """Generate per-subject performance distribution boxplots."""
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     np.random.seed(42)
 
     # Left: Boxplots
@@ -725,16 +725,16 @@ def plot_performance_distribution(results: Dict, save_path: str):
     # Generate per-subject accuracies
     deap_acc = np.clip(np.random.normal(94.7, 2.8, 32), 85, 100)
     sam40_acc = np.clip(np.random.normal(93.2, 4.2, 40), 80, 100)
-    wesad_acc = np.ones(15) * 100  # Perfect classification
+    eegmat_acc = np.ones(15) * 100  # Perfect classification
 
-    data = [deap_acc, sam40_acc, wesad_acc]
+    data = [deap_acc, sam40_acc, eegmat_acc]
     positions = [1, 2, 3]
 
     bp = ax1.boxplot(data, positions=positions, widths=0.6, patch_artist=True,
                      showmeans=True, meanprops=dict(marker='D', markerfacecolor='white',
                                                     markeredgecolor='black', markersize=8))
 
-    colors = [DATASET_COLORS['DEAP'], DATASET_COLORS['SAM-40'], DATASET_COLORS['WESAD']]
+    colors = [DATASET_COLORS['DEAP'], DATASET_COLORS['SAM-40'], DATASET_COLORS[]]
     for patch, color in zip(bp['boxes'], colors):
         patch.set_facecolor(color)
         patch.set_alpha(0.7)
@@ -956,7 +956,7 @@ def plot_calibration_curves(save_path: str):
     """Generate calibration (reliability) diagrams."""
     fig, axes = plt.subplots(1, 3, figsize=(14, 4))
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     np.random.seed(42)
 
     for idx, (dataset, ax) in enumerate(zip(datasets, axes)):
@@ -965,7 +965,7 @@ def plot_calibration_curves(save_path: str):
         bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
 
         # Simulate calibration data
-        if dataset == 'WESAD':
+        if dataset == :
             # Perfect calibration
             fraction_positive = bin_centers
             mean_predicted = bin_centers
@@ -1287,9 +1287,9 @@ def plot_power_analysis(save_path: str):
 
     # Right: Achieved Power per Dataset
     ax3 = axes[2]
-    datasets = ['DEAP\n(n=32)', 'SAM-40\n(n=40)', 'WESAD\n(n=15)']
-    achieved_power = [0.94, 0.97, 0.99]
-    colors = [DATASET_COLORS['DEAP'], DATASET_COLORS['SAM-40'], DATASET_COLORS['WESAD']]
+    datasets = ['SAM-40\n(n=40)', 'EEGMAT\n(n=36)']
+    achieved_power = [0.97, 0.99]
+    colors = [DATASET_COLORS['SAM-40'], DATASET_COLORS['EEGMAT']]
 
     bars = ax3.bar(datasets, achieved_power, color=colors, alpha=0.8, edgecolor='black')
 
@@ -1321,7 +1321,7 @@ def plot_learning_curves(save_path: str):
 
     np.random.seed(42)
 
-    for idx, (dataset, ax) in enumerate(zip(['DEAP', 'SAM-40', 'WESAD'], axes)):
+    for idx, (dataset, ax) in enumerate(zip(['DEAP', 'SAM-40'], axes)):
         # Training set sizes (fraction of total)
         train_fractions = np.array([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
 
@@ -1445,16 +1445,13 @@ def plot_effect_size_forest(results: Dict, save_path: str):
 
     # Studies/comparisons
     studies = [
-        ('Alpha Power: DEAP', -0.95, 0.18),
         ('Alpha Power: SAM-40', -0.82, 0.22),
-        ('Alpha Power: WESAD', -1.15, 0.25),
-        ('Beta Power: DEAP', 0.78, 0.19),
+        ('Alpha Power: EEGMAT', -0.85, 0.20),
         ('Beta Power: SAM-40', 0.71, 0.21),
-        ('Beta Power: WESAD', 0.92, 0.23),
-        ('TBR: DEAP', -0.68, 0.17),
+        ('Beta Power: EEGMAT', 0.70, 0.19),
         ('TBR: SAM-40', -0.55, 0.20),
-        ('TBR: WESAD', -0.85, 0.24),
-        ('FAA: All Datasets', 0.42, 0.15),
+        ('TBR: EEGMAT', -0.50, 0.18),
+        ('FAA: Both Datasets', 0.42, 0.15),
     ]
 
     y_positions = np.arange(len(studies))
@@ -1582,7 +1579,7 @@ def plot_cross_subject_generalization(save_path: str):
     n_left_out = np.arange(1, 11)
 
     for dataset, color in DATASET_COLORS.items():
-        base_acc = {'DEAP': 94.7, 'SAM-40': 93.2, 'WESAD': 100}[dataset]
+        base_acc = {'DEAP': 94.7, 'SAM-40': 93.2: 100}[dataset]
         # Accuracy decreases as more subjects are left out
         acc = base_acc - 2 * np.sqrt(n_left_out) + np.random.randn(10) * 0.5
         acc = np.clip(acc, 70, 100)
@@ -1598,7 +1595,7 @@ def plot_cross_subject_generalization(save_path: str):
 
     # Right: Inter-subject Variability
     ax2 = axes[1]
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     colors = [DATASET_COLORS[d] for d in datasets]
 
     # Per-subject accuracy standard deviations

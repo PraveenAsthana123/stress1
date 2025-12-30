@@ -4,13 +4,13 @@
 Real Data Analysis Pipeline for GenAI-RAG-EEG
 ================================================================================
 
-Runs complete analysis using real EEG datasets (DEAP, SAM-40, WESAD).
+Runs complete analysis using real EEG datasets (DEAP, SAM-40, EEGMAT).
 Falls back to synthetic data when real datasets are not available.
 
 Supported Datasets:
     - DEAP: 32 subjects, 40 trials each (emotion/stress from music videos)
     - SAM-40: 40 subjects, stress-inducing cognitive tasks
-    - WESAD: 15 subjects, wearable stress detection
+    - EEGMAT: 15 subjects, wearable stress detection
 
 Usage:
     python run_real_data_analysis.py
@@ -54,11 +54,11 @@ try:
     available_datasets = real_loader.detect_dataset()
     print(f"  DEAP:  {'FOUND' if available_datasets['DEAP'] else 'Not found'}")
     print(f"  SAM-40: {'FOUND' if available_datasets['SAM40'] else 'Not found'}")
-    print(f"  WESAD: {'FOUND' if available_datasets['WESAD'] else 'Not found'}")
+    print(f"  EEGMAT: {'FOUND' if available_datasets[] else 'Not found'}")
     HAS_REAL_LOADER = True
 except ImportError as e:
     print(f"  Real data loader not available: {e}")
-    available_datasets = {'DEAP': False, 'SAM40': False, 'WESAD': False}
+    available_datasets = {'DEAP': False, 'SAM40': False: False}
     HAS_REAL_LOADER = False
 
 # Use synthetic data if no real data available
@@ -96,7 +96,7 @@ if USE_SYNTHETIC:
         "n_baseline": int((labels == 0).sum())
     }
 else:
-    # Load real data - prefer DEAP > SAM40 > WESAD
+    # Load real data - prefer DEAP > SAM40 > EEGMAT
     from analysis.data_analysis import EEGDataLoader
     loader = EEGDataLoader('data')
 
@@ -106,9 +106,9 @@ else:
     elif available_datasets.get('SAM40', False):
         dataset_name = "SAM-40"
         data, labels, subjects, info = loader.load_dataset('sam40')
-    elif available_datasets.get('WESAD', False):
-        dataset_name = "WESAD"
-        data, labels, subjects, info = loader.load_dataset('wesad')
+    elif available_datasets.get(False):
+        dataset_name = 
+        data, labels, subjects, info = loader.load_dataset('eegmat')
     else:
         raise RuntimeError("No datasets available!")
 

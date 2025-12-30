@@ -931,13 +931,13 @@ def plot_precision_recall_curves(
 
     fig, ax = plt.subplots(figsize=figsize)
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     colors = [COLORS['stress'], COLORS['success'], COLORS['baseline']]
 
     for i, (dataset, color) in enumerate(zip(datasets, colors)):
         # Simulated PR curve data
         recall = np.linspace(0, 1, 100)
-        if dataset == 'WESAD':
+        if dataset == :
             precision = np.ones_like(recall)
         else:
             precision = 1 - 0.1 * recall + 0.05 * np.random.randn(100) * 0.02
@@ -982,13 +982,13 @@ def plot_calibration_curves(
     # Perfect calibration line
     ax.plot([0, 1], [0, 1], 'k--', label='Perfect Calibration')
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     colors = [COLORS['stress'], COLORS['success'], COLORS['baseline']]
 
     for dataset, color in zip(datasets, colors):
         # Simulated calibration data
         bins = np.linspace(0.1, 0.9, 9)
-        if dataset == 'WESAD':
+        if dataset == :
             calibrated = bins  # Perfect calibration
         else:
             calibrated = bins + 0.02 * np.sin(bins * np.pi) + 0.01 * np.random.randn(9)
@@ -1316,7 +1316,7 @@ def plot_cross_subject_generalization(
 
     fig, axes = plt.subplots(1, 3, figsize=figsize)
 
-    datasets = ['DEAP (32 subjects)', 'SAM-40 (40 subjects)', 'WESAD (15 subjects)']
+    datasets = ['DEAP (32 subjects)', 'SAM-40 (40 subjects)', 'EEGMAT (15 subjects)']
     n_subjects = [32, 40, 15]
     base_accuracy = [94.7, 93.2, 100]
 

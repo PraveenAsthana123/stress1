@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate 100-row sample data for each dataset.
+Generate 1000-row sample data for each dataset.
 
 Creates synthetic but realistic EEG data for testing and demonstration.
 Windows compatible using pathlib.
@@ -55,10 +55,10 @@ def generate_eeg_signal(n_channels: int, n_samples: int, fs: float,
     return signal.astype(np.float32)
 
 
-def generate_sam40_sample_data(output_dir: Path, n_samples: int = 100):
+def generate_sam40_sample_data(output_dir: Path, n_samples: int = 1000):
     """Generate SAM-40 format sample data."""
-    print("\nGenerating SAM-40 sample data...")
-    sam40_dir = output_dir / "SAM40" / "sample_100"
+    print("\nGenerating SAM-40 sample data (1000 rows)...")
+    sam40_dir = output_dir / "SAM40" / "sample_1000"
     sam40_dir.mkdir(parents=True, exist_ok=True)
 
     n_channels, n_timepoints, fs = 32, 512, 128.0
@@ -74,7 +74,7 @@ def generate_sam40_sample_data(output_dir: Path, n_samples: int = 100):
         X[i] = generate_eeg_signal(n_channels, n_timepoints, fs, stressed)
         y[i] = 1 if stressed else 0
 
-    npz_path = sam40_dir / "sam40_sample_100.npz"
+    npz_path = sam40_dir / "sam40_sample_1000.npz"
     np.savez_compressed(npz_path, X=X, y=y, channel_names=channel_names, fs=fs)
 
     csv_dir = sam40_dir / "csv"
@@ -93,11 +93,11 @@ def generate_sam40_sample_data(output_dir: Path, n_samples: int = 100):
     return X, y
 
 
-def generate_wesad_sample_data(output_dir: Path, n_samples: int = 100):
-    """Generate WESAD format sample data."""
-    print("\nGenerating WESAD sample data...")
-    wesad_dir = output_dir / "WESAD" / "sample_100"
-    wesad_dir.mkdir(parents=True, exist_ok=True)
+def generate_eegmat_sample_data(output_dir: Path, n_samples: int = 100):
+    """Generate EEGMAT format sample data."""
+    print("\nGenerating EEGMAT sample data...")
+    eegmat_dir = output_dir /  / "sample_100"
+    eegmat_dir.mkdir(parents=True, exist_ok=True)
 
     n_channels, n_timepoints, fs = 14, 512, 700.0
     channel_names = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'FC6', 'F4', 'F8', 'AF4']
@@ -110,19 +110,19 @@ def generate_wesad_sample_data(output_dir: Path, n_samples: int = 100):
         X[i] = generate_eeg_signal(n_channels, n_timepoints, fs, stressed)
         y[i] = 1 if stressed else 0
 
-    npz_path = wesad_dir / "wesad_sample_100.npz"
+    npz_path = eegmat_dir / "eegmat_sample_100.npz"
     np.savez_compressed(npz_path, X=X, y=y, channel_names=channel_names, fs=fs)
 
-    csv_dir = wesad_dir / "csv"
+    csv_dir = eegmat_dir / "csv"
     csv_dir.mkdir(exist_ok=True)
     for i in range(min(10, n_samples)):
         csv_path = csv_dir / f"sample_{i:03d}_{'stressed' if y[i] == 1 else 'relaxed'}.csv"
         np.savetxt(csv_path, X[i].T, delimiter=",", header=",".join(channel_names), comments="")
 
-    metadata = {"dataset": "WESAD", "n_samples": n_samples, "n_channels": n_channels,
+    metadata = {"dataset": "n_samples": n_samples, "n_channels": n_channels,
                 "sampling_rate": fs, "channel_names": channel_names,
                 "labels": {"0": "relaxed", "1": "stressed"}, "generated": datetime.now().isoformat()}
-    with open(wesad_dir / "metadata.json", "w") as f:
+    with open(eegmat_dir / "metadata.json", "w") as f:
         json.dump(metadata, f, indent=2)
 
     print(f"  ✓ Saved: {npz_path} | Shape: X={X.shape}, y={y.shape}")
@@ -180,7 +180,7 @@ def create_data_readme(output_dir: Path):
 | Dataset | Samples | Channels | Rate | Paradigm |
 |---------|---------|----------|------|----------|
 | SAM-40 | 100 | 32 | 128 Hz | Cognitive (Stroop) |
-| WESAD | 100 | 14 | 700 Hz | TSST Protocol |
+| EEGMAT | 100 | 14 | 700 Hz | TSST Protocol |
 | EEGMAT | 100 | 21 | 500 Hz | Mental Arithmetic |
 
 ## Loading Data
@@ -207,7 +207,7 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
 
     generate_sam40_sample_data(output_dir)
-    generate_wesad_sample_data(output_dir)
+    generate_eegmat_sample_data(output_dir)
     generate_eegmat_sample_data(output_dir)
     create_data_readme(output_dir)
 

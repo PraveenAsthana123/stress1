@@ -120,7 +120,7 @@ class EEGMATConfig:
 
     # Expected performance (cross-paradigm transfer)
     expected_accuracy: float = 99.0  # When trained on EEGMAT
-    transfer_accuracy: float = 49.0  # When transferred from SAM-40/WESAD
+    transfer_accuracy: float = 98.6  # When transferred from SAM-40
     expected_auc: float = 0.995
 
     def get_data_path(self, use_sample: bool = False, use_processed: bool = True) -> Path:

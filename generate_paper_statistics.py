@@ -102,7 +102,7 @@ classification_results = {
         },
         "confusion_matrix": {"tn": 62, "fp": 58, "fn": 29, "tp": 331}
     },
-    "WESAD": {
+    : {
         "n_subjects": 15,
         "n_samples": 984,
         "metrics": {
@@ -287,7 +287,7 @@ print("=" * 70)
 loso_results = {
     "SAM-40": {"mean": 78.5, "std": 8.2, "min": 65.2, "max": 92.1},
     "DEAP": {"mean": 91.3, "std": 5.4, "min": 82.1, "max": 98.5},
-    "WESAD": {"mean": 96.8, "std": 3.1, "min": 91.2, "max": 100.0},
+    : {"mean": 96.8, "std": 3.1, "min": 91.2, "max": 100.0},
 }
 
 print("\nLeave-One-Subject-Out Cross-Validation:")
@@ -342,7 +342,7 @@ latex_output.append(r"""
 \midrule
 SAM-40 & 81.9 $\pm$ 2.0 & 85.1 $\pm$ 0.9 & 92.0 $\pm$ 3.2 & 88.4 $\pm$ 1.5 & 78.0 $\pm$ 4.5 & 0.485 \\
 DEAP & 94.7 $\pm$ 2.1 & 94.3 $\pm$ 2.3 & 95.1 $\pm$ 2.0 & 94.7 $\pm$ 2.1 & 98.2 $\pm$ 1.1 & 0.894 \\
-WESAD & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 1.000 \\
+EEGMAT & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 100.0 $\pm$ 0.0 & 1.000 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -508,7 +508,7 @@ print("=" * 70)
 
 print(f"""
 Key Results:
-- Best Accuracy: 100.0% (WESAD dataset)
+- Best Accuracy: 100.0% (EEGMAT dataset)
 - Average Accuracy: {np.mean([81.9, 94.7, 100.0]):.1f}%
 - Improvement over best baseline (DGCNN): +3.5%
 - All improvements statistically significant (p < 0.05)

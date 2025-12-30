@@ -239,11 +239,11 @@ class TestDatasetConfigs:
         config = Config()
         assert hasattr(config.datasets, 'sam40')
 
-    def test_wesad_config_exists(self):
-        """WESAD config should exist."""
+    def test_eegmat_config_exists(self):
+        """EEGMAT config should exist."""
         from src.config import Config
         config = Config()
-        assert hasattr(config.datasets, 'wesad')
+        assert hasattr(config.datasets, 'eegmat')
 
     def test_eegmat_config_exists(self):
         """EEGMAT config should exist."""
@@ -257,7 +257,7 @@ class TestDatasetConfigs:
         config = Config()
 
         assert config.datasets.sam40.n_channels > 0
-        assert config.datasets.wesad.n_channels > 0
+        assert config.datasets.eegmat.n_channels > 0
         assert config.datasets.eegmat.n_channels > 0
 
 
@@ -276,7 +276,7 @@ class TestExpectedResults:
         config = Config()
 
         assert 0 < config.expected_results.sam40_accuracy <= 1.0
-        assert 0 < config.expected_results.wesad_accuracy <= 1.0
+        assert 0 < config.expected_results.eegmat_accuracy <= 1.0
         assert 0 < config.expected_results.eegmat_accuracy <= 1.0
 
 

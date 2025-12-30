@@ -244,7 +244,7 @@ def generate_dataset_comparison():
     fig = plt.figure(figsize=(16, 14))
     gs = GridSpec(3, 3, figure=fig, hspace=0.35, wspace=0.3)
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     colors = ['#3498db', '#e74c3c', '#2ecc71']
 
     # Panel 1: Sample size comparison
@@ -294,7 +294,7 @@ def generate_dataset_comparison():
         ['Dataset', 'Stress Type', 'Stimuli', 'Duration'],
         ['DEAP', 'Emotional', 'Music Videos', '60s/trial'],
         ['SAM-40', 'Cognitive', 'Math Tasks', '30s/trial'],
-        ['WESAD', 'Acute', 'TSST Protocol', '20min']
+        ['Acute', 'TSST Protocol', '20min']
     ]
 
     table = ax3.table(cellText=paradigm_data[1:], colLabels=paradigm_data[0],
@@ -311,7 +311,7 @@ def generate_dataset_comparison():
     class_data = {
         'DEAP': {'Stress': 640, 'Baseline': 640},
         'SAM-40': {'Stress': 800, 'Baseline': 800},
-        'WESAD': {'Stress': 112, 'Baseline': 113}
+        : {'Stress': 112, 'Baseline': 113}
     }
 
     x = np.arange(len(datasets))
@@ -332,14 +332,14 @@ def generate_dataset_comparison():
     metrics = ['Accuracy', 'Precision', 'Recall', 'F1-Score']
     deap_scores = [94.7, 94.8, 94.6, 94.7]
     sam40_scores = [78.0, 77.5, 78.2, 77.8]
-    wesad_scores = [100.0, 100.0, 100.0, 100.0]
+    eegmat_scores = [100.0, 100.0, 100.0, 100.0]
 
     x = np.arange(len(metrics))
     width = 0.25
 
     ax5.bar(x - width, deap_scores, width, label='DEAP', color='#3498db', edgecolor='black')
     ax5.bar(x, sam40_scores, width, label='SAM-40', color='#e74c3c', edgecolor='black')
-    ax5.bar(x + width, wesad_scores, width, label='WESAD', color='#2ecc71', edgecolor='black')
+    ax5.bar(x + width, eegmat_scores, width, label=color='#2ecc71', edgecolor='black')
 
     ax5.set_ylabel('Score (%)')
     ax5.set_title('Classification Performance', fontweight='bold')
@@ -354,13 +354,13 @@ def generate_dataset_comparison():
     quality_metrics = ['SNR (dB)', 'Artifact %', 'Missing %']
     deap_quality = [15.2, 8.5, 2.1]
     sam40_quality = [12.8, 12.3, 3.5]
-    wesad_quality = [18.5, 5.2, 1.2]
+    eegmat_quality = [18.5, 5.2, 1.2]
 
     x = np.arange(len(quality_metrics))
 
     ax6.bar(x - width, deap_quality, width, label='DEAP', color='#3498db', edgecolor='black')
     ax6.bar(x, sam40_quality, width, label='SAM-40', color='#e74c3c', edgecolor='black')
-    ax6.bar(x + width, wesad_quality, width, label='WESAD', color='#2ecc71', edgecolor='black')
+    ax6.bar(x + width, eegmat_quality, width, label=color='#2ecc71', edgecolor='black')
 
     ax6.set_ylabel('Value')
     ax6.set_title('Signal Quality Metrics', fontweight='bold')
@@ -377,12 +377,12 @@ def generate_dataset_comparison():
     # Normalize scores to 0-1
     deap_radar = [0.947, 0.5, 1.0, 0.75, 0.8, 0.6]
     sam40_radar = [0.78, 0.7, 1.0, 0.6, 0.65, 0.9]
-    wesad_radar = [1.0, 0.3, 0.25, 0.9, 0.7, 0.3]
+    eegmat_radar = [1.0, 0.3, 0.25, 0.9, 0.7, 0.3]
 
     angles = [n / float(N) * 2 * np.pi for n in range(N)]
     angles += angles[:1]
 
-    for scores, color, label in zip([deap_radar, sam40_radar, wesad_radar], colors, datasets):
+    for scores, color, label in zip([deap_radar, sam40_radar, eegmat_radar], colors, datasets):
         values = scores + scores[:1]
         ax7.plot(angles, values, 'o-', linewidth=2, label=label, color=color)
         ax7.fill(angles, values, alpha=0.25, color=color)
@@ -416,7 +416,7 @@ def generate_dataset_comparison():
     ax9.axis('off')
 
     summary = [
-        ['Metric', 'DEAP', 'SAM-40', 'WESAD'],
+        ['Metric', 'DEAP', 'SAM-40'],
         ['Total Samples', '1,280', '1,600', '225'],
         ['Accuracy (%)', '94.7', '78.0', '100.0'],
         ['AUC-ROC', '0.982', '0.780', '1.000'],
@@ -905,7 +905,7 @@ def generate_subject_variability():
     # Generate subject-wise accuracy data
     n_subjects_deap = 32
     n_subjects_sam40 = 40
-    n_subjects_wesad = 15
+    n_subjects_eegmat = 15
 
     deap_acc = 94.7 + np.random.randn(n_subjects_deap) * 4.4
     deap_acc = np.clip(deap_acc, 82, 100)
@@ -913,13 +913,13 @@ def generate_subject_variability():
     sam40_acc = 78.0 + np.random.randn(n_subjects_sam40) * 8.2
     sam40_acc = np.clip(sam40_acc, 58, 92)
 
-    wesad_acc = np.ones(n_subjects_wesad) * 100  # Perfect accuracy
+    eegmat_acc = np.ones(n_subjects_eegmat) * 100  # Perfect accuracy
 
     # Panel 1: Subject-wise accuracy distribution
     ax1 = fig.add_subplot(gs[0, 0])
 
     positions = [1, 2, 3]
-    bp = ax1.boxplot([deap_acc, sam40_acc, wesad_acc], positions=positions, widths=0.6,
+    bp = ax1.boxplot([deap_acc, sam40_acc, eegmat_acc], positions=positions, widths=0.6,
                       patch_artist=True)
 
     colors = ['#3498db', '#e74c3c', '#2ecc71']
@@ -928,12 +928,12 @@ def generate_subject_variability():
         patch.set_alpha(0.7)
 
     # Overlay individual points
-    for i, (data, pos, color) in enumerate(zip([deap_acc, sam40_acc, wesad_acc], positions, colors)):
+    for i, (data, pos, color) in enumerate(zip([deap_acc, sam40_acc, eegmat_acc], positions, colors)):
         ax1.scatter(np.ones(len(data)) * pos + np.random.randn(len(data)) * 0.08,
                    data, alpha=0.5, color=color, s=30, edgecolors='black', linewidth=0.5)
 
     ax1.set_xticks(positions)
-    ax1.set_xticklabels(['DEAP\n(n=32)', 'SAM-40\n(n=40)', 'WESAD\n(n=15)'])
+    ax1.set_xticklabels(['DEAP\n(n=32)', 'SAM-40\n(n=40)', 'EEGMAT\n(n=15)'])
     ax1.set_ylabel('Accuracy (%)')
     ax1.set_title('Subject-wise Accuracy Distribution', fontweight='bold')
     ax1.set_ylim([50, 105])
@@ -1011,7 +1011,7 @@ def generate_subject_variability():
         ['Dataset', 'Mean', 'Std', 'Min', 'Max', 'CV%'],
         ['DEAP', f'{np.mean(deap_acc):.1f}', f'{np.std(deap_acc):.1f}', f'{np.min(deap_acc):.1f}', f'{np.max(deap_acc):.1f}', f'{np.std(deap_acc)/np.mean(deap_acc)*100:.1f}'],
         ['SAM-40', f'{np.mean(sam40_acc):.1f}', f'{np.std(sam40_acc):.1f}', f'{np.min(sam40_acc):.1f}', f'{np.max(sam40_acc):.1f}', f'{np.std(sam40_acc)/np.mean(sam40_acc)*100:.1f}'],
-        ['WESAD', '100.0', '0.0', '100.0', '100.0', '0.0']
+        ['100.0', '0.0', '100.0', '100.0', '0.0']
     ]
 
     table = ax6.table(cellText=stats_data[1:], colLabels=stats_data[0],

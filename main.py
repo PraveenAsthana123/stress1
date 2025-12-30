@@ -18,7 +18,6 @@ EXPECTED RESULTS (99% Accuracy Target)
     | Dataset | Accuracy | AUC-ROC | F1-Score | Subjects |
     |---------|----------|---------|----------|----------|
     | SAM-40  | 99.0%    | 0.995   | 0.990    | 40       |
-    | WESAD   | 99.0%    | 0.998   | 0.990    | 15       |
     | EEGMAT  | 99.0%    | 0.995   | 0.990    | 36       |
 
 ================================================================================
@@ -182,7 +181,6 @@ def print_startup_banner():
 
     print(f"\n  {Colors.BOLD}Expected Results (99% Accuracy):{Colors.ENDC}")
     print(f"    SAM-40:  {Colors.GREEN}99.0%{Colors.ENDC} accuracy, 0.995 AUC-ROC")
-    print(f"    WESAD:   {Colors.GREEN}99.0%{Colors.ENDC} accuracy, 0.998 AUC-ROC")
     print(f"    EEGMAT:  {Colors.GREEN}99.0%{Colors.ENDC} accuracy, 0.995 AUC-ROC")
     print()
 
@@ -607,7 +605,7 @@ def main():
     parser.add_argument(
         "--dataset",
         type=str,
-        choices=["sam40", "wesad", "eegmat"],
+        choices=["sam40", "eegmat", "eegmat"],
         default="sam40",
         help="Dataset to use (default: sam40)"
     )

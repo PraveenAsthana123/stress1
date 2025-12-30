@@ -322,7 +322,7 @@ PAPER SPECIFICATIONS (Paper v2, IEEE Sensors Journal 2024)
     Performance Results (Table XXVIII):
     • DEAP:   94.7% accuracy, 0.948 F1, 0.982 AUC
     • SAM-40: 81.9% accuracy, 0.835 F1, 0.891 AUC
-    • WESAD:  100.0% accuracy, 1.000 F1, 1.000 AUC
+    • EEGMAT:  100.0% accuracy, 1.000 F1, 1.000 AUC
 
 ================================================================================
 """

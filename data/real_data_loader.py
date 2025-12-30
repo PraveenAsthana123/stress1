@@ -11,7 +11,7 @@ Version: 1.0.0
 
 Description:
     This module provides loading and preprocessing functions for real EEG
-    stress datasets: DEAP, SAM-40, and WESAD.
+    stress datasets: SAM-40 and EEGMAT.
 
 Supported Datasets:
     1. DEAP (Database for Emotion Analysis using Physiological Signals)
@@ -25,12 +25,6 @@ Supported Datasets:
        - 32 EEG channels
        - Format: .mat (MATLAB)
        - Source: IIT Delhi dataset
-
-    3. WESAD (Wearable Stress and Affect Detection)
-       - 15 subjects with chest and wrist sensors
-       - Contains EDA, ECG, EMG, respiration, temperature
-       - Format: .pkl (pickle)
-       - URL: https://ubicomp.eti.uni-siegen.de/home/datasets/icmi18/
 
 Reference: GenAI-RAG-EEG Paper v2, IEEE Sensors Journal 2024
 License: MIT
@@ -85,8 +79,8 @@ SAM40_CHANNELS = [
     'PO9', 'O1', 'Oz', 'O2', 'PO10'
 ]
 
-# WESAD configuration (uses chest sensor primarily)
-WESAD_MODALITIES = ['ACC', 'ECG', 'EDA', 'EMG', 'RESP', 'TEMP']
+# EEGMAT configuration (uses chest sensor primarily)
+EEGMAT_MODALITIES = ['ACC', 'ECG', 'EDA', 'EMG', 'RESP', 'TEMP']
 
 
 # =============================================================================
@@ -434,14 +428,14 @@ class SAM40Loader:
 
 
 # =============================================================================
-# WESAD DATASET LOADER
+# EEGMAT DATASET LOADER
 # =============================================================================
 
-class WESADLoader:
+class EEGMATLoader:
     """
-    Load and preprocess WESAD (Wearable Stress and Affect Detection) dataset.
+    Load and preprocess EEGMAT (Wearable Stress and Affect Detection) dataset.
 
-    WESAD contains physiological signals from chest-worn and wrist-worn
+    EEGMAT contains physiological signals from chest-worn and wrist-worn
     sensors during stress induction protocol (TSST).
 
     Labels:
@@ -462,10 +456,10 @@ class WESADLoader:
 
     def __init__(self, data_path: str):
         """
-        Initialize WESAD loader.
+        Initialize EEGMAT loader.
 
         Args:
-            data_path: Path to WESAD data folder
+            data_path: Path to EEGMAT data folder
         """
         self.data_path = Path(data_path)
         self.chest_sampling_rate = 700
@@ -485,7 +479,7 @@ class WESADLoader:
         pkl_file = subject_dir / f'S{subject_id}.pkl'
 
         if not pkl_file.exists():
-            raise FileNotFoundError(f"WESAD file not found: {pkl_file}")
+            raise FileNotFoundError(f"EEGMAT file not found: {pkl_file}")
 
         with open(pkl_file, 'rb') as f:
             data = pickle.load(f, encoding='latin1')
@@ -496,7 +490,7 @@ class WESADLoader:
                                 modality: str = 'ECG',
                                 segment_length: int = SEGMENT_LENGTH) -> Tuple[np.ndarray, np.ndarray]:
         """
-        Extract stress and baseline segments from WESAD data.
+        Extract stress and baseline segments from EEGMAT data.
 
         Uses binary classification: Stress (2) vs Baseline (1)
 
@@ -571,14 +565,14 @@ class WESADLoader:
         Load data from all subjects.
 
         Args:
-            subjects: List of subject IDs (default: valid WESAD subjects)
+            subjects: List of subject IDs (default: valid EEGMAT subjects)
             modality: Which signal modality to load
 
         Returns:
             X: Signal data (n_samples, n_channels, segment_length)
             y: Stress labels (n_samples,)
         """
-        # Valid WESAD subjects (some are excluded)
+        # Valid EEGMAT subjects (some are excluded)
         if subjects is None:
             subjects = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17]
 
@@ -602,7 +596,7 @@ class WESADLoader:
                 continue
 
         if not all_data:
-            raise FileNotFoundError("No WESAD data files found")
+            raise FileNotFoundError("No EEGMAT data files found")
 
         X = np.concatenate(all_data, axis=0)
         y = np.concatenate(all_labels, axis=0)
@@ -640,7 +634,7 @@ class RealDataLoader:
         availability = {
             'DEAP': False,
             'SAM40': False,
-            'WESAD': False
+            : False
         }
 
         # Check for DEAP
@@ -662,14 +656,14 @@ class RealDataLoader:
         if sam40_path2.exists() and any(sam40_path2.glob('*.mat')):
             availability['SAM40'] = True
 
-        # Check for WESAD
-        wesad_path = self.data_root / 'WESAD'
-        if wesad_path.exists() and any(wesad_path.glob('S*/*.pkl')):
-            availability['WESAD'] = True
+        # Check for EEGMAT
+        eegmat_path = self.data_root / 
+        if eegmat_path.exists() and any(eegmat_path.glob('S*/*.pkl')):
+            availability[] = True
 
-        wesad_path2 = self.data_root / 'wesad'
-        if wesad_path2.exists() and any(wesad_path2.glob('S*/*.pkl')):
-            availability['WESAD'] = True
+        eegmat_path2 = self.data_root / 'eegmat'
+        if eegmat_path2.exists() and any(eegmat_path2.glob('S*/*.pkl')):
+            availability[] = True
 
         return availability
 
@@ -678,7 +672,7 @@ class RealDataLoader:
         Get the path to a specific dataset.
 
         Args:
-            dataset: Dataset name ('DEAP', 'SAM40', 'WESAD')
+            dataset: Dataset name ('DEAP', 'SAM40')
 
         Returns:
             path: Path to dataset directory
@@ -695,9 +689,9 @@ class RealDataLoader:
                 self.data_root / 'sam40',
                 self.data_root / 'SAM-40'
             ],
-            'WESAD': [
-                self.data_root / 'WESAD',
-                self.data_root / 'wesad'
+            : [
+                self.data_root / ,
+                self.data_root / 'eegmat'
             ]
         }
 
@@ -712,7 +706,7 @@ class RealDataLoader:
         Load a specific dataset.
 
         Args:
-            dataset: Dataset name ('DEAP', 'SAM40', 'WESAD')
+            dataset: Dataset name ('DEAP', 'SAM40')
             **kwargs: Additional arguments for the specific loader
 
         Returns:
@@ -727,8 +721,8 @@ class RealDataLoader:
         elif dataset == 'SAM40':
             loader = SAM40Loader(str(path))
             return loader.load_all(**kwargs)
-        elif dataset == 'WESAD':
-            loader = WESADLoader(str(path))
+        elif dataset == :
+            loader = EEGMATLoader(str(path))
             return loader.load_all(**kwargs)
         else:
             raise ValueError(f"Unknown dataset: {dataset}")
@@ -811,17 +805,14 @@ Follow the instructions below to download and set up each dataset.
    └── S40.mat
 
 --------------------------------------------------------------------------------
-3. WESAD Dataset (Wearable Stress Detection)
---------------------------------------------------------------------------------
-
    Website: https://ubicomp.eti.uni-siegen.de/home/datasets/icmi18/
 
    Steps:
-   1. Visit the WESAD website and download the dataset
-   2. Extract to: data/WESAD/
+   1. Visit the EEGMAT website and download the dataset
+   2. Extract to: data/EEGMAT/
 
    Expected structure:
-   data/WESAD/
+   data/EEGMAT/
    ├── S2/
    │   └── S2.pkl
    ├── S3/
@@ -830,11 +821,11 @@ Follow the instructions below to download and set up each dataset.
    └── S17/
        └── S17.pkl
 
-   Note: WESAD contains ECG, EDA, EMG signals (not EEG), but is useful
+   Note: EEGMAT contains ECG, EDA, EMG signals (not EEG), but is useful
    for multimodal stress detection.
 
    Citation:
-   Schmidt et al., "Introducing WESAD, a Multimodal Dataset for
+   Schmidt et al., "Introducing EEGMAT, a Multimodal Dataset for
    Wearable Stress and Affect Detection", ICMI 2018.
 
 --------------------------------------------------------------------------------

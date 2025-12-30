@@ -44,14 +44,14 @@ def save_figure(fig, name):
 # FIGURE 10: ROC Curves for All Datasets
 # ============================================================================
 def generate_roc_curves():
-    """Generate ROC curves for DEAP, SAM-40, and WESAD datasets"""
+    """Generate ROC curves for SAM-40 and EEGMAT datasets"""
     fig, axes = plt.subplots(1, 3, figsize=(12, 4))
 
     # Simulated ROC data based on paper metrics
     datasets = {
         'DEAP': {'auc': 0.982, 'color': '#2ecc71'},
         'SAM-40': {'auc': 0.780, 'color': '#3498db'},
-        'WESAD': {'auc': 1.000, 'color': '#e74c3c'}
+        : {'auc': 1.000, 'color': '#e74c3c'}
     }
 
     for idx, (name, info) in enumerate(datasets.items()):
@@ -112,7 +112,7 @@ def generate_confusion_matrices():
     cms = {
         'DEAP': np.array([[302, 18], [16, 304]]),      # 94.7% acc
         'SAM-40': np.array([[164, 36], [16, 184]]),    # 87.0% acc
-        'WESAD': np.array([[150, 0], [0, 150]])         # 100% acc
+        : np.array([[150, 0], [0, 150]])         # 100% acc
     }
 
     colors = ['#2ecc71', '#3498db', '#e74c3c']
@@ -158,7 +158,7 @@ def generate_training_curves():
     fig, axes = plt.subplots(2, 3, figsize=(12, 7))
 
     epochs = np.arange(1, 101)
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     colors = {'train': '#3498db', 'val': '#e74c3c'}
 
     # Simulated training dynamics
@@ -269,7 +269,7 @@ def generate_loso_boxplots():
     """Generate box plots for Leave-One-Subject-Out cross-validation"""
     fig, axes = plt.subplots(1, 3, figsize=(12, 5))
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     n_subjects = [32, 40, 15]
     mean_acc = [94.7, 81.9, 100.0]
     std_acc = [2.1, 2.0, 0.0]
@@ -322,7 +322,7 @@ def generate_tsne_visualization():
 
     np.random.seed(42)
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     separations = [3.5, 2.0, 6.0]  # Based on classification performance
 
     for idx, (name, sep) in enumerate(zip(datasets, separations)):
@@ -559,7 +559,7 @@ def generate_pr_curves():
     datasets = {
         'DEAP': {'ap': 0.978, 'color': '#2ecc71'},
         'SAM-40': {'ap': 0.856, 'color': '#3498db'},
-        'WESAD': {'ap': 1.000, 'color': '#e74c3c'}
+        : {'ap': 1.000, 'color': '#e74c3c'}
     }
 
     for idx, (name, info) in enumerate(datasets.items()):

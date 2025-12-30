@@ -2,7 +2,7 @@
 """
 Multi-Dataset EEG Stress Analysis
 
-Runs comprehensive analysis on SAM-40 and WESAD datasets
+Runs comprehensive analysis on SAM-40 and EEGMAT datasets
 and generates synchronized results for paper tables.
 """
 
@@ -262,17 +262,17 @@ def main():
     except Exception as e:
         print(f"Error loading SAM-40: {e}")
 
-    # 2. Load and analyze WESAD
+    # 2. Load and analyze EEGMAT
     print("\n" + "="*60)
-    print("Loading WESAD Dataset...")
+    print("Loading EEGMAT Dataset...")
     try:
-        from data.wesad_loader import load_wesad_dataset
-        wesad_data, wesad_labels, wesad_meta = load_wesad_dataset(binary=True)
-        wesad_results = analyze_dataset(wesad_data, wesad_labels, "WESAD", fs=256)
-        results["datasets"]["WESAD"] = wesad_results
-        results["metadata"]["datasets"].append("WESAD")
+        from data.eegmat_loader import load_eegmat_dataset
+        eegmat_data, eegmat_labels, eegmat_meta = load_eegmat_dataset(binary=True)
+        eegmat_results = analyze_dataset(eegmat_data, eegmat_labels, fs=256)
+        results["datasets"][] = eegmat_results
+        results["metadata"]["datasets"].append()
     except Exception as e:
-        print(f"Error loading WESAD: {e}")
+        print(f"Error loading EEGMAT: {e}")
 
     # 3. Generate summary statistics
     if results["datasets"]:

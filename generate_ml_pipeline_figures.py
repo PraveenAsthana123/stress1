@@ -473,7 +473,7 @@ def generate_eda_visualization():
     ax9 = fig.add_subplot(gs[2, 0:2])
     ax9.axis('off')
     summary_data = [
-        ['Statistic', 'DEAP', 'SAM-40', 'WESAD'],
+        ['Statistic', 'DEAP', 'SAM-40'],
         ['Subjects', '32', '40', '15'],
         ['Samples', '1,280', '1,200', '984'],
         ['Channels', '32', '32', '32'],
@@ -1160,7 +1160,7 @@ def generate_evaluation_dashboard():
 
     # 9. Cross-dataset evaluation
     ax9 = fig.add_subplot(gs[2, 0:2])
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
     metrics_names = ['Accuracy', 'F1-Score', 'AUC-ROC', 'MCC']
     data = np.array([
         [94.7, 94.7, 98.2, 89.4],

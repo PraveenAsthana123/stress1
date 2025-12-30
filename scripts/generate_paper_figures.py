@@ -199,13 +199,13 @@ class FigureGenerator:
         """Generate classification performance comparison."""
         fig, axes = plt.subplots(1, 3, figsize=(14, 5))
 
-        datasets = ['SAM-40', 'WESAD', 'EEGMAT']
+        datasets = ['SAM-40', 'EEGMAT']
         metrics = ['Accuracy', 'F1-Score', 'AUC-ROC']
 
         # Performance data
         performance = {
             'SAM-40': [0.99, 0.987, 0.995],
-            'WESAD': [0.99, 0.99, 0.998],
+            : [0.99, 0.99, 0.998],
             'EEGMAT': [0.49, 0.48, 0.52],  # Cross-paradigm shows chance level
         }
 
@@ -240,12 +240,12 @@ class FigureGenerator:
         """Generate confusion matrices for all datasets."""
         fig, axes = plt.subplots(1, 3, figsize=(14, 4.5))
 
-        datasets = ['SAM-40', 'WESAD', 'EEGMAT']
+        datasets = ['SAM-40', 'EEGMAT']
 
         # Confusion matrix data (TN, FP, FN, TP format reshaped to 2x2)
         matrices = {
             'SAM-40': np.array([[395, 4], [4, 397]]),
-            'WESAD': np.array([[198, 0], [0, 202]]),
+            : np.array([[198, 0], [0, 202]]),
             'EEGMAT': np.array([[180, 170], [175, 175]]),  # Near chance
         }
 
@@ -294,7 +294,7 @@ class FigureGenerator:
 
         datasets = {
             'SAM-40 (AUC=0.995)': {'auc': 0.995, 'color': self.colors['primary']},
-            'WESAD (AUC=0.998)': {'auc': 0.998, 'color': self.colors['secondary']},
+            'EEGMAT (AUC=0.998)': {'auc': 0.998, 'color': self.colors['secondary']},
             'EEGMAT (AUC=0.520)': {'auc': 0.52, 'color': self.colors['accent']},
         }
 
@@ -342,7 +342,7 @@ class FigureGenerator:
                 'relaxed': [0.35, 0.25, 0.28, 0.08, 0.04],
                 'stressed': [0.30, 0.30, 0.19, 0.14, 0.07]
             },
-            'WESAD': {
+            : {
                 'relaxed': [0.32, 0.22, 0.30, 0.10, 0.06],
                 'stressed': [0.28, 0.28, 0.20, 0.16, 0.08]
             },
@@ -390,7 +390,7 @@ class FigureGenerator:
 
         # Left: Alpha power comparison
         ax1 = axes[0]
-        datasets = ['SAM-40', 'WESAD', 'EEGMAT']
+        datasets = ['SAM-40', 'EEGMAT']
         relaxed = [0.28, 0.30, 0.27]
         stressed = [0.19, 0.20, 0.18]
 
@@ -455,7 +455,7 @@ class FigureGenerator:
 
         datasets = {
             'SAM-40': {'n_subjects': 40, 'mean': 0.99, 'std': 0.01},
-            'WESAD': {'n_subjects': 15, 'mean': 0.99, 'std': 0.008},
+            : {'n_subjects': 15, 'mean': 0.99, 'std': 0.008},
             'EEGMAT': {'n_subjects': 36, 'mean': 0.49, 'std': 0.05},
         }
 
@@ -627,7 +627,7 @@ class FigureGenerator:
 
         np.random.seed(42)
 
-        datasets = ['SAM-40', 'WESAD', 'EEGMAT']
+        datasets = ['SAM-40', 'EEGMAT']
         separations = [3.5, 4.0, 0.3]  # EEGMAT shows no separation
 
         for idx, (name, sep) in enumerate(zip(datasets, separations)):
@@ -668,7 +668,7 @@ class FigureGenerator:
         table_data = [
             ['Dataset', 'Subjects', 'Channels', 'Sampling Rate', 'Stress Paradigm', 'Samples'],
             ['SAM-40', '40', '32', '128 Hz', 'Cognitive (Stroop)', '800'],
-            ['WESAD', '15', '14', '700 Hz', 'TSST Protocol', '400'],
+            ['15', '14', '700 Hz', 'TSST Protocol', '400'],
             ['EEGMAT', '36', '21', '500 Hz', 'Mental Arithmetic', '720'],
         ]
 
@@ -740,7 +740,7 @@ class FigureGenerator:
         ax.axis('off')
 
         table_data = [
-            ['Method', 'SAM-40 Acc', 'WESAD Acc', 'EEGMAT Acc', 'Params', 'Explainable'],
+            ['Method', 'SAM-40 Acc', 'EEGMAT Acc', 'EEGMAT Acc', 'Params', 'Explainable'],
             ['SVM + CSP', '84.7%', '82.3%', '78.2%', '-', 'No'],
             ['Random Forest', '86.2%', '84.1%', '79.8%', '-', 'Partial'],
             ['EEGNet', '91.3%', '89.7%', '82.4%', '2.6K', 'No'],

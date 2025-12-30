@@ -11,7 +11,7 @@ Version: 1.0.0
 
 Description:
     This module generates synthetic EEG data for testing the GenAI-RAG-EEG
-    pipeline without requiring access to real datasets (DEAP, SAM-40, WESAD).
+    pipeline without requiring access to real datasets (DEAP, SAM-40, EEGMAT).
 
     The synthetic data mimics key characteristics of real EEG:
     - Realistic frequency components (alpha, beta, theta, delta, gamma)

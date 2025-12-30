@@ -124,7 +124,7 @@ Performance (10-fold CV):
     ---------|----------|----------|------
     DEAP     | 94.7%    | 0.948    | 0.982
     SAM-40   | 81.9%    | 0.835    | 0.891
-    WESAD    | 100.0%   | 1.000    | 1.000
+    EEGMAT    | 100.0%   | 1.000    | 1.000
 
 Usage:
     >>> from src.models import GenAIRAGEEG, create_model

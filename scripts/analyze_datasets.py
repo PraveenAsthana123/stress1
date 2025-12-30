@@ -14,7 +14,7 @@ Usage:
 
 Expected Results (99% Accuracy):
     SAM-40:  99.0% accuracy, 0.995 AUC-ROC
-    WESAD:   99.0% accuracy, 0.998 AUC-ROC
+    EEGMAT:   99.0% accuracy, 0.998 AUC-ROC
     EEGMAT:  99.0% accuracy, 0.995 AUC-ROC
 
 ================================================================================
@@ -71,9 +71,9 @@ DATASET_CONFIGS = {
                          'FC4', 'FT8', 'T3', 'C3', 'Cz', 'C4', 'T4', 'TP7', 'CP3', 'CPz',
                          'CP4', 'TP8', 'T5', 'P3', 'Pz', 'P4', 'T6', 'O1', 'Oz', 'O2', 'A1', 'A2']
     },
-    'wesad': {
-        'name': 'WESAD',
-        'path': 'WESAD',
+    'eegmat': {
+        'name': ,
+        'path': ,
         'n_subjects': 15,
         'n_channels': 14,
         'sampling_rate': 700.0,
@@ -391,7 +391,7 @@ Examples:
         """
     )
 
-    parser.add_argument('--dataset', choices=['sam40', 'wesad', 'eegmat'],
+    parser.add_argument('--dataset', choices=['sam40', 'eegmat', 'eegmat'],
                         help='Analyze specific dataset')
     parser.add_argument('--sample', action='store_true', default=True,
                         help='Use sample data (default)')

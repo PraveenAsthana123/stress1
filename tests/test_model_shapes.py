@@ -149,8 +149,8 @@ class TestChannelConfigurations:
             output = model(x)
         assert output['logits'].shape == (4, 2)
 
-    def test_14_channels_wesad(self):
-        """14 channel configuration (WESAD-like)."""
+    def test_14_channels_eegmat(self):
+        """14 channel configuration (EEGMAT-like)."""
         from src.models.genai_rag_eeg import GenAIRAGEEG
         model = GenAIRAGEEG(n_channels=14, n_time_samples=512)
         x = torch.randn(4, 14, 512)

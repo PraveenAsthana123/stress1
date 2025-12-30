@@ -86,7 +86,7 @@ class TestPhase1DataLoading:
 
     def test_sample_data_exists(self):
         """Test that sample data files exist."""
-        datasets = ['SAM40', 'WESAD', 'EEGMAT']
+        datasets = ['SAM40', 'EEGMAT']
         for dataset in datasets:
             sample_dir = PROJECT_ROOT / "data" / dataset / "sample_100"
             npz_files = list(sample_dir.glob("*.npz"))
@@ -122,7 +122,7 @@ class TestPhase1DataLoading:
 
     def test_metadata_exists(self):
         """Test metadata.json exists for sample data."""
-        datasets = ['SAM40', 'WESAD', 'EEGMAT']
+        datasets = ['SAM40', 'EEGMAT']
         for dataset in datasets:
             metadata_path = PROJECT_ROOT / "data" / dataset / "sample_100" / "metadata.json"
             if (PROJECT_ROOT / "data" / dataset / "sample_100").exists():
@@ -451,9 +451,9 @@ class TestExpectedResults:
         """Test SAM-40 expected accuracy."""
         assert EXPECTED_ACCURACY >= 0.99, "SAM-40 accuracy should be >= 99%"
 
-    def test_wesad_accuracy(self):
-        """Test WESAD expected accuracy."""
-        assert EXPECTED_ACCURACY >= 0.99, "WESAD accuracy should be >= 99%"
+    def test_eegmat_accuracy(self):
+        """Test EEGMAT expected accuracy."""
+        assert EXPECTED_ACCURACY >= 0.99, "EEGMAT accuracy should be >= 99%"
 
     def test_eegmat_accuracy(self):
         """Test EEGMAT expected accuracy."""

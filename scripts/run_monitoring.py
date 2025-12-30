@@ -507,7 +507,7 @@ def run_phases_8_11_analysis(demo: bool = True):
         benchmark_scores = [
             {"model": "GenAI-RAG-EEG", "dataset": "SAM-40", "metric": "accuracy",
              "score": 0.99, "baseline": 0.85, "sota": 0.97},
-            {"model": "GenAI-RAG-EEG", "dataset": "WESAD", "metric": "accuracy",
+            {"model": "GenAI-RAG-EEG", "dataset": "metric": "accuracy",
              "score": 0.99, "baseline": 0.82, "sota": 0.95},
         ]
 

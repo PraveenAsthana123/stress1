@@ -218,9 +218,9 @@ def generate_radar_chart():
     datasets = {
         'DEAP': [94.7, 94.3, 95.1, 94.7, 94.4, 98.2],
         'SAM-40': [81.9, 85.1, 92.0, 88.4, 51.7, 78.0],
-        'WESAD': [100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
+        : [100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
     }
-    colors = {'DEAP': '#3498db', 'SAM-40': '#2ecc71', 'WESAD': '#e74c3c'}
+    colors = {'DEAP': '#3498db', 'SAM-40': '#2ecc71': '#e74c3c'}
 
     # Compute angles
     angles = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
@@ -302,13 +302,13 @@ def generate_transfer_heatmap():
     """Generate cross-dataset transfer learning heatmap"""
     fig, ax = plt.subplots(figsize=(8, 6))
 
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
 
     # Transfer accuracy matrix (source -> target)
     transfer_matrix = np.array([
         [94.7, 68.5, 82.3],  # DEAP as source
         [71.2, 81.9, 75.8],  # SAM-40 as source
-        [79.4, 72.1, 100.0]  # WESAD as source
+        [79.4, 72.1, 100.0]  # EEGMAT as source
     ])
 
     # Create heatmap
@@ -455,12 +455,12 @@ def generate_multiclass_results():
     # Workload (3-class)
     ax1 = axes[0]
     classes_work = ['Low', 'Medium', 'High']
-    datasets = ['DEAP', 'SAM-40', 'WESAD']
+    datasets = ['DEAP', 'SAM-40']
 
     workload_acc = {
         'DEAP': [89.2, 85.1, 87.4],
         'SAM-40': [78.5, 74.2, 80.1],
-        'WESAD': [96.8, 94.5, 97.2]
+        : [96.8, 94.5, 97.2]
     }
 
     x = np.arange(len(classes_work))
@@ -491,7 +491,7 @@ def generate_multiclass_results():
     cognitive_acc = {
         'DEAP': [91.5, 83.2, 79.8, 75.1],
         'SAM-40': [82.1, 76.4, 71.2, 68.5],
-        'WESAD': [98.2, 95.1, 92.4, 89.8]
+        : [98.2, 95.1, 92.4, 89.8]
     }
 
     x = np.arange(len(classes_cog))

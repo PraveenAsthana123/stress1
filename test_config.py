@@ -82,7 +82,7 @@ def test_data_paths(config):
 
     datasets = [
         ("SAM-40", config.datasets.sam40),
-        ("WESAD", config.datasets.wesad),
+        (config.datasets.eegmat),
         ("EEGMAT", config.datasets.eegmat),
     ]
 
@@ -188,16 +188,16 @@ def test_expected_accuracy(config):
 
     logger.info("\n  Classification Accuracy (Paper Claims):")
     logger.info(f"    SAM-40:  {expected.sam40_accuracy}%")
-    logger.info(f"    WESAD:   {expected.wesad_accuracy}%")
+    logger.info(f"    EEGMAT:   {expected.eegmat_accuracy}%")
     logger.info(f"    EEGMAT:  {expected.eegmat_accuracy}%")
 
     logger.info("\n  Cross-Paradigm Transfer:")
-    logger.info(f"    SAM-40/WESAD → EEGMAT: {expected.transfer_to_eegmat}%")
-    logger.info(f"    SAM-40 ↔ WESAD: {expected.transfer_sam40_wesad}%")
+    logger.info(f"    SAM-40/EEGMAT → EEGMAT: {expected.transfer_to_eegmat}%")
+    logger.info(f"    SAM-40 ↔ EEGMAT: {expected.transfer_sam40_eegmat}%")
 
     logger.info("\n  AUC-ROC:")
     logger.info(f"    SAM-40:  {expected.sam40_auc}")
-    logger.info(f"    WESAD:   {expected.wesad_auc}")
+    logger.info(f"    EEGMAT:   {expected.eegmat_auc}")
     logger.info(f"    EEGMAT:  {expected.eegmat_auc}")
 
     logger.info("\n  Signal Analysis:")
@@ -211,7 +211,7 @@ def test_expected_accuracy(config):
     # Verify all accuracies are 99%
     accuracies_valid = (
         expected.sam40_accuracy == 99.0 and
-        expected.wesad_accuracy == 99.0 and
+        expected.eegmat_accuracy == 99.0 and
         expected.eegmat_accuracy == 99.0
     )
 
@@ -222,7 +222,7 @@ def test_expected_accuracy(config):
 
     return {
         'sam40_accuracy': expected.sam40_accuracy,
-        'wesad_accuracy': expected.wesad_accuracy,
+        'eegmat_accuracy': expected.eegmat_accuracy,
         'eegmat_accuracy': expected.eegmat_accuracy,
         'all_99_percent': accuracies_valid
     }

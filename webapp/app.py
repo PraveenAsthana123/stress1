@@ -82,7 +82,7 @@ PAPER_DATA = {
             "tasks": ["Stroop", "Arithmetic", "Mirror Tracing"],
             "validation": "NASA-TLX, SCR"
         },
-        "WESAD": {
+        : {
             "role": "Validation",
             "subjects": 15,
             "channels": 14,
@@ -112,7 +112,7 @@ PAPER_DATA = {
     "paper_results": {
         "DEAP": {"accuracy": 94.7, "f1": 94.3, "auc": 96.7, "ba": 94.5},
         "SAM-40": {"accuracy": 93.2, "f1": 92.8, "auc": 95.8, "ba": 93.1},
-        "WESAD": {"accuracy": 100.0, "f1": 100.0, "auc": 100.0, "ba": 100.0}
+        : {"accuracy": 100.0, "f1": 100.0, "auc": 100.0, "ba": 100.0}
     },
     "baselines": {
         "SVM (RBF)": {"accuracy": 74.8, "f1": 87.0, "auc": 65.0},
@@ -600,7 +600,7 @@ def get_full_report():
     report = {
         "generated_at": datetime.now().isoformat(),
         "status": "SUCCESS",
-        "datasets": ["SAM-40", "DEAP", "WESAD"]
+        "datasets": ["SAM-40", "DEAP"]
     }
 
     sync_path = results_dir / "paper_sync_report.json"
@@ -680,7 +680,7 @@ def get_precision_recall():
     pr_data = {
         'DEAP': {'ap': 0.962, 'precision': [1.0, 0.98, 0.96, 0.94, 0.92], 'recall': [0.0, 0.25, 0.5, 0.75, 1.0]},
         'SAM-40': {'ap': 0.951, 'precision': [1.0, 0.97, 0.95, 0.93, 0.90], 'recall': [0.0, 0.25, 0.5, 0.75, 1.0]},
-        'WESAD': {'ap': 1.000, 'precision': [1.0, 1.0, 1.0, 1.0, 1.0], 'recall': [0.0, 0.25, 0.5, 0.75, 1.0]}
+        : {'ap': 1.000, 'precision': [1.0, 1.0, 1.0, 1.0, 1.0], 'recall': [0.0, 0.25, 0.5, 0.75, 1.0]}
     }
     return jsonify(pr_data)
 
@@ -691,7 +691,7 @@ def get_calibration():
     calibration_data = {
         'DEAP': {'bins': [0.1, 0.3, 0.5, 0.7, 0.9], 'fraction_positive': [0.12, 0.31, 0.52, 0.68, 0.88]},
         'SAM-40': {'bins': [0.1, 0.3, 0.5, 0.7, 0.9], 'fraction_positive': [0.11, 0.29, 0.51, 0.71, 0.91]},
-        'WESAD': {'bins': [0.1, 0.3, 0.5, 0.7, 0.9], 'fraction_positive': [0.1, 0.3, 0.5, 0.7, 0.9]}
+        : {'bins': [0.1, 0.3, 0.5, 0.7, 0.9], 'fraction_positive': [0.1, 0.3, 0.5, 0.7, 0.9]}
     }
     return jsonify(calibration_data)
 
@@ -754,7 +754,7 @@ def get_power_analysis():
             '80': [0.50, 0.82, 0.96, 0.99, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
             '100': [0.58, 0.89, 0.98, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
         },
-        'achieved_power': {'DEAP': 0.99, 'SAM-40': 0.99, 'WESAD': 1.0}
+        'achieved_power': {'DEAP': 0.99, 'SAM-40': 0.99: 1.0}
     }
     return jsonify(power_data)
 
@@ -792,7 +792,7 @@ def get_cross_subject():
             'max': 98.7,
             'subjects_above_90': 32
         },
-        'WESAD': {
+        : {
             'n_subjects': 15,
             'mean_accuracy': 100.0,
             'std': 0.0,
@@ -1333,7 +1333,7 @@ def get_data_quality_analysis():
         "missing_data": {
             "SAM-40": {"completeness": 99.8, "nan_percentage": 0.2, "quality": "Excellent"},
             "DEAP": {"completeness": 99.5, "nan_percentage": 0.5, "quality": "Excellent"},
-            "WESAD": {"completeness": 99.9, "nan_percentage": 0.1, "quality": "Excellent"}
+            : {"completeness": 99.9, "nan_percentage": 0.1, "quality": "Excellent"}
         },
         "outlier_detection": {
             "method": "IQR",
@@ -1341,13 +1341,13 @@ def get_data_quality_analysis():
             "results": {
                 "SAM-40": {"outlier_pct": 2.3, "clean_data_pct": 97.7},
                 "DEAP": {"outlier_pct": 2.8, "clean_data_pct": 97.2},
-                "WESAD": {"outlier_pct": 1.9, "clean_data_pct": 98.1}
+                : {"outlier_pct": 1.9, "clean_data_pct": 98.1}
             }
         },
         "snr_estimation": {
             "SAM-40": {"snr_db": 18.5, "quality": "Good"},
             "DEAP": {"snr_db": 16.2, "quality": "Good"},
-            "WESAD": {"snr_db": 22.1, "quality": "Excellent"}
+            : {"snr_db": 22.1, "quality": "Excellent"}
         },
         "class_distribution": {
             "SAM-40": {
@@ -1358,7 +1358,7 @@ def get_data_quality_analysis():
                 "high_arousal": 640, "low_arousal": 640,
                 "imbalance_ratio": 1.0, "is_balanced": True
             },
-            "WESAD": {
+            : {
                 "stress": 492, "baseline": 492,
                 "imbalance_ratio": 1.0, "is_balanced": True
             }
@@ -1366,7 +1366,7 @@ def get_data_quality_analysis():
         "integrity_scores": {
             "SAM-40": {"completeness": 99.8, "outlier_score": 97.7, "balance": 100, "overall": 98.7, "grade": "A"},
             "DEAP": {"completeness": 99.5, "outlier_score": 97.2, "balance": 100, "overall": 98.4, "grade": "A"},
-            "WESAD": {"completeness": 99.9, "outlier_score": 98.1, "balance": 100, "overall": 99.1, "grade": "A"}
+            : {"completeness": 99.9, "outlier_score": 98.1, "balance": 100, "overall": 99.1, "grade": "A"}
         }
     })
 
@@ -1392,7 +1392,7 @@ def get_accuracy_analysis():
                 "ppv": 93.1, "npv": 93.8, "mcc": 0.864, "cohen_kappa": 0.864,
                 "auc_roc": 95.8, "brier_score": 0.062, "log_loss": 0.178
             },
-            "WESAD": {
+            : {
                 "accuracy": 100.0, "precision": 100.0, "recall": 100.0, "f1_score": 100.0,
                 "specificity": 100.0, "sensitivity": 100.0, "balanced_accuracy": 100.0,
                 "ppv": 100.0, "npv": 100.0, "mcc": 1.0, "cohen_kappa": 1.0,

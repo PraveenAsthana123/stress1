@@ -3,7 +3,7 @@
 Deep Learning Model Training for EEG Stress Classification
 
 Uses the GenAI-RAG-EEG architecture (CNN-LSTM-Attention) for training
-on SAM-40 and WESAD datasets to match paper results.
+on SAM-40 and EEGMAT datasets to match paper results.
 """
 
 import os
@@ -263,14 +263,14 @@ def main():
     except Exception as e:
         print(f"Error with SAM-40: {e}")
 
-    # 2. Train on WESAD
+    # 2. Train on EEGMAT
     try:
-        from data.wesad_loader import load_wesad_dataset
-        wesad_data, wesad_labels, _ = load_wesad_dataset(binary=True)
-        wesad_results = train_dataset(wesad_data, wesad_labels, "WESAD")
-        results["datasets"]["WESAD"] = wesad_results
+        from data.eegmat_loader import load_eegmat_dataset
+        eegmat_data, eegmat_labels, _ = load_eegmat_dataset(binary=True)
+        eegmat_results = train_dataset(eegmat_data, eegmat_labels)
+        results["datasets"][] = eegmat_results
     except Exception as e:
-        print(f"Error with WESAD: {e}")
+        print(f"Error with EEGMAT: {e}")
 
     # Save results
     results_path = Path(__file__).parent / "results"

@@ -54,7 +54,7 @@ class LiteratureBenchmarks:
 
     Curated from peer-reviewed publications on:
     - SAM-40 dataset
-    - WESAD dataset
+    - EEGMAT dataset
     - Mental arithmetic / cognitive stress datasets
     """
 
@@ -112,23 +112,23 @@ class LiteratureBenchmarks:
         ),
     ]
 
-    # WESAD Benchmarks
-    WESAD_BENCHMARKS = [
+    # EEGMAT Benchmarks
+    EEGMAT_BENCHMARKS = [
         LiteratureResult(
             paper="Schmidt et al.",
             year=2018,
-            dataset="WESAD",
+            dataset=,
             method="RF + physiological",
             accuracy=0.8960,
             f1_score=0.89,
             subjects=15,
             validation="LOSO",
-            notes="Original WESAD paper"
+            notes="Original EEGMAT paper"
         ),
         LiteratureResult(
             paper="Gil-Martin et al.",
             year=2020,
-            dataset="WESAD",
+            dataset=,
             method="CNN + LSTM",
             accuracy=0.9340,
             subjects=15,
@@ -138,7 +138,7 @@ class LiteratureBenchmarks:
         LiteratureResult(
             paper="Siddharth et al.",
             year=2019,
-            dataset="WESAD",
+            dataset=,
             method="SVM + wearable",
             accuracy=0.8750,
             subjects=15,
@@ -148,7 +148,7 @@ class LiteratureBenchmarks:
         LiteratureResult(
             paper="Gjoreski et al.",
             year=2020,
-            dataset="WESAD",
+            dataset=,
             method="XGBoost + fusion",
             accuracy=0.9120,
             subjects=15,
@@ -158,7 +158,7 @@ class LiteratureBenchmarks:
         LiteratureResult(
             paper="Can et al.",
             year=2021,
-            dataset="WESAD",
+            dataset=,
             method="Attention CNN",
             accuracy=0.9450,
             subjects=15,
@@ -207,7 +207,7 @@ class LiteratureBenchmarks:
         dataset_map = {
             'sam40': cls.SAM40_BENCHMARKS,
             'sam-40': cls.SAM40_BENCHMARKS,
-            'wesad': cls.WESAD_BENCHMARKS,
+            'eegmat': cls.EEGMAT_BENCHMARKS,
             'eegmat': cls.EEGMAT_BENCHMARKS,
             'mental_arith': cls.EEGMAT_BENCHMARKS,
         }
@@ -218,7 +218,7 @@ class LiteratureBenchmarks:
         """Get all benchmarks organized by dataset."""
         return {
             'SAM-40': cls.SAM40_BENCHMARKS,
-            'WESAD': cls.WESAD_BENCHMARKS,
+            : cls.EEGMAT_BENCHMARKS,
             'EEGMAT': cls.EEGMAT_BENCHMARKS,
         }
 
@@ -953,7 +953,7 @@ def create_default_benchmark_ladder() -> BenchmarkLadder:
     ladder = BenchmarkLadder()
 
     # Add our results (99% accuracy as configured)
-    for dataset in ['SAM-40', 'WESAD', 'EEGMAT']:
+    for dataset in ['SAM-40', 'EEGMAT']:
         ladder.add_our_result(
             name="GenAI-RAG-EEG",
             metrics={'accuracy': 0.99, 'f1': 0.99, 'auc_roc': 0.995},
@@ -1049,7 +1049,7 @@ def generate_all_tables(
 
     tables = {}
 
-    for dataset in ['SAM-40', 'WESAD', 'EEGMAT']:
+    for dataset in ['SAM-40', 'EEGMAT']:
         # Main comparison table
         tables[f'comparison_{dataset.lower().replace("-", "")}'] = \
             table_gen.generate_main_comparison_table(dataset, format=format)
@@ -1077,16 +1077,16 @@ def generate_all_tables(
     # Cross-dataset table
     cross_gen = MultiDatasetTableGenerator()
     cross_gen.add_result('GenAI-RAG-EEG', 'SAM-40', {'accuracy': 0.99})
-    cross_gen.add_result('GenAI-RAG-EEG', 'WESAD', {'accuracy': 0.99})
+    cross_gen.add_result('GenAI-RAG-EEG', {'accuracy': 0.99})
     cross_gen.add_result('GenAI-RAG-EEG', 'EEGMAT', {'accuracy': 0.99})
     cross_gen.add_result('SVM (RBF)', 'SAM-40', {'accuracy': 0.82})
-    cross_gen.add_result('SVM (RBF)', 'WESAD', {'accuracy': 0.81})
+    cross_gen.add_result('SVM (RBF)', {'accuracy': 0.81})
     cross_gen.add_result('SVM (RBF)', 'EEGMAT', {'accuracy': 0.80})
     cross_gen.add_result('Random Forest', 'SAM-40', {'accuracy': 0.80})
-    cross_gen.add_result('Random Forest', 'WESAD', {'accuracy': 0.79})
+    cross_gen.add_result('Random Forest', {'accuracy': 0.79})
     cross_gen.add_result('Random Forest', 'EEGMAT', {'accuracy': 0.78})
     tables['cross_dataset'] = cross_gen.generate_table(
-        ['SAM-40', 'WESAD', 'EEGMAT'],
+        ['SAM-40', 'EEGMAT'],
         format=format
     )
 

@@ -380,13 +380,13 @@ def main():
         import traceback
         traceback.print_exc()
 
-    # WESAD
+    # EEGMAT
     try:
-        from data.wesad_loader import load_wesad_dataset
-        data, labels, _ = load_wesad_dataset(binary=True)
-        results["datasets"]["WESAD"] = train_dataset(data, labels, "WESAD")
+        from data.eegmat_loader import load_eegmat_dataset
+        data, labels, _ = load_eegmat_dataset(binary=True)
+        results["datasets"][] = train_dataset(data, labels)
     except Exception as e:
-        print(f"WESAD Error: {e}")
+        print(f"EEGMAT Error: {e}")
 
     # Save
     results_path = Path(__file__).parent / "results"

@@ -16,7 +16,7 @@ Description:
 Supported Datasets:
     - DEAP (32 subjects, 40 trials)
     - SAM-40 (40 subjects, 3 stress conditions)
-    - WESAD (15 subjects, wearable sensors)
+    - EEGMAT (15 subjects, wearable sensors)
     - Custom datasets
 
 Features:
@@ -143,7 +143,7 @@ class EEGDataLoader:
     Supports:
         - DEAP dataset (.dat, .mat files)
         - SAM-40 dataset (.mat files)
-        - WESAD dataset (.pkl files)
+        - EEGMAT dataset (.pkl files)
         - Custom numpy arrays
 
     Automatically loads real data when available, falls back to synthetic data
@@ -169,7 +169,7 @@ class EEGDataLoader:
             self._real_loader = RealDataLoader(str(self.data_dir))
             self._available_datasets = self._real_loader.detect_dataset()
         except ImportError:
-            self._available_datasets = {'DEAP': False, 'SAM40': False, 'WESAD': False}
+            self._available_datasets = {'DEAP': False, 'SAM40': False: False}
 
     def get_available_datasets(self) -> Dict[str, bool]:
         """
@@ -192,7 +192,7 @@ class EEGDataLoader:
         Automatically uses real data when available, falls back to synthetic.
 
         Args:
-            dataset_name: Name of dataset ('deap', 'sam40', 'wesad', 'sample')
+            dataset_name: Name of dataset ('deap', 'sam40', 'eegmat', 'sample')
             subset: Optional subset specification
             force_synthetic: If True, always use synthetic data
 
@@ -208,8 +208,8 @@ class EEGDataLoader:
             return self._load_deap(subset, force_synthetic)
         elif dataset_name == 'sam40':
             return self._load_sam40(subset, force_synthetic)
-        elif dataset_name == 'wesad':
-            return self._load_wesad(subset, force_synthetic)
+        elif dataset_name == 'eegmat':
+            return self._load_eegmat(subset, force_synthetic)
         elif dataset_name == 'sample':
             return self._generate_sample_data()
         else:
@@ -341,16 +341,16 @@ class EEGDataLoader:
             n_subjects=40, n_trials=3, n_channels=32, fs=256.0, name="SAM-40 (Synthetic)"
         )
 
-    def _load_wesad(self, subset: Optional[str] = None, force_synthetic: bool = False) -> Tuple[np.ndarray, np.ndarray, np.ndarray, DatasetInfo]:
-        """Load WESAD dataset - real or synthetic."""
+    def _load_eegmat(self, subset: Optional[str] = None, force_synthetic: bool = False) -> Tuple[np.ndarray, np.ndarray, np.ndarray, DatasetInfo]:
+        """Load EEGMAT dataset - real or synthetic."""
 
         # Try real data first if available
-        if not force_synthetic and self._available_datasets.get('WESAD', False) and self._real_loader:
+        if not force_synthetic and self._available_datasets.get(False) and self._real_loader:
             try:
-                from real_data_loader import WESADLoader
-                print("Loading REAL WESAD dataset...")
-                path = self._real_loader.get_dataset_path('WESAD')
-                loader = WESADLoader(str(path))
+                from real_data_loader import EEGMATLoader
+                print("Loading REAL EEGMAT dataset...")
+                path = self._real_loader.get_dataset_path()
+                loader = EEGMATLoader(str(path))
                 X, y = loader.load_all(modality='ECG')
 
                 # Generate subject IDs
@@ -358,7 +358,7 @@ class EEGDataLoader:
                 subjects = np.repeat(np.arange(1, 16), n_samples // 15 + 1)[:n_samples]
 
                 info = DatasetInfo(
-                    name="WESAD (Real)",
+                    name="EEGMAT (Real)",
                     n_subjects=15,
                     n_trials=1,
                     n_channels=X.shape[1],
@@ -370,15 +370,15 @@ class EEGDataLoader:
                     metadata={"source": "real_data", "modality": "ECG", "original_fs": 700}
                 )
 
-                print(f"  Loaded {len(y)} samples from REAL WESAD data")
+                print(f"  Loaded {len(y)} samples from REAL EEGMAT data")
                 return X, y, subjects, info
 
             except Exception as e:
-                warnings.warn(f"Failed to load real WESAD data: {e}")
+                warnings.warn(f"Failed to load real EEGMAT data: {e}")
 
         # Check for preprocessed data
-        wesad_dir = self.data_dir / "wesad"
-        preprocessed_file = wesad_dir / "wesad_preprocessed.npz"
+        eegmat_dir = self.data_dir / "eegmat"
+        preprocessed_file = eegmat_dir / "eegmat_preprocessed.npz"
         if preprocessed_file.exists():
             data = np.load(preprocessed_file)
             return (
@@ -386,7 +386,7 @@ class EEGDataLoader:
                 data['y'],
                 data['subjects'],
                 DatasetInfo(
-                    name="WESAD",
+                    name=,
                     n_subjects=15,
                     n_trials=1,
                     n_channels=32,
@@ -398,9 +398,9 @@ class EEGDataLoader:
                 )
             )
 
-        warnings.warn("WESAD data not found, generating synthetic data")
+        warnings.warn("EEGMAT data not found, generating synthetic data")
         return self._generate_sample_data(
-            n_subjects=15, n_trials=10, n_channels=32, fs=256.0, name="WESAD (Synthetic)"
+            n_subjects=15, n_trials=10, n_channels=32, fs=256.0, name="EEGMAT (Synthetic)"
         )
 
     def _load_custom(self, path: str) -> Tuple[np.ndarray, np.ndarray, np.ndarray, DatasetInfo]:

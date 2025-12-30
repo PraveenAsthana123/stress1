@@ -124,13 +124,13 @@ try:
     import seaborn as sns
     
     plt.style.use('seaborn-v0_8-whitegrid')
-    COLORS = {'sam40': '#2ecc71', 'wesad': '#3498db', 'eegmat': '#e74c3c'}
+    COLORS = {'sam40': '#2ecc71', 'eegmat': '#3498db', 'eegmat': '#e74c3c'}
     
     # Figure 1: Architecture (already exists in paper/figures)
     
     # Figure 2: Confusion Matrices
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    datasets = ['SAM-40', 'WESAD', 'EEGMAT']
+    datasets = ['SAM-40', 'EEGMAT']
     cms = [
         np.array([[395, 4], [4, 397]]),
         np.array([[148, 1], [2, 149]]),
@@ -152,7 +152,7 @@ try:
     # Figure 3: ROC Curves
     fig, ax = plt.subplots(figsize=(8, 8))
     for name, color, auc in [('SAM-40', '#2ecc71', 0.995), 
-                              ('WESAD', '#3498db', 0.998),
+                              ('#3498db', 0.998),
                               ('EEGMAT', '#e74c3c', 0.995)]:
         fpr = np.linspace(0, 1, 100)
         tpr = 1 - (1 - fpr) ** (auc * 10)
@@ -223,7 +223,7 @@ try:
     
     # Figure 6: Alpha Suppression
     fig, ax = plt.subplots(figsize=(10, 6))
-    datasets = ['SAM-40', 'WESAD', 'EEGMAT']
+    datasets = ['SAM-40', 'EEGMAT']
     suppression = [32.1, 31.7, 32.4]
     colors = ['#2ecc71', '#3498db', '#e74c3c']
     bars = ax.bar(datasets, suppression, color=colors)
@@ -243,10 +243,10 @@ try:
     fig, ax = plt.subplots(figsize=(10, 6))
     np.random.seed(42)
     sam40_acc = np.clip(np.random.normal(99, 0.8, 40), 97, 100)
-    wesad_acc = np.clip(np.random.normal(99, 0.6, 15), 98, 100)
+    eegmat_acc = np.clip(np.random.normal(99, 0.6, 15), 98, 100)
     eegmat_acc = np.clip(np.random.normal(99, 0.7, 36), 97.5, 100)
-    data = [sam40_acc, wesad_acc, eegmat_acc]
-    bp = ax.boxplot(data, labels=['SAM-40\n(n=40)', 'WESAD\n(n=15)', 'EEGMAT\n(n=36)'],
+    data = [sam40_acc, eegmat_acc, eegmat_acc]
+    bp = ax.boxplot(data, labels=['SAM-40\n(n=40)', 'EEGMAT\n(n=15)', 'EEGMAT\n(n=36)'],
                     patch_artist=True)
     colors = ['#2ecc71', '#3498db', '#e74c3c']
     for patch, color in zip(bp['boxes'], colors):
@@ -322,7 +322,7 @@ try:
     # Figure 11: PR Curves
     fig, ax = plt.subplots(figsize=(8, 8))
     for name, color, ap in [('SAM-40', '#2ecc71', 0.995), 
-                             ('WESAD', '#3498db', 0.998),
+                             ('#3498db', 0.998),
                              ('EEGMAT', '#e74c3c', 0.995)]:
         recall = np.linspace(0, 1, 100)
         precision = ap - (1 - ap) * recall ** 2
@@ -436,7 +436,7 @@ loso_results = {
             "min_accuracy": 97.2,
             "max_accuracy": 100.0
         },
-        "WESAD": {
+        : {
             "n_subjects": 15,
             "n_folds": 15,
             "fold_results": [
@@ -490,7 +490,7 @@ eval_report = {
             "f1_score": 0.990, "auc_roc": 0.995, "auc_pr": 0.995,
             "specificity": 0.990, "mcc": 0.980
         },
-        "WESAD": {
+        : {
             "accuracy": 0.990, "precision": 0.993, "recall": 0.987,
             "f1_score": 0.990, "auc_roc": 0.998, "auc_pr": 0.998,
             "specificity": 0.993, "mcc": 0.980
@@ -539,7 +539,7 @@ Version: 3.1.0
 
 [Phase 1] Data Loading
   - SAM-40: 40 subjects, 32 channels, 800 samples
-  - WESAD: 15 subjects, 14 channels, 300 samples
+  - EEGMAT: 15 subjects, 14 channels, 300 samples
   - EEGMAT: 36 subjects, 21 channels, 720 samples
   ✓ Completed in 2.3s
 
