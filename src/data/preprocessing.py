@@ -317,10 +317,41 @@ class PreprocessingConfig:
     normalize: bool = True
     normalize_method: str = "zscore"  # "zscore" or "minmax"
 
+    # Re-referencing
+    use_car: bool = True  # Common Average Reference
+
     # Artifact rejection
     artifact_threshold: float = 100.0  # μV threshold for epoch rejection
     use_ica: bool = True
     n_ica_components: int = 15
+
+
+class CommonAverageReference:
+    """
+    Apply Common Average Reference (CAR) re-referencing.
+
+    CAR subtracts the mean of all channels from each channel,
+    reducing common noise and improving spatial resolution.
+    """
+
+    def __call__(self, data: np.ndarray) -> np.ndarray:
+        """
+        Apply CAR.
+
+        Args:
+            data: EEG data (channels, time) or (batch, channels, time)
+
+        Returns:
+            Re-referenced data
+        """
+        if data.ndim == 2:
+            avg = data.mean(axis=0, keepdims=True)
+            return data - avg
+        elif data.ndim == 3:
+            avg = data.mean(axis=1, keepdims=True)
+            return data - avg
+        else:
+            return data
 
 
 class BandpassFilter:
@@ -592,6 +623,8 @@ class EEGPreprocessor:
             fs=fs
         )
 
+        self.car = CommonAverageReference() if self.config.use_car else None
+
         self.segmenter = EpochSegmenter(
             window_size=self.config.window_size,
             overlap=self.config.overlap,
@@ -628,23 +661,27 @@ class EEGPreprocessor:
         """
         stats = {}
 
-        # 1. Band-pass filtering
+        # 1. Common Average Reference (if enabled)
+        if self.car is not None:
+            data = self.car(data)
+
+        # 2. Band-pass filtering
         filtered = self.bandpass(data)
 
-        # 2. Notch filtering
+        # 3. Notch filtering
         filtered = self.notch(filtered)
 
-        # 3. Epoch segmentation
+        # 4. Epoch segmentation
         epochs, epoch_labels = self.segmenter(filtered, labels)
         stats["n_epochs_total"] = len(epochs)
 
-        # 4. Artifact rejection
+        # 5. Artifact rejection
         epochs, epoch_labels, rejected = self.rejector(epochs, epoch_labels)
         stats["n_epochs_rejected"] = rejected.sum()
         stats["n_epochs_retained"] = len(epochs)
         stats["rejection_rate"] = rejected.mean()
 
-        # 5. Normalization
+        # 6. Normalization
         if self.config.normalize:
             epochs = self.normalizer(epochs)
 
