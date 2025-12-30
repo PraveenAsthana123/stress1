@@ -142,7 +142,7 @@ class FeatureEngineeringAnalysis:
     - Frequency-domain features (band powers)
     """
 
-    def __init__(self, sampling_rate: int = 256):
+    def __init__(self, sampling_rate: int = 128):  # SAM-40: 128 Hz
         self.fs = sampling_rate
         self.frequency_bands = {
             'delta': (0.5, 4),
@@ -1147,7 +1147,7 @@ class DataQualityAnalysis:
             'clean_data_pct': float(100 - np.mean(outliers) * 100)
         }
 
-    def estimate_snr(self, signal: np.ndarray, fs: int = 256) -> Dict[str, float]:
+    def estimate_snr(self, signal: np.ndarray, fs: int = 128) -> Dict[str, float]:  # SAM-40: 128 Hz
         """Estimate Signal-to-Noise Ratio."""
         # Use Welch's method for power spectral density
         from scipy.signal import welch
@@ -1734,7 +1734,7 @@ class ComprehensiveAnalysisOrchestrator:
     7. Reliability Analysis - Robustness, stability
     """
 
-    def __init__(self, sampling_rate: int = 256):
+    def __init__(self, sampling_rate: int = 128):  # SAM-40: 128 Hz
         # Core analysis modules
         self.feature_engineering = FeatureEngineeringAnalysis(sampling_rate)
         self.clinical_validation = ClinicalValidationAnalysis()

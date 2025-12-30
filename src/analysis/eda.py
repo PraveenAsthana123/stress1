@@ -39,7 +39,7 @@ from sklearn.linear_model import LogisticRegression
 @dataclass
 class EDAConfig:
     """Configuration for EDA."""
-    sampling_rate: float = 256.0
+    sampling_rate: float = 128.0  # SAM-40: 128 Hz
     frequency_bands: Dict[str, Tuple[float, float]] = None
 
     def __post_init__(self):
@@ -634,7 +634,7 @@ if __name__ == "__main__":
     np.random.seed(42)
     n_samples = 100
     n_channels = 32
-    n_time = 512
+    n_time = 3200  # SAM-40: 25 sec at 128 Hz
 
     # Simulate EEG with class differences
     X = np.random.randn(n_samples, n_channels, n_time).astype(np.float32)

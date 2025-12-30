@@ -11,6 +11,10 @@ Implements paper-specified EEG signal analysis:
 - Feature Importance
 
 Based on: GenAI-RAG-EEG paper specifications (Tables 11-25)
+
+Dataset Configurations:
+- SAM-40: 128 Hz, 3200 samples (25 sec), 4 classes
+- EEGMAT: 500 Hz, 30000 samples (60 sec), 2 classes
 """
 
 import numpy as np
@@ -76,7 +80,7 @@ CHANNEL_GROUPS = {
 FAA_CHANNELS = {"left": "F3", "right": "F4"}
 
 
-def compute_psd(data: np.ndarray, fs: float = 256.0, nperseg: int = 256) -> Tuple[np.ndarray, np.ndarray]:
+def compute_psd(data: np.ndarray, fs: float = 128.0, nperseg: int = 256) -> Tuple[np.ndarray, np.ndarray]:
     """
     Compute Power Spectral Density using Welch's method.
 
@@ -94,7 +98,7 @@ def compute_psd(data: np.ndarray, fs: float = 256.0, nperseg: int = 256) -> Tupl
 
 def compute_band_power(
     data: np.ndarray,
-    fs: float = 256.0,
+    fs: float = 128.0,
     band: str = "alpha"
 ) -> float:
     """
@@ -121,7 +125,7 @@ def compute_band_power(
 def band_power_analysis(
     data: np.ndarray,
     labels: np.ndarray,
-    fs: float = 256.0
+    fs: float = 128.0
 ) -> List[BandPowerResult]:
     """
     Perform band power analysis comparing low vs high stress.
@@ -178,7 +182,7 @@ def band_power_analysis(
 def alpha_suppression_analysis(
     data: np.ndarray,
     labels: np.ndarray,
-    fs: float = 256.0,
+    fs: float = 128.0,
     frontal_channels: Optional[List[int]] = None
 ) -> Dict:
     """
@@ -229,7 +233,7 @@ def alpha_suppression_analysis(
 def theta_beta_ratio_analysis(
     data: np.ndarray,
     labels: np.ndarray,
-    fs: float = 256.0
+    fs: float = 128.0
 ) -> Dict:
     """
     Analyze Theta/Beta Ratio (TBR) changes with stress.
@@ -278,7 +282,7 @@ def theta_beta_ratio_analysis(
 def frontal_asymmetry_analysis(
     data: np.ndarray,
     labels: np.ndarray,
-    fs: float = 256.0,
+    fs: float = 128.0,
     left_channel: int = 2,  # F3
     right_channel: int = 3   # F4
 ) -> Dict:
@@ -536,7 +540,7 @@ def feature_importance_analysis(
 def run_complete_signal_analysis(
     data: np.ndarray,
     labels: np.ndarray,
-    fs: float = 256.0,
+    fs: float = 128.0,
     dataset_name: str = "Dataset"
 ) -> Dict:
     """
@@ -587,12 +591,12 @@ if __name__ == "__main__":
     print("Testing Signal Analysis Module")
     print("=" * 50)
 
-    # Generate test data
+    # Generate test data (SAM-40 format: 128 Hz, 25 sec = 3200 samples)
     np.random.seed(42)
     n_epochs = 100
     n_channels = 32
-    n_samples = 512
-    fs = 256.0
+    n_samples = 3200  # SAM-40: 25 sec at 128 Hz
+    fs = 128.0  # SAM-40 sampling rate
 
     # Create synthetic data with stress-related patterns
     data = np.random.randn(n_epochs, n_channels, n_samples) * 10

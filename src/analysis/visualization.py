@@ -184,7 +184,7 @@ def plot_band_power_comparison(
 def plot_band_power_heatmap(
     data: np.ndarray,
     labels: np.ndarray,
-    fs: float = 256.0,
+    fs: float = 128.0,  # SAM-40: 128 Hz
     channel_names: Optional[List[str]] = None,
     figsize: Tuple[int, int] = (14, 8),
     save_path: Optional[str] = None
@@ -195,7 +195,7 @@ def plot_band_power_heatmap(
     Args:
         data: EEG data (n_epochs, n_channels, n_samples)
         labels: Binary labels
-        fs: Sampling frequency
+        fs: Sampling frequency (default: 128 Hz for SAM-40)
         channel_names: List of channel names
         figsize: Figure size
         save_path: Path to save figure
@@ -700,7 +700,7 @@ def plot_cross_validation_results(
 
 def plot_psd(
     data: np.ndarray,
-    fs: float = 256.0,
+    fs: float = 128.0,  # SAM-40: 128 Hz
     title: str = "Power Spectral Density",
     figsize: Tuple[int, int] = (12, 6),
     save_path: Optional[str] = None
@@ -752,7 +752,7 @@ def plot_psd(
 
 def plot_spectrogram(
     data: np.ndarray,
-    fs: float = 256.0,
+    fs: float = 128.0,  # SAM-40: 128 Hz
     title: str = "Time-Frequency Spectrogram",
     figsize: Tuple[int, int] = (12, 6),
     save_path: Optional[str] = None

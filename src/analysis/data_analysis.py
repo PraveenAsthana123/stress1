@@ -435,8 +435,8 @@ class EEGDataLoader:
         n_subjects: int = 10,
         n_trials: int = 20,
         n_channels: int = 32,
-        n_samples: int = 512,
-        fs: float = 256.0,
+        n_samples: int = 3200,  # SAM-40: 25 sec at 128 Hz
+        fs: float = 128.0,  # SAM-40 sampling rate
         name: str = "Sample"
     ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, DatasetInfo]:
         """
@@ -550,7 +550,7 @@ class QualityAssessor:
         self.flatline_threshold = flatline_threshold
         self.correlation_threshold = correlation_threshold
 
-    def assess(self, data: np.ndarray, fs: float = 256.0) -> QualityReport:
+    def assess(self, data: np.ndarray, fs: float = 128.0) -> QualityReport:  # SAM-40: 128 Hz
         """
         Assess data quality.
 
@@ -641,12 +641,12 @@ class QualityAssessor:
 class FeatureExtractor:
     """Extract features from EEG data."""
 
-    def __init__(self, fs: float = 256.0):
+    def __init__(self, fs: float = 128.0):  # SAM-40: 128 Hz
         """
         Initialize feature extractor.
 
         Args:
-            fs: Sampling frequency
+            fs: Sampling frequency (default: 128 Hz for SAM-40)
         """
         self.fs = fs
 

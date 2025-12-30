@@ -983,7 +983,7 @@ if __name__ == "__main__":
     np.random.seed(42)
     n_samples = 200
     n_channels = 32
-    n_time = 512
+    n_time = 3200  # SAM-40: 25 sec at 128 Hz
     n_subjects = 10
 
     X = np.random.randn(n_samples, n_channels, n_time).astype(np.float32)

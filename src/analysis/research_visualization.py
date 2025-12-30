@@ -187,7 +187,7 @@ class TrendChartGenerator:
     def plot_eeg_signal(
         self,
         data: np.ndarray,
-        fs: float = 256.0,
+        fs: float = 128.0,  # SAM-40: 128 Hz
         channel_names: List[str] = None,
         title: str = "EEG Signal",
         save_path: str = None
@@ -226,7 +226,7 @@ class TrendChartGenerator:
     def plot_psd_bands(
         self,
         data: np.ndarray,
-        fs: float = 256.0,
+        fs: float = 128.0,  # SAM-40: 128 Hz
         title: str = "Power Spectral Density",
         save_path: str = None
     ) -> plt.Figure:
@@ -261,7 +261,7 @@ class TrendChartGenerator:
     def plot_time_frequency(
         self,
         data: np.ndarray,
-        fs: float = 256.0,
+        fs: float = 128.0,  # SAM-40: 128 Hz
         wavelet: str = 'morl',
         title: str = "Time-Frequency Analysis",
         save_path: str = None
@@ -760,9 +760,9 @@ class ResearchVisualizationSuite:
         """Generate all demo figures."""
         paths = {}
 
-        # Generate sample data
+        # Generate sample data (SAM-40: 128 Hz)
         np.random.seed(42)
-        fs = 256
+        fs = 128  # SAM-40 sampling rate
         t = np.arange(0, 2, 1/fs)
         eeg_data = 10*np.sin(2*np.pi*10*t) + 5*np.sin(2*np.pi*20*t) + np.random.randn(len(t))*2
 
