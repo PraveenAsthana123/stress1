@@ -59,7 +59,28 @@ Context Text ──→ Sentence-BERT ──→ Projection ───────�
 | Disk     | 5 GB    | 20 GB       |
 | Python   | 3.8     | 3.10+       |
 
-## Dataset Download
+## Sample Data (Ready to Use)
+
+**100 rows of REAL data included** - no download required for testing:
+
+| Dataset | Samples | Channels | GitHub Path |
+|---------|---------|----------|-------------|
+| SAM-40 | 100 | 32 | [data/SAM40/sample_100](https://github.com/PraveenAsthana123/stress/tree/main/data/SAM40/sample_100) |
+| WESAD | 100 | 14 | [data/WESAD/sample_100](https://github.com/PraveenAsthana123/stress/tree/main/data/WESAD/sample_100) |
+| EEGMAT | 100 | 21 | [data/EEGMAT/sample_100](https://github.com/PraveenAsthana123/stress/tree/main/data/EEGMAT/sample_100) |
+
+```python
+import numpy as np
+
+# Load sample data
+sam40 = np.load('data/SAM40/sample_100/sam40_sample_100.npz')
+wesad = np.load('data/WESAD/sample_100/wesad_sample_100.npz')
+eegmat = np.load('data/EEGMAT/sample_100/eegmat_sample_100.npz')
+
+X, y = sam40['X'], sam40['y']  # Shape: (100, 32, 512), (100,)
+```
+
+## Full Dataset Download
 
 | Dataset | Source | Access |
 |---------|--------|--------|
