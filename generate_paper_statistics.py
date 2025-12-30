@@ -102,7 +102,7 @@ classification_results = {
         },
         "confusion_matrix": {"tn": 62, "fp": 58, "fn": 29, "tp": 331}
     },
-    : {
+    'EEGMAT': {
         "n_subjects": 15,
         "n_samples": 984,
         "metrics": {
@@ -287,7 +287,7 @@ print("=" * 70)
 loso_results = {
     "SAM-40": {"mean": 78.5, "std": 8.2, "min": 65.2, "max": 92.1},
     "DEAP": {"mean": 91.3, "std": 5.4, "min": 82.1, "max": 98.5},
-    : {"mean": 96.8, "std": 3.1, "min": 91.2, "max": 100.0},
+    'EEGMAT': {"mean": 96.8, "std": 3.1, "min": 91.2, "max": 100.0},
 }
 
 print("\nLeave-One-Subject-Out Cross-Validation:")

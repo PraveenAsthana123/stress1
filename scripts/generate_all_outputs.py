@@ -436,7 +436,7 @@ loso_results = {
             "min_accuracy": 97.2,
             "max_accuracy": 100.0
         },
-        : {
+        'EEGMAT': {
             "n_subjects": 15,
             "n_folds": 15,
             "fold_results": [
@@ -490,7 +490,7 @@ eval_report = {
             "f1_score": 0.990, "auc_roc": 0.995, "auc_pr": 0.995,
             "specificity": 0.990, "mcc": 0.980
         },
-        : {
+        'EEGMAT': {
             "accuracy": 0.990, "precision": 0.993, "recall": 0.987,
             "f1_score": 0.990, "auc_roc": 0.998, "auc_pr": 0.998,
             "specificity": 0.993, "mcc": 0.980

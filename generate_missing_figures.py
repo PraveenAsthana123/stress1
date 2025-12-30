@@ -51,7 +51,7 @@ def generate_roc_curves():
     datasets = {
         'DEAP': {'auc': 0.982, 'color': '#2ecc71'},
         'SAM-40': {'auc': 0.780, 'color': '#3498db'},
-        : {'auc': 1.000, 'color': '#e74c3c'}
+        'EEGMAT': {'auc': 1.000, 'color': '#e74c3c'}
     }
 
     for idx, (name, info) in enumerate(datasets.items()):
@@ -112,7 +112,7 @@ def generate_confusion_matrices():
     cms = {
         'DEAP': np.array([[302, 18], [16, 304]]),      # 94.7% acc
         'SAM-40': np.array([[164, 36], [16, 184]]),    # 87.0% acc
-        : np.array([[150, 0], [0, 150]])         # 100% acc
+        'EEGMAT': np.array([[150, 0], [0, 150]])         # 100% acc
     }
 
     colors = ['#2ecc71', '#3498db', '#e74c3c']
@@ -559,7 +559,7 @@ def generate_pr_curves():
     datasets = {
         'DEAP': {'ap': 0.978, 'color': '#2ecc71'},
         'SAM-40': {'ap': 0.856, 'color': '#3498db'},
-        : {'ap': 1.000, 'color': '#e74c3c'}
+        'EEGMAT': {'ap': 1.000, 'color': '#e74c3c'}
     }
 
     for idx, (name, info) in enumerate(datasets.items()):

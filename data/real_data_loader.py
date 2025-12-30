@@ -634,7 +634,7 @@ class RealDataLoader:
         availability = {
             'DEAP': False,
             'SAM40': False,
-            : False
+            "EEGMAT": False
         }
 
         # Check for DEAP
@@ -689,7 +689,7 @@ class RealDataLoader:
                 self.data_root / 'sam40',
                 self.data_root / 'SAM-40'
             ],
-            : [
+            "EEGMAT": [
                 self.data_root / ,
                 self.data_root / 'eegmat'
             ]

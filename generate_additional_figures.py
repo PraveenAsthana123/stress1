@@ -218,7 +218,7 @@ def generate_radar_chart():
     datasets = {
         'DEAP': [94.7, 94.3, 95.1, 94.7, 94.4, 98.2],
         'SAM-40': [81.9, 85.1, 92.0, 88.4, 51.7, 78.0],
-        : [100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
+        'EEGMAT': [100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
     }
     colors = {'DEAP': '#3498db', 'SAM-40': '#2ecc71': '#e74c3c'}
 
@@ -460,7 +460,7 @@ def generate_multiclass_results():
     workload_acc = {
         'DEAP': [89.2, 85.1, 87.4],
         'SAM-40': [78.5, 74.2, 80.1],
-        : [96.8, 94.5, 97.2]
+        'EEGMAT': [96.8, 94.5, 97.2]
     }
 
     x = np.arange(len(classes_work))
@@ -491,7 +491,7 @@ def generate_multiclass_results():
     cognitive_acc = {
         'DEAP': [91.5, 83.2, 79.8, 75.1],
         'SAM-40': [82.1, 76.4, 71.2, 68.5],
-        : [98.2, 95.1, 92.4, 89.8]
+        'EEGMAT': [98.2, 95.1, 92.4, 89.8]
     }
 
     x = np.arange(len(classes_cog))

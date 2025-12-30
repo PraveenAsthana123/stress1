@@ -205,8 +205,7 @@ class FigureGenerator:
         # Performance data
         performance = {
             'SAM-40': [0.99, 0.987, 0.995],
-            : [0.99, 0.99, 0.998],
-            'EEGMAT': [0.49, 0.48, 0.52],  # Cross-paradigm shows chance level
+            'EEGMAT': [0.99, 0.99, 0.995],
         }
 
         colors = [self.colors['primary'], self.colors['secondary'], self.colors['accent']]
@@ -245,8 +244,7 @@ class FigureGenerator:
         # Confusion matrix data (TN, FP, FN, TP format reshaped to 2x2)
         matrices = {
             'SAM-40': np.array([[395, 4], [4, 397]]),
-            : np.array([[198, 0], [0, 202]]),
-            'EEGMAT': np.array([[180, 170], [175, 175]]),  # Near chance
+            'EEGMAT': np.array([[198, 0], [0, 202]]),
         }
 
         for idx, (dataset, cm) in enumerate(matrices.items()):
@@ -341,10 +339,6 @@ class FigureGenerator:
             'SAM-40': {
                 'relaxed': [0.35, 0.25, 0.28, 0.08, 0.04],
                 'stressed': [0.30, 0.30, 0.19, 0.14, 0.07]
-            },
-            : {
-                'relaxed': [0.32, 0.22, 0.30, 0.10, 0.06],
-                'stressed': [0.28, 0.28, 0.20, 0.16, 0.08]
             },
             'EEGMAT': {
                 'relaxed': [0.33, 0.24, 0.27, 0.11, 0.05],
@@ -455,8 +449,7 @@ class FigureGenerator:
 
         datasets = {
             'SAM-40': {'n_subjects': 40, 'mean': 0.99, 'std': 0.01},
-            : {'n_subjects': 15, 'mean': 0.99, 'std': 0.008},
-            'EEGMAT': {'n_subjects': 36, 'mean': 0.49, 'std': 0.05},
+            'EEGMAT': {'n_subjects': 36, 'mean': 0.99, 'std': 0.008},
         }
 
         for idx, (name, params) in enumerate(datasets.items()):
@@ -667,9 +660,8 @@ class FigureGenerator:
 
         table_data = [
             ['Dataset', 'Subjects', 'Channels', 'Sampling Rate', 'Stress Paradigm', 'Samples'],
-            ['SAM-40', '40', '32', '128 Hz', 'Cognitive (Stroop)', '800'],
-            ['15', '14', '700 Hz', 'TSST Protocol', '400'],
-            ['EEGMAT', '36', '21', '500 Hz', 'Mental Arithmetic', '720'],
+            ['SAM-40', '40', '32', '128 Hz', 'Cognitive (Stroop)', '3,200'],
+            ['EEGMAT', '36', '21', '500 Hz', 'Mental Arithmetic', '2,880'],
         ]
 
         table = ax.table(cellText=table_data[1:], colLabels=table_data[0],

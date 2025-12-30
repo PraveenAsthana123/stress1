@@ -218,7 +218,7 @@ class LiteratureBenchmarks:
         """Get all benchmarks organized by dataset."""
         return {
             'SAM-40': cls.SAM40_BENCHMARKS,
-            : cls.EEGMAT_BENCHMARKS,
+            "EEGMAT": cls.EEGMAT_BENCHMARKS,
             'EEGMAT': cls.EEGMAT_BENCHMARKS,
         }
 

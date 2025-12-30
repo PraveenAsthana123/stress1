@@ -311,7 +311,7 @@ def generate_dataset_comparison():
     class_data = {
         'DEAP': {'Stress': 640, 'Baseline': 640},
         'SAM-40': {'Stress': 800, 'Baseline': 800},
-        : {'Stress': 112, 'Baseline': 113}
+        'EEGMAT': {'Stress': 112, 'Baseline': 113}
     }
 
     x = np.arange(len(datasets))
