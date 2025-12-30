@@ -1,34 +1,13 @@
 {
   "dataset": "EEGMAT",
+  "source": "Real data from PhysioNet EDF files",
   "n_samples": 100,
   "n_channels": 21,
+  "n_timepoints": 512,
   "sampling_rate": 500.0,
-  "channel_names": [
-    "Fp1",
-    "Fp2",
-    "F7",
-    "F3",
-    "Fz",
-    "F4",
-    "F8",
-    "T3",
-    "C3",
-    "Cz",
-    "C4",
-    "T4",
-    "T5",
-    "P3",
-    "Pz",
-    "P4",
-    "T6",
-    "O1",
-    "Oz",
-    "O2",
-    "A1"
-  ],
-  "labels": {
-    "0": "baseline",
-    "1": "arithmetic"
+  "class_distribution": {
+    "baseline": 50,
+    "arithmetic": 50
   },
-  "generated": "2025-12-29T19:50:43.415619"
+  "generated": "2025-12-29T22:24:26.104419"
 }

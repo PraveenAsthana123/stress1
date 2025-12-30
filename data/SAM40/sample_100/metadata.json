@@ -1,45 +1,13 @@
 {
   "dataset": "SAM-40",
+  "source": "Real data from filtered_data/*.mat",
   "n_samples": 100,
   "n_channels": 32,
+  "n_timepoints": 512,
   "sampling_rate": 128.0,
-  "channel_names": [
-    "Fp1",
-    "Fp2",
-    "F7",
-    "F3",
-    "Fz",
-    "F4",
-    "F8",
-    "FT7",
-    "FC3",
-    "FCz",
-    "FC4",
-    "FT8",
-    "T3",
-    "C3",
-    "Cz",
-    "C4",
-    "T4",
-    "TP7",
-    "CP3",
-    "CPz",
-    "CP4",
-    "TP8",
-    "T5",
-    "P3",
-    "Pz",
-    "P4",
-    "T6",
-    "O1",
-    "Oz",
-    "O2",
-    "A1",
-    "A2"
-  ],
-  "labels": {
-    "0": "relaxed",
-    "1": "stressed"
+  "class_distribution": {
+    "relaxed": 50,
+    "stressed": 50
   },
-  "generated": "2025-12-29T19:50:41.696260"
+  "generated": "2025-12-29T22:24:15.055865"
 }

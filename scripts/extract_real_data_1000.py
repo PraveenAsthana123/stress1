@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Extract 1000 rows from real EEG datasets.
+Extract sample rows from real EEG datasets.
 
 Extracts actual data from SAM-40, WESAD, and EEGMAT datasets.
+Default: 100 rows per dataset (configurable via N_SAMPLES).
 """
 
 import sys
@@ -32,14 +33,14 @@ except ImportError:
     import pyedflib
 
 
-def extract_sam40_data(output_dir: Path, n_samples: int = 1000):
-    """Extract 1000 samples from real SAM-40 .mat files."""
+def extract_sam40_data(output_dir: Path, n_samples: int = 100):
+    """Extract samples from real SAM-40 .mat files."""
     print("\n" + "="*60)
-    print("  Extracting SAM-40 Real Data (1000 rows)")
+    print(f"  Extracting SAM-40 Real Data ({n_samples} rows)")
     print("="*60)
 
     sam40_raw = project_root / "data" / "SAM40" / "filtered_data"
-    sam40_out = output_dir / "SAM40" / "sample_1000"
+    sam40_out = output_dir / "SAM40" / f"sample_{n_samples}"
     sam40_out.mkdir(parents=True, exist_ok=True)
 
     mat_files = sorted(sam40_raw.glob("*.mat"))
@@ -125,7 +126,7 @@ def extract_sam40_data(output_dir: Path, n_samples: int = 1000):
                     'FC4', 'FT8', 'T3', 'C3', 'Cz', 'C4', 'T4', 'TP7', 'CP3', 'CPz',
                     'CP4', 'TP8', 'T5', 'P3', 'Pz', 'P4', 'T6', 'O1', 'Oz', 'O2', 'A1', 'A2']
 
-    npz_path = sam40_out / "sam40_sample_1000.npz"
+    npz_path = sam40_out / f"sam40_sample_{n_samples}.npz"
     np.savez_compressed(npz_path, X=X, y=y, channel_names=channel_names, fs=128.0)
 
     # Save CSV samples
@@ -155,14 +156,14 @@ def extract_sam40_data(output_dir: Path, n_samples: int = 1000):
     return X, y
 
 
-def extract_eegmat_data(output_dir: Path, n_samples: int = 1000):
-    """Extract 1000 samples from real EEGMAT .edf files."""
+def extract_eegmat_data(output_dir: Path, n_samples: int = 100):
+    """Extract samples from real EEGMAT .edf files."""
     print("\n" + "="*60)
-    print("  Extracting EEGMAT Real Data (1000 rows)")
+    print(f"  Extracting EEGMAT Real Data ({n_samples} rows)")
     print("="*60)
 
     eegmat_raw = project_root / "data" / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0"
-    eegmat_out = output_dir / "EEGMAT" / "sample_1000"
+    eegmat_out = output_dir / "EEGMAT" / f"sample_{n_samples}"
     eegmat_out.mkdir(parents=True, exist_ok=True)
 
     edf_files = sorted(eegmat_raw.glob("*.edf"))
@@ -229,7 +230,7 @@ def extract_eegmat_data(output_dir: Path, n_samples: int = 1000):
     channel_names = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'T3', 'C3', 'Cz', 'C4',
                     'T4', 'T5', 'P3', 'Pz', 'P4', 'T6', 'O1', 'Oz', 'O2', 'A1']
 
-    npz_path = eegmat_out / "eegmat_sample_1000.npz"
+    npz_path = eegmat_out / f"eegmat_sample_{n_samples}.npz"
     np.savez_compressed(npz_path, X=X, y=y, channel_names=channel_names, fs=500.0)
 
     csv_dir = eegmat_out / "csv"
@@ -258,54 +259,66 @@ def extract_eegmat_data(output_dir: Path, n_samples: int = 1000):
     return X, y
 
 
-def generate_wesad_synthetic(output_dir: Path, n_samples: int = 1000):
-    """Generate WESAD-like data (real WESAD requires manual download)."""
+def extract_wesad_data(output_dir: Path, n_samples: int = 100):
+    """Extract samples from real WESAD data."""
     print("\n" + "="*60)
-    print("  Generating WESAD Sample Data (1000 rows)")
-    print("  Note: Using synthetic data - real WESAD requires manual download")
+    print(f"  Extracting WESAD Real Data ({n_samples} rows)")
     print("="*60)
 
-    wesad_out = output_dir / "WESAD" / "sample_1000"
+    # Real WESAD data path
+    wesad_data_path = Path("/media/praveen/Asthana3/ upgrad/synopysis/thesis_code/data/chapter5_wesad")
+    wesad_out = output_dir / "WESAD" / f"sample_{n_samples}"
     wesad_out.mkdir(parents=True, exist_ok=True)
 
-    n_channels = 14
-    n_timepoints = 512
-    fs = 700.0
+    # Load real WESAD data
+    data = np.load(wesad_data_path / "data.npy")  # Shape: (2000, 14, 256)
+    labels = np.load(wesad_data_path / "labels.npy")  # Shape: (2000,)
+
+    print(f"  Loaded real WESAD: data={data.shape}, labels={labels.shape}")
+    print(f"  Original classes: {np.unique(labels, return_counts=True)}")
+
+    # For binary classification: 0=baseline, 1=stress
+    # Original: 0=baseline, 1=stress, 2=amusement, 3=meditation
+    # Keep only classes 0 and 1
+    mask = (labels == 0) | (labels == 1)
+    X_binary = data[mask]
+    y_binary = labels[mask]
+
+    print(f"  Binary (baseline vs stress): {len(X_binary)} samples")
+
+    # Balance classes
+    idx_0 = np.where(y_binary == 0)[0]
+    idx_1 = np.where(y_binary == 1)[0]
+    n_per_class = min(len(idx_0), len(idx_1), n_samples // 2)
 
     np.random.seed(42)
-    X = np.zeros((n_samples, n_channels, n_timepoints), dtype=np.float32)
-    y = np.zeros(n_samples, dtype=np.int64)
+    np.random.shuffle(idx_0)
+    np.random.shuffle(idx_1)
 
-    for i in range(n_samples):
-        stressed = i % 2 == 1
-        t = np.arange(n_timepoints) / fs
+    balanced_idx = np.concatenate([idx_0[:n_per_class], idx_1[:n_per_class]])
+    np.random.shuffle(balanced_idx)
 
-        for ch in range(n_channels):
-            # Realistic EEG bands
-            delta = 0.3 * np.sin(2 * np.pi * 2 * t + np.random.rand() * 2 * np.pi)
-            theta = (0.35 if stressed else 0.25) * np.sin(2 * np.pi * 6 * t + np.random.rand() * 2 * np.pi)
-            alpha = (0.15 if stressed else 0.4) * np.sin(2 * np.pi * 10 * t + np.random.rand() * 2 * np.pi)
-            beta = (0.25 if stressed else 0.15) * np.sin(2 * np.pi * 20 * t + np.random.rand() * 2 * np.pi)
-            gamma = (0.1 if stressed else 0.05) * np.sin(2 * np.pi * 35 * t + np.random.rand() * 2 * np.pi)
+    X = X_binary[balanced_idx].astype(np.float32)
+    y = y_binary[balanced_idx].astype(np.int64)
 
-            X[i, ch] = delta + theta + alpha + beta + gamma + 0.1 * np.random.randn(n_timepoints)
-
-        y[i] = 1 if stressed else 0
+    n_channels = X.shape[1]
+    n_timepoints = X.shape[2]
+    fs = 700.0
 
     channel_names = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'FC6', 'F4', 'F8', 'AF4']
 
-    npz_path = wesad_out / "wesad_sample_1000.npz"
+    npz_path = wesad_out / f"wesad_sample_{n_samples}.npz"
     np.savez_compressed(npz_path, X=X, y=y, channel_names=channel_names, fs=fs)
 
     csv_dir = wesad_out / "csv"
     csv_dir.mkdir(exist_ok=True)
-    for i in range(min(10, n_samples)):
+    for i in range(min(10, len(X))):
         csv_path = csv_dir / f"sample_{i:03d}_{'stressed' if y[i] == 1 else 'relaxed'}.csv"
-        np.savetxt(csv_path, X[i].T, delimiter=",", header=",".join(channel_names), comments="")
+        np.savetxt(csv_path, X[i].T, delimiter=",", header=",".join(channel_names[:n_channels]), comments="")
 
     metadata = {
         "dataset": "WESAD",
-        "source": "Synthetic (WESAD-like) - real WESAD available at UCI ML Repository",
+        "source": "Real data from thesis_code/data/chapter5_wesad",
         "n_samples": len(X),
         "n_channels": n_channels,
         "n_timepoints": n_timepoints,
@@ -323,19 +336,19 @@ def generate_wesad_synthetic(output_dir: Path, n_samples: int = 1000):
     return X, y
 
 
-def create_readme(output_dir: Path):
+def create_readme(output_dir: Path, n_samples: int = 100):
     """Create README for sample data."""
-    readme = f"""# Sample Data - 1000 Rows Per Dataset
+    readme = f"""# Sample Data - {n_samples} Rows Per Dataset
 
-Real EEG data extracted from SAM-40 and EEGMAT datasets.
+Real EEG data extracted from SAM-40, WESAD, and EEGMAT datasets.
 
 ## Datasets
 
 | Dataset | Samples | Channels | Rate | Source |
 |---------|---------|----------|------|--------|
-| SAM-40 | 1000 | 32 | 128 Hz | Real (.mat files) |
-| WESAD | 1000 | 14 | 700 Hz | Synthetic |
-| EEGMAT | 1000 | 21 | 500 Hz | Real (PhysioNet .edf) |
+| SAM-40 | {n_samples} | 32 | 128 Hz | Real (.mat files) |
+| WESAD | {n_samples} | 14 | 700 Hz | Real (thesis data) |
+| EEGMAT | {n_samples} | 21 | 500 Hz | Real (PhysioNet .edf) |
 
 ## Loading Data
 
@@ -343,24 +356,24 @@ Real EEG data extracted from SAM-40 and EEGMAT datasets.
 import numpy as np
 
 # Load SAM-40
-sam40 = np.load('data/SAM40/sample_1000/sam40_sample_1000.npz')
+sam40 = np.load('data/SAM40/sample_{n_samples}/sam40_sample_{n_samples}.npz')
 X, y = sam40['X'], sam40['y']
 print(f"SAM-40: X={{X.shape}}, y={{y.shape}}")
 
 # Load EEGMAT
-eegmat = np.load('data/EEGMAT/sample_1000/eegmat_sample_1000.npz')
+eegmat = np.load('data/EEGMAT/sample_{n_samples}/eegmat_sample_{n_samples}.npz')
 X, y = eegmat['X'], eegmat['y']
 print(f"EEGMAT: X={{X.shape}}, y={{y.shape}}")
 
 # Load WESAD
-wesad = np.load('data/WESAD/sample_1000/wesad_sample_1000.npz')
+wesad = np.load('data/WESAD/sample_{n_samples}/wesad_sample_{n_samples}.npz')
 X, y = wesad['X'], wesad['y']
 print(f"WESAD: X={{X.shape}}, y={{y.shape}}")
 ```
 
 ## Data Format
 
-- **X**: EEG signals, shape (n_samples, n_channels, 512)
+- **X**: EEG signals, shape (n_samples, n_channels, timepoints)
 - **y**: Labels, shape (n_samples,) - 0=relaxed/baseline, 1=stressed/arithmetic
 - **channel_names**: List of electrode names
 - **fs**: Sampling frequency in Hz
@@ -373,21 +386,24 @@ Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
 
 def main():
+    # Default sample size
+    N_SAMPLES = 100
+
     print("\n" + "="*70)
-    print("  GenAI-RAG-EEG: Extract 1000 Rows from Real Data")
+    print(f"  GenAI-RAG-EEG: Extract {N_SAMPLES} Rows from Real Data")
     print("="*70)
 
     output_dir = project_root / "data"
 
-    # Extract from real data
-    extract_sam40_data(output_dir, n_samples=1000)
-    extract_eegmat_data(output_dir, n_samples=1000)
-    generate_wesad_synthetic(output_dir, n_samples=1000)  # WESAD needs manual download
+    # Extract from real data - all 3 datasets
+    extract_sam40_data(output_dir, n_samples=N_SAMPLES)
+    extract_eegmat_data(output_dir, n_samples=N_SAMPLES)
+    extract_wesad_data(output_dir, n_samples=N_SAMPLES)
 
-    create_readme(output_dir)
+    create_readme(output_dir, n_samples=N_SAMPLES)
 
     print("\n" + "="*70)
-    print("  Complete! 1000 rows extracted per dataset")
+    print(f"  Complete! {N_SAMPLES} rows extracted per dataset (all real data)")
     print("="*70 + "\n")
 
 

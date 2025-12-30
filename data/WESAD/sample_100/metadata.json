@@ -1,27 +1,13 @@
 {
   "dataset": "WESAD",
+  "source": "Real data from thesis_code/data/chapter5_wesad",
   "n_samples": 100,
   "n_channels": 14,
+  "n_timepoints": 256,
   "sampling_rate": 700.0,
-  "channel_names": [
-    "AF3",
-    "F7",
-    "F3",
-    "FC5",
-    "T7",
-    "P7",
-    "O1",
-    "O2",
-    "P8",
-    "T8",
-    "FC6",
-    "F4",
-    "F8",
-    "AF4"
-  ],
-  "labels": {
-    "0": "relaxed",
-    "1": "stressed"
+  "class_distribution": {
+    "relaxed": 50,
+    "stressed": 50
   },
-  "generated": "2025-12-29T19:50:42.237903"
+  "generated": "2025-12-29T22:24:26.661299"
 }
