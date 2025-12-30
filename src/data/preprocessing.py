@@ -326,6 +326,165 @@ class PreprocessingConfig:
     n_ica_components: int = 15
 
 
+class BaselineCorrection:
+    """
+    Apply baseline correction to EEG epochs.
+
+    Subtracts the mean of a baseline period from each epoch.
+    """
+
+    def __init__(self, baseline_samples: int = 128):
+        """
+        Args:
+            baseline_samples: Number of samples at start to use as baseline
+        """
+        self.baseline_samples = baseline_samples
+
+    def __call__(self, data: np.ndarray) -> np.ndarray:
+        """
+        Apply baseline correction.
+
+        Args:
+            data: EEG data (channels, time) or (batch, channels, time)
+
+        Returns:
+            Baseline-corrected data
+        """
+        if data.ndim == 2:
+            baseline = data[:, :self.baseline_samples].mean(axis=1, keepdims=True)
+            return data - baseline
+        elif data.ndim == 3:
+            baseline = data[:, :, :self.baseline_samples].mean(axis=2, keepdims=True)
+            return data - baseline
+        else:
+            return data
+
+
+class ICAartifactRemoval:
+    """
+    ICA-based artifact removal for EEG.
+
+    Uses Independent Component Analysis to identify and remove
+    ocular and muscular artifacts.
+    """
+
+    def __init__(self, n_components: int = 15, random_state: int = 42):
+        self.n_components = n_components
+        self.random_state = random_state
+        self.ica = None
+
+    def fit(self, data: np.ndarray):
+        """Fit ICA on training data."""
+        if not MNE_AVAILABLE:
+            warnings.warn("MNE not available for ICA. Skipping.")
+            return self
+
+        try:
+            from sklearn.decomposition import FastICA
+            n_channels = data.shape[0] if data.ndim == 2 else data.shape[1]
+            n_components = min(self.n_components, n_channels)
+            self.ica = FastICA(n_components=n_components,
+                              random_state=self.random_state,
+                              max_iter=500)
+
+            if data.ndim == 2:
+                self.ica.fit(data.T)
+            else:
+                # Concatenate all epochs
+                flat_data = data.reshape(data.shape[0] * data.shape[1], -1)
+                self.ica.fit(flat_data.T)
+        except Exception as e:
+            warnings.warn(f"ICA fitting failed: {e}")
+
+        return self
+
+    def transform(self, data: np.ndarray, artifact_threshold: float = 3.0) -> np.ndarray:
+        """
+        Remove artifact components from data.
+
+        Args:
+            data: EEG data
+            artifact_threshold: Z-score threshold for artifact detection
+
+        Returns:
+            Cleaned data
+        """
+        if self.ica is None:
+            return data
+
+        try:
+            if data.ndim == 2:
+                components = self.ica.transform(data.T)
+                # Detect artifact components (high kurtosis)
+                from scipy.stats import kurtosis
+                kurt = np.abs(kurtosis(components, axis=0))
+                artifact_mask = kurt > artifact_threshold
+                # Zero out artifact components
+                components[:, artifact_mask] = 0
+                # Reconstruct
+                cleaned = self.ica.inverse_transform(components).T
+                return cleaned
+            else:
+                # Process each epoch
+                cleaned = np.zeros_like(data)
+                for i in range(data.shape[0]):
+                    cleaned[i] = self.transform(data[i], artifact_threshold)
+                return cleaned
+        except Exception as e:
+            warnings.warn(f"ICA transform failed: {e}")
+            return data
+
+
+class ASRArtifactRemoval:
+    """
+    Artifact Subspace Reconstruction (ASR) for artifact removal.
+
+    A simplified implementation of ASR that removes high-variance segments.
+    """
+
+    def __init__(self, cutoff: float = 20.0):
+        """
+        Args:
+            cutoff: Standard deviation cutoff for artifact detection
+        """
+        self.cutoff = cutoff
+        self.reference_std = None
+
+    def fit(self, data: np.ndarray):
+        """Fit on clean reference data."""
+        if data.ndim == 2:
+            self.reference_std = data.std(axis=1, keepdims=True)
+        else:
+            self.reference_std = data.std(axis=(0, 2), keepdims=True).mean(axis=0, keepdims=True)
+        return self
+
+    def transform(self, data: np.ndarray) -> np.ndarray:
+        """Remove artifacts using ASR."""
+        if self.reference_std is None:
+            self.fit(data)
+
+        if data.ndim == 2:
+            # Find high-variance segments
+            window_size = 64
+            cleaned = data.copy()
+            for i in range(0, data.shape[1] - window_size, window_size // 2):
+                segment = data[:, i:i + window_size]
+                segment_std = segment.std(axis=1, keepdims=True)
+                # If segment is too noisy, interpolate
+                if (segment_std > self.cutoff * self.reference_std).any():
+                    # Simple interpolation
+                    if i > 0 and i + window_size < data.shape[1]:
+                        left = data[:, i - 1:i]
+                        right = data[:, i + window_size:i + window_size + 1]
+                        cleaned[:, i:i + window_size] = np.linspace(
+                            left.flatten(), right.flatten(), window_size
+                        ).T
+            return cleaned
+        elif data.ndim == 3:
+            return np.array([self.transform(epoch) for epoch in data])
+        return data
+
+
 class CommonAverageReference:
     """
     Apply Common Average Reference (CAR) re-referencing.
