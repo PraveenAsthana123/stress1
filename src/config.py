@@ -70,12 +70,15 @@ class SAM40Config:
     # Dataset specifications
     n_subjects: int = 40
     n_channels: int = 32
-    sampling_rate: float = 256.0
-    segment_length: int = 512  # 2 seconds at 256 Hz
+    sampling_rate: float = 128.0  # 128 Hz
+    segment_length: int = 3200  # 25 seconds at 128 Hz
+    segment_duration: float = 25.0  # seconds
+    n_classes: int = 4  # Arithmetic, Mirror_image, Stroop, Relax
+    total_segments: int = 480  # 40 subjects × 4 classes × 3 trials
 
     # Stress paradigm
     stress_type: str = "cognitive"
-    tasks: List[str] = field(default_factory=lambda: ["Stroop", "Arithmetic", "Mirror Tracing"])
+    tasks: List[str] = field(default_factory=lambda: ["Arithmetic", "Mirror_image", "Stroop", "Relax"])
 
     # Expected performance
     expected_accuracy: float = 99.0
@@ -128,9 +131,11 @@ class EEGMATConfig:
     n_subjects: int = 36
     n_channels: int = 21  # Padded to 32 for model compatibility
     n_channels_padded: int = 32
-    sampling_rate: float = 500.0  # Original
-    target_sampling_rate: float = 256.0  # Resampled
-    segment_length: int = 512
+    sampling_rate: float = 500.0  # Original (native)
+    segment_length: int = 30000  # 60 seconds at 500 Hz
+    segment_duration: float = 60.0  # seconds
+    n_classes: int = 2  # Baseline, Mental Arithmetic
+    total_segments: int = 141  # 105 baseline + 36 stress
 
     # Stress paradigm
     stress_type: str = "cognitive_arithmetic"

@@ -146,11 +146,10 @@ We employ three publicly available benchmark datasets representing fundamentally
 \toprule
 \textbf{Dataset} & \textbf{N} & \textbf{Ch} & \textbf{Hz} & \textbf{Seg} & \textbf{Ratio} & \textbf{Type} \\
 \midrule
-SAM-40 & 40 & 32 & 256 & 12,480 & 48:52 & Cognitive \\
-WESAD & 15 & 14 & 700 & 4,215 & 45:55 & Physio. \\
-EEGMAT$^*$ & 36 & 21 & 500 & 8,604 & 74:26 & Arithmetic \\
+SAM-40 & 40 & 32 & 128 & 480 & 75:25 & Cognitive (4-class) \\
+EEGMAT$^*$ & 36 & 21 & 500 & 141 & 74:26 & Arithmetic (2-class) \\
 \bottomrule
-\multicolumn{7}{l}{\tiny $^*$PhysioNet Mental Arithmetic dataset for cross-paradigm transfer validation.}
+\multicolumn{7}{l}{\tiny $^*$PhysioNet Mental Arithmetic dataset. SAM-40: 25s segments, EEGMAT: 60s segments.}
 \end{tabular}
 \end{table}
 
@@ -164,7 +163,7 @@ Powerline electromagnetic interference afflicts virtually all electroencephalogr
 
 Electrode malfunction events occur intermittently---ocular artifacts produce substantial amplitude deflections, myogenic activity induces amplifier saturation, mechanical sensor displacement introduces discontinuities. Rather than computationally intensive blind source separation deployment, amplitude-based rejection criteria are implemented wherein segments exhibiting excursions beyond $\pm$100 microvolts undergo exclusion. This approach, though methodologically straightforward, demonstrates adequate efficacy.
 
-Continuous acquisition streams subsequently undergo temporal segmentation into four-second epochs, with 50\% inter-window overlap. This temporal window duration provides 0.25 Hz spectral resolution---sufficient for discriminating alpha from theta components---while permitting characterization of stress state evolution across extended timescales.
+Continuous acquisition streams subsequently undergo temporal segmentation with dataset-specific epoch durations optimized for task paradigm complexity. SAM-40 employs 25-second segments (3,200 samples at 128 Hz) capturing complete cognitive task trials across four stress paradigms: Arithmetic, Mirror Image, Stroop Test, and Relaxation. EEGMAT utilizes 60-second segments (30,000 samples at 500 Hz) encompassing sustained mental arithmetic performance periods. These extended temporal windows provide enhanced spectral resolution while permitting comprehensive characterization of stress state dynamics across complete task execution cycles.
 
 Concluding the preprocessing cascade, per-channel standardization to zero mean and unit variance is applied. Authentic topographical power distribution patterns are preserved through this channel-wise normalization procedure while ensuring uniform input scaling for subsequent neural network processing.
 
@@ -178,7 +177,7 @@ The proposed computational framework---designated GenAI-RAG-EEG---integrates fou
     block/.style={rectangle, draw, fill=blue!20, text width=1.4cm, text centered, minimum height=0.6cm, font=\tiny},
     arrow/.style={->, >=stealth, thick}]
 
-    \node[block, fill=green!20] (input) {EEG\\$32{\times}512$};
+    \node[block, fill=green!20] (input) {EEG\\$C{\times}T$};
     \node[block, right=0.2cm of input] (conv1) {Conv\\32@7};
     \node[block, right=0.2cm of conv1] (conv2) {Conv\\64@5};
     \node[block, right=0.2cm of conv2] (conv3) {Conv\\64@3};

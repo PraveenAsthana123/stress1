@@ -38,8 +38,23 @@ project:
 model:
   # Input Configuration
   n_channels: 32              # Number of EEG channels (32 for 10-20 system)
-  n_time_samples: 512         # Time samples per segment (2s at 256Hz)
-  n_classes: 2                # Binary classification (stress/no-stress)
+
+  # Dataset-specific segment configurations
+  # SAM-40: 25 sec × 128 Hz = 3,200 samples (4 classes)
+  # EEGMAT: 60 sec × 500 Hz = 30,000 samples (2 classes)
+  sam40:
+    sampling_rate: 128        # Hz
+    n_time_samples: 3200      # 25 seconds at 128 Hz
+    segment_duration: 25      # seconds
+    n_classes: 4              # Arithmetic, Mirror_image, Stroop, Relax
+    total_segments: 480       # 40 subjects × 4 classes × 3 trials
+    classes: ["Arithmetic", "Mirror_image", "Stroop", "Relax"]
+  eegmat:
+    n_time_samples: 30000     # 60 seconds at 500 Hz
+    segment_duration: 60      # seconds
+    n_classes: 2              # Baseline, Mental Arithmetic
+    total_segments: 141
+    classes: ["Baseline", "Mental_Arithmetic"]
 
   # -------------------------------------------------------------------
   # EEG ENCODER (CNN + Bi-LSTM + Attention)
