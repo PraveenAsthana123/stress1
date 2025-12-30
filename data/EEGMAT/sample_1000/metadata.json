@@ -1,0 +1,13 @@
+{
+  "dataset": "EEGMAT",
+  "source": "Real data from PhysioNet EDF files",
+  "n_samples": 720,
+  "n_channels": 21,
+  "n_timepoints": 512,
+  "sampling_rate": 500.0,
+  "class_distribution": {
+    "baseline": 360,
+    "arithmetic": 360
+  },
+  "generated": "2025-12-29T22:17:53.657547"
+}

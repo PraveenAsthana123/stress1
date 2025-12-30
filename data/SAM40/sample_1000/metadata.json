@@ -1,0 +1,13 @@
+{
+  "dataset": "SAM-40",
+  "source": "Real data from filtered_data/*.mat",
+  "n_samples": 1000,
+  "n_channels": 32,
+  "n_timepoints": 512,
+  "sampling_rate": 128.0,
+  "class_distribution": {
+    "relaxed": 500,
+    "stressed": 500
+  },
+  "generated": "2025-12-29T22:17:38.767898"
+}

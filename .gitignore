@@ -125,8 +125,13 @@ data/eegmat/
 # EEGMAT raw data (large EDF files)
 data/EEGMAT/eeg-during-mental-arithmetic-tasks-1.0.0/
 data/EEGMAT/*.zip
-# Keep EEGMAT sample for validation
+# Keep sample data for validation
+!data/SAM40/sample_100/
+!data/SAM40/sample_1000/
+!data/WESAD/sample_100/
+!data/WESAD/sample_1000/
 !data/EEGMAT/sample_100/
+!data/EEGMAT/sample_1000/
 
 # Processed data
 data/processed/
