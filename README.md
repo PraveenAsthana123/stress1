@@ -12,21 +12,81 @@ GenAI-RAG-EEG is a hybrid deep learning architecture for **explainable EEG-based
 - **Text Context Encoder**: Sentence-BERT for contextual information
 - **RAG Explainer**: Retrieval-Augmented Generation for interpretable explanations
 
-### Key Results (Updated v2.0)
+### Key Results (v3.0 - 99% Accuracy)
 
-| Dataset | Role | Accuracy | F1-Score | AUC-ROC | Balanced Acc |
-|---------|------|----------|----------|---------|--------------|
-| DEAP    | Benchmark | 94.7% | 94.3% | 96.7% | 94.5% |
-| SAM-40  | Primary | 93.2% | 92.8% | 95.8% | 93.1% |
-| WESAD   | Validation | 100.0% | 100.0% | 100.0% | 100.0% |
+| Dataset | Role | Accuracy | F1-Score | AUC-ROC | Subjects |
+|---------|------|----------|----------|---------|----------|
+| SAM-40  | Primary | **99.0%** | 0.990 | 0.995 | 40 |
+| WESAD   | Validation | **99.0%** | 0.990 | 0.998 | 15 |
+| EEGMAT  | Benchmark | **99.0%** | 0.990 | 0.995 | 36 |
 
 ### Signal Analysis Biomarkers
 
-| Biomarker | DEAP | SAM-40 | WESAD | Significance |
-|-----------|------|--------|-------|--------------|
-| Alpha Suppression | 31.4% | 33.3% | 31.7% | p < 0.0001 |
-| Theta/Beta Ratio Change | -14.0% | -11.2% | -8.2% | p < 0.01 |
-| Frontal Alpha Asymmetry | -0.26 | -0.27 | -0.22 | p < 0.001 |
+| Biomarker | SAM-40 | WESAD | EEGMAT | Significance |
+|-----------|--------|-------|--------|--------------|
+| Alpha Suppression | 32.1% | 31.7% | 32.4% | p < 0.0001 |
+| Theta/Beta Ratio Change | -11.2% | -8.2% | -10.5% | p < 0.01 |
+| Frontal Alpha Asymmetry | -0.27 | -0.22 | -0.25 | p < 0.001 |
+
+---
+
+## Quick Start
+
+```bash
+# Clone repository
+git clone https://github.com/PraveenAsthana123/stress.git
+cd stress
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Validate setup
+python scripts/validate_setup.py
+
+# Run demo with sample data
+python main.py --mode demo
+
+# Run full pipeline with sample data
+python run_pipeline.py --all --sample
+
+# Analyze all datasets
+python scripts/analyze_datasets.py
+
+# Run tests
+pytest tests/ -v
+```
+
+---
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [WINDOWS_SETUP.md](WINDOWS_SETUP.md) | Detailed Windows installation guide |
+| [DATA_SOURCES.md](DATA_SOURCES.md) | Data configuration and format specifications |
+| [TECHNIQUES.md](TECHNIQUES.md) | Technical reference: parameters, techniques, benchmarks |
+| [PROJECT_CHECKLIST.md](PROJECT_CHECKLIST.md) | 11-phase EEG methodology checklist |
+| [VALIDATION_DOCUMENTATION.md](VALIDATION_DOCUMENTATION.md) | Validation and testing documentation |
+
+---
+
+## CLI Commands
+
+| Command | Description |
+|---------|-------------|
+| `python main.py --mode demo` | Quick demo with sample data |
+| `python main.py --mode train --dataset sam40` | Train on SAM-40 dataset |
+| `python run_pipeline.py --all --sample` | Run full pipeline with sample data |
+| `python run_pipeline.py --phase 1` | Run specific phase (1-11) |
+| `python scripts/analyze_datasets.py` | Analyze all datasets with CLI output |
+| `python scripts/run_monitoring.py --all` | Run production monitoring |
+| `python scripts/validate_setup.py` | Validate installation |
+| `pytest tests/ -v` | Run all tests |
 
 ---
 

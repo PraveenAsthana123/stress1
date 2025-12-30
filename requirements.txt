@@ -3,7 +3,7 @@
 # ==============================================================================
 #
 # Title: EEG-Based Stress Classification using GenAI-RAG Architecture
-# Authors: [Your Name], [Co-authors]
+# Authors: Praveen Asthana, Rajveer Singh Lalawat, Sarita Singh Gond
 # Version: 3.0.0
 # Python Version: 3.8+ (Tested on 3.8, 3.9, 3.10, 3.11, 3.12, 3.13)
 #
@@ -18,6 +18,12 @@
 #
 # For GPU support (CUDA):
 #   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#
+# For Windows:
+#   See WINDOWS_SETUP.md for detailed instructions
+#
+# For data configuration:
+#   See DATA_SOURCES.md and src/config.py
 #
 # ==============================================================================
 
