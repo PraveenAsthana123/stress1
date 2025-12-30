@@ -281,18 +281,26 @@ These parameters can be adjusted in `src/config.py`:
 
 ---
 
-## Sample Data Generation
+## Sample Data (Real Data Included)
 
-Generate synthetic sample data for testing:
+**100 rows of REAL data** are included in the repository for immediate testing:
+
+| Dataset | Path | Source |
+|---------|------|--------|
+| SAM-40 | `data/SAM40/sample_100/` | Real .mat files |
+| WESAD | `data/WESAD/sample_100/` | Real thesis data |
+| EEGMAT | `data/EEGMAT/sample_100/` | Real PhysioNet .edf |
+
+To extract sample data from full datasets:
 
 ```bash
-python scripts/generate_sample_data.py
+python scripts/extract_real_data_1000.py
 ```
 
-This creates 100-row sample datasets with realistic EEG characteristics:
-- Alpha/Theta/Beta/Gamma oscillations
-- Stress biomarkers (alpha suppression, beta elevation)
-- Proper channel configurations
+This extracts balanced samples (50 per class) from real data:
+- SAM-40: From 480 .mat files (Relax vs Arithmetic/Mirror/Stroop)
+- WESAD: From thesis data (Baseline vs Stress)
+- EEGMAT: From 72 PhysioNet .edf files (Baseline vs Arithmetic)
 
 ---
 
