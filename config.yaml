@@ -197,7 +197,7 @@ data:
   paths:
     deap: "data/deap"
     sam40: "data/sam40"
-    wesad: "data/wesad"
+    eegmat: "data/eegmat"
     sample: "data/sample"
 
   # -------------------------------------------------------------------

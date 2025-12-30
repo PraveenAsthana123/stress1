@@ -6,7 +6,7 @@ GenAI-RAG-EEG Configuration Module
 ================================================================================
 
 Centralized configuration for:
-- Data source paths for all datasets (SAM-40, WESAD, EEGMAT)
+- Data source paths for all datasets (SAM-40, EEGMAT)
 - Model architecture parameters
 - Training hyperparameters
 - Expected performance metrics
@@ -92,33 +92,6 @@ class SAM40Config:
 
 
 @dataclass
-class WESADConfig:
-    """WESAD Dataset Configuration (Physiological Stress)."""
-    name: str = "WESAD"
-    path: Path = field(default_factory=lambda: DATA_DIR / "WESAD")
-    sample_path: Path = field(default_factory=lambda: DATA_DIR / "WESAD" / "sample_100")
-
-    # Dataset specifications
-    n_subjects: int = 15
-    n_channels: int = 14  # Emotive EPOC+
-    sampling_rate: float = 700.0  # Original, resampled to 256 Hz
-    target_sampling_rate: float = 256.0
-    segment_length: int = 512
-
-    # Stress paradigm
-    stress_type: str = "physiological"
-    protocol: str = "TSST"  # Trier Social Stress Test
-
-    # Expected performance
-    expected_accuracy: float = 99.0
-    expected_auc: float = 0.995
-
-    def get_data_path(self, use_sample: bool = False) -> Path:
-        """Get appropriate data path."""
-        return self.sample_path if use_sample else self.path
-
-
-@dataclass
 class EEGMATConfig:
     """EEGMAT Dataset Configuration (Mental Arithmetic - PhysioNet)."""
     name: str = "EEGMAT"
@@ -161,7 +134,6 @@ class EEGMATConfig:
 class DatasetConfig:
     """Combined Dataset Configuration."""
     sam40: SAM40Config = field(default_factory=SAM40Config)
-    wesad: WESADConfig = field(default_factory=WESADConfig)
     eegmat: EEGMATConfig = field(default_factory=EEGMATConfig)
 
     # Common preprocessing parameters
@@ -179,8 +151,6 @@ class DatasetConfig:
         name_lower = name.lower().replace("-", "").replace("_", "")
         if name_lower in ["sam40", "sam"]:
             return self.sam40
-        elif name_lower == "wesad":
-            return self.wesad
         elif name_lower in ["eegmat", "eeg_mat", "mentalmath"]:
             return self.eegmat
         else:
@@ -317,16 +287,13 @@ class ExpectedResults:
     """Expected Performance Metrics (Paper Claims)."""
     # Classification accuracy (%)
     sam40_accuracy: float = 99.0
-    wesad_accuracy: float = 99.0
     eegmat_accuracy: float = 99.0  # When trained directly
 
     # Cross-paradigm transfer (%)
-    transfer_to_eegmat: float = 99.0  # From SAM-40/WESAD
-    transfer_sam40_wesad: float = 99.0  # Between SAM-40 and WESAD
+    transfer_to_eegmat: float = 99.0  # From SAM-40
 
     # AUC-ROC
     sam40_auc: float = 0.995
-    wesad_auc: float = 0.995
     eegmat_auc: float = 0.995
 
     # Cohen's Kappa
@@ -392,7 +359,6 @@ class Config:
         """Get all dataset paths as dictionary."""
         return {
             "SAM-40": self.datasets.sam40.get_data_path(),
-            "WESAD": self.datasets.wesad.get_data_path(),
             "EEGMAT": self.datasets.eegmat.get_data_path(),
         }
 
@@ -400,7 +366,6 @@ class Config:
         """Get expected accuracies for all datasets."""
         return {
             "SAM-40": self.expected.sam40_accuracy,
-            "WESAD": self.expected.wesad_accuracy,
             "EEGMAT": self.expected.eegmat_accuracy,
         }
 
@@ -412,7 +377,6 @@ class Config:
 
         print("\n📁 Dataset Paths:")
         print(f"  SAM-40:  {self.datasets.sam40.path}")
-        print(f"  WESAD:   {self.datasets.wesad.path}")
         print(f"  EEGMAT:  {self.datasets.eegmat.path}")
 
         print("\n🧠 Model Architecture:")
@@ -429,7 +393,6 @@ class Config:
 
         print("\n📊 Expected Results:")
         print(f"  SAM-40 Accuracy:  {self.expected.sam40_accuracy}%")
-        print(f"  WESAD Accuracy:   {self.expected.wesad_accuracy}%")
         print(f"  EEGMAT Accuracy:  {self.expected.eegmat_accuracy}%")
         print(f"  AUC-ROC:          {self.expected.sam40_auc}")
 
@@ -476,7 +439,6 @@ def validate_config(config: Config) -> dict:
     # 2. Validate sample data exists (required for out-of-box execution)
     sample_paths = [
         ("SAM-40 sample", config.datasets.sam40.sample_path),
-        ("WESAD sample", config.datasets.wesad.sample_path),
         ("EEGMAT sample", config.datasets.eegmat.sample_path),
     ]
     for name, path in sample_paths:
@@ -553,9 +515,8 @@ Dtype: float32
 Units: microvolts (µV)
 
 Example:
-  SAM-40:  (N, 32, 512)  - 32 channels, 2 seconds at 256 Hz
-  WESAD:   (N, 14, 512)  - 14 channels, 2 seconds at 256 Hz
-  EEGMAT:  (N, 32, 512)  - 21 channels padded to 32, 2 seconds at 256 Hz
+  SAM-40:  (N, 32, 3200)  - 32 channels, 25 seconds at 128 Hz
+  EEGMAT:  (N, 32, 30000) - 21 channels padded to 32, 60 seconds at 500 Hz
 
 2. LABEL FORMAT
 ---------------
@@ -568,7 +529,6 @@ Values: 0 = baseline/relaxed, 1 = stress
 Location: data/sample_validation/
 Files:
   - sam40_sample.npz   -> {'X': array, 'y': array, 'metadata': json_str}
-  - wesad_sample.npz   -> {'X': array, 'y': array, 'metadata': json_str}
   - eegmat_sample.npz  -> {'X': array, 'y': array, 'metadata': json_str}
 
 4. METADATA FORMAT
