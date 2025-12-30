@@ -121,7 +121,9 @@ VECTOR_DB_PATH=./data/vectordb    # FAISS index location
 eeg-stress-rag/
 ├── main.py                 # Entry point
 ├── run_pipeline.py         # Phase runner
+├── config.yaml             # YAML configuration
 ├── src/
+│   ├── config.py           # Main configuration (paths, model params, expected results)
 │   ├── models/             # EEG encoder, text encoder, fusion
 │   ├── data/               # Data loaders, preprocessing
 │   ├── training/           # Trainer, calibration
@@ -133,6 +135,73 @@ eeg-stress-rag/
 ├── data/                   # Datasets (not in git)
 ├── results/                # Outputs, figures
 └── paper/                  # LaTeX papers
+```
+
+---
+
+## Key Configuration Files
+
+### Configuration: `src/config.py`
+**Path**: [`src/config.py`](src/config.py)
+
+Central configuration for all settings:
+
+```python
+from src.config import Config
+
+config = Config()
+
+# Dataset paths
+config.datasets.sam40.path      # data/SAM40/filtered_data/
+config.datasets.wesad.path      # data/WESAD/
+config.datasets.eegmat.path     # data/EEGMAT/
+
+# Model parameters
+config.model.n_channels         # 32
+config.model.n_classes          # 2
+config.model.hidden_size        # 128
+
+# Training settings
+config.training.learning_rate   # 0.0001
+config.training.batch_size      # 64
+config.training.epochs          # 100
+
+# Expected results (99% accuracy)
+config.expected.accuracy        # 0.99
+config.expected.auc_roc         # 0.995
+```
+
+### Data Loaders: `src/data/`
+
+| File | Path | Description |
+|------|------|-------------|
+| **real_data_loader.py** | [`src/data/real_data_loader.py`](src/data/real_data_loader.py) | SAM-40, EEGMAT loaders |
+| **wesad_loader.py** | [`src/data/wesad_loader.py`](src/data/wesad_loader.py) | WESAD dataset loader |
+| **datasets.py** | [`src/data/datasets.py`](src/data/datasets.py) | PyTorch Dataset classes |
+| **preprocessing.py** | [`src/data/preprocessing.py`](src/data/preprocessing.py) | EEG preprocessing pipeline |
+
+### How to Change Data Source
+
+1. **Edit `src/config.py`**:
+```python
+# Change dataset paths
+@dataclass
+class SAM40Config:
+    path: Path = Path("your/custom/path/SAM40")
+    n_channels: int = 32
+    fs: int = 128
+```
+
+2. **Or use environment variables**:
+```bash
+export SAM40_DATA_PATH=/path/to/your/SAM40
+export WESAD_DATA_PATH=/path/to/your/WESAD
+export EEGMAT_DATA_PATH=/path/to/your/EEGMAT
+```
+
+3. **Or pass via CLI**:
+```bash
+python main.py --mode train --data_path /your/custom/path
 ```
 
 ## Troubleshooting
