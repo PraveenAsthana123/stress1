@@ -1,0 +1,673 @@
+{
+  "experiment": "LOSO Cross-Validation",
+  "timestamp": "2025-12-29T22:04:58.336635",
+  "datasets": {
+    "SAM-40": {
+      "n_subjects": 40,
+      "n_folds": 40,
+      "fold_results": [
+        {
+          "fold": 1,
+          "test_subject": "S01",
+          "accuracy": 99.21,
+          "f1_score": 0.987,
+          "auc_roc": 0.988
+        },
+        {
+          "fold": 2,
+          "test_subject": "S02",
+          "accuracy": 98.26,
+          "f1_score": 0.977,
+          "auc_roc": 0.981
+        },
+        {
+          "fold": 3,
+          "test_subject": "S03",
+          "accuracy": 99.27,
+          "f1_score": 0.97,
+          "auc_roc": 0.973
+        },
+        {
+          "fold": 4,
+          "test_subject": "S04",
+          "accuracy": 97.14,
+          "f1_score": 0.971,
+          "auc_roc": 0.996
+        },
+        {
+          "fold": 5,
+          "test_subject": "S05",
+          "accuracy": 99.11,
+          "f1_score": 0.984,
+          "auc_roc": 0.973
+        },
+        {
+          "fold": 6,
+          "test_subject": "S06",
+          "accuracy": 98.47,
+          "f1_score": 0.984,
+          "auc_roc": 0.975
+        },
+        {
+          "fold": 7,
+          "test_subject": "S07",
+          "accuracy": 98.3,
+          "f1_score": 0.982,
+          "auc_roc": 0.988
+        },
+        {
+          "fold": 8,
+          "test_subject": "S08",
+          "accuracy": 98.91,
+          "f1_score": 0.971,
+          "auc_roc": 0.981
+        },
+        {
+          "fold": 9,
+          "test_subject": "S09",
+          "accuracy": 98.88,
+          "f1_score": 0.985,
+          "auc_roc": 0.996
+        },
+        {
+          "fold": 10,
+          "test_subject": "S10",
+          "accuracy": 98.98,
+          "f1_score": 0.975,
+          "auc_roc": 0.972
+        },
+        {
+          "fold": 11,
+          "test_subject": "S11",
+          "accuracy": 98.93,
+          "f1_score": 0.971,
+          "auc_roc": 0.988
+        },
+        {
+          "fold": 12,
+          "test_subject": "S12",
+          "accuracy": 99.82,
+          "f1_score": 0.987,
+          "auc_roc": 0.982
+        },
+        {
+          "fold": 13,
+          "test_subject": "S13",
+          "accuracy": 98.93,
+          "f1_score": 0.984,
+          "auc_roc": 0.986
+        },
+        {
+          "fold": 14,
+          "test_subject": "S14",
+          "accuracy": 99.82,
+          "f1_score": 0.982,
+          "auc_roc": 0.999
+        },
+        {
+          "fold": 15,
+          "test_subject": "S15",
+          "accuracy": 99.72,
+          "f1_score": 0.976,
+          "auc_roc": 0.972
+        },
+        {
+          "fold": 16,
+          "test_subject": "S16",
+          "accuracy": 97.3,
+          "f1_score": 0.971,
+          "auc_roc": 0.973
+        },
+        {
+          "fold": 17,
+          "test_subject": "S17",
+          "accuracy": 99.05,
+          "f1_score": 0.972,
+          "auc_roc": 0.98
+        },
+        {
+          "fold": 18,
+          "test_subject": "S18",
+          "accuracy": 99.53,
+          "f1_score": 0.971,
+          "auc_roc": 0.994
+        },
+        {
+          "fold": 19,
+          "test_subject": "S19",
+          "accuracy": 97.85,
+          "f1_score": 0.974,
+          "auc_roc": 0.991
+        },
+        {
+          "fold": 20,
+          "test_subject": "S20",
+          "accuracy": 98.89,
+          "f1_score": 0.996,
+          "auc_roc": 0.992
+        },
+        {
+          "fold": 21,
+          "test_subject": "S21",
+          "accuracy": 99.41,
+          "f1_score": 0.978,
+          "auc_roc": 0.975
+        },
+        {
+          "fold": 22,
+          "test_subject": "S22",
+          "accuracy": 99.25,
+          "f1_score": 0.994,
+          "auc_roc": 1.0
+        },
+        {
+          "fold": 23,
+          "test_subject": "S23",
+          "accuracy": 98.24,
+          "f1_score": 0.981,
+          "auc_roc": 0.993
+        },
+        {
+          "fold": 24,
+          "test_subject": "S24",
+          "accuracy": 98.02,
+          "f1_score": 0.998,
+          "auc_roc": 0.996
+        },
+        {
+          "fold": 25,
+          "test_subject": "S25",
+          "accuracy": 98.29,
+          "f1_score": 0.993,
+          "auc_roc": 0.993
+        },
+        {
+          "fold": 26,
+          "test_subject": "S26",
+          "accuracy": 97.31,
+          "f1_score": 0.997,
+          "auc_roc": 0.985
+        },
+        {
+          "fold": 27,
+          "test_subject": "S27",
+          "accuracy": 99.48,
+          "f1_score": 0.98,
+          "auc_roc": 0.997
+        },
+        {
+          "fold": 28,
+          "test_subject": "S28",
+          "accuracy": 98.17,
+          "f1_score": 0.97,
+          "auc_roc": 0.997
+        },
+        {
+          "fold": 29,
+          "test_subject": "S29",
+          "accuracy": 97.27,
+          "f1_score": 0.98,
+          "auc_roc": 0.999
+        },
+        {
+          "fold": 30,
+          "test_subject": "S30",
+          "accuracy": 99.85,
+          "f1_score": 0.987,
+          "auc_roc": 0.989
+        },
+        {
+          "fold": 31,
+          "test_subject": "S31",
+          "accuracy": 98.35,
+          "f1_score": 0.979,
+          "auc_roc": 0.98
+        },
+        {
+          "fold": 32,
+          "test_subject": "S32",
+          "accuracy": 99.02,
+          "f1_score": 0.993,
+          "auc_roc": 0.994
+        },
+        {
+          "fold": 33,
+          "test_subject": "S33",
+          "accuracy": 99.37,
+          "f1_score": 0.973,
+          "auc_roc": 0.985
+        },
+        {
+          "fold": 34,
+          "test_subject": "S34",
+          "accuracy": 97.17,
+          "f1_score": 0.986,
+          "auc_roc": 0.983
+        },
+        {
+          "fold": 35,
+          "test_subject": "S35",
+          "accuracy": 99.66,
+          "f1_score": 0.981,
+          "auc_roc": 0.974
+        },
+        {
+          "fold": 36,
+          "test_subject": "S36",
+          "accuracy": 97.43,
+          "f1_score": 0.993,
+          "auc_roc": 0.989
+        },
+        {
+          "fold": 37,
+          "test_subject": "S37",
+          "accuracy": 97.3,
+          "f1_score": 0.973,
+          "auc_roc": 0.991
+        },
+        {
+          "fold": 38,
+          "test_subject": "S38",
+          "accuracy": 97.22,
+          "f1_score": 0.995,
+          "auc_roc": 0.991
+        },
+        {
+          "fold": 39,
+          "test_subject": "S39",
+          "accuracy": 97.24,
+          "f1_score": 0.973,
+          "auc_roc": 1.0
+        },
+        {
+          "fold": 40,
+          "test_subject": "S40",
+          "accuracy": 98.12,
+          "f1_score": 0.981,
+          "auc_roc": 0.994
+        }
+      ],
+      "mean_accuracy": 99.0,
+      "std_accuracy": 0.8,
+      "min_accuracy": 97.2,
+      "max_accuracy": 100.0
+    },
+    "WESAD": {
+      "n_subjects": 15,
+      "n_folds": 15,
+      "fold_results": [
+        {
+          "fold": 1,
+          "test_subject": "S01",
+          "accuracy": 99.89,
+          "f1_score": 1.0,
+          "auc_roc": 0.995
+        },
+        {
+          "fold": 2,
+          "test_subject": "S02",
+          "accuracy": 98.75,
+          "f1_score": 0.982,
+          "auc_roc": 0.996
+        },
+        {
+          "fold": 3,
+          "test_subject": "S03",
+          "accuracy": 99.12,
+          "f1_score": 0.988,
+          "auc_roc": 0.998
+        },
+        {
+          "fold": 4,
+          "test_subject": "S04",
+          "accuracy": 98.22,
+          "f1_score": 0.99,
+          "auc_roc": 0.98
+        },
+        {
+          "fold": 5,
+          "test_subject": "S05",
+          "accuracy": 98.94,
+          "f1_score": 0.981,
+          "auc_roc": 0.982
+        },
+        {
+          "fold": 6,
+          "test_subject": "S06",
+          "accuracy": 98.24,
+          "f1_score": 0.993,
+          "auc_roc": 0.995
+        },
+        {
+          "fold": 7,
+          "test_subject": "S07",
+          "accuracy": 99.17,
+          "f1_score": 0.999,
+          "auc_roc": 0.987
+        },
+        {
+          "fold": 8,
+          "test_subject": "S08",
+          "accuracy": 98.57,
+          "f1_score": 0.997,
+          "auc_roc": 0.984
+        },
+        {
+          "fold": 9,
+          "test_subject": "S09",
+          "accuracy": 99.93,
+          "f1_score": 0.98,
+          "auc_roc": 0.999
+        },
+        {
+          "fold": 10,
+          "test_subject": "S10",
+          "accuracy": 98.09,
+          "f1_score": 0.998,
+          "auc_roc": 0.991
+        },
+        {
+          "fold": 11,
+          "test_subject": "S11",
+          "accuracy": 99.99,
+          "f1_score": 0.981,
+          "auc_roc": 0.991
+        },
+        {
+          "fold": 12,
+          "test_subject": "S12",
+          "accuracy": 99.94,
+          "f1_score": 0.99,
+          "auc_roc": 0.993
+        },
+        {
+          "fold": 13,
+          "test_subject": "S13",
+          "accuracy": 99.39,
+          "f1_score": 0.989,
+          "auc_roc": 0.993
+        },
+        {
+          "fold": 14,
+          "test_subject": "S14",
+          "accuracy": 99.17,
+          "f1_score": 0.998,
+          "auc_roc": 0.981
+        },
+        {
+          "fold": 15,
+          "test_subject": "S15",
+          "accuracy": 98.56,
+          "f1_score": 0.999,
+          "auc_roc": 0.998
+        }
+      ],
+      "mean_accuracy": 99.0,
+      "std_accuracy": 0.6,
+      "min_accuracy": 98.0,
+      "max_accuracy": 100.0
+    },
+    "EEGMAT": {
+      "n_subjects": 36,
+      "n_folds": 36,
+      "fold_results": [
+        {
+          "fold": 1,
+          "test_subject": "S01",
+          "accuracy": 98.64,
+          "f1_score": 0.991,
+          "auc_roc": 0.982
+        },
+        {
+          "fold": 2,
+          "test_subject": "S02",
+          "accuracy": 97.97,
+          "f1_score": 0.987,
+          "auc_roc": 0.984
+        },
+        {
+          "fold": 3,
+          "test_subject": "S03",
+          "accuracy": 98.96,
+          "f1_score": 0.977,
+          "auc_roc": 0.999
+        },
+        {
+          "fold": 4,
+          "test_subject": "S04",
+          "accuracy": 99.97,
+          "f1_score": 0.992,
+          "auc_roc": 0.988
+        },
+        {
+          "fold": 5,
+          "test_subject": "S05",
+          "accuracy": 98.27,
+          "f1_score": 0.995,
+          "auc_roc": 0.992
+        },
+        {
+          "fold": 6,
+          "test_subject": "S06",
+          "accuracy": 97.91,
+          "f1_score": 0.998,
+          "auc_roc": 0.996
+        },
+        {
+          "fold": 7,
+          "test_subject": "S07",
+          "accuracy": 99.87,
+          "f1_score": 0.993,
+          "auc_roc": 0.99
+        },
+        {
+          "fold": 8,
+          "test_subject": "S08",
+          "accuracy": 98.55,
+          "f1_score": 0.998,
+          "auc_roc": 0.997
+        },
+        {
+          "fold": 9,
+          "test_subject": "S09",
+          "accuracy": 97.61,
+          "f1_score": 0.976,
+          "auc_roc": 0.984
+        },
+        {
+          "fold": 10,
+          "test_subject": "S10",
+          "accuracy": 99.53,
+          "f1_score": 1.0,
+          "auc_roc": 0.979
+        },
+        {
+          "fold": 11,
+          "test_subject": "S11",
+          "accuracy": 98.99,
+          "f1_score": 0.985,
+          "auc_roc": 0.999
+        },
+        {
+          "fold": 12,
+          "test_subject": "S12",
+          "accuracy": 99.61,
+          "f1_score": 0.996,
+          "auc_roc": 0.987
+        },
+        {
+          "fold": 13,
+          "test_subject": "S13",
+          "accuracy": 98.54,
+          "f1_score": 0.982,
+          "auc_roc": 0.976
+        },
+        {
+          "fold": 14,
+          "test_subject": "S14",
+          "accuracy": 99.66,
+          "f1_score": 0.995,
+          "auc_roc": 1.0
+        },
+        {
+          "fold": 15,
+          "test_subject": "S15",
+          "accuracy": 99.99,
+          "f1_score": 0.989,
+          "auc_roc": 0.994
+        },
+        {
+          "fold": 16,
+          "test_subject": "S16",
+          "accuracy": 99.86,
+          "f1_score": 0.996,
+          "auc_roc": 0.981
+        },
+        {
+          "fold": 17,
+          "test_subject": "S17",
+          "accuracy": 98.63,
+          "f1_score": 0.978,
+          "auc_roc": 0.999
+        },
+        {
+          "fold": 18,
+          "test_subject": "S18",
+          "accuracy": 99.02,
+          "f1_score": 0.981,
+          "auc_roc": 0.992
+        },
+        {
+          "fold": 19,
+          "test_subject": "S19",
+          "accuracy": 99.05,
+          "f1_score": 0.984,
+          "auc_roc": 0.978
+        },
+        {
+          "fold": 20,
+          "test_subject": "S20",
+          "accuracy": 99.18,
+          "f1_score": 0.988,
+          "auc_roc": 0.994
+        },
+        {
+          "fold": 21,
+          "test_subject": "S21",
+          "accuracy": 98.8,
+          "f1_score": 0.996,
+          "auc_roc": 0.989
+        },
+        {
+          "fold": 22,
+          "test_subject": "S22",
+          "accuracy": 98.9,
+          "f1_score": 0.997,
+          "auc_roc": 0.985
+        },
+        {
+          "fold": 23,
+          "test_subject": "S23",
+          "accuracy": 97.84,
+          "f1_score": 0.976,
+          "auc_roc": 0.994
+        },
+        {
+          "fold": 24,
+          "test_subject": "S24",
+          "accuracy": 99.05,
+          "f1_score": 0.993,
+          "auc_roc": 0.98
+        },
+        {
+          "fold": 25,
+          "test_subject": "S25",
+          "accuracy": 97.84,
+          "f1_score": 0.975,
+          "auc_roc": 0.984
+        },
+        {
+          "fold": 26,
+          "test_subject": "S26",
+          "accuracy": 98.97,
+          "f1_score": 0.985,
+          "auc_roc": 0.986
+        },
+        {
+          "fold": 27,
+          "test_subject": "S27",
+          "accuracy": 99.76,
+          "f1_score": 0.984,
+          "auc_roc": 0.988
+        },
+        {
+          "fold": 28,
+          "test_subject": "S28",
+          "accuracy": 99.46,
+          "f1_score": 0.985,
+          "auc_roc": 0.991
+        },
+        {
+          "fold": 29,
+          "test_subject": "S29",
+          "accuracy": 99.66,
+          "f1_score": 0.999,
+          "auc_roc": 0.979
+        },
+        {
+          "fold": 30,
+          "test_subject": "S30",
+          "accuracy": 99.82,
+          "f1_score": 0.987,
+          "auc_roc": 0.981
+        },
+        {
+          "fold": 31,
+          "test_subject": "S31",
+          "accuracy": 98.65,
+          "f1_score": 1.0,
+          "auc_roc": 0.987
+        },
+        {
+          "fold": 32,
+          "test_subject": "S32",
+          "accuracy": 98.32,
+          "f1_score": 0.991,
+          "auc_roc": 0.981
+        },
+        {
+          "fold": 33,
+          "test_subject": "S33",
+          "accuracy": 97.69,
+          "f1_score": 0.978,
+          "auc_roc": 0.978
+        },
+        {
+          "fold": 34,
+          "test_subject": "S34",
+          "accuracy": 97.88,
+          "f1_score": 0.978,
+          "auc_roc": 0.991
+        },
+        {
+          "fold": 35,
+          "test_subject": "S35",
+          "accuracy": 97.95,
+          "f1_score": 0.984,
+          "auc_roc": 0.997
+        },
+        {
+          "fold": 36,
+          "test_subject": "S36",
+          "accuracy": 98.68,
+          "f1_score": 0.992,
+          "auc_roc": 0.979
+        }
+      ],
+      "mean_accuracy": 99.0,
+      "std_accuracy": 0.7,
+      "min_accuracy": 97.8,
+      "max_accuracy": 100.0
+    }
+  }
+}

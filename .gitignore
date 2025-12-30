@@ -143,15 +143,16 @@ data/vectordb/
 # =============================================================================
 # MODEL FILES
 # =============================================================================
-# Checkpoints and saved models
+# Checkpoints and saved models (exclude large LOSO folds)
 checkpoints/
-models/checkpoints/
 models/exported/
-*.pth
-*.pt
+models/checkpoints/sam40_loso_fold_*.pth
 *.ckpt
 *.bin
 *.safetensors
+# Keep main model checkpoints
+!models/checkpoints/best_model.pth
+!models/checkpoints/final_model.pth
 
 # Pretrained models (downloaded)
 .cache/
@@ -161,23 +162,28 @@ models/exported/
 # =============================================================================
 # LOGS & OUTPUTS
 # =============================================================================
-logs/
-*.log
 tensorboard/
 wandb/
 mlruns/
+# Keep sample logs
+!logs/
+!logs/*.log
 
-# Results (keep validation results for reviewer)
+# Results (keep validation results and figures)
 outputs/
-# Exclude large result files but keep validation summaries
+# Exclude large result files
 results/*.pkl
 results/*.h5
 results/*/model_checkpoints/*.pt
-# Keep validation JSON and logs
-!results/validation_*/validation_results.json
-!results/validation_*/validation_log.txt
-!results/validation_*/data_metadata.json
-!results/balanced_validation_*/results.json
+# Keep all JSON reports
+!results/*.json
+# Keep all figures
+!results/figures/
+!results/figures/*.png
+# Keep validation results
+!results/validation_*/
+!results/balanced_validation_*/
+!results/multi_dataset_validation_*/
 
 # =============================================================================
 # LATEX / PAPER

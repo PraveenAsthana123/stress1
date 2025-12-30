@@ -1,0 +1,812 @@
+{
+  "model_version": "3.1.0",
+  "timestamp": "2025-12-29T22:04:58.332711",
+  "predictions": [
+    {
+      "sample_id": 0,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9984792313882279,
+      "attention_peak_time": "1.78s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 1,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9697575118000907,
+      "attention_peak_time": "1.93s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 2,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9960937117511558,
+      "attention_peak_time": "1.09s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 3,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9760417130012912,
+      "attention_peak_time": "1.96s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 4,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9694338644844741,
+      "attention_peak_time": "1.27s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 5,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9793375582831924,
+      "attention_peak_time": "1.97s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 6,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9570462112487381,
+      "attention_peak_time": "1.80s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 7,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9507818203370596,
+      "attention_peak_time": "1.42s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 8,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9599357840767085,
+      "attention_peak_time": "1.01s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 9,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9599421202044403,
+      "attention_peak_time": "1.71s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 10,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9885635173342973,
+      "attention_peak_time": "1.07s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 11,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9825538512750972,
+      "attention_peak_time": "1.91s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 12,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9811649063413779,
+      "attention_peak_time": "1.33s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 13,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9655491160857831,
+      "attention_peak_time": "1.33s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 14,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9795648893853863,
+      "attention_peak_time": "1.27s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 15,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9736107462580974,
+      "attention_peak_time": "1.12s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 16,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9924456912133042,
+      "attention_peak_time": "1.72s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 17,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.988548358997728,
+      "attention_peak_time": "1.49s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 18,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9855331444842893,
+      "attention_peak_time": "1.11s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 19,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9600859601167697,
+      "attention_peak_time": "1.90s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 20,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9657177990538163,
+      "attention_peak_time": "1.51s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 21,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9569665727202937,
+      "attention_peak_time": "1.60s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 22,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9877775569271524,
+      "attention_peak_time": "1.23s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 23,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9644875726456884,
+      "attention_peak_time": "1.16s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 24,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9812177024066896,
+      "attention_peak_time": "1.30s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 25,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9935730295093859,
+      "attention_peak_time": "1.80s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 26,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9941640129459434,
+      "attention_peak_time": "1.32s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 27,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9948045649961746,
+      "attention_peak_time": "1.32s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 28,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9636066124692317,
+      "attention_peak_time": "1.65s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 29,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9909007382961246,
+      "attention_peak_time": "1.86s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 30,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.958232792657147,
+      "attention_peak_time": "1.53s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 31,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9611053905235365,
+      "attention_peak_time": "1.12s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 32,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9584145521086465,
+      "attention_peak_time": "1.22s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 33,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.970191808552902,
+      "attention_peak_time": "1.06s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 34,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9981223647471055,
+      "attention_peak_time": "1.25s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 35,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.985613529496222,
+      "attention_peak_time": "1.15s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 36,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9633390507137642,
+      "attention_peak_time": "1.98s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 37,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9516525366450274,
+      "attention_peak_time": "1.35s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 38,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9619780945333486,
+      "attention_peak_time": "1.14s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 39,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.99928252270553,
+      "attention_peak_time": "1.24s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 40,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9880809807664358,
+      "attention_peak_time": "1.24s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 41,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9901569878189947,
+      "attention_peak_time": "1.47s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 42,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9816764855380447,
+      "attention_peak_time": "1.54s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 43,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9575358771982714,
+      "attention_peak_time": "1.51s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 44,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9929179402406859,
+      "attention_peak_time": "1.33s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 45,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9855574766219009,
+      "attention_peak_time": "1.81s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 46,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9587183214502495,
+      "attention_peak_time": "1.69s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 47,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9968364994368367,
+      "attention_peak_time": "1.14s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 48,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9556736760620295,
+      "attention_peak_time": "1.92s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 49,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9847892199672541,
+      "attention_peak_time": "1.23s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 50,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9991084171664717,
+      "attention_peak_time": "1.52s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 51,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9620926145450226,
+      "attention_peak_time": "1.09s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 52,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9950209028581665,
+      "attention_peak_time": "1.63s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 53,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9639435676296091,
+      "attention_peak_time": "1.70s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 54,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9928162145939046,
+      "attention_peak_time": "1.40s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 55,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9821015823077144,
+      "attention_peak_time": "1.08s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 56,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9834494127357114,
+      "attention_peak_time": "1.58s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 57,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9970066721228888,
+      "attention_peak_time": "1.97s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 58,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9580404025708749,
+      "attention_peak_time": "1.55s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 59,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9724212071493123,
+      "attention_peak_time": "1.99s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 60,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.950903768180776,
+      "attention_peak_time": "1.49s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 61,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9860469962126064,
+      "attention_peak_time": "1.31s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 62,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9683857901529717,
+      "attention_peak_time": "1.27s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 63,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9794935423780271,
+      "attention_peak_time": "1.98s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 64,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9946023277588556,
+      "attention_peak_time": "1.63s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 65,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9675039203847338,
+      "attention_peak_time": "1.65s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 66,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9746258846909431,
+      "attention_peak_time": "1.20s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 67,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9749596689942376,
+      "attention_peak_time": "1.57s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 68,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9521801885877217,
+      "attention_peak_time": "1.99s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 69,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9976964288501293,
+      "attention_peak_time": "1.91s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 70,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9873859386948707,
+      "attention_peak_time": "1.95s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 71,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9714092074158657,
+      "attention_peak_time": "1.97s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 72,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9990165791858022,
+      "attention_peak_time": "1.08s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 73,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9692548864300963,
+      "attention_peak_time": "1.85s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 74,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9584746373343046,
+      "attention_peak_time": "1.56s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 75,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9922106570363155,
+      "attention_peak_time": "1.93s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 76,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9548588246885383,
+      "attention_peak_time": "1.62s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 77,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9679323390648081,
+      "attention_peak_time": "1.25s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 78,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9938686535963978,
+      "attention_peak_time": "1.74s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 79,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9568310665721014,
+      "attention_peak_time": "1.71s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 80,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9646795922132246,
+      "attention_peak_time": "1.81s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 81,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9628103471797229,
+      "attention_peak_time": "1.61s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 82,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9502592431386992,
+      "attention_peak_time": "1.63s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 83,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9535470458499964,
+      "attention_peak_time": "1.40s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 84,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9945002670908782,
+      "attention_peak_time": "1.34s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 85,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9546990969920434,
+      "attention_peak_time": "1.58s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 86,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9664076333737366,
+      "attention_peak_time": "1.16s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 87,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9643270626064142,
+      "attention_peak_time": "1.59s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 88,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9625125680257931,
+      "attention_peak_time": "1.04s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 89,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9680095320705631,
+      "attention_peak_time": "1.13s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 90,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9913934501893794,
+      "attention_peak_time": "1.27s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 91,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9728632580806864,
+      "attention_peak_time": "1.84s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 92,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9770317560805053,
+      "attention_peak_time": "1.64s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 93,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9984768433557079,
+      "attention_peak_time": "1.71s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 94,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9897593097384352,
+      "attention_peak_time": "1.27s",
+      "dominant_band": "beta"
+    },
+    {
+      "sample_id": 95,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9539228190671133,
+      "attention_peak_time": "1.03s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 96,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9540436483308599,
+      "attention_peak_time": "1.43s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 97,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9529096797754222,
+      "attention_peak_time": "1.92s",
+      "dominant_band": "theta"
+    },
+    {
+      "sample_id": 98,
+      "true_label": 0,
+      "predicted_label": 0,
+      "confidence": 0.9625121449082297,
+      "attention_peak_time": "1.55s",
+      "dominant_band": "alpha"
+    },
+    {
+      "sample_id": 99,
+      "true_label": 1,
+      "predicted_label": 1,
+      "confidence": 0.9830098688358865,
+      "attention_peak_time": "1.28s",
+      "dominant_band": "alpha"
+    }
+  ],
+  "summary": {
+    "total_samples": 100,
+    "correct": 99,
+    "accuracy": 0.99,
+    "mean_confidence": 0.975
+  }
+}

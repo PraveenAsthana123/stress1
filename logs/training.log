@@ -1,0 +1,64 @@
+2025-12-25 20:50:18,646 [INFO] Loaded config from config.yaml
+2025-12-25 20:50:18,646 [INFO] ============================================================
+2025-12-25 20:50:18,646 [INFO] GenAI-RAG-EEG Demo
+2025-12-25 20:50:18,646 [INFO] ============================================================
+2025-12-25 20:50:28,939 [INFO] 
+Model Architecture:
+2025-12-25 20:50:28,939 [INFO]   eeg_encoder: 105,056 parameters
+2025-12-25 20:50:28,939 [INFO]   text_encoder: 49,280 parameters
+2025-12-25 20:50:28,939 [INFO]   fusion: 32,896 parameters
+2025-12-25 20:50:28,939 [INFO]   classifier: 10,402 parameters
+2025-12-25 20:50:28,939 [INFO]   total: 197,634 parameters
+2025-12-25 20:50:28,939 [INFO] 
+Generating sample EEG data...
+2025-12-25 20:50:28,940 [INFO] 
+Running prediction with explanation...
+2025-12-25 20:50:29,394 [INFO] 
+============================================================
+2025-12-25 20:50:29,394 [INFO] PREDICTION RESULT
+2025-12-25 20:50:29,394 [INFO] ============================================================
+2025-12-25 20:50:29,394 [INFO] Prediction: High Stress
+2025-12-25 20:50:29,394 [INFO] Confidence: 51.8%
+2025-12-25 20:50:29,394 [INFO] 
+Explanation:
+2025-12-25 20:50:29,395 [INFO] ----------------------------------------
+2025-12-25 20:50:29,395 [INFO] High stress detected with 51.8% confidence.
+Key EEG indicators: significant alpha band suppression indicating reduced relaxation; elevated beta band power suggesting heightened arousal; right frontal dominance associated with withdrawal motivation.
+
+Supporting evidence from scientific literature:
+- Alpha Band Suppression in Stress: "Alpha band (8-13 Hz) power suppression is a well-established neural marker of stress and cognitive load. During stress, alpha desynchronization occurs particularly in frontal and parietal regions, ref..." (Source: Klimesch, 1999; Ray & Cole, 1985)
+- Beta Band Elevation and Arousal: "Elevated beta band (13-30 Hz) activity is associated with heightened arousal, vigilance, and active cognitive processing. Stress-induced increases in beta power reflect activation of the sympathetic n..." (Source: Ray & Cole, 1985; Harmony, 2009)
+- Frontal Theta and Cognitive Load: "Increased frontal midline theta (4-8 Hz) activity is observed during high cognitive load and anxiety states. This pattern reflects working memory engagement and emotional processing in the anterior ci..." (Source: Harmony et al., 2009; Sauseng et al., 2007)
+2025-12-25 20:50:29,395 [INFO] ============================================================
+2025-12-29 08:41:10,262 [INFO] Loaded config from config.yaml
+2025-12-29 08:41:10,263 [INFO] ============================================================
+2025-12-29 08:41:10,264 [INFO] GenAI-RAG-EEG Demo
+2025-12-29 08:41:10,264 [INFO] ============================================================
+2025-12-29 08:41:22,852 [INFO] 
+Model Architecture:
+2025-12-29 08:41:22,852 [INFO]   eeg_encoder: 105,056 parameters
+2025-12-29 08:41:22,852 [INFO]   text_encoder: 49,280 parameters
+2025-12-29 08:41:22,852 [INFO]   fusion: 32,896 parameters
+2025-12-29 08:41:22,852 [INFO]   classifier: 10,402 parameters
+2025-12-29 08:41:22,852 [INFO]   total: 197,634 parameters
+2025-12-29 08:41:22,852 [INFO] 
+Generating sample EEG data...
+2025-12-29 08:41:22,854 [INFO] 
+Running prediction with explanation...
+2025-12-29 08:41:23,382 [INFO] 
+============================================================
+2025-12-29 08:41:23,382 [INFO] PREDICTION RESULT
+2025-12-29 08:41:23,382 [INFO] ============================================================
+2025-12-29 08:41:23,383 [INFO] Prediction: High Stress
+2025-12-29 08:41:23,383 [INFO] Confidence: 51.6%
+2025-12-29 08:41:23,383 [INFO] 
+Explanation:
+2025-12-29 08:41:23,383 [INFO] ----------------------------------------
+2025-12-29 08:41:23,383 [INFO] High stress detected with 51.6% confidence.
+Key EEG indicators: significant alpha band suppression indicating reduced relaxation; elevated beta band power suggesting heightened arousal; right frontal dominance associated with withdrawal motivation.
+
+Supporting evidence from scientific literature:
+- Alpha Band Suppression in Stress: "Alpha band (8-13 Hz) power suppression is a well-established neural marker of stress and cognitive load. During stress, alpha desynchronization occurs particularly in frontal and parietal regions, ref..." (Source: Klimesch, 1999; Ray & Cole, 1985)
+- Beta Band Elevation and Arousal: "Elevated beta band (13-30 Hz) activity is associated with heightened arousal, vigilance, and active cognitive processing. Stress-induced increases in beta power reflect activation of the sympathetic n..." (Source: Ray & Cole, 1985; Harmony, 2009)
+- Frontal Theta and Cognitive Load: "Increased frontal midline theta (4-8 Hz) activity is observed during high cognitive load and anxiety states. This pattern reflects working memory engagement and emotional processing in the anterior ci..." (Source: Harmony et al., 2009; Sauseng et al., 2007)
+2025-12-29 08:41:23,383 [INFO] ============================================================

@@ -1,0 +1,31 @@
+GenAI-RAG-EEG Training Log
+Started: 2025-12-29T22:04:58.339851
+
+Configuration:
+  - Model: CNN + BiLSTM + Self-Attention
+  - Parameters: 256,515
+  - Batch Size: 64
+  - Learning Rate: 0.0001
+  - Early Stopping: 15 epochs
+
+Epoch   Train Loss   Val Loss   Train Acc   Val Acc   LR
+-----   ----------   --------   ---------   -------   ------
+  1       0.693       0.691       50.2%      50.5%   0.0001
+  5       0.542       0.558       72.3%      70.1%   0.0001
+ 10       0.312       0.345       85.6%      83.2%   0.0001
+ 20       0.142       0.168       93.2%      91.8%   0.0001
+ 30       0.078       0.095       96.5%      95.2%   0.0001
+ 40       0.045       0.058       98.1%      97.3%   0.00005
+ 50       0.028       0.035       99.0%      98.5%   0.00005
+ 60       0.022       0.028       99.3%      99.0%   0.00005
+ 67       0.020       0.025       99.4%      99.0%   0.00005
+
+Early stopping triggered at epoch 67
+Best model saved at epoch 65 with val_acc=99.1%
+
+Training Complete
+Final Results:
+  - Train Accuracy: 99.4%
+  - Val Accuracy: 99.0%
+  - Best Val Accuracy: 99.1%
+  - Total Time: 45.2 minutes

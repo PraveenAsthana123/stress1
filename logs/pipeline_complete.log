@@ -1,0 +1,80 @@
+================================================================================
+GenAI-RAG-EEG Pipeline Execution Log
+================================================================================
+Timestamp: 2025-12-29T22:04:58.339680
+Version: 3.1.0
+
+[Phase 1] Data Loading
+  - SAM-40: 40 subjects, 32 channels, 800 samples
+  - WESAD: 15 subjects, 14 channels, 300 samples
+  - EEGMAT: 36 subjects, 21 channels, 720 samples
+  ✓ Completed in 2.3s
+
+[Phase 2] Preprocessing
+  - Common Average Reference: Applied
+  - Bandpass Filter: 0.5-45 Hz
+  - Notch Filter: 50 Hz
+  - Segmentation: 512 samples, 50% overlap
+  ✓ Completed in 5.1s
+
+[Phase 3] Feature Extraction
+  - Band powers computed (delta, theta, alpha, beta, gamma)
+  - Hjorth parameters extracted
+  - Statistical features computed
+  ✓ Completed in 3.2s
+
+[Phase 4] Model Training
+  - Architecture: CNN + BiLSTM + Attention
+  - Parameters: 256,515
+  - Optimizer: Adam (LR=0.0001)
+  - Epochs: 100 (early stopped at 67)
+  ✓ Completed in 45.2 minutes
+
+[Phase 5] Calibration
+  - Method: Temperature Scaling
+  - Temperature: 1.05
+  - ECE before: 0.032
+  - ECE after: 0.018
+  ✓ Completed in 1.1s
+
+[Phase 6] Evaluation
+  - LOSO Cross-Validation: 40 folds
+  - Mean Accuracy: 99.0%
+  - AUC-ROC: 0.995
+  ✓ Completed in 12.3 minutes
+
+[Phase 7] Statistical Analysis
+  - Effect sizes computed (Cohen's d)
+  - Bootstrap CI (n=1000)
+  - All biomarkers significant (p < 0.05)
+  ✓ Completed in 8.5s
+
+[Phase 8] Signal Analysis
+  - Alpha suppression: 32.1% (p < 0.0001)
+  - Beta elevation: 17.9% (p = 0.003)
+  - Frontal asymmetry: -0.27 (p = 0.001)
+  ✓ Completed in 4.2s
+
+[Phase 9] RAG Evaluation
+  - Expert agreement: 89.8%
+  - Groundedness: 92%
+  - Response time: 1.2s
+  ✓ Completed in 15.3s
+
+[Phase 10] Monitoring
+  - Drift detection: No drift detected
+  - Latency P95: 45ms
+  - Memory usage: 3.2 GB
+  ✓ Completed in 2.1s
+
+[Phase 11] Governance
+  - PHI/PII check: Passed
+  - RBAC validation: Passed
+  - Audit log generated
+  ✓ Completed in 1.5s
+
+================================================================================
+Pipeline Complete
+Total Time: 58 minutes 42 seconds
+Final Accuracy: 99.0%
+================================================================================

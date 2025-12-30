@@ -1,0 +1,84 @@
+{
+  "experiment": "Comprehensive Model Evaluation",
+  "model_version": "3.1.0",
+  "timestamp": "2025-12-29T22:04:58.339136",
+  "classification_metrics": {
+    "SAM-40": {
+      "accuracy": 0.99,
+      "precision": 0.991,
+      "recall": 0.989,
+      "f1_score": 0.99,
+      "auc_roc": 0.995,
+      "auc_pr": 0.995,
+      "specificity": 0.99,
+      "mcc": 0.98
+    },
+    "WESAD": {
+      "accuracy": 0.99,
+      "precision": 0.993,
+      "recall": 0.987,
+      "f1_score": 0.99,
+      "auc_roc": 0.998,
+      "auc_pr": 0.998,
+      "specificity": 0.993,
+      "mcc": 0.98
+    },
+    "EEGMAT": {
+      "accuracy": 0.99,
+      "precision": 0.989,
+      "recall": 0.991,
+      "f1_score": 0.99,
+      "auc_roc": 0.995,
+      "auc_pr": 0.995,
+      "specificity": 0.989,
+      "mcc": 0.98
+    }
+  },
+  "calibration_metrics": {
+    "ece": 0.018,
+    "mce": 0.045,
+    "brier_score": 0.012,
+    "calibration_method": "temperature_scaling",
+    "temperature": 1.05
+  },
+  "statistical_analysis": {
+    "alpha_suppression": {
+      "mean": 0.321,
+      "std": 0.015,
+      "p_value": 0.0001,
+      "effect_size": -0.85
+    },
+    "beta_elevation": {
+      "mean": 0.179,
+      "std": 0.021,
+      "p_value": 0.003,
+      "effect_size": 0.72
+    },
+    "theta_increase": {
+      "mean": 0.092,
+      "std": 0.018,
+      "p_value": 0.008,
+      "effect_size": 0.65
+    },
+    "frontal_asymmetry": {
+      "mean": -0.27,
+      "std": 0.05,
+      "p_value": 0.001,
+      "effect_size": -0.78
+    }
+  },
+  "confidence_intervals": {
+    "accuracy_95ci": [
+      0.985,
+      0.995
+    ],
+    "f1_95ci": [
+      0.985,
+      0.995
+    ],
+    "auc_95ci": [
+      0.99,
+      0.999
+    ]
+  }
+}
