@@ -1,0 +1,62 @@
+# GenAI-RAG-EEG Docker Compose
+#
+# Usage:
+#   docker-compose up -d        # Start services
+#   docker-compose logs -f      # View logs
+#   docker-compose down         # Stop services
+
+version: '3.8'
+
+services:
+  app:
+    build: .
+    image: genai-rag-eeg:latest
+    container_name: genai-rag-eeg
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+      - ./outputs:/app/outputs
+      - ./logs:/app/logs
+      - ./models:/app/models
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=INFO
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    ports:
+      - "5000:5000"  # Flask API
+      - "8501:8501"  # Streamlit UI
+    command: python main.py --mode demo
+    restart: unless-stopped
+    
+    # GPU support (uncomment for NVIDIA GPU)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  webapp:
+    build: .
+    image: genai-rag-eeg:latest
+    container_name: genai-rag-eeg-webapp
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+    environment:
+      - FLASK_ENV=production
+      - FLASK_APP=webapp/app.py
+    ports:
+      - "5001:5000"
+    command: python -m flask run --host=0.0.0.0
+    restart: unless-stopped
+    depends_on:
+      - app
+
+volumes:
+  data:
+  results:
+  outputs:
+  logs:
+  models:

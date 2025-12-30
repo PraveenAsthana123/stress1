@@ -5,6 +5,29 @@ All notable changes to GenAI-RAG-EEG will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2025-12-29
+
+### Added
+- **Docker Support**: Dockerfile and docker-compose.yml for containerized deployment
+- **Contributing Guide**: CONTRIBUTING.md with code style and PR guidelines
+- **Data Download Instructions**: How to obtain SAM-40, WESAD, EEGMAT datasets
+- **Hardware Requirements**: Minimum GPU/RAM/disk specifications
+- **Troubleshooting Guide**: Common errors and solutions
+- **FAQ Section**: Frequently asked questions
+- **Complete Environment Variables**: Full .env template with all options
+
+### Changed
+- **README Reorganized**: Trimmed from 2175 to ~400 lines, moved details to docs/
+- **Accuracy Standardized**: All references now show 99% (v3.0 target)
+- **Contact Info Updated**: Real author information instead of placeholders
+- **Citations Fixed**: Proper BibTeX with DOIs for all referenced papers
+
+### Fixed
+- Removed duplicate "Quick Start" sections
+- Fixed placeholder text in Contact and Citation sections
+- Standardized accuracy numbers throughout documentation
+- Fixed hardcoded paths in documentation examples
+
 ## [3.0.0] - 2025-12-26
 
 ### Added
