@@ -1,46 +1,34 @@
 {
-  "dataset_name": "EEGMAT",
+  "dataset": "EEGMAT",
   "n_samples": 100,
-  "n_channels": 32,
-  "n_channels_original": 21,
-  "segment_length": 512,
-  "sampling_rate": 256,
+  "n_channels": 21,
+  "sampling_rate": 500.0,
   "channel_names": [
     "Fp1",
     "Fp2",
-    "F3",
-    "F4",
-    "C3",
-    "C4",
-    "P3",
-    "P4",
-    "O1",
-    "O2",
     "F7",
+    "F3",
+    "Fz",
+    "F4",
     "F8",
     "T3",
+    "C3",
+    "Cz",
+    "C4",
     "T4",
     "T5",
-    "T6",
-    "Fz",
-    "Cz",
+    "P3",
     "Pz",
-    "A1",
-    "A2"
+    "P4",
+    "T6",
+    "O1",
+    "Oz",
+    "O2",
+    "A1"
   ],
-  "stress_type": "cognitive_arithmetic",
-  "description": "Mental arithmetic stress (serial subtraction by 7)",
-  "class_distribution": {
-    "stress": 50,
-    "baseline": 50
+  "labels": {
+    "0": "baseline",
+    "1": "arithmetic"
   },
-  "generation_date": "2025-12-29T11:43:17.892047",
-  "seed": 42,
-  "is_synthetic": true,
-  "data_shape": [
-    100,
-    32,
-    512
-  ],
-  "dtype": "float32"
+  "generated": "2025-12-29T19:50:43.415619"
 }

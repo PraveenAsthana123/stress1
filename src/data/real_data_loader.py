@@ -5,7 +5,7 @@ Real Data Loader for SAM-40 EEG Stress Dataset
 ================================================================================
 
 Loads the actual SAM-40 dataset from .mat files with detailed CLI output.
-Dataset location: /media/praveen/Asthana3/ upgrad/synopysis/datasets/SAM40_Stress/
+Dataset location: data/SAM40/ (configured via src/config.py)
 
 CLI OUTPUT FEATURES:
 - Progress bar during file loading
