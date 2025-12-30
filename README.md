@@ -201,28 +201,79 @@ config.expected.auc_roc         # 0.995
 | **datasets.py** | [`src/data/datasets.py`](src/data/datasets.py) | PyTorch Dataset classes |
 | **preprocessing.py** | [`src/data/preprocessing.py`](src/data/preprocessing.py) | EEG preprocessing pipeline |
 
-### How to Change Data Source
+### How to Change Data Paths
 
-1. **Edit `src/config.py`**:
+#### Method 1: Edit `src/config.py` (Recommended)
+
+All dataset paths are configured in [`src/config.py`](src/config.py):
+
 ```python
-# Change dataset paths
+# SAM-40 Configuration (line 62-89)
 @dataclass
 class SAM40Config:
-    path: Path = Path("your/custom/path/SAM40")
+    path: Path = DATA_DIR / "SAM40"                    # Change this
+    filtered_path: Path = DATA_DIR / "SAM40" / "filtered_data"
+    sample_path: Path = DATA_DIR / "SAM40" / "sample_100"
     n_channels: int = 32
-    fs: int = 128
+    sampling_rate: float = 256.0
+    expected_accuracy: float = 99.0
+
+# WESAD Configuration (line 91-116)
+@dataclass
+class WESADConfig:
+    path: Path = DATA_DIR / "WESAD"                    # Change this
+    sample_path: Path = DATA_DIR / "WESAD" / "sample_100"
+    n_channels: int = 14
+    sampling_rate: float = 700.0
+    expected_accuracy: float = 99.0
+
+# EEGMAT Configuration (line 118-152)
+@dataclass
+class EEGMATConfig:
+    path: Path = DATA_DIR / "EEGMAT"                   # Change this
+    raw_path: Path = DATA_DIR / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0"
+    sample_path: Path = DATA_DIR / "EEGMAT" / "sample_100"
+    n_channels: int = 21
+    sampling_rate: float = 500.0
+    expected_accuracy: float = 99.0
 ```
 
-2. **Or use environment variables**:
+#### Method 2: Environment Variables
+
 ```bash
-export SAM40_DATA_PATH=/path/to/your/SAM40
-export WESAD_DATA_PATH=/path/to/your/WESAD
-export EEGMAT_DATA_PATH=/path/to/your/EEGMAT
+# Set custom paths for all 3 datasets
+export SAM40_DATA_PATH=/your/path/to/SAM40
+export WESAD_DATA_PATH=/your/path/to/WESAD
+export EEGMAT_DATA_PATH=/your/path/to/EEGMAT
 ```
 
-3. **Or pass via CLI**:
+#### Method 3: CLI Override
+
 ```bash
 python main.py --mode train --data_path /your/custom/path
+```
+
+#### Data Path Reference Table
+
+| Dataset | Config File | Line | Path Variable |
+|---------|-------------|------|---------------|
+| SAM-40 | `src/config.py` | 66-68 | `SAM40Config.path` |
+| WESAD | `src/config.py` | 95-96 | `WESADConfig.path` |
+| EEGMAT | `src/config.py` | 122-125 | `EEGMATConfig.path` |
+
+#### Extraction Script Path
+
+For extracting sample data from real datasets, edit [`scripts/extract_real_data_1000.py`](scripts/extract_real_data_1000.py):
+
+```python
+# SAM-40 (line 42)
+sam40_raw = project_root / "data" / "SAM40" / "filtered_data"
+
+# EEGMAT (line 165)
+eegmat_raw = project_root / "data" / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0"
+
+# WESAD (line 269)
+wesad_data_path = Path("/your/path/to/wesad/data.npy")
 ```
 
 ## Troubleshooting
