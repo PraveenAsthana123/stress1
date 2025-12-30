@@ -221,7 +221,7 @@ Output: (N, 32, 512) float32
 | Total Segments | 2,880 |
 | Class Distribution | 720 baseline, 2160 stress (75%) |
 
-### 6.2 WESAD
+### 6.2 EEGMAT
 
 | Property | Value |
 |----------|-------|
@@ -265,18 +265,18 @@ Output: (N, 32, 512) float32
 | Dataset | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
 |---------|----------|-----------|--------|----------|---------|
 | SAM-40 | 76.0% ± 5.1% | 90.0% ± 3.7% | 77.3% ± 11.8% | 82.4% ± 5.2% | 84.9% ± 1.2% |
-| WESAD | **100.0% ± 0.0%** | 100.0% | 100.0% | 100.0% | 100.0% |
+| EEGMAT | **100.0% ± 0.0%** | 100.0% | 100.0% | 100.0% | 100.0% |
 | Stress_Detection | 81.7% ± 1.3% | 84.8% ± 1.7% | 92.1% ± 3.3% | 88.3% ± 1.0% | 85.4% ± 1.4% |
 | EEGMAT | 49.0% ± 2.0% | 39.4% ± 19.7% | 76.0% ± 38.8% | 51.9% ± 26.1% | 45.8% ± 13.1% |
 
-**Note on EEGMAT**: The low accuracy (~49%) is expected because EEGMAT uses cognitive stress (mental arithmetic) while the model was trained on emotional stress paradigms (DEAP, SAM-40, WESAD). This demonstrates the model's specificity to emotional stress detection rather than general cognitive load.
+**Note on EEGMAT**: The low accuracy (~49%) is expected because EEGMAT uses cognitive stress (mental arithmetic) while the model was trained on emotional stress paradigms (DEAP, SAM-40, EEGMAT). This demonstrates the model's specificity to emotional stress detection rather than general cognitive load.
 
 ### 7.2 Comparison with Paper Claims
 
 | Dataset | Paper | This Run | Difference |
 |---------|-------|----------|------------|
 | SAM-40 | 93.2% | 76.0% | -17.2% |
-| WESAD | 100.0% | **100.0%** | **0.0%** |
+| EEGMAT | 100.0% | **100.0%** | **0.0%** |
 | DEAP | 94.7% | N/A | (Dataset not available) |
 | EEGMAT | N/A | 49.0% | (Different stress paradigm) |
 
@@ -296,7 +296,7 @@ eeg-stress-rag/
 │   │   ├── filtered_data/      # 480 .mat files
 │   │   ├── sample_100/         # Balanced sample
 │   │   └── README.md
-│   ├── WESAD/
+│   ├── EEGMAT/
 │   │   └── sample_100/         # Balanced sample
 │   ├── EEGMAT/
 │   │   ├── eeg-during-mental-arithmetic-tasks-1.0.0/  # Raw EDF files

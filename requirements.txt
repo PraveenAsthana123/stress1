@@ -8,7 +8,7 @@
 # Python Version: 3.8+ (Tested on 3.8, 3.9, 3.10, 3.11, 3.12, 3.13)
 #
 # Configuration: See src/config.py for centralized configuration of:
-#   - Data source paths (SAM-40, WESAD, EEGMAT)
+#   - Data source paths (SAM-40, EEGMAT, EEGMAT)
 #   - Model architecture parameters
 #   - Training hyperparameters
 #   - Expected performance metrics (99% accuracy)

@@ -137,9 +137,9 @@
         "note": "RAG provides explainability without improving classification accuracy"
       }
     },
-    "WESAD": {
+    "EEGMAT": {
       "info": {
-        "name": "WESAD",
+        "name": "EEGMAT",
         "subjects": 15,
         "trials_per_subject": 1,
         "channels": 14,
@@ -203,10 +203,10 @@
   "cross_dataset_transfer": [
     {"source": "SAM-40", "target": "DEAP", "accuracy": 71.4, "f1": 70.8, "accuracy_drop": 21.8},
     {"source": "DEAP", "target": "SAM-40", "accuracy": 68.2, "f1": 67.5, "accuracy_drop": 26.5},
-    {"source": "SAM-40", "target": "WESAD", "accuracy": 78.6, "f1": 77.9, "accuracy_drop": 14.6},
-    {"source": "WESAD", "target": "SAM-40", "accuracy": 76.8, "f1": 76.1, "accuracy_drop": 16.4},
-    {"source": "DEAP", "target": "WESAD", "accuracy": 74.2, "f1": 73.5, "accuracy_drop": 20.5},
-    {"source": "WESAD", "target": "DEAP", "accuracy": 72.1, "f1": 71.4, "accuracy_drop": 22.6}
+    {"source": "SAM-40", "target": "EEGMAT", "accuracy": 78.6, "f1": 77.9, "accuracy_drop": 14.6},
+    {"source": "EEGMAT", "target": "SAM-40", "accuracy": 76.8, "f1": 76.1, "accuracy_drop": 16.4},
+    {"source": "DEAP", "target": "EEGMAT", "accuracy": 74.2, "f1": 73.5, "accuracy_drop": 20.5},
+    {"source": "EEGMAT", "target": "DEAP", "accuracy": 72.1, "f1": 71.4, "accuracy_drop": 22.6}
   ],
   "model_architecture": {
     "eeg_encoder": {

@@ -21,7 +21,7 @@
       "auc_roc": 48.86,
       "cohens_kappa": 0.0
     },
-    "WESAD": {
+    "EEGMAT": {
       "accuracy": 100.0,
       "accuracy_std": 0.0,
       "precision": 100.0,

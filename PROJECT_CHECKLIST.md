@@ -14,7 +14,7 @@
 | Item | Status | Implementation | Location |
 |------|--------|---------------|----------|
 | Use-case definition | [x] | Stress vs calm (binary) | `src/config.py` |
-| Data scope | [x] | SAM-40, WESAD, EEGMAT | `src/config.py:DatasetConfig` |
+| Data scope | [x] | SAM-40, EEGMAT, EEGMAT | `src/config.py:DatasetConfig` |
 | Evaluation target | [x] | Accuracy, F1, AUC-ROC | `src/config.py:ExpectedResults` |
 | Split strategy | [x] | Subject-wise LOSO CV | `test_eegmat_full.py` |
 | Reproducibility | [x] | Seeds, configs, run tracking | `src/utils/run_manager.py` |
@@ -30,7 +30,7 @@
 
 | Item | Status | Implementation | Location |
 |------|--------|---------------|----------|
-| Data source selection | [x] | SAM-40, WESAD, EEGMAT | `src/config.py` |
+| Data source selection | [x] | SAM-40, EEGMAT, EEGMAT | `src/config.py` |
 | Ground truth + label rules | [x] | Binary: 0=baseline, 1=stress | `process_eegmat.py` |
 | Subject & session metadata | [x] | Metadata JSON files | `data/*/metadata.json` |
 | Inclusion/exclusion criteria | [x] | Signal quality checks | `src/analysis/eda.py:SignalQualityAnalyzer` |
@@ -171,7 +171,7 @@
 | Decision-threshold validation | [x] | Optimal threshold | `src/training/calibration.py` |
 | Leakage audit | [x] | Comprehensive checks | `src/analysis/eda.py:LeakageDetector` |
 | Reproducibility validation | [x] | Multi-seed | `tests/test_reproducibility.py` |
-| External validation | [x] | Multi-dataset | SAM-40, WESAD, EEGMAT |
+| External validation | [x] | Multi-dataset | SAM-40, EEGMAT, EEGMAT |
 | Ablation validation | [x] | Full ablation table | `src/analysis/benchmark_tables.py` |
 | Validation sign-off | [x] | 99% accuracy targets | `src/config.py` |
 
@@ -296,7 +296,7 @@
 - [x] `ComprehensiveEDA`: Full EDA pipeline
 
 ### Benchmark Ladder (Phase 10) - COMPLETE
-- [x] `LiteratureBenchmarks`: Curated from SAM-40, WESAD, EEGMAT papers
+- [x] `LiteratureBenchmarks`: Curated from SAM-40, EEGMAT, EEGMAT papers
 - [x] `BenchmarkLadder`: Hierarchical model comparison
 - [x] `ComparisonTableGenerator`: Main comparison, baseline, ablation tables
 - [x] `RobustnessTableGenerator`: Degradation analysis

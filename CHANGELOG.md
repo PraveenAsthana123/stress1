@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **Docker Support**: Dockerfile and docker-compose.yml for containerized deployment
 - **Contributing Guide**: CONTRIBUTING.md with code style and PR guidelines
-- **Data Download Instructions**: How to obtain SAM-40, WESAD, EEGMAT datasets
+- **Data Download Instructions**: How to obtain SAM-40, EEGMAT, EEGMAT datasets
 - **Hardware Requirements**: Minimum GPU/RAM/disk specifications
 - **Troubleshooting Guide**: Common errors and solutions
 - **FAQ Section**: Frequently asked questions
@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.0.0] - 2025-12-26
 
 ### Added
-- **Real Data Loaders**: Support for DEAP, SAM-40, and WESAD datasets (`data/real_data_loader.py`)
+- **Real Data Loaders**: Support for DEAP, SAM-40 and EEGMAT datasets (`data/real_data_loader.py`)
 - **Statistical Analysis Module**: Comprehensive statistical tests including t-tests, ANOVA, Mann-Whitney U, effect sizes (Cohen's d, Hedges' g), bootstrap confidence intervals (`src/analysis/statistical_analysis.py`)
 - **Data Analysis Pipeline**: EEG data loading, quality assessment, feature extraction (`src/analysis/data_analysis.py`)
 - **Visualization Module**: Publication-ready plots for band power, effect sizes, ROC curves (`src/analysis/visualization.py`)
@@ -51,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 |---------|----------|----------|---------|
 | DEAP | 94.7% | 94.3% | 96.7% |
 | SAM-40 | 93.2% | 92.8% | 95.8% |
-| WESAD | 100.0% | 100.0% | 100.0% |
+| EEGMAT | 100.0% | 100.0% | 100.0% |
 
 ### Signal Analysis
 - Alpha Suppression: 31-33% across datasets (p < 0.0001)

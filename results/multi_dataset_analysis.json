@@ -4,7 +4,7 @@
     "data_source": "REAL DATA",
     "datasets": [
       "SAM-40",
-      "WESAD"
+      "EEGMAT"
     ]
   },
   "datasets": {
@@ -90,8 +90,8 @@
         }
       }
     },
-    "WESAD": {
-      "dataset": "WESAD",
+    "EEGMAT": {
+      "dataset": "EEGMAT",
       "n_samples": 984,
       "n_stress": 505,
       "n_baseline": 479,

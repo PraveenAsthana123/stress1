@@ -146,9 +146,9 @@ train-sam40:
 	@echo "Training on SAM-40 dataset..."
 	$(PYTHON) main.py --mode train --dataset sam40 --verbose
 
-train-wesad:
-	@echo "Training on WESAD dataset..."
-	$(PYTHON) main.py --mode train --dataset wesad --verbose
+train-eegmat:
+	@echo "Training on EEGMAT dataset..."
+	$(PYTHON) main.py --mode train --dataset eegmat --verbose
 
 train-eegmat:
 	@echo "Training on EEGMAT dataset..."

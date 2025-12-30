@@ -4,12 +4,11 @@ Complete documentation for configuring data sources in GenAI-RAG-EEG.
 
 ## Overview
 
-GenAI-RAG-EEG supports three EEG stress datasets:
+GenAI-RAG-EEG supports two EEG stress datasets:
 
 | Dataset | Subjects | Channels | Sampling Rate | Paradigm | Accuracy |
 |---------|----------|----------|---------------|----------|----------|
 | SAM-40 | 40 | 32 | 128 Hz | Cognitive Stress (Stroop) | 99.0% |
-| WESAD | 15 | 14 | 700 Hz | TSST Protocol | 99.0% |
 | EEGMAT | 36 | 21 | 500 Hz | Mental Arithmetic | 99.0% |
 
 ---
@@ -29,13 +28,6 @@ data/
 │   │   └── ...
 │   ├── Coordinates.locs               # Channel locations
 │   └── README.md                      # Dataset documentation
-│
-├── WESAD/
-│   ├── sample_100/                    # Sample data (100 rows)
-│   │   ├── wesad_sample_100.npz
-│   │   ├── csv/
-│   │   └── metadata.json
-│   └── S2/, S3/, ...                  # Subject folders (if available)
 │
 ├── EEGMAT/
 │   ├── sample_100/                    # Sample data (100 rows)
@@ -78,13 +70,6 @@ SAM40_CONFIG = DatasetConfig(
     sampling_rate=128.0
 )
 
-WESAD_CONFIG = DatasetConfig(
-    name="WESAD",
-    base_path=Path("data/WESAD"),
-    n_subjects=15,
-    n_channels=14,
-    sampling_rate=700.0
-)
 
 EEGMAT_CONFIG = DatasetConfig(
     name="EEGMAT",
@@ -288,7 +273,6 @@ These parameters can be adjusted in `src/config.py`:
 | Dataset | Path | Source |
 |---------|------|--------|
 | SAM-40 | `data/SAM40/sample_100/` | Real .mat files |
-| WESAD | `data/WESAD/sample_100/` | Real thesis data |
 | EEGMAT | `data/EEGMAT/sample_100/` | Real PhysioNet .edf |
 
 To extract sample data from full datasets:
@@ -299,7 +283,7 @@ python scripts/extract_real_data_1000.py
 
 This extracts balanced samples (50 per class) from real data:
 - SAM-40: From 480 .mat files (Relax vs Arithmetic/Mirror/Stroop)
-- WESAD: From thesis data (Baseline vs Stress)
+
 - EEGMAT: From 72 PhysioNet .edf files (Baseline vs Arithmetic)
 
 ---
@@ -332,7 +316,6 @@ With proper data configuration, expected results are:
 | Dataset | Accuracy | AUC-ROC | F1-Score |
 |---------|----------|---------|----------|
 | SAM-40 | 99.0% | 0.995 | 0.990 |
-| WESAD | 99.0% | 0.998 | 0.990 |
 | EEGMAT | 99.0% | 0.995 | 0.990 |
 
 ---

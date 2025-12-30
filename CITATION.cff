@@ -87,7 +87,7 @@ abstract: |
   - Multi-modal fusion of EEG signals and contextual text
   - Self-attention mechanism for temporal importance weighting
   - RAG-based explanation generation grounded in scientific literature
-  - Cross-dataset evaluation on DEAP, SAM-40, and WESAD datasets
+  - Cross-dataset evaluation on SAM-40 and EEGMAT datasets
   - Comprehensive visualization and analysis tools
 
 # =============================================================================
@@ -118,14 +118,6 @@ references:
     title: "DEAP: A Database for Emotion Analysis using Physiological Signals"
     year: 2012
     doi: "10.1109/T-AFFC.2011.15"
-
-  - type: dataset
-    authors:
-      - family-names: "Schmidt"
-        given-names: "Philip"
-    title: "WESAD: A Multimodal Dataset for Wearable Stress and Affect Detection"
-    year: 2018
-    doi: "10.1145/3242969.3242985"
 
   - type: software
     authors:

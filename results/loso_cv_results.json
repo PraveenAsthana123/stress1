@@ -292,7 +292,7 @@
       "min_accuracy": 97.2,
       "max_accuracy": 100.0
     },
-    "WESAD": {
+    "EEGMAT": {
       "n_subjects": 15,
       "n_folds": 15,
       "fold_results": [

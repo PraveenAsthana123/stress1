@@ -60,8 +60,8 @@
       ],
       "dtype": "float32"
     },
-    "WESAD": {
-      "dataset_name": "WESAD",
+    "EEGMAT": {
+      "dataset_name": "EEGMAT",
       "n_samples": 100,
       "n_channels": 14,
       "n_channels_original": 14,

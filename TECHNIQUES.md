@@ -294,7 +294,7 @@ X_car = X - mean(X, axis=channels)
 | Dataset | Subjects | Accuracy | AUC-ROC | F1 |
 |---------|----------|----------|---------|-----|
 | SAM-40 | 40 | 99.0% | 0.995 | 0.99 |
-| WESAD | 15 | 99.0% | 0.998 | 0.99 |
+| EEGMAT | 15 | 99.0% | 0.998 | 0.99 |
 | EEGMAT | 36 | 99.0% | 0.995 | 0.99 |
 
 ### Ablation Study

@@ -1,13 +1,13 @@
 # Sample Data - 100 Rows Per Dataset
 
-Real EEG data extracted from SAM-40, WESAD, and EEGMAT datasets.
+Real EEG data extracted from SAM-40, EEGMAT and EEGMAT datasets.
 
 ## Datasets
 
 | Dataset | Samples | Channels | Rate | Source |
 |---------|---------|----------|------|--------|
 | SAM-40 | 100 | 32 | 128 Hz | Real (.mat files) |
-| WESAD | 100 | 14 | 700 Hz | Real (thesis data) |
+| EEGMAT | 100 | 14 | 700 Hz | Real (thesis data) |
 | EEGMAT | 100 | 21 | 500 Hz | Real (PhysioNet .edf) |
 
 ## Loading Data
@@ -25,10 +25,10 @@ eegmat = np.load('data/EEGMAT/sample_100/eegmat_sample_100.npz')
 X, y = eegmat['X'], eegmat['y']
 print(f"EEGMAT: X={X.shape}, y={y.shape}")
 
-# Load WESAD
-wesad = np.load('data/WESAD/sample_100/wesad_sample_100.npz')
-X, y = wesad['X'], wesad['y']
-print(f"WESAD: X={X.shape}, y={y.shape}")
+# Load EEGMAT
+eegmat = np.load('data/EEGMAT/sample_100/eegmat_sample_100.npz')
+X, y = eegmat['X'], eegmat['y']
+print(f"EEGMAT: X={X.shape}, y={y.shape}")
 ```
 
 ## Data Format

@@ -5,14 +5,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](Dockerfile)
 
-A hybrid deep learning architecture for **explainable EEG-based stress classification** achieving **99% accuracy** across three benchmark datasets.
+A hybrid deep learning architecture for **explainable EEG-based stress classification** achieving **99% accuracy** across two benchmark datasets.
 
 ## Key Results
 
 | Dataset | Subjects | Accuracy | F1-Score | AUC-ROC |
 |---------|----------|----------|----------|---------|
 | SAM-40  | 40       | **99.0%** | 0.990   | 0.995   |
-| WESAD   | 15       | **99.0%** | 0.990   | 0.998   |
 | EEGMAT  | 36       | **99.0%** | 0.990   | 0.995   |
 
 ## Quick Start
@@ -66,7 +65,6 @@ Context Text ──→ Sentence-BERT ──→ Projection ───────�
 | Dataset | Samples | Channels | GitHub Path |
 |---------|---------|----------|-------------|
 | SAM-40 | 100 | 32 | [data/SAM40/sample_100](https://github.com/PraveenAsthana123/stress/tree/main/data/SAM40/sample_100) |
-| WESAD | 100 | 14 | [data/WESAD/sample_100](https://github.com/PraveenAsthana123/stress/tree/main/data/WESAD/sample_100) |
 | EEGMAT | 100 | 21 | [data/EEGMAT/sample_100](https://github.com/PraveenAsthana123/stress/tree/main/data/EEGMAT/sample_100) |
 
 ```python
@@ -74,7 +72,6 @@ import numpy as np
 
 # Load sample data
 sam40 = np.load('data/SAM40/sample_100/sam40_sample_100.npz')
-wesad = np.load('data/WESAD/sample_100/wesad_sample_100.npz')
 eegmat = np.load('data/EEGMAT/sample_100/eegmat_sample_100.npz')
 
 X, y = sam40['X'], sam40['y']  # Shape: (100, 32, 512), (100,)
@@ -87,16 +84,13 @@ Stacked panel plots showing real EEG signals for each condition:
 | Dataset | Conditions | Plot |
 |---------|------------|------|
 | **SAM-40** | Relax, Arithmetic, Stroop, Mirror | [sam40_4panel_conditions.png](https://github.com/PraveenAsthana123/stress/blob/main/results/figures/sam40_4panel_conditions.png) |
-| **WESAD** | Relaxed, Stressed | [wesad_2panel_conditions.png](https://github.com/PraveenAsthana123/stress/blob/main/results/figures/wesad_2panel_conditions.png) |
 | **EEGMAT** | Baseline, Arithmetic | [eegmat_2panel_conditions.png](https://github.com/PraveenAsthana123/stress/blob/main/results/figures/eegmat_2panel_conditions.png) |
 
 **SAM-40 (4 Conditions):**
 
 ![SAM-40 EEG Signal](results/figures/sam40_4panel_conditions.png)
 
-**WESAD (2 Conditions):**
 
-![WESAD EEG Signal](results/figures/wesad_2panel_conditions.png)
 
 **EEGMAT (2 Conditions):**
 
@@ -107,14 +101,12 @@ Stacked panel plots showing real EEG signals for each condition:
 | Dataset | Source | Access |
 |---------|--------|--------|
 | SAM-40  | [SEED Protocol](http://bcmi.sjtu.edu.cn/~seed/) | Request access |
-| WESAD   | [UCI/PhysioNet](https://archive.ics.uci.edu/ml/datasets/WESAD) | Free download |
 | EEGMAT  | [PhysioNet](https://physionet.org/content/eegmat/1.0.0/) | Free download |
 
 After download, place datasets in:
 ```
 data/
 ├── SAM40/filtered_data/*.mat
-├── WESAD/S*/S*.pkl
 └── EEGMAT/*.edf
 ```
 
@@ -196,7 +188,6 @@ config = Config()
 
 # Dataset paths
 config.datasets.sam40.path      # data/SAM40/filtered_data/
-config.datasets.wesad.path      # data/WESAD/
 config.datasets.eegmat.path     # data/EEGMAT/
 
 # Model parameters
@@ -219,7 +210,6 @@ config.expected.auc_roc         # 0.995
 | File | Path | Description |
 |------|------|-------------|
 | **real_data_loader.py** | [`src/data/real_data_loader.py`](src/data/real_data_loader.py) | SAM-40, EEGMAT loaders |
-| **wesad_loader.py** | [`src/data/wesad_loader.py`](src/data/wesad_loader.py) | WESAD dataset loader |
 | **datasets.py** | [`src/data/datasets.py`](src/data/datasets.py) | PyTorch Dataset classes |
 | **preprocessing.py** | [`src/data/preprocessing.py`](src/data/preprocessing.py) | EEG preprocessing pipeline |
 
@@ -240,11 +230,7 @@ class SAM40Config:
     sampling_rate: float = 256.0
     expected_accuracy: float = 99.0
 
-# WESAD Configuration (line 91-116)
 @dataclass
-class WESADConfig:
-    path: Path = DATA_DIR / "WESAD"                    # Change this
-    sample_path: Path = DATA_DIR / "WESAD" / "sample_100"
     n_channels: int = 14
     sampling_rate: float = 700.0
     expected_accuracy: float = 99.0
@@ -265,7 +251,6 @@ class EEGMATConfig:
 ```bash
 # Set custom paths for all 3 datasets
 export SAM40_DATA_PATH=/your/path/to/SAM40
-export WESAD_DATA_PATH=/your/path/to/WESAD
 export EEGMAT_DATA_PATH=/your/path/to/EEGMAT
 ```
 
@@ -280,7 +265,6 @@ python main.py --mode train --data_path /your/custom/path
 | Dataset | Config File | Line | Path Variable |
 |---------|-------------|------|---------------|
 | SAM-40 | `src/config.py` | 66-68 | `SAM40Config.path` |
-| WESAD | `src/config.py` | 95-96 | `WESADConfig.path` |
 | EEGMAT | `src/config.py` | 122-125 | `EEGMATConfig.path` |
 
 #### Extraction Script Path
@@ -294,8 +278,6 @@ sam40_raw = project_root / "data" / "SAM40" / "filtered_data"
 # EEGMAT (line 165)
 eegmat_raw = project_root / "data" / "EEGMAT" / "eeg-during-mental-arithmetic-tasks-1.0.0"
 
-# WESAD (line 269)
-wesad_data_path = Path("/your/path/to/wesad/data.npy")
 ```
 
 ## Troubleshooting
@@ -325,7 +307,6 @@ See [TECHNIQUES.md](TECHNIQUES.md) for more debugging tips.
 - Trained on controlled laboratory data; real-world performance may vary
 - Requires high-quality EEG acquisition (medical-grade preferred)
 - RAG explanations require OpenAI API key (costs apply)
-- WESAD has only 15 subjects (limited generalizability)
 
 ## Citation
 
@@ -350,8 +331,6 @@ See [TECHNIQUES.md](TECHNIQUES.md) for more debugging tips.
   year={2015}
 }
 
-@inproceedings{schmidt2018wesad,
-  title={Introducing WESAD: Multimodal Dataset for Wearable Stress Detection},
   author={Schmidt, Philip and others},
   booktitle={ICMI},
   year={2018}

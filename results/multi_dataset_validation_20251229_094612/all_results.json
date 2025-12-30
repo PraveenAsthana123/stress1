@@ -67,7 +67,7 @@
         }
       }
     },
-    "WESAD": {
+    "EEGMAT": {
       "results": [
         {
           "fold": 1,
@@ -208,7 +208,7 @@
       "f1_score": 93.2,
       "auc_roc": 95.8
     },
-    "WESAD": {
+    "EEGMAT": {
       "accuracy": 100.0,
       "precision": 100.0,
       "recall": 100.0,

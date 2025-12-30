@@ -245,4 +245,4 @@ python run_pipeline.py --all --sample
 
 - **Issues**: [GitHub Issues](https://github.com/PraveenAsthana123/stress/issues)
 - **Documentation**: See README.md and other .md files
-- **Expected Accuracy**: 99% on all datasets (SAM-40, WESAD, EEGMAT)
+- **Expected Accuracy**: 99% on all datasets (SAM-40, EEGMAT, EEGMAT)
