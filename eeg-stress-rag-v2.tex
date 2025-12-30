@@ -2931,7 +2931,95 @@ EEG + Cached RAG & 85 ms & Marginal & Pre-computed common cases \\
 \textbf{Recommendation}: For real-time BCI applications, use EEG-only prediction with asynchronous RAG explanation generation. Explanations arrive 2-3 seconds after prediction but do not block the feedback loop.
 
 %% =============================================================================
-%% SECTION 4: DISCUSSION
+%% SECTION 4: PRODUCTION MONITORING FRAMEWORK
+%% =============================================================================
+
+\FloatBarrier
+\section{Production Monitoring Framework}
+
+Deployment of EEG-RAG systems in clinical and operational environments necessitates comprehensive monitoring infrastructure. We present a 12-phase production monitoring framework (6,008 lines of code) addressing quality assurance, governance, and business value measurement. Agent-related phases (5--7) are excluded as the current architecture employs no autonomous agents.
+
+\subsection{Knowledge and Retrieval Monitoring (Phases 1--2)}
+
+\textbf{Phase 1 - Knowledge Analysis}: Five components ensure corpus integrity:
+\begin{itemize}[nosep]
+\item \textbf{Source Inventory}: Cataloging with authority levels (peer-reviewed $\geq 0.9$, vendor manuals 0.7--0.9)
+\item \textbf{Authority Validation}: Citation analysis and temporal relevance (target: $>$90\% pass)
+\item \textbf{Coverage Analysis}: Domain coverage across EEG, stress neurophysiology, classification (target: $>$80\%)
+\item \textbf{Freshness Checking}: Refresh policies per source type (alert: $<$10\% stale documents)
+\item \textbf{Conflict Scanning}: Semantic consistency checks with resolution by authority
+\end{itemize}
+
+\textbf{Phase 2 - Retrieval Analysis}: Three quality monitors:
+\begin{itemize}[nosep]
+\item \textbf{Chunking Validation}: Token distribution (256 $\pm$ 128), coherence (target: $>$90\% quality)
+\item \textbf{Embedding Drift}: Cosine drift $<$ 0.1, Euclidean drift $<$ 0.5 from baseline
+\item \textbf{Retrieval Quality}: Precision@5 $>$ 0.7, latency $<$ 200ms
+\end{itemize}
+
+\subsection{Generation and Decision Monitoring (Phases 3--4)}
+
+\textbf{Phase 3 - Generation Analysis}:
+\begin{itemize}[nosep]
+\item \textbf{Prompt Integrity}: Injection detection and sanitization (target: zero high-risk prompts)
+\item \textbf{Hallucination Detection}: Factual, numeric, citation, temporal types (target: $<$5\% rate)
+\item \textbf{Grounding Analysis}: Evidence linkage (target: $>$80\% mostly/fully grounded)
+\end{itemize}
+
+\textbf{Phase 4 - Decision Analysis}:
+\begin{itemize}[nosep]
+\item \textbf{Policy Compliance}: Abstain/escalate/partial answer policies (target: $>$95\%)
+\item \textbf{Confidence Calibration}: ECE $<$ 0.1, MCE monitoring, temperature scaling
+\item \textbf{Quality Scoring}: Composite score incorporating evidence, compliance, risk (target: $>$0.7)
+\end{itemize}
+
+\subsection{Analysis Framework (Phases 8--11)}
+
+\textbf{Phase 8 - Explainability}: Completeness, faithfulness, consistency assessment (target: score $>$ 0.7).
+
+\textbf{Phase 9 - Robustness}: Perturbation testing (noise, missing channels, artifacts). Classification: robust ($>$95\% pass), moderate (80--95\%), fragile ($<$80\%).
+
+\textbf{Phase 10 - Statistical Validation}: Hypothesis testing with effect sizes (Cohen's $d > 0.2$), bootstrap CIs, multiple comparison correction ($p < 0.05$).
+
+\textbf{Phase 11 - Benchmarking}: SOTA ranking (within 1\% of best), competitive ($>$10\% above baseline), baseline-level comparison.
+
+\subsection{Production Operations (Phases 12--15)}
+
+\textbf{Phase 12 - Scalability}: Latency percentiles (P50/P90/P95/P99), throughput, resource utilization. SLA: P99 $<$ 500ms, success rate $>$ 99\%.
+
+\textbf{Phase 13 - Governance}: Audit logging, policy enforcement, compliance checking (HIPAA, GDPR), security assessment with vulnerability scanning.
+
+\textbf{Phase 14 - Drift Detection}: Data/concept/performance drift monitoring. Threshold: 10\% deviation triggers investigation. Alert levels: info, warning, error, critical.
+
+\textbf{Phase 15 - ROI Analysis}: Cost tracking, benefit measurement, usage analytics (adoption, retention), executive summary generation.
+
+\subsection{Implementation Summary}
+
+\begin{table}[h]
+\centering
+\caption{Production Monitoring Modules}
+\label{tab:monitoring_v2}
+\begin{tabular}{lll}
+\toprule
+\textbf{Phase} & \textbf{Monitor Class} & \textbf{Key Metrics} \\
+\midrule
+1 & KnowledgePhaseMonitor & Authority, coverage \\
+2 & RetrievalPhaseMonitor & Precision@K, drift \\
+3 & GenerationPhaseMonitor & Hallucination, grounding \\
+4 & DecisionPhaseMonitor & ECE, compliance \\
+8--11 & AgentBehaviorAnalyzer & Robustness, statistics \\
+12 & ScalabilityMonitor & P99 latency \\
+13 & GovernanceMonitor & Audit, security \\
+14 & ProductionDriftMonitor & Drift alerts \\
+15 & ROIAnalyzer & ROI, adoption \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All monitors implement pass/fail criteria for automated quality gates, enabling integration with MLOps deployment pipelines.
+
+%% =============================================================================
+%% SECTION 5: DISCUSSION
 %% =============================================================================
 
 \FloatBarrier

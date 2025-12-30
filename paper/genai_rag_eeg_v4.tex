@@ -1237,7 +1237,109 @@ The complete evaluation framework encompasses:
 \textbf{Performance Analysis (30+ metrics):} Clinical threshold compliance across all six criteria (sensitivity 94.2\% $\geq$ 90\%, specificity 93.8\% $\geq$ 85\%, PPV 92.1\% $\geq$ 80\%, NPV 95.3\% $\geq$ 90\%, AUC 0.967 $\geq$ 0.85, $\kappa$ 0.81 $\geq$ 0.60). Deployment readiness confirmed via latency $<$ 100 ms and throughput $>$ 80 samples/second.
 
 %% ============================================================================
-%% SECTION VIII: DISCUSSION
+%% SECTION VIII: PRODUCTION MONITORING FRAMEWORK
+%% ============================================================================
+\section{Production Monitoring Framework}
+
+Deployment of EEG-RAG systems in clinical and operational environments necessitates comprehensive monitoring infrastructure. We present a 12-phase production monitoring framework addressing quality assurance, governance, and business value measurement. This framework excludes agent-related phases (5--7) as the current architecture employs no autonomous agents.
+
+\subsection{Knowledge and Data Analysis (Phase 1)}
+
+Knowledge source management ensures corpus integrity through five monitoring components:
+
+\textbf{Source Inventory}: Cataloging all knowledge sources with authority levels. Peer-reviewed publications receive authority scores $\geq 0.9$, vendor manuals $0.7$--$0.9$, and user-generated content $\leq 0.5$. Pass criterion: $>$90\% sources cataloged with valid metadata.
+
+\textbf{Authority Validation}: Verification of source credibility through citation analysis, publication venue assessment, and temporal relevance checking. Target: $>$90\% sources pass validation.
+
+\textbf{Coverage Analysis}: Domain coverage assessment across EEG signal processing, stress neurophysiology, and classification methodology topics. Target: $>$80\% coverage in critical domains.
+
+\textbf{Freshness Checking}: Document staleness monitoring with refresh policies: peer-reviewed (5-year maximum), clinical guidelines (2-year), technical manuals (1-year). Alert threshold: $<$10\% documents past refresh date.
+
+\textbf{Conflict Scanning}: Detection of contradictory claims across sources using semantic similarity and factual consistency checks. Resolution priority: higher authority sources prevail.
+
+\subsection{Representation and Retrieval Analysis (Phase 2)}
+
+Embedding and retrieval quality monitoring encompasses:
+
+\textbf{Chunking Validation}: Semantic coherence assessment of document segments. Metrics include token count distribution (target: 256 $\pm$ 128 tokens), sentence boundary alignment, and topic consistency. Pass criterion: $>$90\% chunks meet quality criteria.
+
+\textbf{Embedding Drift Detection}: Statistical monitoring of embedding distribution shifts over time. Cosine drift threshold: $<$0.1 from baseline. Euclidean drift threshold: $<$0.5. Critical drift triggers reindexing.
+
+\textbf{Retrieval Quality Analysis}: Precision@K, Recall@K, NDCG, and MRR computation on held-out query sets. Operational targets: Precision@5 $>$ 0.7, latency $<$ 200ms.
+
+\subsection{Generation and Reasoning Analysis (Phase 3)}
+
+Generation quality monitoring includes:
+
+\textbf{Prompt Integrity Checking}: Detection and sanitization of injection attempts, sensitive patterns, and policy violations. Risk levels: safe, low, medium, high, critical. Target: zero high-risk prompts in production.
+
+\textbf{Hallucination Detection}: Identification of claims unsupported by retrieved context. Classification by type: factual, numeric, citation, entity, temporal. Target hallucination rate: $<$5\%.
+
+\textbf{Grounding Analysis}: Measurement of response grounding in retrieved evidence. Grounding levels: fully grounded ($\geq$95\%), mostly grounded (80--95\%), partially grounded (50--80\%), ungrounded ($<$50\%). Target: $>$80\% responses mostly or fully grounded.
+
+\subsection{Decision Policy Analysis (Phase 4)}
+
+Decision-making quality assurance includes:
+
+\textbf{Policy Compliance}: Enforcement of decision policies (abstain on low confidence, escalate on safety risk, partial answer on weak evidence). Target compliance rate: $>$95\%.
+
+\textbf{Confidence Calibration}: ECE (Expected Calibration Error) and MCE (Maximum Calibration Error) computation. Well-calibrated systems exhibit ECE $<$ 0.1. Overconfidence triggers temperature scaling.
+
+\textbf{Decision Quality Scoring}: Composite scoring incorporating confidence accuracy, evidence quality, policy compliance, and risk management. Target average score: $>$0.7.
+
+\subsection{Analysis Framework (Phases 8--11)}
+
+Comprehensive analysis monitoring encompasses:
+
+\textbf{Explainability Analysis (Phase 8)}: Assessment of explanation completeness (presence of all relevant factors), faithfulness (alignment with actual reasoning), and consistency (absence of contradictions). Human-readability verification. Target: average explainability score $>$ 0.7.
+
+\textbf{Robustness Analysis (Phase 9)}: Perturbation testing across input noise, missing channels, amplitude variations, and artifact injection. Stability threshold: output change $<$10\% for standard perturbations. Classification: robust ($>$95\% pass), moderate (80--95\%), fragile ($<$80\%).
+
+\textbf{Statistical Validation (Phase 10)}: Rigorous hypothesis testing with effect size computation (Cohen's $d$), bootstrap confidence intervals, and multiple comparison correction. Claims require $p < 0.05$ and $d > 0.2$ for validation.
+
+\textbf{Benchmark Analysis (Phase 11)}: Comparison against published baselines and state-of-the-art. Ranking: SOTA (within 1\% of best), competitive ($>$10\% above baseline), baseline-level, below-baseline.
+
+\subsection{Production Operations (Phases 12--15)}
+
+Operational monitoring comprises:
+
+\textbf{Scalability Monitoring (Phase 12)}: Latency percentile tracking (P50, P90, P95, P99), throughput measurement, and resource utilization. SLA targets: P99 latency $<$ 500ms, success rate $>$ 99\%.
+
+\textbf{Governance Monitoring (Phase 13)}: Audit logging of all system access and modifications. Policy enforcement with violation tracking. Compliance checking against regulatory frameworks (HIPAA for clinical deployments, GDPR for European contexts). Security assessment with vulnerability scanning and risk scoring.
+
+\textbf{Production Drift Monitoring (Phase 14)}: Detection of data drift, concept drift, and performance drift through statistical comparison against baseline distributions. Drift threshold: 10\% deviation triggers investigation. Alert severity levels: info, warning, error, critical.
+
+\textbf{ROI Analysis (Phase 15)}: Business value quantification through cost tracking, benefit measurement, and ROI calculation. Usage analytics including adoption rate, retention, and queries per user. Quality impact assessment correlating system improvements with outcome metrics. Executive summary generation for stakeholder communication.
+
+\subsection{Monitoring Implementation Summary}
+
+The complete framework comprises 6,008 lines of production-ready monitoring code implementing:
+
+\begin{table}[h]
+\centering
+\caption{Production Monitoring Module Summary}
+\label{tab:monitoring}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Phase} & \textbf{Primary Monitor} & \textbf{Key Metrics} \\
+\hline
+1 & KnowledgePhaseMonitor & Source validity, coverage \\
+2 & RetrievalPhaseMonitor & Precision@K, drift \\
+3 & GenerationPhaseMonitor & Hallucination rate, grounding \\
+4 & DecisionPhaseMonitor & ECE, compliance rate \\
+8--11 & AgentBehaviorAnalyzer & Robustness, significance \\
+12 & ScalabilityMonitor & P99 latency, throughput \\
+13 & GovernanceMonitor & Compliance, security \\
+14 & ProductionDriftMonitor & Drift magnitude, alerts \\
+15 & ROIAnalyzer & ROI \%, adoption rate \\
+\hline
+\end{tabular}
+\end{table}
+
+All monitors provide pass/fail criteria enabling automated quality gates for deployment decisions. Integration with existing MLOps pipelines is achieved through standardized metric interfaces and configurable alerting thresholds.
+
+%% ============================================================================
+%% SECTION IX: DISCUSSION
 %% ============================================================================
 \section{Discussion}
 
