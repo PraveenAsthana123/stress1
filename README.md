@@ -80,6 +80,28 @@ eegmat = np.load('data/EEGMAT/sample_100/eegmat_sample_100.npz')
 X, y = sam40['X'], sam40['y']  # Shape: (100, 32, 512), (100,)
 ```
 
+## EEG Signal Visualization (Real Data)
+
+Stacked panel plots showing real EEG signals for each condition:
+
+| Dataset | Conditions | Plot |
+|---------|------------|------|
+| **SAM-40** | Relax, Arithmetic, Stroop, Mirror | [sam40_4panel_conditions.png](https://github.com/PraveenAsthana123/stress/blob/main/results/figures/sam40_4panel_conditions.png) |
+| **WESAD** | Relaxed, Stressed | [wesad_2panel_conditions.png](https://github.com/PraveenAsthana123/stress/blob/main/results/figures/wesad_2panel_conditions.png) |
+| **EEGMAT** | Baseline, Arithmetic | [eegmat_2panel_conditions.png](https://github.com/PraveenAsthana123/stress/blob/main/results/figures/eegmat_2panel_conditions.png) |
+
+**SAM-40 (4 Conditions):**
+
+![SAM-40 EEG Signal](results/figures/sam40_4panel_conditions.png)
+
+**WESAD (2 Conditions):**
+
+![WESAD EEG Signal](results/figures/wesad_2panel_conditions.png)
+
+**EEGMAT (2 Conditions):**
+
+![EEGMAT EEG Signal](results/figures/eegmat_2panel_conditions.png)
+
 ## Full Dataset Download
 
 | Dataset | Source | Access |
