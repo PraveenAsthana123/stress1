@@ -81,15 +81,42 @@ Given EEG segment $\mathbf{X} \in \mathbb{R}^{C \times T}$ where $C$ is channels
 
 \subsection{Datasets}
 
-\textbf{EEGMAT}~\cite{zyma2019eegmat}: 36 subjects performing mental arithmetic tasks, 21 EEG channels at 500 Hz (resampled to 256 Hz, zero-padded to 32 channels). Binary labels: baseline rest vs. arithmetic task.
+\textbf{SAM-40}~\cite{sam40dataset}: 40 subjects performing cognitive tasks across four paradigms (Arithmetic, Mirror Image, Stroop Test, Relaxation), 32 channels at 128 Hz. We employ 25-second segments (3,200 samples), yielding 480 total segments (120 per class). See Figure~\ref{fig:sam40_segments}.
 
-\textbf{SAM-40}~\cite{sam40dataset}: 40 subjects performing cognitive tasks (Stroop, arithmetic, mirror tracing), 32 channels at 256 Hz. Validated with NASA-TLX and skin conductance.
+\textbf{EEGMAT}~\cite{zyma2019eegmat}: 36 subjects performing mental arithmetic tasks, 21 EEG channels at 500 Hz. We employ 60-second segments (30,000 samples), yielding 141 total segments (105 baseline, 36 stress). See Figure~\ref{fig:eegmat_segments}.
 
-\textbf{WESAD}~\cite{schmidt2018wesad}: 15 subjects undergoing TSST protocol, multimodal signals at 700 Hz. Binary stress/baseline labels from validated protocol.
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/sam40_segments.png}
+\caption{SAM-40: Representative 25-second EEG segments for four cognitive stress paradigms. 128 Hz, 3,200 samples/segment, 480 total segments.}
+\label{fig:sam40_segments}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/eegmat_segments.png}
+\caption{EEGMAT: Representative 60-second EEG segments for baseline and mental arithmetic conditions. 500 Hz, 30,000 samples/segment, 141 total segments.}
+\label{fig:eegmat_segments}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Segment Configuration Summary}
+\label{tab:segments}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Dataset} & \textbf{Fs} & \textbf{Dur.} & \textbf{Samples} & \textbf{Classes} & \textbf{Seg.} \\
+\midrule
+SAM-40 & 128 Hz & 25s & 3,200 & 4 & 480 \\
+EEGMAT & 500 Hz & 60s & 30,000 & 2 & 141 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Preprocessing Pipeline}
 
-Raw signals undergo: (1) Bandpass filtering (0.5--45 Hz, 4th-order Butterworth); (2) Notch filtering (50 Hz power line removal); (3) Artifact rejection ($>$100 $\mu$V threshold); (4) Segmentation (4-second windows, 50\% overlap); (5) Z-score normalization per channel.
+Raw signals undergo: (1) Bandpass filtering (0.5--45 Hz, 4th-order Butterworth); (2) Notch filtering (50 Hz power line removal); (3) Artifact rejection ($>$100 $\mu$V threshold); (4) Dataset-specific segmentation: SAM-40 uses 25-second windows (3,200 samples at 128 Hz, $\geq$20$\times$Fs), EEGMAT uses 60-second windows (30,000 samples at 500 Hz, $\geq$20$\times$Fs); (5) Z-score normalization per channel.
 
 \subsection{Model Architecture}
 

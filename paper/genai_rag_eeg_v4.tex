@@ -163,7 +163,52 @@ Powerline electromagnetic interference afflicts virtually all electroencephalogr
 
 Electrode malfunction events occur intermittently---ocular artifacts produce substantial amplitude deflections, myogenic activity induces amplifier saturation, mechanical sensor displacement introduces discontinuities. Rather than computationally intensive blind source separation deployment, amplitude-based rejection criteria are implemented wherein segments exhibiting excursions beyond $\pm$100 microvolts undergo exclusion. This approach, though methodologically straightforward, demonstrates adequate efficacy.
 
-Continuous acquisition streams subsequently undergo temporal segmentation with dataset-specific epoch durations optimized for task paradigm complexity. SAM-40 employs 25-second segments (3,200 samples at 128 Hz) capturing complete cognitive task trials across four stress paradigms: Arithmetic, Mirror Image, Stroop Test, and Relaxation. EEGMAT utilizes 60-second segments (30,000 samples at 500 Hz) encompassing sustained mental arithmetic performance periods. These extended temporal windows provide enhanced spectral resolution while permitting comprehensive characterization of stress state dynamics across complete task execution cycles.
+Continuous acquisition streams subsequently undergo temporal segmentation with dataset-specific epoch durations optimized for task paradigm complexity. SAM-40 employs 25-second segments (3,200 samples at 128 Hz) capturing complete cognitive task trials across four stress paradigms: Arithmetic, Mirror Image, Stroop Test, and Relaxation. EEGMAT utilizes 60-second segments (30,000 samples at 500 Hz) encompassing sustained mental arithmetic performance periods. These extended temporal windows provide enhanced spectral resolution while permitting comprehensive characterization of stress state dynamics across complete task execution cycles. Representative segments from each dataset class are illustrated in Figures~\ref{fig:sam40_segments} and~\ref{fig:eegmat_segments}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/sam40_segments.png}
+\caption{SAM-40 dataset: Representative 25-second EEG segments (Channel Fp1) for each of four cognitive stress paradigms. Sampling rate: 128 Hz, yielding 3,200 samples per segment. Total segments: 480 (120 per class). Amplitude range: $\pm$30 $\mu$V.}
+\label{fig:sam40_segments}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/eegmat_segments.png}
+\caption{EEGMAT dataset: Representative 60-second EEG segments (Channel Fp1) for baseline and mental arithmetic stress conditions. Sampling rate: 500 Hz, yielding 30,000 samples per segment. Total segments: 141 (105 baseline, 36 stress).}
+\label{fig:eegmat_segments}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Segment Configuration Summary}
+\label{tab:segments}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Dataset} & \textbf{Fs} & \textbf{Duration} & \textbf{Samples} & \textbf{Classes} & \textbf{Segments} \\
+\midrule
+SAM-40 & 128 Hz & 25 sec & 3,200 & 4 & 480 \\
+EEGMAT & 500 Hz & 60 sec & 30,000 & 2 & 141 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.2cm}
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Dataset} & \textbf{Class} & \textbf{Label} & \textbf{Segments} \\
+\midrule
+SAM-40 & Arithmetic & Stress & 120 \\
+SAM-40 & Mirror Image & Stress & 120 \\
+SAM-40 & Stroop Test & Stress & 120 \\
+SAM-40 & Relaxation & Non-Stress & 120 \\
+\midrule
+EEGMAT & Baseline & Non-Stress & 105 \\
+EEGMAT & Mental Arithmetic & Stress & 36 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Concluding the preprocessing cascade, per-channel standardization to zero mean and unit variance is applied. Authentic topographical power distribution patterns are preserved through this channel-wise normalization procedure while ensuring uniform input scaling for subsequent neural network processing.
 
