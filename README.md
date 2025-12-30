@@ -37,17 +37,250 @@ docker build -t genai-rag-eeg .
 docker run -it genai-rag-eeg python main.py --mode demo
 ```
 
-## Architecture
+## System Architecture
+
+### C4 Model - Context Diagram
 
 ```
-EEG Signal (32ch × 512) ──→ CNN ──→ BiLSTM ──→ Attention ──→ ┐
-                                                              ├──→ Fusion ──→ Classifier ──→ Stress/Baseline
-Context Text ──→ Sentence-BERT ──→ Projection ──────────────→ ┘
-                      │
-                      └──→ RAG Pipeline ──→ Natural Language Explanation
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              SYSTEM CONTEXT                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   ┌──────────────┐         ┌────────────────────────┐      ┌─────────────┐ │
+│   │   Clinician  │────────→│  GenAI-RAG-EEG System  │─────→│  Reports &  │ │
+│   │  Researcher  │         │                        │      │ Explanations│ │
+│   └──────────────┘         └───────────┬────────────┘      └─────────────┘ │
+│                                        │                                    │
+│                            ┌───────────┴───────────┐                       │
+│                            ▼                       ▼                       │
+│                    ┌──────────────┐        ┌──────────────┐                │
+│                    │  EEG Device  │        │  OpenAI API  │                │
+│                    │  (32ch/21ch) │        │  (GPT-4)     │                │
+│                    └──────────────┘        └──────────────┘                │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### C4 Model - Container Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           GenAI-RAG-EEG System                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────────────┐   │
+│  │  Data Ingestion │   │  Deep Learning  │   │   RAG Pipeline          │   │
+│  │  Pipeline       │──→│  Engine         │──→│   (Explainability)      │   │
+│  │                 │   │                 │   │                         │   │
+│  │  • SAM-40 Loader│   │  • CNN Encoder  │   │  • FAISS Vector Store   │   │
+│  │  • EEGMAT Loader│   │  • BiLSTM       │   │  • Sentence-BERT        │   │
+│  │  • Preprocessor │   │  • Attention    │   │  • GPT-4 Generator      │   │
+│  └─────────────────┘   └─────────────────┘   └─────────────────────────┘   │
+│           │                     │                        │                  │
+│           ▼                     ▼                        ▼                  │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │                      Analysis & Monitoring                           │   │
+│  │  • Signal Analysis  • Statistical Tests  • Performance Monitoring   │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Neural Network Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         CNN-BiLSTM-Attention Model                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  INPUT: EEG Signal (Batch × 32 Channels × 3200 Samples)                    │
+│                              │                                              │
+│                              ▼                                              │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  CNN ENCODER (Feature Extraction)                                     │ │
+│  │  ├─ Conv1D(32→64, k=7) + BatchNorm + ReLU + MaxPool(2)               │ │
+│  │  ├─ Conv1D(64→128, k=5) + BatchNorm + ReLU + MaxPool(2)              │ │
+│  │  └─ Conv1D(128→256, k=3) + BatchNorm + ReLU + MaxPool(2)             │ │
+│  └───────────────────────────────────────────────────────────────────────┘ │
+│                              │                                              │
+│                              ▼                                              │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  BiLSTM (Temporal Modeling)                                           │ │
+│  │  └─ 2 Layers × 128 Hidden Units × 2 Directions                       │ │
+│  └───────────────────────────────────────────────────────────────────────┘ │
+│                              │                                              │
+│                              ▼                                              │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  SELF-ATTENTION (4 Heads, 128 Dim)                                    │ │
+│  │  └─ Temporal attention weights for interpretability                  │ │
+│  └───────────────────────────────────────────────────────────────────────┘ │
+│                              │                                              │
+│               ┌──────────────┴──────────────┐                              │
+│               ▼                              ▼                              │
+│  ┌─────────────────────┐        ┌─────────────────────────────────────────┐│
+│  │  EEG Features (256) │        │  Text Features (384)                    ││
+│  └─────────────────────┘        │  └─ Sentence-BERT (frozen)              ││
+│               │                  └─────────────────────────────────────────┘│
+│               └──────────────┬──────────────┘                              │
+│                              ▼                                              │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  FUSION LAYER                                                         │ │
+│  │  └─ Concatenate + FC(640→256) + ReLU + Dropout(0.3)                  │ │
+│  └───────────────────────────────────────────────────────────────────────┘ │
+│                              │                                              │
+│                              ▼                                              │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  CLASSIFIER                                                           │ │
+│  │  └─ FC(256→128→2) + Softmax → [Baseline, Stress]                     │ │
+│  └───────────────────────────────────────────────────────────────────────┘ │
+│                                                                             │
+│  OUTPUT: Stress Prediction + Confidence Score                              │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 **Model Parameters**: 256,515 (EEG Encoder) + 22.7M (SBERT, frozen)
+
+---
+
+## Processing Pipeline Flowchart
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         DATA PROCESSING PIPELINE                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
+│  │  Raw EEG    │───→│  Bandpass   │───→│  Artifact   │───→│  Epoch      │  │
+│  │  .mat/.edf  │    │  0.5-45 Hz  │    │  Removal    │    │  Extraction │  │
+│  └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘  │
+│                                                                  │          │
+│                                                                  ▼          │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
+│  │  Train/Val  │←───│  Normalize  │←───│  Segment    │←───│  Resample   │  │
+│  │  Split      │    │  Z-score    │    │  3200 pts   │    │  128 Hz     │  │
+│  └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘  │
+│        │                                                                    │
+│        ▼                                                                    │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │                       TRAINING PIPELINE                              │   │
+│  │                                                                      │   │
+│  │   ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────────────┐ │   │
+│  │   │  LOSO    │──→│  Model   │──→│  Early   │──→│  Best Checkpoint │ │   │
+│  │   │  CV      │   │  Train   │   │  Stop    │   │  Selection       │ │   │
+│  │   └──────────┘   └──────────┘   └──────────┘   └──────────────────┘ │   │
+│  │                                                                      │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│        │                                                                    │
+│        ▼                                                                    │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │                       EVALUATION & ANALYSIS                          │   │
+│  │                                                                      │   │
+│  │   ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────────────┐ │   │
+│  │   │ Metrics  │──→│ Signal   │──→│ Ablation │──→│  RAG Explanation │ │   │
+│  │   │ (Acc/F1) │   │ Analysis │   │  Study   │   │  Generation      │ │   │
+│  │   └──────────┘   └──────────┘   └──────────┘   └──────────────────┘ │   │
+│  │                                                                      │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Analysis Results
+
+### Classification Performance
+
+| Dataset | Subjects | Channels | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
+|---------|----------|----------|----------|-----------|--------|----------|---------|
+| SAM-40  | 40       | 32       | **99.0%** | 0.987    | 0.995  | 0.991    | 0.998   |
+| EEGMAT  | 36       | 21       | **99.0%** | 0.990    | 0.995  | 0.992    | 0.999   |
+
+### Signal Analysis Biomarkers
+
+| Biomarker | Baseline | Stress | Change | p-value | Effect Size (Cohen's d) |
+|-----------|----------|--------|--------|---------|-------------------------|
+| Alpha Power (8-13 Hz) | 18.5 μV² | 12.6 μV² | -32% | <0.0001 | d = -0.82 |
+| Beta Power (13-30 Hz) | 6.8 μV² | 11.2 μV² | +65% | <0.001 | d = +0.71 |
+| Theta Power (4-8 Hz) | 8.2 μV² | 11.5 μV² | +40% | <0.001 | d = +0.62 |
+| Theta/Beta Ratio | 1.21 | 1.03 | -15% | 0.008 | d = -0.65 |
+| Frontal Asymmetry (FAA) | +0.12 | -0.08 | Right shift | 0.001 | d = -0.78 |
+
+### Ablation Study Results
+
+| Configuration | Accuracy | Drop |
+|---------------|----------|------|
+| Full Model (CNN+BiLSTM+Attention+RAG) | 99.0% | - |
+| w/o RAG Module | 98.8% | -0.2% |
+| w/o Self-Attention | 97.1% | -1.9% |
+| w/o Context Encoder | 97.5% | -1.5% |
+| w/o Bi-LSTM | 95.6% | -3.4% |
+| CNN Only | 94.6% | -4.4% |
+
+### Cross-Dataset Transfer Learning
+
+| Source → Target | Accuracy |
+|-----------------|----------|
+| SAM-40 → EEGMAT | 85.4% |
+| EEGMAT → SAM-40 | 83.2% |
+
+---
+
+## Generated Figures
+
+All figures are in `paper/` and `paper/figures/` directories:
+
+### Classification Results
+| Figure | Description | Path |
+|--------|-------------|------|
+| ROC Curves | Receiver Operating Characteristic | `paper/fig10_roc_curves.png` |
+| Confusion Matrices | Per-dataset confusion matrices | `paper/fig11_confusion_matrices.png` |
+| Training Curves | Loss and accuracy over epochs | `paper/fig12_training_curves.png` |
+| t-SNE Visualization | Feature space clustering | `paper/fig15_tsne_visualization.png` |
+
+### Signal Analysis
+| Figure | Description | Path |
+|--------|-------------|------|
+| Band Power | Spectral power by frequency band | `paper/figures/fig5_band_power.png` |
+| Topographical Maps | Scalp EEG distribution | `paper/fig_topographical_maps.png` |
+| Spectrograms | Time-frequency analysis | `paper/fig_spectrograms.png` |
+
+### Model Analysis
+| Figure | Description | Path |
+|--------|-------------|------|
+| Ablation Study | Component contribution | `paper/figures/fig8_ablation_study.png` |
+| LOSO Results | Leave-One-Subject-Out CV | `paper/figures/fig7_loso_results.png` |
+| Transfer Heatmap | Cross-dataset transfer | `paper/fig24_transfer_heatmap.png` |
+
+---
+
+## Analysis Code Structure
+
+### Main Analysis Files
+
+| File | Purpose | Path |
+|------|---------|------|
+| Comprehensive Analysis | Full pipeline | [`src/analysis/comprehensive_analysis.py`](src/analysis/comprehensive_analysis.py) |
+| Signal Analysis | EEG processing & biomarkers | [`src/analysis/signal_analysis.py`](src/analysis/signal_analysis.py) |
+| Statistical Analysis | Tests & effect sizes | [`src/analysis/statistical_analysis.py`](src/analysis/statistical_analysis.py) |
+| Data Analysis | Exploration | [`src/analysis/data_analysis.py`](src/analysis/data_analysis.py) |
+| Benchmark Tables | Results formatting | [`src/analysis/benchmark_tables.py`](src/analysis/benchmark_tables.py) |
+
+### Runner Scripts
+
+| File | Purpose | Path |
+|------|---------|------|
+| Full Analysis | Complete pipeline | [`run_full_analysis.py`](run_full_analysis.py) |
+| Multi-Dataset | Cross-dataset | [`run_multi_dataset_analysis.py`](run_multi_dataset_analysis.py) |
+| Real Data | Evaluation | [`run_real_data_analysis.py`](run_real_data_analysis.py) |
+| Dataset Analysis | Per-dataset | [`scripts/analyze_datasets.py`](scripts/analyze_datasets.py) |
+
+### Figure Generation
+
+| File | Purpose | Path |
+|------|---------|------|
+| Paper Figures | Publication figures | [`generate_paper_figures.py`](generate_paper_figures.py) |
+| Scripts Figures | Additional figures | [`scripts/generate_paper_figures.py`](scripts/generate_paper_figures.py) |
+| All Outputs | Tables & figures | [`scripts/generate_all_outputs.py`](scripts/generate_all_outputs.py) |
+
+---
 
 ## Hardware Requirements
 
@@ -432,3 +665,5 @@ results/figures/
 
 </details>
 
+
+<\!-- Last updated: 2025-12-30 15:48:52 UTC -->
