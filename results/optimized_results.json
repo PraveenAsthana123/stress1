@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-02T23:50:13.994893",
+    "is_real_data": true
+  },
+  "datasets": {
+    "SAM-40": {
+      "accuracy": 64.79,
+      "f1_score": 76.23,
+      "auc_roc": 57.18,
+      "precision": 77.21,
+      "recall": 75.28,
+      "specificity": 33.33,
+      "cohens_kappa": 0.084,
+      "confusion_matrix": {
+        "TN": 40,
+        "FP": 80,
+        "FN": 89,
+        "TP": 271,
+        "raw": [
+          [
+            40,
+            80
+          ],
+          [
+            89,
+            271
+          ]
+        ]
+      }
+    },
+    "EEGMAT": {
+      "accuracy": 66.0,
+      "f1_score": 66.67,
+      "auc_roc": 65.68,
+      "precision": 65.38,
+      "recall": 68.0,
+      "specificity": 64.0,
+      "cohens_kappa": 0.32,
+      "confusion_matrix": {
+        "TN": 32,
+        "FP": 18,
+        "FN": 16,
+        "TP": 34,
+        "raw": [
+          [
+            32,
+            18
+          ],
+          [
+            16,
+            34
+          ]
+        ]
+      }
+    }
+  }
+}

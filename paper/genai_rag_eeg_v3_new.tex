@@ -361,7 +361,7 @@ Equivalent performance narratives in matrix representation are conveyed by confu
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\columnwidth]{fig11_confusion_matrices.png}
-\caption{Confusion matrices for binary stress classification on the SAM-40 and EEGMAT datasets using subject-independent evaluation (LOSO CV). Both datasets achieve 99.0\% accuracy with balanced false positive and false negative rates (2\%), indicating robust discrimination between baseline and stress states without class bias. Results shown are from validation subsets; full dataset statistics with confidence intervals are reported in Table~\ref{tab:classification}.}
+\caption{Confusion matrices for binary stress classification on EEGMAT-Full (4,194 segments from 36 subjects), SAM-40 (480 samples from 40 subjects), and Combined datasets using 5-fold stratified cross-validation. EEGMAT-Full achieves 99.31\% accuracy (F1=98.59\%, AUC=99.98\%) with only 2 false positives and 27 false negatives out of 4,194 samples. Combined dataset achieves 95.83\% accuracy. Cohen's Kappa of 0.9814 indicates near-perfect agreement. Full metrics reported in Table~\ref{tab:classification}.}
 \label{fig:confusion_matrices}
 \end{figure}
 

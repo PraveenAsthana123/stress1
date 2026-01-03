@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-03T00:02:34.575732",
+    "model": "Strong Ensemble (RF+GB+SVM+MLP+XGB)",
+    "validation": "10-Fold Stratified CV with multiple seeds",
+    "is_real_data": true
+  },
+  "datasets": {
+    "SAM-40": {
+      "accuracy": 73.54,
+      "f1_score": 84.14,
+      "auc_roc": 58.7,
+      "precision": 76.42,
+      "recall": 93.61,
+      "specificity": 13.33,
+      "cohens_kappa": 0.0896,
+      "confusion_matrix": {
+        "TN": 16,
+        "FP": 104,
+        "FN": 23,
+        "TP": 337,
+        "raw": [
+          [
+            16,
+            104
+          ],
+          [
+            23,
+            337
+          ]
+        ]
+      }
+    },
+    "EEGMAT": {
+      "accuracy": 62.0,
+      "f1_score": 60.42,
+      "auc_roc": 70.08,
+      "precision": 63.04,
+      "recall": 58.0,
+      "specificity": 66.0,
+      "cohens_kappa": 0.24,
+      "confusion_matrix": {
+        "TN": 33,
+        "FP": 17,
+        "FN": 21,
+        "TP": 29,
+        "raw": [
+          [
+            33,
+            17
+          ],
+          [
+            21,
+            29
+          ]
+        ]
+      }
+    }
+  }
+}

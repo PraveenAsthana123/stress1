@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-02T23:35:17.185332",
+    "model": "CNN-LSTM-Attention (EEGStressClassifier)",
+    "is_real_data": true,
+    "is_simulated": false,
+    "validation": "5-Fold Stratified CV",
+    "note": "ALL results from actual model predictions on real EEG data"
+  },
+  "datasets": {
+    "SAM-40": {
+      "accuracy": 34.38,
+      "precision": 83.58,
+      "recall": 15.56,
+      "f1_score": 26.23,
+      "auc_roc": 57.37,
+      "specificity": 90.83,
+      "cohens_kappa": 0.0352,
+      "confusion_matrix": {
+        "TN": 109,
+        "FP": 11,
+        "FN": 304,
+        "TP": 56,
+        "raw": [
+          [
+            109,
+            11
+          ],
+          [
+            304,
+            56
+          ]
+        ]
+      },
+      "fold_metrics": [
+        {
+          "accuracy": 29.166666666666668,
+          "f1_score": 15.0,
+          "auc_roc": 63.19444444444444
+        },
+        {
+          "accuracy": 41.66666666666667,
+          "f1_score": 39.130434782608695,
+          "auc_roc": 59.02777777777778
+        },
+        {
+          "accuracy": 34.375,
+          "f1_score": 27.586206896551722,
+          "auc_roc": 63.020833333333336
+        },
+        {
+          "accuracy": 37.5,
+          "f1_score": 34.78260869565217,
+          "auc_roc": 55.90277777777777
+        },
+        {
+          "accuracy": 29.166666666666668,
+          "f1_score": 10.526315789473683,
+          "auc_roc": 58.217592592592595
+        }
+      ],
+      "n_samples": 480,
+      "n_subjects": 40
+    },
+    "EEGMAT": {
+      "accuracy": 67.0,
+      "precision": 67.35,
+      "recall": 66.0,
+      "f1_score": 66.67,
+      "auc_roc": 73.64,
+      "specificity": 68.0,
+      "cohens_kappa": 0.34,
+      "confusion_matrix": {
+        "TN": 34,
+        "FP": 16,
+        "FN": 17,
+        "TP": 33,
+        "raw": [
+          [
+            34,
+            16
+          ],
+          [
+            17,
+            33
+          ]
+        ]
+      },
+      "fold_metrics": [
+        {
+          "accuracy": 60.0,
+          "f1_score": 60.0,
+          "auc_roc": 70.0
+        },
+        {
+          "accuracy": 70.0,
+          "f1_score": 72.72727272727273,
+          "auc_roc": 76.0
+        },
+        {
+          "accuracy": 55.00000000000001,
+          "f1_score": 18.181818181818183,
+          "auc_roc": 81.0
+        },
+        {
+          "accuracy": 80.0,
+          "f1_score": 81.81818181818183,
+          "auc_roc": 85.0
+        },
+        {
+          "accuracy": 70.0,
+          "f1_score": 75.0,
+          "auc_roc": 75.0
+        }
+      ],
+      "n_samples": 100,
+      "n_subjects": 50
+    }
+  }
+}

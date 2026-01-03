@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-02T23:37:45.990396",
+    "model": "Advanced CNN-Transformer with Multi-Head Attention",
+    "techniques": [
+      "Bandpass filtering (0.5-45 Hz)",
+      "Data augmentation (3x)",
+      "Class-balanced sampling",
+      "Label smoothing (0.1)",
+      "Gradient clipping",
+      "Cosine annealing with warmup",
+      "Early stopping"
+    ],
+    "is_real_data": true
+  },
+  "datasets": {
+    "SAM-40": {
+      "accuracy": 67.29,
+      "precision": 75.06,
+      "recall": 84.44,
+      "f1_score": 79.48,
+      "auc_roc": 52.92,
+      "specificity": 15.83,
+      "cohens_kappa": 0.0032,
+      "confusion_matrix": {
+        "TN": 19,
+        "FP": 101,
+        "FN": 56,
+        "TP": 304,
+        "raw": [
+          [
+            19,
+            101
+          ],
+          [
+            56,
+            304
+          ]
+        ]
+      },
+      "fold_results": [
+        {
+          "accuracy": 71.875,
+          "f1_score": 82.35294117647058,
+          "auc_roc": 54.05092592592593
+        },
+        {
+          "accuracy": 69.79166666666666,
+          "f1_score": 81.04575163398692,
+          "auc_roc": 51.504629629629626
+        },
+        {
+          "accuracy": 64.58333333333334,
+          "f1_score": 76.71232876712328,
+          "auc_roc": 56.13425925925925
+        },
+        {
+          "accuracy": 62.5,
+          "f1_score": 76.62337662337663,
+          "auc_roc": 52.02546296296296
+        },
+        {
+          "accuracy": 67.70833333333334,
+          "f1_score": 80.50314465408806,
+          "auc_roc": 46.469907407407405
+        }
+      ]
+    },
+    "EEGMAT": {
+      "accuracy": 51.0,
+      "precision": 51.28,
+      "recall": 40.0,
+      "f1_score": 44.94,
+      "auc_roc": 51.2,
+      "specificity": 62.0,
+      "cohens_kappa": 0.02,
+      "confusion_matrix": {
+        "TN": 31,
+        "FP": 19,
+        "FN": 30,
+        "TP": 20,
+        "raw": [
+          [
+            31,
+            19
+          ],
+          [
+            30,
+            20
+          ]
+        ]
+      },
+      "fold_results": [
+        {
+          "accuracy": 40.0,
+          "f1_score": 14.285714285714285,
+          "auc_roc": 42.00000000000001
+        },
+        {
+          "accuracy": 55.00000000000001,
+          "f1_score": 57.14285714285714,
+          "auc_roc": 59.00000000000001
+        },
+        {
+          "accuracy": 45.0,
+          "f1_score": 26.666666666666668,
+          "auc_roc": 48.0
+        },
+        {
+          "accuracy": 60.0,
+          "f1_score": 60.0,
+          "auc_roc": 66.0
+        },
+        {
+          "accuracy": 55.00000000000001,
+          "f1_score": 52.63157894736842,
+          "auc_roc": 57.00000000000001
+        }
+      ]
+    }
+  }
+}
