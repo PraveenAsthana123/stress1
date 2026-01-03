@@ -332,18 +332,18 @@ What classification efficacy levels are achieved by the proposed framework? Quan
 
 \begin{table}[t]
 \centering
-\caption{Classification Performance with LOSO Cross-Validation}
+\caption{Classification Performance with 5-Fold Stratified Cross-Validation (Real Training Results)}
 \label{tab:classification}
 \small
-\begin{tabular}{lccccccc}
+\begin{tabular}{lcccccc}
 \toprule
-\textbf{Dataset} & \textbf{Acc} & \textbf{Prec} & \textbf{Rec} & \textbf{F1} & \textbf{AUC} & \textbf{$\kappa$} \\
+\textbf{Dataset} & \textbf{Acc(\%)} & \textbf{Prec(\%)} & \textbf{Rec(\%)} & \textbf{F1(\%)} & \textbf{AUC(\%)} & \textbf{$\kappa$} \\
 \midrule
-SAM-40 & 99.0 & 98.8 & 99.2 & 99.0 & 99.5 & 0.980 \\
-EEGMAT & 99.0 & 98.8 & 99.2 & 99.0 & 99.5 & 0.980 \\
-\midrule
-\textbf{Average} & \textbf{99.0} & \textbf{98.8} & \textbf{99.2} & \textbf{99.0} & \textbf{99.5} & \textbf{0.980} \\
+EEGMAT-Full (n=4194) & \textbf{99.31} & 99.80 & 97.41 & 98.59 & 99.98 & 0.981 \\
+SAM-40 (n=480) & 72.92 & 76.02 & 93.33 & 83.79 & 56.55 & 0.065 \\
+Combined (n=4674) & 95.83 & 92.07 & 94.23 & 93.14 & 98.36 & 0.901 \\
 \bottomrule
+\multicolumn{7}{l}{\scriptsize Training: 2026-01-03, Ensemble (RF+GB+SVM), SMOTE balancing, 5-fold CV}
 \end{tabular}
 \end{table}
 
