@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.5)  3 JAN 2026 13:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.5)  3 JAN 2026 13:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1229,68 +1229,76 @@ File: fig11_confusion_matrices.png Graphic file (type png)
 <use fig11_confusion_matrices.png>
 Package pdftex.def Info: fig11_confusion_matrices.png  used on input line 441.
 (pdftex.def)             Requested size: 214.20154pt x 59.18544pt.
-Package pgfplots info on input line 469: Using 'lua backend=false' for axis: x 
+<fig_frequency_by_class.png, id=418, 859.0494pt x 570.4512pt>
+File: fig_frequency_by_class.png Graphic file (type png)
+<use fig_frequency_by_class.png>
+Package pdftex.def Info: fig_frequency_by_class.png  used on input line 448.
+(pdftex.def)             Requested size: 239.39923pt x 158.96796pt.
+Package pgfplots info on input line 476: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 [7 <./fig10_roc_curves.png> <./fig11_confusion_matrices.png>]
-<fig12_training_curves.png, id=433, 999.735pt x 295.3434pt>
+<fig12_training_curves.png, id=434, 999.735pt x 295.3434pt>
 File: fig12_training_curves.png Graphic file (type png)
 <use fig12_training_curves.png>
-Package pdftex.def Info: fig12_training_curves.png  used on input line 484.
+Package pdftex.def Info: fig12_training_curves.png  used on input line 491.
 (pdftex.def)             Requested size: 214.20154pt x 63.27676pt.
-<fig_precision_recall.png, id=435, 567.0786pt x 422.0568pt>
+<fig_precision_recall.png, id=436, 567.0786pt x 422.0568pt>
 File: fig_precision_recall.png Graphic file (type png)
 <use fig_precision_recall.png>
-Package pdftex.def Info: fig_precision_recall.png  used on input line 493.
+Package pdftex.def Info: fig_precision_recall.png  used on input line 500.
 (pdftex.def)             Requested size: 214.20154pt x 159.42368pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
 []\T1/ptm/m/n/10 How tem-per-a-men-tal is this model? Ev-ery ma-jor
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
 \T1/ptm/m/n/10 parameter---learning rate, batch size, dropout, hid-den
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
 \T1/ptm/m/n/10 di-men-sions, at-ten-tion heads, LSTM layers---was
  []
 
 
-Underfull \hbox (badness 5302) in paragraph at lines 554--555
+Underfull \hbox (badness 5302) in paragraph at lines 561--562
 \T1/ptm/m/n/10 sys-tem-at-i-cally probed to as-cer-tain what frac-tures and
  []
 
-<fig_hyperparameter_heatmap.png, id=444, 679.5789pt x 566.5968pt>
+[8 <./fig_frequency_by_class.png> <./fig12_training_curves.png> <./fig_precisio
+n_recall.png>]
+<fig_hyperparameter_heatmap.png, id=456, 679.5789pt x 566.5968pt>
 File: fig_hyperparameter_heatmap.png Graphic file (type png)
 <use fig_hyperparameter_heatmap.png>
-Package pdftex.def Info: fig_hyperparameter_heatmap.png  used on input line 598
+Package pdftex.def Info: fig_hyperparameter_heatmap.png  used on input line 605
 .
 (pdftex.def)             Requested size: 214.20154pt x 178.59132pt.
-[8 <./fig12_training_curves.png> <./fig_precision_recall.png>]
-<fig24_transfer_heatmap.png, id=460, 561.5379pt x 422.0568pt>
+<fig24_transfer_heatmap.png, id=459, 561.5379pt x 422.0568pt>
 File: fig24_transfer_heatmap.png Graphic file (type png)
 <use fig24_transfer_heatmap.png>
-Package pdftex.def Info: fig24_transfer_heatmap.png  used on input line 627.
+Package pdftex.def Info: fig24_transfer_heatmap.png  used on input line 634.
 (pdftex.def)             Requested size: 214.20154pt x 160.99504pt.
-<fig15_tsne_visualization.png, id=462, 986.2446pt x 295.3434pt>
+<fig15_tsne_visualization.png, id=461, 986.2446pt x 295.3434pt>
 File: fig15_tsne_visualization.png Graphic file (type png)
 <use fig15_tsne_visualization.png>
-Package pdftex.def Info: fig15_tsne_visualization.png  used on input line 640.
+Package pdftex.def Info: fig15_tsne_visualization.png  used on input line 647.
 (pdftex.def)             Requested size: 214.20154pt x 64.14203pt.
 
-Underfull \hbox (badness 1400) in paragraph at lines 647--648
+Underfull \hbox (badness 1400) in paragraph at lines 654--655
 []\T1/ptm/m/n/10 Where does the model fo-cus when ren-der-ing pre-dic-
  []
 
-<fig16_attention_heatmap.png, id=464, 800.0289pt x 422.0568pt>
+<fig16_attention_heatmap.png, id=463, 800.0289pt x 422.0568pt>
 File: fig16_attention_heatmap.png Graphic file (type png)
 <use fig16_attention_heatmap.png>
-Package pdftex.def Info: fig16_attention_heatmap.png  used on input line 651.
+Package pdftex.def Info: fig16_attention_heatmap.png  used on input line 658.
 (pdftex.def)             Requested size: 214.20154pt x 113.00372pt.
-Package pgfplots info on input line 677: Using 'lua backend=false' for axis: x 
+[9 <./fig_hyperparameter_heatmap.png>]
+Package pgfplots info on input line 684: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
+
 
 ! Package pgfplots Error: Sorry, the input coordinate ` RAG Module' has not bee
 n defined with 'symbolic y coords={RAG Module, Context Encoder, Self-Attention,
@@ -1301,7 +1309,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.684         };
+l.691         };
                 
 This error message was generated by an \errmessage
 command, so I can't give any explicit help.
@@ -1318,7 +1326,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.684         };
+l.691         };
                 
 (That was another \errmessage.)
 
@@ -1332,7 +1340,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.684         };
+l.691         };
                 
 (That was another \errmessage.)
 
@@ -1346,7 +1354,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.684         };
+l.691         };
                 
 (That was another \errmessage.)
 
@@ -1360,54 +1368,53 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.684         };
+l.691         };
                 
 (That was another \errmessage.)
 
 
 Package pgfplots Warning: Axis range for axis y is approximately empty; enlargi
-ng it (it is [0.0:0.0]) on input line 685.
+ng it (it is [0.0:0.0]) on input line 692.
 
  [warning /pgfplots/warning/approx empty range enlarged]
-[9 <./fig_hyperparameter_heatmap.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 732--732
+
+Underfull \hbox (badness 10000) in paragraph at lines 739--739
 []\T1/ptm/m/n/10 TABLE XI: |Com-po-nent In-ter-ac-tion Ma-trix (Syn-
  []
 
 <fig18_band_power_chart.png, id=484, 1000.2168pt x 370.2633pt>
 File: fig18_band_power_chart.png Graphic file (type png)
 <use fig18_band_power_chart.png>
-Package pdftex.def Info: fig18_band_power_chart.png  used on input line 757.
+Package pdftex.def Info: fig18_band_power_chart.png  used on input line 764.
 (pdftex.def)             Requested size: 214.20154pt x 79.29431pt.
 <fig_shap_importance.png, id=486, 704.1507pt x 566.3559pt>
 File: fig_shap_importance.png Graphic file (type png)
 <use fig_shap_importance.png>
-Package pdftex.def Info: fig_shap_importance.png  used on input line 766.
+Package pdftex.def Info: fig_shap_importance.png  used on input line 773.
 (pdftex.def)             Requested size: 214.20154pt x 172.28459pt.
 
-Underfull \hbox (badness 1917) in paragraph at lines 818--819
+Underfull \hbox (badness 1917) in paragraph at lines 825--826
 \OML/cmm/m/it/10 ^^T$\T1/ptm/m/n/10 =0.81, which is deemed ex-cel-lent). Over-a
 ll agree-ment
  []
 
 [10 <./fig24_transfer_heatmap.png> <./fig15_tsne_visualization.png> <./fig16_at
-tention_heatmap.png>] [11 <./fig18_band_power_chart.png> <./fig_shap_importance
-.png>]
-Overfull \hbox (21.92612pt too wide) in paragraph at lines 996--1013
+tention_heatmap.png>] [11 <./fig18_band_power_chart.png>]
+Overfull \hbox (21.92612pt too wide) in paragraph at lines 1003--1020
  [][] 
  []
 
 
-Overfull \hbox (15.02225pt too wide) in paragraph at lines 1024--1036
+Overfull \hbox (15.02225pt too wide) in paragraph at lines 1031--1043
  [][] 
  []
 
 
-Overfull \hbox (4.15019pt too wide) in paragraph at lines 1217--1229
+Overfull \hbox (4.15019pt too wide) in paragraph at lines 1224--1236
  [][] 
  []
 
-[12]
+[12 <./fig_shap_importance.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1415,18 +1422,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Warning: Text page 13 contains only floats.
 
 [13]
-Underfull \hbox (badness 1648) in paragraph at lines 1340--1341
+Underfull \hbox (badness 1648) in paragraph at lines 1347--1348
 []\T1/ptm/b/n/10 Retrieval Qual-ity Anal-y-sis\T1/ptm/m/n/10 : Pre-ci-sion@K, R
 e-call@K,
  []
 
 [14] [15]
-Underfull \hbox (badness 5878) in paragraph at lines 1388--1389
+Underfull \hbox (badness 5878) in paragraph at lines 1395--1396
 []\T1/ptm/m/n/10 The com-plete frame-work com-prises 6,008 lines of
  []
 
 [16]
-Underfull \hbox (badness 2772) in paragraph at lines 1444--1445
+Underfull \hbox (badness 2772) in paragraph at lines 1451--1452
 []\T1/ptm/m/n/10 Domain ex-pert en-dorse-ment was ob-tained for RAG-
  []
 
@@ -1447,51 +1454,47 @@ Package rerunfilecheck Warning: File `genai_rag_eeg_v4.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `genai_rag_eeg_v4.out':
-(rerunfilecheck)             Before: 93F1372DAE1878AD14DADBCBA0D1AA68;13721
-(rerunfilecheck)             After:  61A27A205C8ABB3289683E558F2C8F2F;13721.
+(rerunfilecheck)             Before: 61A27A205C8ABB3289683E558F2C8F2F;13721
+(rerunfilecheck)             After:  A874B6612B054C4581137D3886BC7FA5;13721.
  ) 
 Here is how much of TeX's memory you used:
- 37071 strings out of 474222
- 870041 string characters out of 5748733
+ 37079 strings out of 474222
+ 870296 string characters out of 5748733
  2004975 words of memory out of 5000000
- 58546 multiletter control sequences out of 15000+600000
+ 58554 multiletter control sequences out of 15000+600000
  684794 words of font info for 182 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,87p,1816b,2326s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-pdfTeX warning (dest): name{table.caption.27} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.28} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{figure.caption.25} has been referenced but does not
+pdfTeX warning (dest): name{figure.caption.26} has been referenced but does not
  exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.24} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.25} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{figure.caption.19} has been referenced but does not
+pdfTeX warning (dest): name{figure.caption.20} has been referenced but does not
  exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.18} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.19} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{figure.caption.17} has been referenced but does not
+pdfTeX warning (dest): name{figure.caption.18} has been referenced but does not
  exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.caption.14} has been referenced but does not 
+pdfTeX warning (dest): name{table.caption.15} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{figure.caption.9} has been referenced but does not 
-exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{section*.43} has been referenced but does not exist
+pdfTeX warning (dest): name{section*.44} has been referenced but does not exist
 , replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
@@ -1515,10 +1518,10 @@ e1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type
 tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on genai_rag_eeg_v4.pdf (18 pages, 2998004 bytes).
+Output written on genai_rag_eeg_v4.pdf (18 pages, 3430132 bytes).
 PDF statistics:
- 713 PDF objects out of 1000 (max. 8388607)
+ 715 PDF objects out of 1000 (max. 8388607)
  619 compressed objects within 7 object streams
  181 named destinations out of 1000 (max. 500000)
- 607 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 612 words of extra memory for PDF output out of 10000 (max. 10000000)
 

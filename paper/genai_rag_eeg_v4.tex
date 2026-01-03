@@ -443,6 +443,13 @@ Equivalent performance narratives in matrix representation are conveyed by confu
 \label{fig:confusion_matrices}
 \end{figure}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{fig_frequency_by_class.png}
+\caption{EEG power spectral density analysis comparing baseline (relaxed) vs stress (mental arithmetic) states across 36 subjects from the EEGMAT dataset. Top panel shows full spectrum (0--50 Hz) with shaded regions indicating standard deviation. Bottom panel shows band power comparison with percentage changes: Delta ($-$30.4\%), Theta ($-$3.1\%), Alpha ($-$4.4\%) decrease during stress, while Beta (+5.9\%) and Gamma (+16.8\%) increase---consistent with established stress neurophysiology markers.}
+\label{fig:frequency_by_class}
+\end{figure}
+
 What accounts for exceptional classification outcomes? The mental arithmetic tasks in EEGMAT and cognitive stressors in SAM-40 elicit pronounced neurophysiological activation with discriminable neural signatures. The 4-class SAM-40 classification (Arithmetic, Mirror Image, Stroop, Relaxation) demonstrates that the model successfully distinguishes between different cognitive stress paradigms. The binary EEGMAT classification (Baseline vs. Mental Arithmetic) confirms robust stress detection across paradigm types.
 
 \subsection{LOSO Per-Subject Analysis}
