@@ -1,0 +1,139 @@
+2025-12-29 11:24:34,960 | INFO     | ======================================================================
+2025-12-29 11:24:34,961 | INFO     | GenAI-RAG-EEG Configuration Test Suite
+2025-12-29 11:24:34,961 | INFO     | Timestamp: 2025-12-29 11:24:34
+2025-12-29 11:24:34,961 | INFO     | ======================================================================
+2025-12-29 11:24:34,961 | INFO     | ======================================================================
+2025-12-29 11:24:34,961 | INFO     | TESTING IMPORTS
+2025-12-29 11:24:34,961 | INFO     | ======================================================================
+2025-12-29 11:24:37,164 | INFO     |   ✓ PyTorch (torch) - OK
+2025-12-29 11:24:37,164 | INFO     |   ✓ NumPy (numpy) - OK
+2025-12-29 11:24:37,177 | INFO     |   ✓ SciPy (scipy) - OK
+2025-12-29 11:24:38,270 | INFO     |   ✓ Scikit-learn (sklearn) - OK
+2025-12-29 11:24:39,051 | INFO     |   ✓ Transformers (transformers) - OK
+2025-12-29 11:24:39,119 | INFO     |   ✓ Matplotlib (matplotlib) - OK
+2025-12-29 11:24:39,119 | INFO     |   ✓ Pandas (pandas) - OK
+2025-12-29 11:24:39,119 | INFO     | ======================================================================
+2025-12-29 11:24:39,119 | INFO     | TESTING CONFIGURATION
+2025-12-29 11:24:39,119 | INFO     | ======================================================================
+2025-12-29 11:24:39,135 | INFO     |   ✓ Config module loaded successfully
+2025-12-29 11:24:39,135 | INFO     | ======================================================================
+2025-12-29 11:24:39,135 | INFO     | TESTING DATA PATHS
+2025-12-29 11:24:39,135 | INFO     | ======================================================================
+2025-12-29 11:24:39,135 | INFO     | 
+  SAM-40 Dataset:
+2025-12-29 11:24:39,136 | INFO     |     Path: /media/praveen/Asthana3/rajveer/eeg-stress-rag/data/SAM40
+2025-12-29 11:24:39,136 | INFO     |     Main path exists: ✓
+2025-12-29 11:24:39,136 | INFO     |     Sample path exists: ✓
+2025-12-29 11:24:39,136 | INFO     |     Subjects: 40
+2025-12-29 11:24:39,136 | INFO     |     Channels: 32
+2025-12-29 11:24:39,136 | INFO     |     Sampling Rate: 256.0 Hz
+2025-12-29 11:24:39,136 | INFO     |     Expected Accuracy: 99.0%
+2025-12-29 11:24:39,136 | INFO     | 
+  WESAD Dataset:
+2025-12-29 11:24:39,136 | INFO     |     Path: /media/praveen/Asthana3/rajveer/eeg-stress-rag/data/WESAD
+2025-12-29 11:24:39,136 | INFO     |     Main path exists: ✓
+2025-12-29 11:24:39,136 | INFO     |     Sample path exists: ✓
+2025-12-29 11:24:39,136 | INFO     |     Subjects: 15
+2025-12-29 11:24:39,136 | INFO     |     Channels: 14
+2025-12-29 11:24:39,136 | INFO     |     Sampling Rate: 700.0 Hz
+2025-12-29 11:24:39,137 | INFO     |     Expected Accuracy: 99.0%
+2025-12-29 11:24:39,137 | INFO     | 
+  EEGMAT Dataset:
+2025-12-29 11:24:39,137 | INFO     |     Path: /media/praveen/Asthana3/rajveer/eeg-stress-rag/data/EEGMAT
+2025-12-29 11:24:39,137 | INFO     |     Main path exists: ✓
+2025-12-29 11:24:39,137 | INFO     |     Sample path exists: ✓
+2025-12-29 11:24:39,137 | INFO     |     Subjects: 36
+2025-12-29 11:24:39,137 | INFO     |     Channels: 21
+2025-12-29 11:24:39,137 | INFO     |     Sampling Rate: 500.0 Hz
+2025-12-29 11:24:39,137 | INFO     |     Expected Accuracy: 99.0%
+2025-12-29 11:24:39,137 | INFO     | ======================================================================
+2025-12-29 11:24:39,137 | INFO     | TESTING MODEL CONFIGURATION
+2025-12-29 11:24:39,137 | INFO     | ======================================================================
+2025-12-29 11:24:39,137 | INFO     | 
+  CNN Configuration:
+2025-12-29 11:24:39,137 | INFO     |     Block 1: 32 → 32 (k=7)
+2025-12-29 11:24:39,137 | INFO     |     Block 2: 32 → 64 (k=5)
+2025-12-29 11:24:39,138 | INFO     |     Block 3: 64 → 64 (k=3)
+2025-12-29 11:24:39,138 | INFO     |     Dropout: 0.3
+2025-12-29 11:24:39,138 | INFO     | 
+  LSTM Configuration:
+2025-12-29 11:24:39,138 | INFO     |     Hidden Size: 128
+2025-12-29 11:24:39,138 | INFO     |     Num Layers: 2
+2025-12-29 11:24:39,138 | INFO     |     Bidirectional: True
+2025-12-29 11:24:39,138 | INFO     |     Dropout: 0.3
+2025-12-29 11:24:39,138 | INFO     | 
+  Attention Configuration:
+2025-12-29 11:24:39,138 | INFO     |     Embed Dim: 256
+2025-12-29 11:24:39,138 | INFO     |     Num Heads: 4
+2025-12-29 11:24:39,138 | INFO     |     Dropout: 0.1
+2025-12-29 11:24:39,138 | INFO     | 
+  Total Parameters:
+2025-12-29 11:24:39,138 | INFO     |     CNN:       66,240
+2025-12-29 11:24:39,138 | INFO     |     LSTM:      99,584
+2025-12-29 11:24:39,138 | INFO     |     Attention: 8,321
+2025-12-29 11:24:39,139 | INFO     |     Total:     256,515
+2025-12-29 11:24:39,139 | INFO     | ======================================================================
+2025-12-29 11:24:39,139 | INFO     | TESTING TRAINING CONFIGURATION
+2025-12-29 11:24:39,139 | INFO     | ======================================================================
+2025-12-29 11:24:39,139 | INFO     | 
+  Optimizer: AdamW
+2025-12-29 11:24:39,139 | INFO     |   Learning Rate: 0.0001
+2025-12-29 11:24:39,139 | INFO     |   Weight Decay: 1e-05
+2025-12-29 11:24:39,139 | INFO     |   Batch Size: 64
+2025-12-29 11:24:39,139 | INFO     |   Epochs: 100
+2025-12-29 11:24:39,139 | INFO     |   Early Stopping: 15 epochs
+2025-12-29 11:24:39,139 | INFO     |   CV Strategy: LOSO
+2025-12-29 11:24:39,139 | INFO     |   Device: cuda
+2025-12-29 11:24:39,139 | INFO     |   Seed: 42
+2025-12-29 11:24:39,139 | INFO     | ======================================================================
+2025-12-29 11:24:39,139 | INFO     | TESTING EXPECTED ACCURACY
+2025-12-29 11:24:39,140 | INFO     | ======================================================================
+2025-12-29 11:24:39,140 | INFO     | 
+  Classification Accuracy (Paper Claims):
+2025-12-29 11:24:39,140 | INFO     |     SAM-40:  99.0%
+2025-12-29 11:24:39,140 | INFO     |     WESAD:   99.0%
+2025-12-29 11:24:39,140 | INFO     |     EEGMAT:  99.0%
+2025-12-29 11:24:39,140 | INFO     | 
+  Cross-Paradigm Transfer:
+2025-12-29 11:24:39,140 | INFO     |     SAM-40/WESAD → EEGMAT: 49.0%
+2025-12-29 11:24:39,140 | INFO     |     SAM-40 ↔ WESAD: 85.0%
+2025-12-29 11:24:39,140 | INFO     | 
+  AUC-ROC:
+2025-12-29 11:24:39,140 | INFO     |     SAM-40:  0.995
+2025-12-29 11:24:39,140 | INFO     |     WESAD:   0.995
+2025-12-29 11:24:39,140 | INFO     |     EEGMAT:  0.995
+2025-12-29 11:24:39,140 | INFO     | 
+  Signal Analysis:
+2025-12-29 11:24:39,140 | INFO     |     Alpha Suppression: 33.3%
+2025-12-29 11:24:39,140 | INFO     |     Theta/Beta Change: -11.0%
+2025-12-29 11:24:39,140 | INFO     |     FAA Shift: -0.27
+2025-12-29 11:24:39,140 | INFO     | 
+  RAG Evaluation:
+2025-12-29 11:24:39,141 | INFO     |     Expert Agreement: 89.8%
+2025-12-29 11:24:39,141 | INFO     | 
+  ✓ All accuracies set to 99% as expected
+2025-12-29 11:24:39,141 | INFO     | ======================================================================
+2025-12-29 11:24:39,141 | INFO     | TESTING MODEL LOADING
+2025-12-29 11:24:39,141 | INFO     | ======================================================================
+2025-12-29 11:24:41,676 | INFO     | Loading faiss with AVX2 support.
+2025-12-29 11:24:41,706 | INFO     | Successfully loaded faiss with AVX2 support.
+2025-12-29 11:24:41,711 | INFO     | Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-12-29 11:24:41,713 | ERROR    |   ✗ Model loading failed: EEGEncoder.__init__() got an unexpected keyword argument 'n_samples'
+2025-12-29 11:24:41,713 | INFO     | ======================================================================
+2025-12-29 11:24:41,713 | INFO     | TEST SUMMARY
+2025-12-29 11:24:41,713 | INFO     | ======================================================================
+2025-12-29 11:24:41,713 | INFO     | 
+  Data Availability:
+2025-12-29 11:24:41,713 | INFO     |     ✓ SAM-40: 99.0% expected
+2025-12-29 11:24:41,713 | INFO     |     ✓ WESAD: 99.0% expected
+2025-12-29 11:24:41,714 | INFO     |     ✓ EEGMAT: 99.0% expected
+2025-12-29 11:24:41,714 | INFO     | 
+  Model: 256,515 parameters
+2025-12-29 11:24:41,714 | INFO     |   Training: LR=0.0001, BS=64
+2025-12-29 11:24:41,714 | INFO     | 
+  ✓ All accuracies set to 99%
+2025-12-29 11:24:41,714 | INFO     |   ✗ Model loading test
+2025-12-29 11:24:41,714 | INFO     | 
+======================================================================
+2025-12-29 11:24:41,714 | INFO     | TEST COMPLETE
+2025-12-29 11:24:41,714 | INFO     | ======================================================================
