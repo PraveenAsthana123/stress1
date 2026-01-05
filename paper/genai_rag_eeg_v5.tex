@@ -4268,6 +4268,9 @@ Substantial agreement was exhibited by the experts (Fleiss' $\kappa$=0.81, which
 
 Can this operate in real time? Readily. Merely 12 ms on a GPU (RTX 3080) or 85 ms on CPU (Intel i7-10700) is required for inference---both sufficiently rapid for continuous monitoring. The entire model comprises under 200K parameters, approximately 50 times more compact than transformer-based alternatives. GPU memory peaks at 89 MB, so even embedded systems can accommodate it.
 
+\FloatBarrier
+\clearpage
+
 %% ============================================================================
 %% SECTION VI: CLINICAL VALIDATION & REAL-WORLD ASSESSMENT
 %% ============================================================================
@@ -4395,6 +4398,9 @@ Systematic application of the aforementioned validation frameworks yielded the f
 \textbf{Temporal Stability:} Cross-session performance variance remained within $\pm$2.1\% F1-score deviation, indicating reliable longitudinal consistency absent significant temporal drift phenomena.
 
 \textbf{Deployment Readiness:} Inference latency of 12 ms (GPU) and 85 ms (CPU) satisfies real-time operational requirements. Memory footprint of 89 MB enables edge device deployment feasibility.
+
+\FloatBarrier
+\clearpage
 
 %% ============================================================================
 %% SECTION VII: COMPREHENSIVE ANALYSIS FRAMEWORK
@@ -4754,6 +4760,9 @@ The complete evaluation framework encompasses:
 \textbf{Subject Analysis (25+ metrics):} LOSO validation yielding mean F1 of 0.89 ($\pm$0.03), inter-subject variability coefficient of 3.4\%, demographic analysis confirming absence of significant age/gender bias ($p > 0.05$).
 
 \textbf{Performance Analysis (30+ metrics):} Clinical threshold compliance across all six criteria (sensitivity 94.2\% $\geq$ 90\%, specificity 93.8\% $\geq$ 85\%, PPV 92.1\% $\geq$ 80\%, NPV 95.3\% $\geq$ 90\%, AUC 0.967 $\geq$ 0.85, $\kappa$ 0.81 $\geq$ 0.60). Deployment readiness confirmed via latency $<$ 100 ms and throughput $>$ 80 samples/second.
+
+\FloatBarrier
+\clearpage
 
 %% ============================================================================
 %% SECTION VIII: PRODUCTION MONITORING FRAMEWORK
@@ -5369,6 +5378,9 @@ The complete framework comprises 6,008 lines of production-ready monitoring code
 \end{table}
 
 All monitors provide pass/fail criteria enabling automated quality gates for deployment decisions. Integration with existing MLOps pipelines is achieved through standardized metric interfaces and configurable alerting thresholds.
+
+\FloatBarrier
+\clearpage
 
 %% ============================================================================
 %% SECTION IX: EEG PROJECT METHODOLOGY STRATEGY
@@ -6009,6 +6021,9 @@ The complete methodology encompasses 11 phases with 136 total items, providing c
 \caption{Average Compliance Score by Phase}
 \label{fig:phase_summary}
 \end{figure}
+
+\FloatBarrier
+\clearpage
 
 %% ============================================================================
 %% SECTION: COMPREHENSIVE EVALUATION FRAMEWORK
@@ -6967,6 +6982,9 @@ Table~\ref{tab:eval_summary} summarizes the comprehensive evaluation framework c
 \label{fig:eval_summary}
 \end{figure}
 
+\FloatBarrier
+\clearpage
+
 %% ============================================================================
 %% SECTION X: DISCUSSION
 %% ============================================================================
@@ -6990,6 +7008,9 @@ What practical applications might this technology enable? Occupational health su
 
 Transparency regarding undemonstrated aspects of this work is appropriate. All experimental procedures transpired within controlled laboratory environments---equivalent performance generalization to naturalistic contexts such as commuting or occupational settings characterized by acoustic interference cannot be assured. Participant demographics were predominantly young and healthy; consequently, generalization to geriatric populations or clinical cohorts remains empirically unsubstantiated. Electrode montage configurations exhibited heterogeneity across datasets, reflecting realistic but methodologically untidy conditions. Furthermore, external API access to large language model infrastructure is necessitated by the RAG module---a requirement not universally practical. Naturalistic validation, integration with ambulatory EEG acquisition platforms, and multimodal physiological signal fusion represent priorities for subsequent investigative endeavors.
 
+
+\FloatBarrier
+\clearpage
 
 %% ============================================================================
 %% SECTION IX: CONCLUSION

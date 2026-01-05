@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.5)  5 JAN 2026 00:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.5)  5 JAN 2026 00:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1602,340 +1602,284 @@ Overfull \hbox (4.35416pt too wide) in paragraph at lines 4213--4214
 Underfull \vbox (badness 1888) has occurred while \output is active []
 
  [24]
-[25] [26]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39]
+[40
 
 
-Overfull \vbox (6.30008pt too high) has occurred while \output is active []
+] [41
 
 
-[27]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [28]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [29]
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
-
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
- [30]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [31]
-Overfull \hbox (21.92612pt too wide) in paragraph at lines 4443--4460
+] [42]
+Overfull \hbox (21.92612pt too wide) in paragraph at lines 4449--4466
  [][] 
  []
 
 
-Overfull \hbox (15.02225pt too wide) in paragraph at lines 4471--4483
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (15.02225pt too wide) in paragraph at lines 4477--4489
  [][] 
  []
 
-[32] [33]
-Overfull \hbox (4.15019pt too wide) in paragraph at lines 4664--4676
+[43
+
+]
+Overfull \hbox (4.15019pt too wide) in paragraph at lines 4670--4682
  [][] 
  []
 
-[34] [35] [36]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[44] [45
 
- [37]
-Underfull \vbox (badness 7851) has occurred while \output is active []
+] [46]
+Package pgfplots info on input line 4834: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 4899: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 4964: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+ [47
 
- [38]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39]
-Package pgfplots info on input line 4825: Using 'lua backend=false' for axis: x
+
+]
+Package pgfplots info on input line 5029: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+ [48]
+
+LaTeX Warning: Text page 49 contains only floats.
+
+Package pgfplots info on input line 5186: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+[49]
+Package pgfplots info on input line 5347: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-[40]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-LaTeX Warning: Text page 41 contains only floats.
-
-[41]
-Package pgfplots info on input line 4890: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-Package pgfplots info on input line 4955: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-Package pgfplots info on input line 5020: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
- [42]
-Package pgfplots info on input line 5177: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
-Underfull \vbox (badness 3861) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [44]
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
-Package pgfplots info on input line 5338: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [45]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[50] [51] [52] [53
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [46]
-Overfull \hbox (8.17221pt too wide) in paragraph at lines 5389--5403
+]
+Overfull \hbox (8.17221pt too wide) in paragraph at lines 5401--5415
  [][] 
  []
 
-Package pgfplots info on input line 5420: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 5432: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 5448.
-Package pgfplots info on input line 5472: Using 'lua backend=false' for axis: x
+            Default family used instead on input line 5460.
+Package pgfplots info on input line 5484: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
-494.
+506.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 5504.
-Package pgfplots info on input line 5524: Using 'lua backend=false' for axis: x
+            Default family used instead on input line 5516.
+Package pgfplots info on input line 5536: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
-Package pgfplots info on input line 5576: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 5588: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
- [47]
-Package pgfplots info on input line 5628: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 5640: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
-Package pgfplots info on input line 5682: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 5694: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (1.58563pt too wide) in paragraph at lines 5685--5686
+Overfull \hbox (1.58563pt too wide) in paragraph at lines 5697--5698
  [][] 
  []
 
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 5704.
+            Default family used instead on input line 5716.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 5704.
+            Default family used instead on input line 5716.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 5704.
-Package pgfplots info on input line 5736: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-Package pgfplots info on input line 5790: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-Package pgfplots info on input line 5842: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
+            Default family used instead on input line 5716.
+[54
 
-Overfull \hbox (1.02597pt too wide) in paragraph at lines 5845--5846
- [][] 
- []
 
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 5863.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 5863.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 5863.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 5876.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 5876.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 5876.
+]
 
-Overfull \hbox (5.27995pt too wide) in paragraph at lines 5859--5879
- [][] 
- []
-
-Package pgfplots info on input line 5896: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-
-Overfull \hbox (1.0257pt too wide) in paragraph at lines 5899--5900
- [][] 
- []
-
-[48]
-
-LaTeX Warning: Text page 49 contains only floats.
+LaTeX Warning: Text page 55 contains only floats.
 
 
 Overfull \vbox (20.40024pt too high) has occurred while \output is active []
 
 
 
-LaTeX Warning: Text page 49 contains only floats.
+LaTeX Warning: Text page 55 contains only floats.
 
 
 Overfull \vbox (20.40024pt too high) has occurred while \output is active []
 
 
-[49{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Package pgfplots info on input line 5952: Using 'lua backend=false' for axis: x
+[55{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Package pgfplots info on input line 5748: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 5802: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 5854: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (9.36566pt too wide) in paragraph at lines 5955--5956
+Overfull \hbox (1.02597pt too wide) in paragraph at lines 5857--5858
+ [][] 
+ []
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 5875.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 5875.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 5875.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 5888.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 5888.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 5888.
+
+Overfull \hbox (5.27995pt too wide) in paragraph at lines 5871--5891
+ [][] 
+ []
+
+Package pgfplots info on input line 5908: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (1.0257pt too wide) in paragraph at lines 5911--5912
+ [][] 
+ []
+
+Package pgfplots info on input line 5964: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (9.36566pt too wide) in paragraph at lines 5967--5968
+ [][] 
+ []
+
+[56]
+Package pgfplots info on input line 6017: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+ [57] [58]
+Package pgfplots info on input line 6092: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (11.58333pt too wide) in paragraph at lines 6095--6096
+ [][] 
+ []
+
+Package pgfplots info on input line 6162: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (18.8151pt too wide) in paragraph at lines 6165--6166
  [][] 
  []
 
 
-Underfull \vbox (badness 2213) has occurred while \output is active []
-
-
-Underfull \vbox (badness 2213) has occurred while \output is active []
-
- [50]
-Package pgfplots info on input line 6005: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-Package pgfplots info on input line 6077: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-
-Overfull \hbox (11.58333pt too wide) in paragraph at lines 6080--6081
+Overfull \hbox (24.9271pt too wide) in paragraph at lines 6179--6192
  [][] 
  []
 
-Package pgfplots info on input line 6147: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 6209: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 6279: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (18.8151pt too wide) in paragraph at lines 6150--6151
+Overfull \hbox (24.3551pt too wide) in paragraph at lines 6282--6283
  [][] 
  []
 
-
-Overfull \hbox (24.9271pt too wide) in paragraph at lines 6164--6177
- [][] 
- []
-
-Package pgfplots info on input line 6194: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-[51]
-Package pgfplots info on input line 6264: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 6365: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (24.3551pt too wide) in paragraph at lines 6267--6268
- [][] 
- []
-
-Package pgfplots info on input line 6350: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-
-Overfull \hbox (1.0357pt too wide) in paragraph at lines 6353--6354
+Overfull \hbox (1.0357pt too wide) in paragraph at lines 6368--6369
  [][] 
  []
 
 
-Overfull \vbox (3.57982pt too high) detected at line 6404
+Overfull \vbox (3.57982pt too high) detected at line 6419
  []
 
-Package pgfplots info on input line 6442: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 6457: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (34.87907pt too wide) in paragraph at lines 6459--6472
+Overfull \hbox (34.87907pt too wide) in paragraph at lines 6474--6487
  [][] 
  []
 
-Package pgfplots info on input line 6491: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 6506: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
-[52]
-Package pgfplots info on input line 6578: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 6593: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (24.3551pt too wide) in paragraph at lines 6581--6582
+Overfull \hbox (24.3551pt too wide) in paragraph at lines 6596--6597
  [][] 
  []
 
-Package pgfplots info on input line 6659: Using 'lua backend=false' for axis: x
+[59
+
+
+]
+
+LaTeX Warning: Text page 60 contains only floats.
+
+Package pgfplots info on input line 6674: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (24.3551pt too wide) in paragraph at lines 6662--6663
+Overfull \hbox (24.3551pt too wide) in paragraph at lines 6677--6678
  [][] 
  []
 
-Package pgfplots info on input line 6735: Using 'lua backend=false' for axis: x
+[60]
+Package pgfplots info on input line 6750: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (21.03267pt too wide) in paragraph at lines 6738--6739
+Overfull \hbox (21.03267pt too wide) in paragraph at lines 6753--6754
  [][] 
  []
 
-[53]
-
-LaTeX Warning: Text page 54 contains only floats.
-
-Package pgfplots info on input line 6818: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 6833: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (24.3551pt too wide) in paragraph at lines 6821--6822
+Overfull \hbox (24.3551pt too wide) in paragraph at lines 6836--6837
  [][] 
  []
 
-
-Underfull \vbox (badness 3803) has occurred while \output is active []
-
- [54]
-Package pgfplots info on input line 6908: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 6923: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (15.45401pt too wide) in paragraph at lines 6911--6912
+Overfull \hbox (15.45401pt too wide) in paragraph at lines 6926--6927
  [][] 
  []
 
-
-Underfull \vbox (badness 1331) has occurred while \output is active []
-
-Package pgfplots info on input line 6962: Using 'lua backend=false' for axis: x
+[61]
+Package pgfplots info on input line 6977: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (26.50546pt too wide) in paragraph at lines 6965--6966
+Overfull \hbox (26.50546pt too wide) in paragraph at lines 6980--6981
  [][] 
  []
 
-[55]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [56]
-[57]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[62] [63] [64] [65] [66] [67
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+] [68
 
- [58]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [59]
-[60] [61] [62
+] [69
 
 ] (./genai_rag_eeg_v5.aux)
  ***********
@@ -1946,8 +1890,8 @@ Package rerunfilecheck Info: File `genai_rag_eeg_v5.out' has not changed.
 (rerunfilecheck)             Checksum: A40D1CC19271E888F44412A2DB30FCF2;35731.
  ) 
 Here is how much of TeX's memory you used:
- 39280 strings out of 474222
- 916462 string characters out of 5748733
+ 39287 strings out of 474222
+ 916511 string characters out of 5748733
  2629975 words of memory out of 5000000
  60430 multiletter control sequences out of 15000+600000
  685588 words of font info for 183 fonts, out of 8000000 for 9000
@@ -1975,10 +1919,10 @@ frm0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmri8a.pfb>
-Output written on genai_rag_eeg_v5.pdf (62 pages, 5300064 bytes).
+Output written on genai_rag_eeg_v5.pdf (69 pages, 5298150 bytes).
 PDF statistics:
- 1681 PDF objects out of 1728 (max. 8388607)
- 1526 compressed objects within 16 object streams
- 496 named destinations out of 1000 (max. 500000)
+ 1711 PDF objects out of 1728 (max. 8388607)
+ 1549 compressed objects within 16 object streams
+ 503 named destinations out of 1000 (max. 500000)
  1374 words of extra memory for PDF output out of 10000 (max. 10000000)
 
