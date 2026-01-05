@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-04T00:35:45.464145",
+    "model": "BalancedCNN with FocalLoss",
+    "task": "Binary (Relax vs Stress)",
+    "validation": "5-fold Stratified CV",
+    "balancing": "WeightedRandomSampler + FocalLoss",
+    "is_real_data": true
+  },
+  "SAM-40": {
+    "accuracy": 59.58,
+    "f1_score": 65.96,
+    "precision": 89.52,
+    "recall": 52.22,
+    "specificity": 81.67,
+    "balanced_accuracy": 66.94,
+    "auc_roc": 68.69,
+    "cohens_kappa": 0.2392,
+    "confusion_matrix": {
+      "TN": 98,
+      "FP": 22,
+      "FN": 172,
+      "TP": 188
+    }
+  }
+}

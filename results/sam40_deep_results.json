@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-04T00:33:23.219991",
+    "model": "SimpleCNN (1D Conv)",
+    "task": "Binary (Relax vs Stress)",
+    "validation": "5-fold Stratified CV",
+    "augmentation": "Noise + Time shift",
+    "device": "cuda",
+    "is_real_data": true
+  },
+  "SAM-40": {
+    "accuracy": 77.29,
+    "f1_score": 86.79,
+    "precision": 76.99,
+    "recall": 99.44,
+    "specificity": 10.83,
+    "auc_roc": 61.7,
+    "cohens_kappa": 0.1451,
+    "confusion_matrix": {
+      "TN": 13,
+      "FP": 107,
+      "FN": 2,
+      "TP": 358
+    }
+  }
+}

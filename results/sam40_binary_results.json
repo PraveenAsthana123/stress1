@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-04T00:02:24.348367",
+    "model": "Voting Ensemble (RF+ET+XGB)",
+    "task": "Binary (Relax vs Stress)",
+    "validation": "5-fold Stratified CV",
+    "is_real_data": true
+  },
+  "SAM-40": {
+    "accuracy": 64.38,
+    "f1_score": 73.41,
+    "precision": 83.39,
+    "recall": 65.56,
+    "specificity": 60.83,
+    "auc_roc": 68.05,
+    "cohens_kappa": 0.2174,
+    "confusion_matrix": {
+      "TN": 73,
+      "FP": 47,
+      "FN": 124,
+      "TP": 236
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-03T23:59:27.824346",
+    "model": "Stacking Ensemble (RF+ET+GB+SVM+MLP -> XGBoost)",
+    "task": "4-class classification",
+    "validation": "5-fold Stratified CV",
+    "is_real_data": true
+  },
+  "SAM-40_4class": {
+    "accuracy": 37.29,
+    "f1_macro": 37.11,
+    "f1_weighted": 37.11,
+    "precision_macro": 37.01,
+    "recall_macro": 37.29,
+    "cohens_kappa": 0.1639,
+    "confusion_matrix": [
+      [
+        37,
+        50,
+        19,
+        14
+      ],
+      [
+        51,
+        21,
+        23,
+        25
+      ],
+      [
+        14,
+        20,
+        57,
+        29
+      ],
+      [
+        15,
+        26,
+        15,
+        64
+      ]
+    ],
+    "per_class": {
+      "Arithmetic": {
+        "precision": 31.62,
+        "recall": 30.83,
+        "f1": 31.22,
+        "support": 120
+      },
+      "Mirror": {
+        "precision": 17.95,
+        "recall": 17.5,
+        "f1": 17.72,
+        "support": 120
+      },
+      "Relax": {
+        "precision": 50.0,
+        "recall": 47.5,
+        "f1": 48.72,
+        "support": 120
+      },
+      "Stroop": {
+        "precision": 48.48,
+        "recall": 53.33,
+        "f1": 50.79,
+        "support": 120
+      }
+    },
+    "auc_roc": 63.56
+  }
+}

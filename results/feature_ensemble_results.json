@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-02T23:46:19.628257",
+    "model": "Feature-Based Ensemble (RF + GB + SVM + MLP + KNN)",
+    "features": [
+      "Band power (delta, theta, alpha, beta, gamma)",
+      "Relative band power",
+      "Statistical (mean, std, skew, kurtosis, etc.)",
+      "Hjorth parameters (mobility, complexity)",
+      "Connectivity (correlation)",
+      "Band power ratios (beta/alpha, theta/alpha, etc.)"
+    ],
+    "validation": "5-Fold Stratified CV",
+    "is_real_data": true
+  },
+  "datasets": {
+    "SAM-40": {
+      "accuracy": 72.5,
+      "precision": 78.36,
+      "recall": 87.5,
+      "f1_score": 82.68,
+      "auc_roc": 58.92,
+      "specificity": 27.5,
+      "cohens_kappa": 0.1698,
+      "confusion_matrix": {
+        "TN": 33,
+        "FP": 87,
+        "FN": 45,
+        "TP": 315,
+        "raw": [
+          [
+            33,
+            87
+          ],
+          [
+            45,
+            315
+          ]
+        ]
+      }
+    },
+    "EEGMAT": {
+      "accuracy": 70.0,
+      "precision": 70.83,
+      "recall": 68.0,
+      "f1_score": 69.39,
+      "auc_roc": 73.84,
+      "specificity": 72.0,
+      "cohens_kappa": 0.4,
+      "confusion_matrix": {
+        "TN": 36,
+        "FP": 14,
+        "FN": 16,
+        "TP": 34,
+        "raw": [
+          [
+            36,
+            14
+          ],
+          [
+            16,
+            34
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-04T07:15:27.789218",
+    "is_real_data": true
+  },
+  "SAM-40": {
+    "accuracy": 73.12,
+    "balanced_accuracy": 64.31,
+    "f1_score": 82.06,
+    "precision": 82.17,
+    "recall": 81.94,
+    "specificity": 46.67,
+    "auc_roc": 69.16,
+    "kappa": 0.2853
+  }
+}

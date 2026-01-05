@@ -1,0 +1,633 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-02T23:28:19.575196",
+    "script": "evaluate_real_confusion_matrix.py",
+    "validation_method": "Leave-One-Subject-Out (LOSO)",
+    "data_source": "real",
+    "note": "These are REAL predictions, NOT simulated values"
+  },
+  "datasets": {
+    "SAM-40": {
+      "n_subjects": 40,
+      "n_samples": 480,
+      "confusion_matrix": {
+        "raw": [
+          [
+            6,
+            114
+          ],
+          [
+            11,
+            349
+          ]
+        ],
+        "labels": [
+          "Baseline",
+          "Stress"
+        ],
+        "TN": 6,
+        "FP": 114,
+        "FN": 11,
+        "TP": 349
+      },
+      "metrics": {
+        "accuracy": 73.96,
+        "precision": 75.38,
+        "recall": 96.94,
+        "f1_score": 84.81,
+        "false_positive_rate": 95.0,
+        "false_negative_rate": 3.06
+      },
+      "fold_results": [
+        {
+          "fold": 1,
+          "test_subject": "S1",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 2,
+          "test_subject": "S10",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 3,
+          "test_subject": "S11",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 4,
+          "test_subject": "S12",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 5,
+          "test_subject": "S13",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 6,
+          "test_subject": "S14",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 7,
+          "test_subject": "S15",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 8,
+          "test_subject": "S16",
+          "accuracy": 50.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 9,
+          "test_subject": "S17",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 10,
+          "test_subject": "S18",
+          "accuracy": 50.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 11,
+          "test_subject": "S19",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 12,
+          "test_subject": "S2",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 13,
+          "test_subject": "S20",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 14,
+          "test_subject": "S21",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 15,
+          "test_subject": "S22",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 16,
+          "test_subject": "S23",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 17,
+          "test_subject": "S24",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 18,
+          "test_subject": "S25",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 19,
+          "test_subject": "S26",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 20,
+          "test_subject": "S27",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 21,
+          "test_subject": "S28",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 22,
+          "test_subject": "S29",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 23,
+          "test_subject": "S3",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 24,
+          "test_subject": "S30",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 25,
+          "test_subject": "S31",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 26,
+          "test_subject": "S32",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 27,
+          "test_subject": "S33",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 28,
+          "test_subject": "S34",
+          "accuracy": 91.67,
+          "n_samples": 12
+        },
+        {
+          "fold": 29,
+          "test_subject": "S35",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 30,
+          "test_subject": "S36",
+          "accuracy": 66.67,
+          "n_samples": 12
+        },
+        {
+          "fold": 31,
+          "test_subject": "S37",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 32,
+          "test_subject": "S38",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 33,
+          "test_subject": "S39",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 34,
+          "test_subject": "S4",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 35,
+          "test_subject": "S40",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 36,
+          "test_subject": "S5",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 37,
+          "test_subject": "S6",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 38,
+          "test_subject": "S7",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 39,
+          "test_subject": "S8",
+          "accuracy": 75.0,
+          "n_samples": 12
+        },
+        {
+          "fold": 40,
+          "test_subject": "S9",
+          "accuracy": 75.0,
+          "n_samples": 12
+        }
+      ],
+      "verification": {
+        "is_real_data": true,
+        "is_simulated": false,
+        "validation_method": "LOSO",
+        "total_predictions": 480,
+        "unique_subjects_tested": 40
+      }
+    },
+    "EEGMAT": {
+      "n_subjects": 50,
+      "n_samples": 100,
+      "confusion_matrix": {
+        "raw": [
+          [
+            34,
+            16
+          ],
+          [
+            26,
+            24
+          ]
+        ],
+        "labels": [
+          "Baseline",
+          "Stress"
+        ],
+        "TN": 34,
+        "FP": 16,
+        "FN": 26,
+        "TP": 24
+      },
+      "metrics": {
+        "accuracy": 58.0,
+        "precision": 60.0,
+        "recall": 48.0,
+        "f1_score": 53.33,
+        "false_positive_rate": 32.0,
+        "false_negative_rate": 52.0
+      },
+      "fold_results": [
+        {
+          "fold": 1,
+          "test_subject": "S1",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 2,
+          "test_subject": "S10",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 3,
+          "test_subject": "S11",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 4,
+          "test_subject": "S12",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 5,
+          "test_subject": "S13",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 6,
+          "test_subject": "S14",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 7,
+          "test_subject": "S15",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 8,
+          "test_subject": "S16",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 9,
+          "test_subject": "S17",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 10,
+          "test_subject": "S18",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 11,
+          "test_subject": "S19",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 12,
+          "test_subject": "S2",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 13,
+          "test_subject": "S20",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 14,
+          "test_subject": "S21",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 15,
+          "test_subject": "S22",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 16,
+          "test_subject": "S23",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 17,
+          "test_subject": "S24",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 18,
+          "test_subject": "S25",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 19,
+          "test_subject": "S26",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 20,
+          "test_subject": "S27",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 21,
+          "test_subject": "S28",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 22,
+          "test_subject": "S29",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 23,
+          "test_subject": "S3",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 24,
+          "test_subject": "S30",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 25,
+          "test_subject": "S31",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 26,
+          "test_subject": "S32",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 27,
+          "test_subject": "S33",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 28,
+          "test_subject": "S34",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 29,
+          "test_subject": "S35",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 30,
+          "test_subject": "S36",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 31,
+          "test_subject": "S37",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 32,
+          "test_subject": "S38",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 33,
+          "test_subject": "S39",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 34,
+          "test_subject": "S4",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 35,
+          "test_subject": "S40",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 36,
+          "test_subject": "S41",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 37,
+          "test_subject": "S42",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 38,
+          "test_subject": "S43",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 39,
+          "test_subject": "S44",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 40,
+          "test_subject": "S45",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 41,
+          "test_subject": "S46",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 42,
+          "test_subject": "S47",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 43,
+          "test_subject": "S48",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 44,
+          "test_subject": "S49",
+          "accuracy": 100.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 45,
+          "test_subject": "S5",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 46,
+          "test_subject": "S50",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 47,
+          "test_subject": "S6",
+          "accuracy": 50.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 48,
+          "test_subject": "S7",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 49,
+          "test_subject": "S8",
+          "accuracy": 0.0,
+          "n_samples": 2
+        },
+        {
+          "fold": 50,
+          "test_subject": "S9",
+          "accuracy": 100.0,
+          "n_samples": 2
+        }
+      ],
+      "verification": {
+        "is_real_data": true,
+        "is_simulated": false,
+        "validation_method": "LOSO",
+        "total_predictions": 100,
+        "unique_subjects_tested": 50
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-04T07:17:00.066108"
+  },
+  "SAM-40_4class": {
+    "accuracy": 57.08,
+    "f1_macro": 55.63,
+    "kappa": 0.4278
+  }
+}
