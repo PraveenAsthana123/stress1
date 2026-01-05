@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-04T20:44:37.185945",
+    "model": "Ensemble (RF + GB + SVM + MLP)",
+    "task": "Binary (Stress vs Relax)",
+    "feature_selection": "NMI (top 100 features)",
+    "features": "Band powers, statistical, connectivity",
+    "validation": "5-fold Stratified CV"
+  },
+  "SAM-40_binary_features": {
+    "accuracy": 76.46,
+    "f1_macro": 56.07,
+    "auc_roc": 74.0,
+    "kappa": 0.1722,
+    "confusion_matrix": [
+      [
+        20,
+        100
+      ],
+      [
+        13,
+        347
+      ]
+    ],
+    "fold_accuracies": [
+      80.21,
+      71.88,
+      75.0,
+      79.17,
+      76.04
+    ]
+  }
+}

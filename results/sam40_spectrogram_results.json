@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-04T20:41:38.906548",
+    "model": "Spectrogram + VGGish-style CNN",
+    "task": "Binary (Stress vs Relax)",
+    "method": "Based on published 99.25% accuracy approach",
+    "validation": "5-fold Stratified CV with data augmentation"
+  },
+  "SAM-40_binary_spectrogram": {
+    "accuracy": 75.0,
+    "f1_macro": 48.6,
+    "kappa": 0.0625,
+    "confusion_matrix": [
+      [
+        8,
+        112
+      ],
+      [
+        8,
+        352
+      ]
+    ],
+    "fold_accuracies": [
+      78.12,
+      75.0,
+      75.0,
+      75.0,
+      71.88
+    ]
+  }
+}
