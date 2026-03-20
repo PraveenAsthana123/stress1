@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-03T10:39:41.747628",
+    "is_real_data": true
+  },
+  "datasets": {
+    "EEGMAT-Full": {
+      "accuracy": 99.31,
+      "f1_score": 98.59,
+      "auc_roc": 99.98,
+      "precision": 99.8,
+      "recall": 97.41,
+      "specificity": 99.94,
+      "cohens_kappa": 0.9814,
+      "confusion_matrix": {
+        "TN": 3148,
+        "FP": 2,
+        "FN": 27,
+        "TP": 1017,
+        "raw": [
+          [
+            3148,
+            2
+          ],
+          [
+            27,
+            1017
+          ]
+        ]
+      }
+    },
+    "SAM-40": {
+      "accuracy": 72.92,
+      "f1_score": 83.79,
+      "auc_roc": 56.55,
+      "precision": 76.02,
+      "recall": 93.33,
+      "specificity": 11.67,
+      "cohens_kappa": 0.0647,
+      "confusion_matrix": {
+        "TN": 14,
+        "FP": 106,
+        "FN": 24,
+        "TP": 336,
+        "raw": [
+          [
+            14,
+            106
+          ],
+          [
+            24,
+            336
+          ]
+        ]
+      }
+    },
+    "Combined": {
+      "accuracy": 95.83,
+      "f1_score": 93.14,
+      "auc_roc": 98.36,
+      "precision": 92.07,
+      "recall": 94.23,
+      "specificity": 96.51,
+      "cohens_kappa": 0.9014,
+      "confusion_matrix": {
+        "TN": 3156,
+        "FP": 114,
+        "FN": 81,
+        "TP": 1323,
+        "raw": [
+          [
+            3156,
+            114
+          ],
+          [
+            81,
+            1323
+          ]
+        ]
+      }
+    }
+  }
+}
