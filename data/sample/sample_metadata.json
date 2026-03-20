@@ -1,0 +1,62 @@
+{
+  "description": "Sample EEG data records for testing and demonstration",
+  "note": "These are small excerpts for verification. Full datasets required for training.",
+  "SAM40": {
+    "format": ".mat (MATLAB)",
+    "shape": "32 channels x 512 samples (4 seconds at 128 Hz)",
+    "files": [
+      "Arithmetic_sub_01_trial1.mat",
+      "Arithmetic_sub_01_trial2.mat",
+      "Arithmetic_sub_02_trial1.mat",
+      "Mirror_sub_01_trial1.mat",
+      "Mirror_sub_01_trial2.mat",
+      "Mirror_sub_02_trial1.mat",
+      "Stroop_sub_01_trial1.mat",
+      "Stroop_sub_02_trial1.mat",
+      "Relax_sub_01_trial1.mat",
+      "Relax_sub_02_trial1.mat"
+    ],
+    "labels": {
+      "Arithmetic_sub_01_trial1": "stress",
+      "Arithmetic_sub_01_trial2": "stress",
+      "Arithmetic_sub_02_trial1": "stress",
+      "Mirror_sub_01_trial1": "stress",
+      "Mirror_sub_01_trial2": "stress",
+      "Mirror_sub_02_trial1": "stress",
+      "Stroop_sub_01_trial1": "stress",
+      "Stroop_sub_02_trial1": "stress",
+      "Relax_sub_01_trial1": "non-stress",
+      "Relax_sub_02_trial1": "non-stress"
+    },
+    "full_dataset": "https://doi.org/10.6084/m9.figshare.13589538"
+  },
+  "EEGMAT": {
+    "format": ".npy (NumPy array)",
+    "shape": "21 channels x 2500 samples (5 seconds at 500 Hz)",
+    "files": [
+      "Subject00_1.npy",
+      "Subject00_2.npy",
+      "Subject01_1.npy",
+      "Subject01_2.npy",
+      "Subject02_1.npy",
+      "Subject02_2.npy",
+      "Subject03_1.npy",
+      "Subject03_2.npy",
+      "Subject04_1.npy",
+      "Subject04_2.npy"
+    ],
+    "labels": {
+      "Subject00_1": "Baseline",
+      "Subject00_2": "Mental_Arithmetic",
+      "Subject01_1": "Baseline",
+      "Subject01_2": "Mental_Arithmetic",
+      "Subject02_1": "Baseline",
+      "Subject02_2": "Mental_Arithmetic",
+      "Subject03_1": "Baseline",
+      "Subject03_2": "Mental_Arithmetic",
+      "Subject04_1": "Baseline",
+      "Subject04_2": "Mental_Arithmetic"
+    },
+    "full_dataset": "https://physionet.org/content/eegmat/1.0.0/"
+  }
+}

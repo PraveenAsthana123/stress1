@@ -1266,6 +1266,197 @@ v6-TR & Mar 2026 & 17+ & Companion technical report \\
 %% ============================================================================
 %% SECTION 17: DECLARATION
 %% ============================================================================
+% ======================================================================
+% DATA SAMPLES AND PROJECT STRUCTURE
+% ======================================================================
+\section{Data Sample Records}
+
+To facilitate reproducibility and allow independent verification, we provide 20 sample data records in the \texttt{data/sample/} directory. These are small excerpts from the original datasets.
+
+\subsection{SAM-40 Sample Records}
+
+\begin{table}[H]
+\centering
+\caption{SAM-40 Sample Data Records (10 files)}
+\small
+\begin{tabular}{llccl}
+\toprule
+\textbf{File} & \textbf{Class} & \textbf{Channels} & \textbf{Samples} & \textbf{Label} \\
+\midrule
+Arithmetic\_sub\_01\_trial1.mat & Arithmetic & 32 & 512 & Stress (1) \\
+Arithmetic\_sub\_01\_trial2.mat & Arithmetic & 32 & 512 & Stress (1) \\
+Arithmetic\_sub\_02\_trial1.mat & Arithmetic & 32 & 512 & Stress (1) \\
+Mirror\_sub\_01\_trial1.mat & Mirror Image & 32 & 512 & Stress (1) \\
+Mirror\_sub\_01\_trial2.mat & Mirror Image & 32 & 512 & Stress (1) \\
+Mirror\_sub\_02\_trial1.mat & Mirror Image & 32 & 512 & Stress (1) \\
+Stroop\_sub\_01\_trial1.mat & Stroop Test & 32 & 512 & Stress (1) \\
+Stroop\_sub\_02\_trial1.mat & Stroop Test & 32 & 512 & Stress (1) \\
+Relax\_sub\_01\_trial1.mat & Relaxation & 32 & 512 & Non-Stress (0) \\
+Relax\_sub\_02\_trial1.mat & Relaxation & 32 & 512 & Non-Stress (0) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent Each SAM-40 sample file contains a MATLAB matrix \texttt{Clean\_data} of shape $(32, 512)$, representing 32 EEG channels $\times$ 4 seconds at 128~Hz sampling rate. Channel ordering follows the 10-20 international system: Fp1, Fp2, F3, F4, ..., O1, O2.
+
+\subsection{EEGMAT Sample Records}
+
+\begin{table}[H]
+\centering
+\caption{EEGMAT Sample Data Records (10 files)}
+\small
+\begin{tabular}{llccl}
+\toprule
+\textbf{File} & \textbf{Subject} & \textbf{Channels} & \textbf{Samples} & \textbf{Condition} \\
+\midrule
+Subject00\_1.npy & Subject 00 & 21 & 2500 & Baseline (0) \\
+Subject00\_2.npy & Subject 00 & 21 & 2500 & Mental Arithmetic (1) \\
+Subject01\_1.npy & Subject 01 & 21 & 2500 & Baseline (0) \\
+Subject01\_2.npy & Subject 01 & 21 & 2500 & Mental Arithmetic (1) \\
+Subject02\_1.npy & Subject 02 & 21 & 2500 & Baseline (0) \\
+Subject02\_2.npy & Subject 02 & 21 & 2500 & Mental Arithmetic (1) \\
+Subject03\_1.npy & Subject 03 & 21 & 2500 & Baseline (0) \\
+Subject03\_2.npy & Subject 03 & 21 & 2500 & Mental Arithmetic (1) \\
+Subject04\_1.npy & Subject 04 & 21 & 2500 & Baseline (0) \\
+Subject04\_2.npy & Subject 04 & 21 & 2500 & Mental Arithmetic (1) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent EEGMAT samples contain NumPy arrays of shape $(21, 2500)$, representing 21 EEG channels $\times$ 5 seconds at 500~Hz. Condition 1 = eyes-open resting baseline, Condition 2 = serial subtraction mental arithmetic task (Zyma et al., 2019).
+
+\subsection{Data Format Specification}
+
+\begin{verbatim}
+SAM-40 .mat structure:
+  Key: 'Clean_data'
+  Type: float64 ndarray
+  Shape: (32, 3200) = 32 channels x 25 seconds x 128 Hz
+  Unit: microvolts (uV), bandpass filtered 0.5-45 Hz
+
+EEGMAT .edf structure:
+  Format: European Data Format (EDF)
+  Channels: 21 (Fp1, Fp2, F3, F4, F7, F8, Fz, C3, C4,
+            Cz, T3, T4, T5, T6, P3, P4, Pz, O1, O2,
+            A1, A2)
+  Sampling Rate: 500 Hz
+  Duration: ~180 seconds per recording
+  Unit: microvolts (uV)
+\end{verbatim}
+
+% ======================================================================
+\section{Project Structure and Configuration}
+
+\subsection{Repository Folder Structure}
+
+The complete project is organized as follows:
+
+\begin{verbatim}
+eeg-stress-rag/
+|-- config.py                 <-- EDIT THIS: data paths
+|-- requirements.txt          <-- Python dependencies
+|-- README.md                 <-- Setup guide
+|
+|-- scripts/                  Training scripts
+|   |-- train_sam40_balanced_v2.py   (SAM-40: 94.79%)
+|   |-- train_full_data.py           (EEGMAT: 99.31%)
+|   |-- generate_v6_figures.py       (300 DPI figures)
+|   |-- train_sam40_features.py      (NMI + ensemble)
+|   `-- validate_paper_claims.py     (Result verification)
+|
+|-- data/                     EEG datasets
+|   |-- SAM40/filtered_data/  Place .mat files here
+|   |-- EEGMAT/eeg-during-*/  Place .edf files here
+|   `-- sample/               20 sample records (included)
+|
+|-- results/                  JSON result files
+|-- paper/                    LaTeX papers and figures
+|-- figures_extracted/        Analysis plots
+|-- checkpoints/              Model weights
+`-- logs/                     Training logs
+\end{verbatim}
+
+\subsection{Configuration File (\texttt{config.py})}
+
+The \texttt{config.py} file is the \textbf{single point of configuration} for the entire project. Users must edit only this file to run the project on their system.
+
+\begin{table}[H]
+\centering
+\caption{Key Configuration Parameters in \texttt{config.py}}
+\small
+\begin{tabular}{p{4cm}p{3cm}p{6cm}}
+\toprule
+\textbf{Parameter} & \textbf{Default} & \textbf{Description} \\
+\midrule
+\multicolumn{3}{l}{\textit{Data Paths (MUST change for your system)}} \\
+\texttt{SAM40\_DIR} & \texttt{data/SAM40/} & Path to SAM-40 .mat files \\
+\texttt{EEGMAT\_DIR} & \texttt{data/EEGMAT/} & Path to EEGMAT .edf files \\
+\texttt{RESULTS\_DIR} & \texttt{results/} & Output directory for JSON results \\
+\texttt{PAPER\_DIR} & \texttt{paper/} & Output directory for figures \\
+\midrule
+\multicolumn{3}{l}{\textit{Model Hyperparameters}} \\
+\texttt{RF\_N\_ESTIMATORS} & 500 & Random Forest: number of trees \\
+\texttt{RF\_MAX\_DEPTH} & 15 & Random Forest: maximum tree depth \\
+\texttt{GB\_N\_ESTIMATORS} & 300 & Gradient Boosting: number of trees \\
+\texttt{GB\_MAX\_DEPTH} & 5 & Gradient Boosting: maximum depth \\
+\texttt{SVM\_KERNEL} & \texttt{rbf} & SVM: kernel type \\
+\texttt{SVM\_C} & 10 & SVM: regularization parameter \\
+\midrule
+\multicolumn{3}{l}{\textit{Preprocessing}} \\
+\texttt{BANDPASS\_LOW} & 0.5 Hz & High-pass filter cutoff \\
+\texttt{BANDPASS\_HIGH} & 45.0 Hz & Low-pass filter cutoff \\
+\texttt{BANDPASS\_ORDER} & 4 & Butterworth filter order \\
+\texttt{NOTCH\_FREQ} & 50.0 Hz & Power line frequency (50/60 Hz) \\
+\texttt{N\_FOLDS} & 5 & Cross-validation folds \\
+\texttt{RANDOM\_SEED} & 42 & Random seed for reproducibility \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Environment variable override}: All paths can be overridden via environment variables (e.g., \texttt{EEG\_SAM40\_DIR}, \texttt{EEG\_EEGMAT\_DIR}) without modifying the source code.
+
+\subsection{Cross-Platform Compatibility}
+
+All scripts use Python's \texttt{pathlib.Path} for path handling, ensuring compatibility across Windows, Linux, and macOS:
+
+\begin{verbatim}
+# Windows:
+set EEG_SAM40_DIR=C:\Users\Name\data\SAM40\filtered_data
+python scripts\train_sam40_balanced_v2.py
+
+# Linux/Mac:
+export EEG_SAM40_DIR=/home/name/data/SAM40/filtered_data
+python scripts/train_sam40_balanced_v2.py
+\end{verbatim}
+
+\subsection{Dependencies}
+
+Minimal dependencies required to run the training pipeline:
+
+\begin{table}[H]
+\centering
+\caption{Python Package Dependencies}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Package} & \textbf{Version} & \textbf{Purpose} \\
+\midrule
+numpy & $\geq$1.19.0 & Array operations, numerical computing \\
+scipy & $\geq$1.5.0 & Signal processing, Welch PSD, statistics \\
+scikit-learn & $\geq$0.24.0 & ML models, cross-validation, metrics \\
+mne & $\geq$0.23.0 & EDF file loading, EEG preprocessing \\
+pyedflib & $\geq$0.1.23 & Alternative EDF reader \\
+imbalanced-learn & $\geq$0.8.0 & SMOTE oversampling \\
+matplotlib & $\geq$3.3.0 & Figure generation (300 DPI) \\
+seaborn & $\geq$0.11.0 & Confusion matrix heatmaps \\
+pandas & $\geq$1.1.0 & Data manipulation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent Install all dependencies: \texttt{pip install -r requirements.txt}
+
+% ======================================================================
 \section{Declaration}
 
 \subsection{Declaration of Originality}
