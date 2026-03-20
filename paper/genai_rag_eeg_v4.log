@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.5)  4 JAN 2026 17:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.5)  5 JAN 2026 00:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -476,6 +476,16 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box59
 \enit@count@id=\count304
 \enitdp@description=\count305
+)
+(/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(/usr/share/texlive/texmf-dist/tex/latex/morefloats/morefloats.sty
+Package: morefloats 2015/07/22 v1.0h Raise limit of unprocessed floats (HMM)
+Package morefloats Info: Maximum number of possible floats asked for: 100
+(morefloats)             (i.e. 82 more floats).
+(morefloats)             LaTeX might run out of memory before this
+(morefloats)             (in which case it will notify you).
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
@@ -993,7 +1003,7 @@ File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 de.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
-Package hyperref Info: Option `colorlinks' set `true' on input line 26.
+Package hyperref Info: Option `colorlinks' set `true' on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
@@ -1003,24 +1013,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (./genai_rag_eeg_v4.aux)
 \openout1 = `genai_rag_eeg_v4.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
 
 -- Lines per column: 58 (exact).
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1045,7 +1055,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 28.
+Package hyperref Info: Link coloring ON on input line 44.
 
 (./genai_rag_eeg_v4.out) (./genai_rag_eeg_v4.out)
 \@outlinefile=\write4
@@ -1057,459 +1067,314 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.18} (current compat level: 1.17).
 
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 46.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 2050) in paragraph at lines 55--56
-\T1/ptm/b/n/9 sci-en-tific va-lid-ity and clin-i-cal ap-pli-ca-bil-ity. Method-
-olog-i-cal
- []
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
-dist/fonts/enc/dvips/base/8r.enc}
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texm
+f-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 4899) in paragraph at lines 75--76
-[]\T1/ptm/m/n/10 Large-scale lan-guage mod-els cou-pled with retrieval-
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 4132) in paragraph at lines 87--88
-[]\T1/ptm/b/n/10 Construct Con-fla-tion\T1/ptm/m/n/10 : Dis-tinc-tions among em
-o-tional
- []
 
 
 Underfull \vbox (badness 2020) has occurred while \output is active []
 
  [2]
-Underfull \hbox (badness 2027) in paragraph at lines 163--164
-\T1/ptm/m/n/10 ar-ti-facts pro-duce sub-stan-tial am-pli-tude de-flec-tions, my
-o-
- []
-
 [3]
 <../figures/sam40_segments.png, id=486, 1004.553pt x 710.4141pt>
 File: ../figures/sam40_segments.png Graphic file (type png)
 <use ../figures/sam40_segments.png>
-Package pdftex.def Info: ../figures/sam40_segments.png  used on input line 169.
+Package pdftex.def Info: ../figures/sam40_segments.png  used on input line 185.
 
 (pdftex.def)             Requested size: 239.39923pt x 169.29962pt.
-
-Underfull \hbox (badness 1509) in paragraph at lines 170--170
-[]\T1/ptm/m/n/10 Fig. 1: |SAM-40 dataset: Rep-re-sen-ta-tive 25-second EEG
- []
-
 <../figures/eegmat_segments.png, id=488, 1004.553pt x 432.8973pt>
 File: ../figures/eegmat_segments.png Graphic file (type png)
 <use ../figures/eegmat_segments.png>
-Package pdftex.def Info: ../figures/eegmat_segments.png  used on input line 176
+Package pdftex.def Info: ../figures/eegmat_segments.png  used on input line 192
 .
 (pdftex.def)             Requested size: 239.39923pt x 103.16426pt.
 
-Overfull \hbox (15.13618pt too wide) in paragraph at lines 186--194
+Overfull \hbox (15.13618pt too wide) in paragraph at lines 202--210
  [][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-[]\T1/ptm/m/n/10 The pro-posed com-pu-ta-tional framework---designated
- []
-
-
-Underfull \hbox (badness 4981) in paragraph at lines 216--217
-\T1/ptm/m/n/10 GenAI-RAG-EEG---integrates four prin-ci-pal ar-chi-tec-tural
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-\T1/ptm/m/n/10 ex-trac-tion is ac-com-plished through con-vo-lu-tional and
- []
-
-
-Underfull \hbox (badness 2538) in paragraph at lines 216--217
-\T1/ptm/m/n/10 stress/baseline clas-si-fi-ca-tion de-ci-sions are ren-dered. Th
-e
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-\T1/ptm/m/n/10 mod-ule, sub-se-quently syn-the-sized into com-pre-hen-si-ble
- []
-
-
-Underfull \hbox (badness 6510) in paragraph at lines 216--217
-\T1/ptm/m/n/10 natural-language jus-ti-fi-ca-tions elu-ci-dat-ing the ra-tio-na
-les
- []
-
-
-Underfull \hbox (badness 1642) in paragraph at lines 255--256
-\T1/ptm/m/n/10 travers-ing elec-troen-cephalo-graphic wave-forms. The ini-tial
- []
-
-[4 <../figures/sam40_segments.png> <../figures/eegmat_segments.png>]
-Underfull \hbox (badness 2608) in paragraph at lines 288--289
-[]\T1/ptm/b/n/10 Knowledge Repos-i-tory Con-struc-tion\T1/ptm/m/n/10 : A com-pr
-e-hen-
- []
-
-
-Underfull \hbox (badness 2486) in paragraph at lines 301--302
-[]\T1/ptm/m/n/10 All ex-per-i-ments em-ploy leave-one-subject-out (LOSO)
- []
-
-
-Underfull \hbox (badness 6032) in paragraph at lines 312--313
-[]\T1/ptm/m/n/10 Beyond clas-si-fi-ca-tion per-for-mance met-rics, we con-
- []
-
-[5]
-Underfull \hbox (badness 2443) in paragraph at lines 361--362
-\T1/ptm/m/n/10 Asym-me-try was quan-ti-fied through com-par-i-son of log-
- []
-
-
-Overfull \hbox (92.45862pt too wide) in paragraph at lines 386--396
+[4 <../figures/sam40_segments.png> <../figures/eegmat_segments.png>] [5]
+Overfull \hbox (92.45862pt too wide) in paragraph at lines 402--412
  [][] 
- []
-
-
-Underfull \hbox (badness 1509) in paragraph at lines 428--429
-\T1/ptm/m/n/10 configuration---whether ag-gres-sive or conservative---robust
  []
 
 <fig10_roc_curves.png, id=531, 415.0707pt x 422.0568pt>
 File: fig10_roc_curves.png Graphic file (type png)
 <use fig10_roc_curves.png>
-Package pdftex.def Info: fig10_roc_curves.png  used on input line 432.
+Package pdftex.def Info: fig10_roc_curves.png  used on input line 448.
 (pdftex.def)             Requested size: 214.20154pt x 217.80925pt.
 [6]
-<fig11_confusion_matrices.png, id=545, 1075.8594pt x 297.2706pt>
+<fig11_confusion_matrices.png, id=545, 714.5094pt x 297.2706pt>
 File: fig11_confusion_matrices.png Graphic file (type png)
 <use fig11_confusion_matrices.png>
-Package pdftex.def Info: fig11_confusion_matrices.png  used on input line 441.
-(pdftex.def)             Requested size: 214.20154pt x 59.18544pt.
+Package pdftex.def Info: fig11_confusion_matrices.png  used on input line 457.
+(pdftex.def)             Requested size: 214.20154pt x 89.11836pt.
 <fig_frequency_by_class.png, id=548, 859.0494pt x 570.4512pt>
 File: fig_frequency_by_class.png Graphic file (type png)
 <use fig_frequency_by_class.png>
-Package pdftex.def Info: fig_frequency_by_class.png  used on input line 448.
+Package pdftex.def Info: fig_frequency_by_class.png  used on input line 464.
 (pdftex.def)             Requested size: 239.39923pt x 158.96796pt.
 
-Underfull \hbox (badness 6268) in paragraph at lines 457--458
-[]\T1/ptm/m/n/10 Classification per-for-mance varies sub-stan-tially across
- []
+Underfull \vbox (badness 2173) has occurred while \output is active []
 
-Package pgfplots info on input line 476: Using 'lua backend=false' for axis: x 
+ [7 <./fig10_roc_curves.png> <./fig11_confusion_matrices.png> <./fig_frequency_
+by_class.png>]
+Package pgfplots info on input line 492: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
-<fig12_training_curves.png, id=552, 999.735pt x 295.3434pt>
+<fig12_training_curves.png, id=563, 999.735pt x 295.3434pt>
 File: fig12_training_curves.png Graphic file (type png)
 <use fig12_training_curves.png>
-Package pdftex.def Info: fig12_training_curves.png  used on input line 491.
+Package pdftex.def Info: fig12_training_curves.png  used on input line 507.
 (pdftex.def)             Requested size: 214.20154pt x 63.27676pt.
-<fig_precision_recall.png, id=554, 567.0786pt x 422.0568pt>
+<fig_precision_recall.png, id=565, 567.0786pt x 422.0568pt>
 File: fig_precision_recall.png Graphic file (type png)
 <use fig_precision_recall.png>
-Package pdftex.def Info: fig_precision_recall.png  used on input line 500.
+Package pdftex.def Info: fig_precision_recall.png  used on input line 516.
 (pdftex.def)             Requested size: 214.20154pt x 159.42368pt.
-[7 <./fig10_roc_curves.png> <./fig11_confusion_matrices.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
-[]\T1/ptm/m/n/10 How tem-per-a-men-tal is this model? Ev-ery ma-jor
- []
 
+Underfull \vbox (badness 1990) has occurred while \output is active []
 
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
-\T1/ptm/m/n/10 parameter---learning rate, batch size, dropout, hid-den
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
-\T1/ptm/m/n/10 di-men-sions, at-ten-tion heads, LSTM layers---was
- []
-
-
-Underfull \hbox (badness 5302) in paragraph at lines 559--560
-\T1/ptm/m/n/10 sys-tem-at-i-cally probed to as-cer-tain what frac-tures and
- []
-
-<fig_hyperparameter_heatmap.png, id=576, 679.5789pt x 566.5968pt>
+ [8 <./fig12_training_curves.png> <./fig_precision_recall.png>]
+<fig_hyperparameter_heatmap.png, id=585, 679.5789pt x 566.5968pt>
 File: fig_hyperparameter_heatmap.png Graphic file (type png)
 <use fig_hyperparameter_heatmap.png>
-Package pdftex.def Info: fig_hyperparameter_heatmap.png  used on input line 603
+Package pdftex.def Info: fig_hyperparameter_heatmap.png  used on input line 619
 .
 (pdftex.def)             Requested size: 214.20154pt x 178.59132pt.
-<fig24_transfer_heatmap.png, id=579, 561.5379pt x 422.0568pt>
+<fig24_transfer_heatmap.png, id=588, 561.5379pt x 422.0568pt>
 File: fig24_transfer_heatmap.png Graphic file (type png)
 <use fig24_transfer_heatmap.png>
-Package pdftex.def Info: fig24_transfer_heatmap.png  used on input line 632.
+Package pdftex.def Info: fig24_transfer_heatmap.png  used on input line 648.
 (pdftex.def)             Requested size: 214.20154pt x 160.99504pt.
-[8 <./fig_frequency_by_class.png> <./fig12_training_curves.png> <./fig_precisio
-n_recall.png>]
-<fig15_tsne_visualization.png, id=593, 986.2446pt x 295.3434pt>
+<fig15_tsne_visualization.png, id=590, 986.2446pt x 295.3434pt>
 File: fig15_tsne_visualization.png Graphic file (type png)
 <use fig15_tsne_visualization.png>
-Package pdftex.def Info: fig15_tsne_visualization.png  used on input line 645.
+Package pdftex.def Info: fig15_tsne_visualization.png  used on input line 661.
 (pdftex.def)             Requested size: 214.20154pt x 64.14203pt.
-
-Underfull \hbox (badness 1400) in paragraph at lines 652--653
-[]\T1/ptm/m/n/10 Where does the model fo-cus when ren-der-ing pre-dic-
- []
-
-<fig16_attention_heatmap.png, id=595, 800.0289pt x 422.0568pt>
+ [9 <./fig_hyperparameter_heatmap.png> <./fig24_transfer_heatmap.png>]
+<fig16_attention_heatmap.png, id=605, 800.0289pt x 422.0568pt>
 File: fig16_attention_heatmap.png Graphic file (type png)
 <use fig16_attention_heatmap.png>
-Package pdftex.def Info: fig16_attention_heatmap.png  used on input line 656.
+Package pdftex.def Info: fig16_attention_heatmap.png  used on input line 672.
 (pdftex.def)             Requested size: 214.20154pt x 113.00372pt.
-Package pgfplots info on input line 682: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 698: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
-[9 <./fig_hyperparameter_heatmap.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 737--737
-[]\T1/ptm/m/n/10 TABLE XI: |Com-po-nent In-ter-ac-tion Ma-trix (Syn-
- []
-
-<fig18_band_power_chart.png, id=611, 1000.2168pt x 370.2633pt>
+<fig18_band_power_chart.png, id=610, 1000.2168pt x 370.2633pt>
 File: fig18_band_power_chart.png Graphic file (type png)
 <use fig18_band_power_chart.png>
-Package pdftex.def Info: fig18_band_power_chart.png  used on input line 762.
+Package pdftex.def Info: fig18_band_power_chart.png  used on input line 778.
 (pdftex.def)             Requested size: 214.20154pt x 79.29431pt.
-<fig_shap_importance.png, id=613, 704.1507pt x 566.3559pt>
+<fig_shap_importance.png, id=612, 704.1507pt x 566.3559pt>
 File: fig_shap_importance.png Graphic file (type png)
 <use fig_shap_importance.png>
-Package pdftex.def Info: fig_shap_importance.png  used on input line 771.
+Package pdftex.def Info: fig_shap_importance.png  used on input line 787.
 (pdftex.def)             Requested size: 214.20154pt x 172.28459pt.
-
-Overfull \hbox (15.18034pt too wide) in paragraph at lines 785--803
+ [10 <./fig15_tsne_visualization.png> <./fig16_attention_heatmap.png>]
+Overfull \hbox (15.18034pt too wide) in paragraph at lines 801--819
  [][] 
  []
 
-Package pgfplots info on input line 825: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 841: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 
-Overfull \hbox (7.46184pt too wide) in paragraph at lines 849--861
+Overfull \hbox (7.46184pt too wide) in paragraph at lines 865--877
+ [][] 
+ []
+
+[11 <./fig18_band_power_chart.png> <./fig_shap_importance.png>] [12
+
+]
+Overfull \hbox (33.42796pt too wide) in paragraph at lines 942--960
  [][] 
  []
 
 
-Overfull \hbox (33.42796pt too wide) in paragraph at lines 923--941
+Overfull \hbox (1.48466pt too wide) in paragraph at lines 1058--1076
  [][] 
  []
 
-[10 <./fig24_transfer_heatmap.png> <./fig15_tsne_visualization.png> <./fig16_at
-tention_heatmap.png>]
-Overfull \hbox (1.48466pt too wide) in paragraph at lines 1039--1057
+Package pgfplots info on input line 1189: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 1217: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+[13
+
+] [14] [15]
+Package pgfplots info on input line 1286: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (18.96257pt too wide) in paragraph at lines 1289--1290
  [][] 
  []
 
-Package pgfplots info on input line 1170: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-Package pgfplots info on input line 1198: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-Package pgfplots info on input line 1264: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1344: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (18.96257pt too wide) in paragraph at lines 1267--1268
+Overfull \hbox (3.47252pt too wide) in paragraph at lines 1347--1348
  [][] 
  []
 
-Package pgfplots info on input line 1322: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1402: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (3.47252pt too wide) in paragraph at lines 1325--1326
+Overfull \hbox (6.02315pt too wide) in paragraph at lines 1405--1406
  [][] 
  []
 
-Package pgfplots info on input line 1380: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1460: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (6.02315pt too wide) in paragraph at lines 1383--1384
+Overfull \hbox (6.02315pt too wide) in paragraph at lines 1463--1464
  [][] 
  []
 
-Package pgfplots info on input line 1438: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1518: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 1576: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (6.02315pt too wide) in paragraph at lines 1441--1442
+Overfull \hbox (1.02315pt too wide) in paragraph at lines 1579--1580
  [][] 
  []
 
-Package pgfplots info on input line 1496: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1634: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1506--1507
- \T1/ptm/m/it/10 6) Model Life-cy-cle Man-age-ment Frame-work: [][][]
- []
-
-Package pgfplots info on input line 1554: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-
-Overfull \hbox (1.02315pt too wide) in paragraph at lines 1557--1558
+Overfull \hbox (11.92622pt too wide) in paragraph at lines 1637--1638
  [][] 
  []
 
-Package pgfplots info on input line 1612: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1692: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (11.92622pt too wide) in paragraph at lines 1615--1616
+Overfull \hbox (10.10674pt too wide) in paragraph at lines 1695--1696
  [][] 
  []
 
-Package pgfplots info on input line 1670: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1750: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (10.10674pt too wide) in paragraph at lines 1673--1674
+Overfull \hbox (2.54317pt too wide) in paragraph at lines 1753--1754
  [][] 
  []
 
-Package pgfplots info on input line 1728: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1808: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (2.54317pt too wide) in paragraph at lines 1731--1732
+Overfull \hbox (5.22307pt too wide) in paragraph at lines 1811--1812
  [][] 
  []
 
-Package pgfplots info on input line 1786: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1866: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (5.22307pt too wide) in paragraph at lines 1789--1790
+Overfull \hbox (4.37276pt too wide) in paragraph at lines 1869--1870
  [][] 
  []
 
-Package pgfplots info on input line 1844: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1924: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (4.37276pt too wide) in paragraph at lines 1847--1848
+Overfull \hbox (4.2631pt too wide) in paragraph at lines 1927--1928
  [][] 
  []
 
-Package pgfplots info on input line 1902: Using 'lua backend=false' for axis: x
+[16
+
+
+]
+Package pgfplots info on input line 1982: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (4.2631pt too wide) in paragraph at lines 1905--1906
+Overfull \hbox (11.58333pt too wide) in paragraph at lines 1985--1986
  [][] 
  []
 
-Package pgfplots info on input line 1960: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 2040: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (11.58333pt too wide) in paragraph at lines 1963--1964
+Overfull \hbox (8.38445pt too wide) in paragraph at lines 2043--2044
  [][] 
  []
 
-
-Underfull \hbox (badness 2103) in paragraph at lines 1964--1964
-[]\T1/ptm/m/n/10 Fig. 34: |Human-in-the-Loop AI Frame-work Com-pli-ance
- []
-
-Package pgfplots info on input line 2018: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 2098: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (8.38445pt too wide) in paragraph at lines 2021--2022
+Overfull \hbox (11.03508pt too wide) in paragraph at lines 2101--2102
  [][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 2028--2029
- \T1/ptm/m/it/10 15) Mech-a-nis-tic In-ter-pretabil-ity Frame-work: [][][]
- []
-
-
-Underfull \hbox (badness 3354) in paragraph at lines 2028--2029
-\T1/ptm/m/n/10 Ta-ble [][]XXXVII[][] and Fig-ure [][]36[][] ad-dress: \T1/ptm/m
-/it/10 What in-ter-nal
- []
-
-Package pgfplots info on input line 2076: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 2156: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (11.03508pt too wide) in paragraph at lines 2079--2080
+Overfull \hbox (30.09444pt too wide) in paragraph at lines 2159--2160
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2086--2087
- \T1/ptm/m/it/10 16) Re-spon-si-ble Gen-er-a-tive AI Frame-work: [][][]
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package pgfplots info on input line 2134: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
+ [17]
+Underfull \vbox (badness 4543) has occurred while \output is active []
 
-Overfull \hbox (30.09444pt too wide) in paragraph at lines 2137--2138
- [][] 
- []
 
-[11 <./fig18_band_power_chart.png>]
-Underfull \hbox (badness 1917) in paragraph at lines 2189--2190
-\OML/cmm/m/it/10 ^^T$\T1/ptm/m/n/10 =0.81, which is deemed ex-cel-lent). Over-a
-ll agree-ment
- []
+Underfull \vbox (badness 4543) has occurred while \output is active []
 
-[12 <./fig_shap_importance.png>] [13] [14]
+ [18]
 Underfull \vbox (badness 1888) has occurred while \output is active []
 
- [15]
-Overfull \hbox (21.92612pt too wide) in paragraph at lines 2367--2384
+ [19]
+[20] [21] [22] [23] [24] [25
+
+
+
+] [26]
+Overfull \hbox (21.92612pt too wide) in paragraph at lines 2395--2412
  [][] 
  []
 
-[16]
-Overfull \hbox (15.02225pt too wide) in paragraph at lines 2395--2407
- [][] 
- []
 
-[17] [18]
-Overfull \hbox (4.15019pt too wide) in paragraph at lines 2588--2600
- [][] 
- []
-
-[19] [20] [21]
-Underfull \vbox (badness 1221) has occurred while \output is active []
-
- [22]
-Underfull \hbox (badness 1648) in paragraph at lines 2711--2712
-[]\T1/ptm/b/n/10 Retrieval Qual-ity Anal-y-sis\T1/ptm/m/n/10 : Pre-ci-sion@K, R
-e-call@K,
- []
-
-[23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-
-LaTeX Warning: Text page 24 contains only floats.
-
-[24]
-Underfull \hbox (badness 5878) in paragraph at lines 2759--2760
-[]\T1/ptm/m/n/10 The com-plete frame-work com-prises 6,008 lines of
+Overfull \hbox (15.02225pt too wide) in paragraph at lines 2423--2435
+ [][] 
  []
 
+[27
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[25]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26]
-Underfull \vbox (badness 2181) has occurred while \output is active []
-
-
-Underfull \hbox (badness 2772) in paragraph at lines 2817--2818
-[]\T1/ptm/m/n/10 Domain ex-pert en-dorse-ment was ob-tained for RAG-
+]
+Overfull \hbox (4.15019pt too wide) in paragraph at lines 2616--2628
+ [][] 
  []
 
-[27] [28] (./genai_rag_eeg_v4.aux)
+[28] [29
+
+] [30] [31
+
+
+
+] [32
+
+] [33
+
+] [34
+
+] (./genai_rag_eeg_v4.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1518,13 +1383,13 @@ Package rerunfilecheck Info: File `genai_rag_eeg_v4.out' has not changed.
 (rerunfilecheck)             Checksum: 7F1E23DF7EC7EBEA837A7B200D184966;20672.
  ) 
 Here is how much of TeX's memory you used:
- 37631 strings out of 474222
- 882051 string characters out of 5748733
- 2284975 words of memory out of 5000000
- 59031 multiletter control sequences out of 15000+600000
+ 37776 strings out of 474222
+ 884222 string characters out of 5748733
+ 2166975 words of memory out of 5000000
+ 59162 multiletter control sequences out of 15000+600000
  684173 words of font info for 180 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,87p,1816b,2445s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,87p,1816b,2447s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -1546,10 +1411,10 @@ lic/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on genai_rag_eeg_v4.pdf (28 pages, 5004339 bytes).
+Output written on genai_rag_eeg_v4.pdf (34 pages, 4978971 bytes).
 PDF statistics:
- 993 PDF objects out of 1000 (max. 8388607)
- 881 compressed objects within 9 object streams
- 261 named destinations out of 1000 (max. 500000)
+ 1020 PDF objects out of 1200 (max. 8388607)
+ 901 compressed objects within 10 object streams
+ 267 named destinations out of 1000 (max. 500000)
  870 words of extra memory for PDF output out of 10000 (max. 10000000)
 

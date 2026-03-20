@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.5)  4 JAN 2026 17:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.5)  5 JAN 2026 00:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -476,6 +476,16 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box59
 \enit@count@id=\count304
 \enitdp@description=\count305
+)
+(/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(/usr/share/texlive/texmf-dist/tex/latex/morefloats/morefloats.sty
+Package: morefloats 2015/07/22 v1.0h Raise limit of unprocessed floats (HMM)
+Package morefloats Info: Maximum number of possible floats asked for: 100
+(morefloats)             (i.e. 82 more floats).
+(morefloats)             LaTeX might run out of memory before this
+(morefloats)             (in which case it will notify you).
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
@@ -993,34 +1003,39 @@ File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 de.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
-Package hyperref Info: Option `colorlinks' set `true' on input line 26.
+Package hyperref Info: Option `colorlinks' set `true' on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count338
 \l__pdf_internal_box=\box92
 )
-No file genai_rag_eeg_v2.aux.
+(./genai_rag_eeg_v2.aux
+
+LaTeX Warning: Label `fig:architecture' multiply defined.
+
+)
 \openout1 = `genai_rag_eeg_v2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+
 -- Lines per column: 58 (exact).
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1044,7 +1059,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 28.
+Package hyperref Info: Link coloring ON on input line 44.
+
+(./genai_rag_eeg_v2.out) (./genai_rag_eeg_v2.out)
 \@outlinefile=\write4
 \openout4 = `genai_rag_eeg_v2.out'.
 
@@ -1054,997 +1071,633 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.18} (current compat level: 1.17).
 
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 46.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 2050) in paragraph at lines 55--56
-\T1/ptm/b/n/9 sci-en-tific va-lid-ity and clin-i-cal ap-pli-ca-bil-ity. Method-
-olog-i-cal
- []
-
-
-LaTeX Warning: Citation `lazarus1984stress' on page 1 undefined on input line 6
-7.
-
-
-LaTeX Warning: Citation `who2023mental' on page 1 undefined on input line 67.
-
-
-LaTeX Warning: Citation `cohen1983global' on page 1 undefined on input line 67.
-
-
-
-LaTeX Warning: Citation `niedermeyer2005electroencephalography' on page 1 undef
-ined on input line 69.
-
-
-LaTeX Warning: Citation `klimesch1999alpha' on page 1 undefined on input line 7
-1.
-
-
-LaTeX Warning: Citation `engel2001dynamic' on page 1 undefined on input line 71
-.
-
-
-LaTeX Warning: Citation `cavanagh2014frontal' on page 1 undefined on input line
- 71.
-
-
-LaTeX Warning: Citation `davidson2004well' on page 1 undefined on input line 71
-.
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
-dist/fonts/enc/dvips/base/8r.enc}
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texm
+f-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-
-LaTeX Warning: Citation `craik2019deep' on page 2 undefined on input line 73.
-
-
-LaTeX Warning: Citation `schirrmeister2017deep' on page 2 undefined on input li
-ne 73.
-
-
-LaTeX Warning: Citation `bashivan2016learning' on page 2 undefined on input lin
-e 73.
-
-
-LaTeX Warning: Citation `zhang2019making' on page 2 undefined on input line 73.
-
-
-
-LaTeX Warning: Citation `tonekaboni2019clinicians' on page 2 undefined on input
- line 73.
-
-
-LaTeX Warning: Citation `lewis2020retrieval' on page 2 undefined on input line 
-75.
-
-
-LaTeX Warning: Citation `jin2024health' on page 2 undefined on input line 75.
-
-
-Underfull \hbox (badness 4899) in paragraph at lines 75--76
-[]\T1/ptm/m/n/10 Large-scale lan-guage mod-els cou-pled with retrieval-
- []
-
-
-LaTeX Warning: Reference `tab:related' on page 2 undefined on input line 79.
-
-
-LaTeX Warning: Citation `song2020eeg' on page 2 undefined on input line 79.
-
-
-LaTeX Warning: Citation `tao2020attention' on page 2 undefined on input line 79
-.
-
-
-LaTeX Warning: Citation `li2023domain' on page 2 undefined on input line 79.
-
-
-LaTeX Warning: Citation `lawhern2018eegnet' on page 2 undefined on input line 7
-9.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 4132) in paragraph at lines 87--88
-[]\T1/ptm/b/n/10 Construct Con-fla-tion\T1/ptm/m/n/10 : Dis-tinc-tions among em
-o-tional
- []
-
-
-LaTeX Warning: Citation `song2020eeg' on page 2 undefined on input line 100.
-
-
-LaTeX Warning: Citation `tao2020attention' on page 2 undefined on input line 10
-1.
-
-
-LaTeX Warning: Citation `li2023domain' on page 2 undefined on input line 102.
-
-
-LaTeX Warning: Citation `lawhern2018eegnet' on page 2 undefined on input line 1
-03.
 
 
 Underfull \vbox (badness 2020) has occurred while \output is active []
 
  [2]
-
-LaTeX Warning: Reference `tab:datasets' on page 3 undefined on input line 132.
-
-
-LaTeX Warning: Citation `zyma2019eegmat' on page 3 undefined on input line 134.
-
-
-
-Underfull \hbox (badness 1527) in paragraph at lines 134--135
-[]\T1/ptm/b/n/10 EEGMAT---Mental Arith-metic Cog-ni-tive Stress \T1/ptm/m/n/10 
-[[]]:
- []
-
-
-LaTeX Warning: Citation `gupta2016relevance' on page 3 undefined on input line 
-136.
-
-
-Underfull \hbox (badness 2027) in paragraph at lines 163--164
-\T1/ptm/m/n/10 ar-ti-facts pro-duce sub-stan-tial am-pli-tude de-flec-tions, my
-o-
- []
-
-
-LaTeX Warning: Reference `fig:sam40_segments' on page 3 undefined on input line
- 165.
-
-
-LaTeX Warning: Reference `fig:eegmat_segments' on page 3 undefined on input lin
-e 165.
-
 [3]
-<../figures/sam40_segments.png, id=44, 1004.553pt x 710.4141pt>
+<../figures/sam40_segments.png, id=631, 1004.553pt x 710.4141pt>
 File: ../figures/sam40_segments.png Graphic file (type png)
 <use ../figures/sam40_segments.png>
-Package pdftex.def Info: ../figures/sam40_segments.png  used on input line 169.
+Package pdftex.def Info: ../figures/sam40_segments.png  used on input line 185.
 
 (pdftex.def)             Requested size: 239.39923pt x 169.29962pt.
-
-Underfull \hbox (badness 1509) in paragraph at lines 170--170
-[]\T1/ptm/m/n/10 Fig. 1: |SAM-40 dataset: Rep-re-sen-ta-tive 25-second EEG
- []
-
-<../figures/eegmat_segments.png, id=46, 1004.553pt x 432.8973pt>
+<../figures/eegmat_segments.png, id=633, 1004.553pt x 432.8973pt>
 File: ../figures/eegmat_segments.png Graphic file (type png)
 <use ../figures/eegmat_segments.png>
-Package pdftex.def Info: ../figures/eegmat_segments.png  used on input line 176
+Package pdftex.def Info: ../figures/eegmat_segments.png  used on input line 192
 .
 (pdftex.def)             Requested size: 239.39923pt x 103.16426pt.
 
-Overfull \hbox (15.13618pt too wide) in paragraph at lines 186--194
+Overfull \hbox (15.13618pt too wide) in paragraph at lines 202--210
  [][] 
  []
 
-
-LaTeX Warning: Reference `fig:architecture' on page 4 undefined on input line 2
-16.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-[]\T1/ptm/m/n/10 The pro-posed com-pu-ta-tional framework---designated
- []
-
-
-Underfull \hbox (badness 4981) in paragraph at lines 216--217
-\T1/ptm/m/n/10 GenAI-RAG-EEG---integrates four prin-ci-pal ar-chi-tec-tural
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-\T1/ptm/m/n/10 ex-trac-tion is ac-com-plished through con-vo-lu-tional and
- []
-
-
-Underfull \hbox (badness 2538) in paragraph at lines 216--217
-\T1/ptm/m/n/10 stress/baseline clas-si-fi-ca-tion de-ci-sions are ren-dered. Th
-e
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-\T1/ptm/m/n/10 mod-ule, sub-se-quently syn-the-sized into com-pre-hen-si-ble
- []
-
-
-Underfull \hbox (badness 6510) in paragraph at lines 216--217
-\T1/ptm/m/n/10 natural-language jus-ti-fi-ca-tions elu-ci-dat-ing the ra-tio-na
-les
- []
-
-
-Underfull \hbox (badness 1642) in paragraph at lines 255--256
-\T1/ptm/m/n/10 travers-ing elec-troen-cephalo-graphic wave-forms. The ini-tial
- []
-
-[4 <../figures/sam40_segments.png> <../figures/eegmat_segments.png>]
-
-LaTeX Warning: Citation `vaswani2017attention' on page 5 undefined on input lin
-e 267.
-
-
-LaTeX Warning: Citation `reimers2019sentence' on page 5 undefined on input line
- 274.
-
-
-Underfull \hbox (badness 2608) in paragraph at lines 288--289
-[]\T1/ptm/b/n/10 Knowledge Repos-i-tory Con-struc-tion\T1/ptm/m/n/10 : A com-pr
-e-hen-
- []
-
-
-LaTeX Warning: Citation `johnson2019billion' on page 5 undefined on input line 
-290.
-
-
-LaTeX Warning: Citation `loshchilov2019decoupled' on page 5 undefined on input 
-line 296.
-
-
-Underfull \hbox (badness 2486) in paragraph at lines 301--302
-[]\T1/ptm/m/n/10 All ex-per-i-ments em-ploy leave-one-subject-out (LOSO)
- []
-
-
-Underfull \hbox (badness 6032) in paragraph at lines 312--313
-[]\T1/ptm/m/n/10 Beyond clas-si-fi-ca-tion per-for-mance met-rics, we con-
- []
-
-
-LaTeX Warning: Reference `tab:bandpower' on page 5 undefined on input line 318.
-
-
-[5]
-
-LaTeX Warning: Citation `klimesch1999alpha' on page 6 undefined on input line 3
-48.
-
-
-LaTeX Warning: Citation `putman2014eeg' on page 6 undefined on input line 352.
-
-
-LaTeX Warning: Citation `davidson2004well' on page 6 undefined on input line 36
-1.
-
-
-Underfull \hbox (badness 2443) in paragraph at lines 361--362
-\T1/ptm/m/n/10 Asym-me-try was quan-ti-fied through com-par-i-son of log-
- []
-
-
-LaTeX Warning: Reference `tab:classification' on page 6 undefined on input line
- 379.
-
-
-Overfull \hbox (92.45862pt too wide) in paragraph at lines 386--396
+[4 <../figures/sam40_segments.png> <../figures/eegmat_segments.png>] [5]
+Overfull \hbox (92.45862pt too wide) in paragraph at lines 402--412
  [][] 
  []
 
-
-LaTeX Warning: Reference `fig:roc_curves' on page 6 undefined on input line 428
-.
-
-
-Underfull \hbox (badness 1509) in paragraph at lines 428--429
-\T1/ptm/m/n/10 configuration---whether ag-gres-sive or conservative---robust
- []
-
-<fig10_roc_curves.png, id=83, 415.0707pt x 422.0568pt>
+<fig10_roc_curves.png, id=677, 415.0707pt x 422.0568pt>
 File: fig10_roc_curves.png Graphic file (type png)
 <use fig10_roc_curves.png>
-Package pdftex.def Info: fig10_roc_curves.png  used on input line 432.
+Package pdftex.def Info: fig10_roc_curves.png  used on input line 448.
 (pdftex.def)             Requested size: 214.20154pt x 217.80925pt.
-
-LaTeX Warning: Reference `fig:confusion_matrices' on page 6 undefined on input 
-line 437.
-
 [6]
-<fig11_confusion_matrices.png, id=98, 1075.8594pt x 297.2706pt>
+<fig11_confusion_matrices.png, id=690, 714.5094pt x 297.2706pt>
 File: fig11_confusion_matrices.png Graphic file (type png)
 <use fig11_confusion_matrices.png>
-Package pdftex.def Info: fig11_confusion_matrices.png  used on input line 441.
-(pdftex.def)             Requested size: 214.20154pt x 59.18544pt.
-
-
-LaTeX Warning: Reference `tab:classification' on page 7 undefined on input line
- 442.
-
-
-LaTeX Warning: Reference `tab:classification' on page 7 undefined on input line
- 442.
-
-<fig_frequency_by_class.png, id=99, 859.0494pt x 570.4512pt>
+Package pdftex.def Info: fig11_confusion_matrices.png  used on input line 457.
+(pdftex.def)             Requested size: 214.20154pt x 89.11836pt.
+<fig_frequency_by_class.png, id=693, 859.0494pt x 570.4512pt>
 File: fig_frequency_by_class.png Graphic file (type png)
 <use fig_frequency_by_class.png>
-Package pdftex.def Info: fig_frequency_by_class.png  used on input line 448.
+Package pdftex.def Info: fig_frequency_by_class.png  used on input line 464.
 (pdftex.def)             Requested size: 239.39923pt x 158.96796pt.
 
-LaTeX Warning: Reference `fig:frequency_by_class' on page 7 undefined on input 
-line 453.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-LaTeX Warning: Reference `fig:loso_results' on page 7 undefined on input line 4
-57.
-
-
-Underfull \hbox (badness 6268) in paragraph at lines 457--458
-[]\T1/ptm/m/n/10 Classification per-for-mance varies sub-stan-tially across
- []
-
-Package pgfplots info on input line 476: Using 'lua backend=false' for axis: x 
+ [7 <./fig10_roc_curves.png> <./fig11_confusion_matrices.png> <./fig_frequency_
+by_class.png>]
+Package pgfplots info on input line 492: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
-
-LaTeX Warning: Reference `fig:training_curves' on page 7 undefined on input lin
-e 487.
-
-<fig12_training_curves.png, id=100, 999.735pt x 295.3434pt>
+<fig12_training_curves.png, id=708, 999.735pt x 295.3434pt>
 File: fig12_training_curves.png Graphic file (type png)
 <use fig12_training_curves.png>
-Package pdftex.def Info: fig12_training_curves.png  used on input line 491.
+Package pdftex.def Info: fig12_training_curves.png  used on input line 507.
 (pdftex.def)             Requested size: 214.20154pt x 63.27676pt.
-
-LaTeX Warning: Reference `fig:precision_recall' on page 7 undefined on input li
-ne 496.
-
-<fig_precision_recall.png, id=101, 567.0786pt x 422.0568pt>
+<fig_precision_recall.png, id=710, 567.0786pt x 422.0568pt>
 File: fig_precision_recall.png Graphic file (type png)
 <use fig_precision_recall.png>
-Package pdftex.def Info: fig_precision_recall.png  used on input line 500.
+Package pdftex.def Info: fig_precision_recall.png  used on input line 516.
 (pdftex.def)             Requested size: 214.20154pt x 159.42368pt.
-
-LaTeX Warning: Reference `tab:baselines' on page 7 undefined on input line 507.
-
-
-
-LaTeX Warning: Citation `schirrmeister2017deep' on page 7 undefined on input li
-ne 521.
-
-
-LaTeX Warning: Citation `hochreiter1997long' on page 7 undefined on input line 
-522.
-
-
-LaTeX Warning: Citation `lawhern2018eegnet' on page 7 undefined on input line 5
-23.
-
-[7 <./fig10_roc_curves.png> <./fig11_confusion_matrices.png>]
-
-LaTeX Warning: Reference `tab:ablation' on page 8 undefined on input line 534.
-
-
-LaTeX Warning: Reference `tab:sensitivity' on page 8 undefined on input line 55
-9.
-
-
-LaTeX Warning: Reference `fig:hyperparameter_matrix' on page 8 undefined on inp
-ut line 559.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
-[]\T1/ptm/m/n/10 How tem-per-a-men-tal is this model? Ev-ery ma-jor
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
-\T1/ptm/m/n/10 parameter---learning rate, batch size, dropout, hid-den
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 559--560
-\T1/ptm/m/n/10 di-men-sions, at-ten-tion heads, LSTM layers---was
- []
-
-
-Underfull \hbox (badness 5302) in paragraph at lines 559--560
-\T1/ptm/m/n/10 sys-tem-at-i-cally probed to as-cer-tain what frac-tures and
- []
-
-<fig_hyperparameter_heatmap.png, id=115, 679.5789pt x 566.5968pt>
+ [8 <./fig12_training_curves.png> <./fig_precision_recall.png>]
+<fig_hyperparameter_heatmap.png, id=731, 679.5789pt x 566.5968pt>
 File: fig_hyperparameter_heatmap.png Graphic file (type png)
 <use fig_hyperparameter_heatmap.png>
-Package pdftex.def Info: fig_hyperparameter_heatmap.png  used on input line 603
+Package pdftex.def Info: fig_hyperparameter_heatmap.png  used on input line 619
 .
 (pdftex.def)             Requested size: 214.20154pt x 178.59132pt.
-
-LaTeX Warning: Reference `tab:transfer' on page 8 undefined on input line 612.
-
-
-LaTeX Warning: Reference `fig:transfer_heatmap' on page 8 undefined on input li
-ne 612.
-
-<fig24_transfer_heatmap.png, id=116, 561.5379pt x 422.0568pt>
+<fig24_transfer_heatmap.png, id=734, 561.5379pt x 422.0568pt>
 File: fig24_transfer_heatmap.png Graphic file (type png)
 <use fig24_transfer_heatmap.png>
-Package pdftex.def Info: fig24_transfer_heatmap.png  used on input line 632.
+Package pdftex.def Info: fig24_transfer_heatmap.png  used on input line 648.
 (pdftex.def)             Requested size: 214.20154pt x 160.99504pt.
-[8 <./fig_frequency_by_class.png> <./fig12_training_curves.png> <./fig_precisio
-n_recall.png>]
-
-LaTeX Warning: Reference `fig:tsne' on page 9 undefined on input line 641.
-
-<fig15_tsne_visualization.png, id=131, 986.2446pt x 295.3434pt>
+<fig15_tsne_visualization.png, id=736, 986.2446pt x 295.3434pt>
 File: fig15_tsne_visualization.png Graphic file (type png)
 <use fig15_tsne_visualization.png>
-Package pdftex.def Info: fig15_tsne_visualization.png  used on input line 645.
+Package pdftex.def Info: fig15_tsne_visualization.png  used on input line 661.
 (pdftex.def)             Requested size: 214.20154pt x 64.14203pt.
-
-LaTeX Warning: Reference `fig:attention_heatmap' on page 9 undefined on input l
-ine 652.
-
-
-Underfull \hbox (badness 1400) in paragraph at lines 652--653
-[]\T1/ptm/m/n/10 Where does the model fo-cus when ren-der-ing pre-dic-
- []
-
-<fig16_attention_heatmap.png, id=132, 800.0289pt x 422.0568pt>
+ [9 <./fig_hyperparameter_heatmap.png> <./fig24_transfer_heatmap.png>]
+<fig16_attention_heatmap.png, id=750, 800.0289pt x 422.0568pt>
 File: fig16_attention_heatmap.png Graphic file (type png)
 <use fig16_attention_heatmap.png>
-Package pdftex.def Info: fig16_attention_heatmap.png  used on input line 656.
+Package pdftex.def Info: fig16_attention_heatmap.png  used on input line 672.
 (pdftex.def)             Requested size: 214.20154pt x 113.00372pt.
-
-LaTeX Warning: Reference `fig:component_importance' on page 9 undefined on inpu
-t line 663.
-
-Package pgfplots info on input line 682: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 698: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
-
-LaTeX Warning: Reference `fig:cumulative_ablation' on page 9 undefined on input
- line 698.
-
-
-LaTeX Warning: Reference `tab:interaction_matrix' on page 9 undefined on input 
-line 733.
-
-[9 <./fig_hyperparameter_heatmap.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 737--737
-[]\T1/ptm/m/n/10 TABLE XI: |Com-po-nent In-ter-ac-tion Ma-trix (Syn-
- []
-
-
-LaTeX Warning: Reference `fig:band_power' on page 10 undefined on input line 75
-8.
-
-<fig18_band_power_chart.png, id=148, 1000.2168pt x 370.2633pt>
+<fig18_band_power_chart.png, id=755, 1000.2168pt x 370.2633pt>
 File: fig18_band_power_chart.png Graphic file (type png)
 <use fig18_band_power_chart.png>
-Package pdftex.def Info: fig18_band_power_chart.png  used on input line 762.
+Package pdftex.def Info: fig18_band_power_chart.png  used on input line 778.
 (pdftex.def)             Requested size: 214.20154pt x 79.29431pt.
-
-LaTeX Warning: Reference `fig:shap_importance' on page 10 undefined on input li
-ne 767.
-
-<fig_shap_importance.png, id=149, 704.1507pt x 566.3559pt>
+<fig_shap_importance.png, id=757, 704.1507pt x 566.3559pt>
 File: fig_shap_importance.png Graphic file (type png)
 <use fig_shap_importance.png>
-Package pdftex.def Info: fig_shap_importance.png  used on input line 771.
+Package pdftex.def Info: fig_shap_importance.png  used on input line 787.
 (pdftex.def)             Requested size: 214.20154pt x 172.28459pt.
-
-LaTeX Warning: Reference `tab:explainability_master' on page 10 undefined on in
-put line 778.
-
-
-Overfull \hbox (15.18034pt too wide) in paragraph at lines 785--803
+ [10 <./fig15_tsne_visualization.png> <./fig16_attention_heatmap.png>]
+Overfull \hbox (15.18034pt too wide) in paragraph at lines 801--819
  [][] 
  []
 
-
-LaTeX Warning: Reference `fig:local_shap' on page 10 undefined on input line 80
-7.
-
-Package pgfplots info on input line 825: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 841: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 
-LaTeX Warning: Reference `tab:temporal_importance' on page 10 undefined on inpu
-t line 842.
+Overfull \hbox (7.46184pt too wide) in paragraph at lines 865--877
+ [][] 
+ []
 
+[11 <./fig18_band_power_chart.png> <./fig_shap_importance.png>] [12
 
-Overfull \hbox (7.46184pt too wide) in paragraph at lines 849--861
+]
+Overfull \hbox (33.42796pt too wide) in paragraph at lines 942--960
  [][] 
  []
 
 
-LaTeX Warning: Reference `tab:stability' on page 10 undefined on input line 865
-.
-
-
-LaTeX Warning: Reference `fig:interaction' on page 10 undefined on input line 8
-88.
-
-
-LaTeX Warning: Reference `tab:responsible_ai' on page 10 undefined on input lin
-e 912.
-
-
-LaTeX Warning: Reference `tab:portable_ai' on page 10 undefined on input line 9
-12.
-
-
-LaTeX Warning: Reference `tab:responsible_ai' on page 10 undefined on input lin
-e 916.
-
-
-Overfull \hbox (33.42796pt too wide) in paragraph at lines 923--941
+Overfull \hbox (1.48466pt too wide) in paragraph at lines 1058--1076
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:trust_ai' on page 10 undefined on input line 945.
-
-
-
-LaTeX Warning: Reference `tab:debug_ai' on page 10 undefined on input line 974.
-
-
-
-LaTeX Warning: Reference `tab:ablation' on page 10 undefined on input line 993.
-
-
-
-LaTeX Warning: Reference `tab:compliance_ai' on page 10 undefined on input line
- 1003.
-
-[10 <./fig24_transfer_heatmap.png> <./fig15_tsne_visualization.png> <./fig16_at
-tention_heatmap.png>]
-
-LaTeX Warning: Reference `tab:interpretable_ai' on page 11 undefined on input l
-ine 1032.
-
-
-Overfull \hbox (1.48466pt too wide) in paragraph at lines 1039--1057
- [][] 
- []
-
-
-LaTeX Warning: Reference `tab:portable_ai' on page 11 undefined on input line 1
-061.
-
-
-LaTeX Warning: Reference `tab:interpretability_detailed' on page 11 undefined o
-n input line 1090.
-
-
-LaTeX Warning: Reference `tab:causality_detailed' on page 11 undefined on input
- line 1122.
-
-
-LaTeX Warning: Reference `fig:interpretability_summary' on page 11 undefined on
- input line 1152.
-
-
-LaTeX Warning: Reference `fig:causality_summary' on page 11 undefined on input 
-line 1152.
-
-Package pgfplots info on input line 1170: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1189: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
-Package pgfplots info on input line 1198: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1217: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+[13
+
+] [14] [15]
+Package pgfplots info on input line 1286: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-LaTeX Warning: Reference `tab:reliable_ai' on page 11 undefined on input line 1
-216.
+Overfull \hbox (18.96257pt too wide) in paragraph at lines 1289--1290
+ [][] 
+ []
 
-
-LaTeX Warning: Reference `fig:reliable_ai' on page 11 undefined on input line 1
-216.
-
-Package pgfplots info on input line 1264: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1344: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (18.96257pt too wide) in paragraph at lines 1267--1268
+Overfull \hbox (3.47252pt too wide) in paragraph at lines 1347--1348
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:trustworthy_ai' on page 11 undefined on input lin
-e 1274.
-
-
-LaTeX Warning: Reference `fig:trustworthy_ai' on page 11 undefined on input lin
-e 1274.
-
-Package pgfplots info on input line 1322: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1402: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (3.47252pt too wide) in paragraph at lines 1325--1326
+Overfull \hbox (6.02315pt too wide) in paragraph at lines 1405--1406
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:safe_ai' on page 11 undefined on input line 1332.
-
-
-
-LaTeX Warning: Reference `fig:safe_ai' on page 11 undefined on input line 1332.
-
-
-Package pgfplots info on input line 1380: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1460: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (6.02315pt too wide) in paragraph at lines 1383--1384
+Overfull \hbox (6.02315pt too wide) in paragraph at lines 1463--1464
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:accountable_ai' on page 11 undefined on input lin
-e 1390.
-
-
-LaTeX Warning: Reference `fig:accountable_ai' on page 11 undefined on input lin
-e 1390.
-
-Package pgfplots info on input line 1438: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1518: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 1576: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (6.02315pt too wide) in paragraph at lines 1441--1442
+Overfull \hbox (1.02315pt too wide) in paragraph at lines 1579--1580
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:auditable_ai' on page 11 undefined on input line 
-1448.
-
-
-LaTeX Warning: Reference `fig:auditable_ai' on page 11 undefined on input line 
-1448.
-
-Package pgfplots info on input line 1496: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1634: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-LaTeX Warning: Reference `tab:lifecycle_ai' on page 11 undefined on input line 
-1506.
+Overfull \hbox (11.92622pt too wide) in paragraph at lines 1637--1638
+ [][] 
+ []
 
-
-LaTeX Warning: Reference `fig:lifecycle_ai' on page 11 undefined on input line 
-1506.
-
-Package pgfplots info on input line 1554: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1692: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (1.02315pt too wide) in paragraph at lines 1557--1558
+Overfull \hbox (10.10674pt too wide) in paragraph at lines 1695--1696
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:monitoring_ai' on page 11 undefined on input line
- 1564.
-
-
-LaTeX Warning: Reference `fig:monitoring_ai' on page 11 undefined on input line
- 1564.
-
-Package pgfplots info on input line 1612: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1750: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (11.92622pt too wide) in paragraph at lines 1615--1616
+Overfull \hbox (2.54317pt too wide) in paragraph at lines 1753--1754
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:green_ai' on page 11 undefined on input line 1622
-.
-
-
-LaTeX Warning: Reference `fig:green_ai' on page 11 undefined on input line 1622
-.
-
-Package pgfplots info on input line 1670: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1808: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (10.10674pt too wide) in paragraph at lines 1673--1674
+Overfull \hbox (5.22307pt too wide) in paragraph at lines 1811--1812
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:fairness_ai' on page 11 undefined on input line 1
-680.
-
-
-LaTeX Warning: Reference `fig:fairness_ai' on page 11 undefined on input line 1
-680.
-
-Package pgfplots info on input line 1728: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1866: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (2.54317pt too wide) in paragraph at lines 1731--1732
+Overfull \hbox (4.37276pt too wide) in paragraph at lines 1869--1870
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:human_ai' on page 11 undefined on input line 1738
-.
-
-
-LaTeX Warning: Reference `fig:human_ai' on page 11 undefined on input line 1738
-.
-
-Package pgfplots info on input line 1786: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 1924: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (5.22307pt too wide) in paragraph at lines 1789--1790
+Overfull \hbox (4.2631pt too wide) in paragraph at lines 1927--1928
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:compliance_full' on page 11 undefined on input li
-ne 1796.
+[16
 
 
-LaTeX Warning: Reference `fig:compliance_ai' on page 11 undefined on input line
- 1796.
-
-Package pgfplots info on input line 1844: Using 'lua backend=false' for axis: x
+]
+Package pgfplots info on input line 1982: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (4.37276pt too wide) in paragraph at lines 1847--1848
+Overfull \hbox (11.58333pt too wide) in paragraph at lines 1985--1986
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:social_ai' on page 11 undefined on input line 185
-4.
-
-
-LaTeX Warning: Reference `fig:social_ai' on page 11 undefined on input line 185
-4.
-
-Package pgfplots info on input line 1902: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 2040: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (4.2631pt too wide) in paragraph at lines 1905--1906
+Overfull \hbox (8.38445pt too wide) in paragraph at lines 2043--2044
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:hitl_ai' on page 11 undefined on input line 1912.
-
-
-
-LaTeX Warning: Reference `fig:hitl_ai' on page 11 undefined on input line 1912.
-
-
-Package pgfplots info on input line 1960: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 2098: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (11.58333pt too wide) in paragraph at lines 1963--1964
+Overfull \hbox (11.03508pt too wide) in paragraph at lines 2101--2102
  [][] 
  []
 
-
-Underfull \hbox (badness 2103) in paragraph at lines 1964--1964
-[]\T1/ptm/m/n/10 Fig. 34: |Human-in-the-Loop AI Frame-work Com-pli-ance
- []
-
-
-LaTeX Warning: Reference `tab:data_transparency' on page 11 undefined on input 
-line 1970.
-
-
-LaTeX Warning: Reference `fig:data_transparency' on page 11 undefined on input 
-line 1970.
-
-Package pgfplots info on input line 2018: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 2156: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
 
-Overfull \hbox (8.38445pt too wide) in paragraph at lines 2021--2022
+Overfull \hbox (30.09444pt too wide) in paragraph at lines 2159--2160
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:mechanistic_ai' on page 11 undefined on input lin
-e 2028.
-
-
-LaTeX Warning: Reference `fig:mechanistic_ai' on page 11 undefined on input lin
-e 2028.
-
-Package pgfplots info on input line 2076: Using 'lua backend=false' for axis: x
+Package pgfplots info on input line 2214: Using 'lua backend=false' for axis: x
  coord trafo unsupported.
-
-Overfull \hbox (11.03508pt too wide) in paragraph at lines 2079--2080
- [][] 
- []
-
-
-LaTeX Warning: Reference `tab:resp_genai' on page 11 undefined on input line 20
-86.
-
-
-LaTeX Warning: Reference `fig:resp_genai' on page 11 undefined on input line 20
-86.
-
-Package pgfplots info on input line 2134: Using 'lua backend=false' for axis: x
- coord trafo unsupported.
-
-Overfull \hbox (30.09444pt too wide) in paragraph at lines 2137--2138
- [][] 
- []
-
-
-LaTeX Warning: Reference `tab:statistical' on page 11 undefined on input line 2
-144.
-
-
-LaTeX Warning: Reference `tab:rag_eval' on page 11 undefined on input line 2168
-.
-
-[11 <./fig18_band_power_chart.png>]
-Underfull \hbox (badness 1917) in paragraph at lines 2189--2190
-\OML/cmm/m/it/10 ^^T$\T1/ptm/m/n/10 =0.81, which is deemed ex-cel-lent). Over-a
-ll agree-ment
- []
-
-
-LaTeX Warning: Reference `tab:clinical_validation' on page 12 undefined on inpu
-t line 2204.
-
-
-LaTeX Warning: Reference `tab:reliability_matrix' on page 12 undefined on input
- line 2260.
-
-[12 <./fig_shap_importance.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13]
-[14]
-Underfull \vbox (badness 1888) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]
-
-LaTeX Warning: Reference `tab:feature_engineering' on page 16 undefined on inpu
-t line 2332.
-
-
-Overfull \hbox (21.92612pt too wide) in paragraph at lines 2367--2384
- [][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]
-Overfull \hbox (15.02225pt too wide) in paragraph at lines 2395--2407
- [][] 
- []
-
-
-LaTeX Warning: Reference `tab:cross_validation' on page 17 undefined on input l
-ine 2411.
-
-
-LaTeX Warning: Reference `tab:loso_subjects' on page 17 undefined on input line
- 2433.
-
 [17]
+Package pgfplots info on input line 2272: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
 
-LaTeX Warning: Reference `tab:clinical_metrics' on page 18 undefined on input l
-ine 2460.
+Overfull \hbox (7.14581pt too wide) in paragraph at lines 2275--2276
+ [][] 
+ []
 
+Package pgfplots info on input line 2330: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
 
-LaTeX Warning: Reference `tab:model_analysis' on page 18 undefined on input lin
-e 2485.
+Overfull \hbox (0.82574pt too wide) in paragraph at lines 2333--2334
+ [][] 
+ []
 
+Package pgfplots info on input line 2388: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
 
-LaTeX Warning: Reference `tab:perf_metrics' on page 18 undefined on input line 
-2517.
+Overfull \hbox (4.55302pt too wide) in paragraph at lines 2391--2392
+ [][] 
+ []
+
+Package pgfplots info on input line 2446: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (7.69295pt too wide) in paragraph at lines 2449--2450
+ [][] 
+ []
+
+Package pgfplots info on input line 2504: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (7.12315pt too wide) in paragraph at lines 2507--2508
+ [][] 
+ []
 
 [18]
+Package pgfplots info on input line 2564: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
 
-LaTeX Warning: Reference `tab:cog_workload' on page 19 undefined on input line 
-2557.
-
-
-LaTeX Warning: Reference `tab:clinical_thresholds' on page 19 undefined on inpu
-t line 2581.
-
-
-Overfull \hbox (4.15019pt too wide) in paragraph at lines 2588--2600
+Overfull \hbox (26.75958pt too wide) in paragraph at lines 2567--2568
  [][] 
  []
 
-[19]
+Package pgfplots info on input line 2622: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
 
-LaTeX Warning: Reference `tab:analysis_taxonomy' on page 20 undefined on input 
-line 2618.
-
-[20] [21]
-Underfull \vbox (badness 1221) has occurred while \output is active []
-
- [22]
-Underfull \hbox (badness 1648) in paragraph at lines 2711--2712
-[]\T1/ptm/b/n/10 Retrieval Qual-ity Anal-y-sis\T1/ptm/m/n/10 : Pre-ci-sion@K, R
-e-call@K,
+Overfull \hbox (9.91547pt too wide) in paragraph at lines 2625--2626
+ [][] 
  []
 
-[23]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Package pgfplots info on input line 2680: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (4.26566pt too wide) in paragraph at lines 2683--2684
+ [][] 
+ []
+
+Package pgfplots info on input line 2738: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (6.02315pt too wide) in paragraph at lines 2741--2742
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19]
+Package pgfplots info on input line 2796: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (13.37686pt too wide) in paragraph at lines 2799--2800
+ [][] 
+ []
+
+Package pgfplots info on input line 2854: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (12.26715pt too wide) in paragraph at lines 2857--2858
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Package pgfplots info on input line 2912: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (6.02315pt too wide) in paragraph at lines 2915--2916
+ [][] 
+ []
+
+Package pgfplots info on input line 2970: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (8.81558pt too wide) in paragraph at lines 2973--2974
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20]
+Package pgfplots info on input line 3028: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (12.12285pt too wide) in paragraph at lines 3031--3032
+ [][] 
+ []
+
+Package pgfplots info on input line 3086: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (8.81303pt too wide) in paragraph at lines 3089--3090
+ [][] 
+ []
+
+[21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32
+
+
+]
+Package pgfplots info on input line 3148: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (12.37595pt too wide) in paragraph at lines 3151--3152
+ [][] 
+ []
+
+Package pgfplots info on input line 3208: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (13.81549pt too wide) in paragraph at lines 3211--3212
+ [][] 
+ []
+
+Package pgfplots info on input line 3263: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (12.37595pt too wide) in paragraph at lines 3266--3267
+ [][] 
+ []
+
+Package pgfplots info on input line 3323: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (9.90558pt too wide) in paragraph at lines 3326--3327
+ [][] 
+ []
+
+Package pgfplots info on input line 3383: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (14.3555pt too wide) in paragraph at lines 3386--3387
+ [][] 
+ []
+
+Package pgfplots info on input line 3443: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (12.37595pt too wide) in paragraph at lines 3446--3447
+ [][] 
+ []
+
+Package pgfplots info on input line 3503: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (12.37595pt too wide) in paragraph at lines 3506--3507
+ [][] 
+ []
+
+[33
+
+
+]
+Package pgfplots info on input line 3563: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (16.99554pt too wide) in paragraph at lines 3566--3567
+ [][] 
+ []
+
+Package pgfplots info on input line 3623: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (12.37595pt too wide) in paragraph at lines 3626--3627
+ [][] 
+ []
+
+Package pgfplots info on input line 3683: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (12.37595pt too wide) in paragraph at lines 3686--3687
+ [][] 
+ []
+
+Package pgfplots info on input line 3743: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (18.54407pt too wide) in paragraph at lines 3746--3747
+ [][] 
+ []
+
+Package pgfplots info on input line 3803: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (15.46402pt too wide) in paragraph at lines 3806--3807
+ [][] 
+ []
+
+Package pgfplots info on input line 3863: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (14.21414pt too wide) in paragraph at lines 3866--3867
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+Overfull \vbox (6.30008pt too high) has occurred while \output is active []
 
-LaTeX Warning: Text page 24 contains only floats.
 
-[24]
-Underfull \hbox (badness 5878) in paragraph at lines 2759--2760
-[]\T1/ptm/m/n/10 The com-plete frame-work com-prises 6,008 lines of
+[35]
+Package pgfplots info on input line 3919: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (5.47415pt too wide) in paragraph at lines 3922--3923
+ [][] 
  []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36]
+Overfull \vbox (6.30008pt too high) has occurred while \output is active []
+
+Package pgfplots info on input line 3976: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (14.2044pt too wide) in paragraph at lines 3979--3980
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37]
+Package pgfplots info on input line 4034: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (15.63416pt too wide) in paragraph at lines 4037--4038
+ [][] 
+ []
+
+Package pgfplots info on input line 4090: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (10.93408pt too wide) in paragraph at lines 4093--4094
+ [][] 
+ []
+
+Package pgfplots info on input line 4148: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (11.02393pt too wide) in paragraph at lines 4151--4152
+ [][] 
+ []
+
+Package pgfplots info on input line 4213: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+
+Overfull \hbox (4.35416pt too wide) in paragraph at lines 4216--4217
+ [][] 
+ []
+
+[38]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [39]
+[40] [41] [42] [43
+
+
+] [44]
+Overfull \hbox (21.92612pt too wide) in paragraph at lines 4452--4469
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (15.02225pt too wide) in paragraph at lines 4480--4492
+ [][] 
+ []
+
+[45
+
+]
+Overfull \hbox (4.15019pt too wide) in paragraph at lines 4673--4685
+ [][] 
+ []
+
+[46] [47
+
+] [48]
+Package pgfplots info on input line 4837: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 4902: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+Package pgfplots info on input line 4967: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+ [49
+
+
+
+]
+Package pgfplots info on input line 5032: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+ [50]
+
+LaTeX Warning: Text page 51 contains only floats.
+
+Package pgfplots info on input line 5189: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
+[51]
+Package pgfplots info on input line 5350: Using 'lua backend=false' for axis: x
+ coord trafo unsupported.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[25]
-
-LaTeX Warning: Citation `klimesch1999alpha' on page 26 undefined on input line 
-2797.
+[52] [53] [54] [55
 
 
-LaTeX Warning: Citation `putman2014eeg' on page 26 undefined on input line 2797
-.
+] [56
 
 
-LaTeX Warning: Citation `davidson2004well' on page 26 undefined on input line 2
-797.
+] [57
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26]
-Underfull \vbox (badness 2181) has occurred while \output is active []
-
-
-Underfull \hbox (badness 2772) in paragraph at lines 2817--2818
-[]\T1/ptm/m/n/10 Domain ex-pert en-dorse-ment was ob-tained for RAG-
- []
-
-[27] [28] (./genai_rag_eeg_v2.aux)
+] (./genai_rag_eeg_v2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: There were multiply-defined labels.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `genai_rag_eeg_v2.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `genai_rag_eeg_v2.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  7F1E23DF7EC7EBEA837A7B200D184966;20672.
+Package rerunfilecheck Info: File `genai_rag_eeg_v2.out' has not changed.
+(rerunfilecheck)             Checksum: 7DAE888A076A31175B0337372D135747;29125.
  ) 
 Here is how much of TeX's memory you used:
- 37523 strings out of 474222
- 880113 string characters out of 5748733
- 2288975 words of memory out of 5000000
- 58929 multiletter control sequences out of 15000+600000
+ 38801 strings out of 474222
+ 907030 string characters out of 5748733
+ 2345975 words of memory out of 5000000
+ 60040 multiletter control sequences out of 15000+600000
  684173 words of font info for 180 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,87p,1817b,2445s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,87p,1816b,2447s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -2066,10 +1719,10 @@ lic/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on genai_rag_eeg_v2.pdf (28 pages, 4993054 bytes).
+Output written on genai_rag_eeg_v2.pdf (57 pages, 5182347 bytes).
 PDF statistics:
- 562 PDF objects out of 1000 (max. 8388607)
- 455 compressed objects within 5 object streams
- 261 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1452 PDF objects out of 1728 (max. 8388607)
+ 1306 compressed objects within 14 object streams
+ 414 named destinations out of 1000 (max. 500000)
+ 1158 words of extra memory for PDF output out of 10000 (max. 10000000)
 
