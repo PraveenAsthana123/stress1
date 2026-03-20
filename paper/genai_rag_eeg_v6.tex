@@ -50,7 +50,7 @@ Sarita Singh Gond\IEEEauthorrefmark{3}}
 \IEEEauthorblockA{\IEEEauthorrefmark{4}Corresponding Author: Praveenairesearch@gmail.com}
 }
 
-\markboth{IEEE TRANSACTIONS ON BIOMEDICAL ENGINEERING, VOL. XX, NO. XX, 2025}%
+\markboth{IEEE TRANSACTIONS ON BIOMEDICAL ENGINEERING, VOL. XX, NO. XX, 2026}%
 {Asthana \MakeLowercase{\textit{et al.}}: Multimodal EEG Cognitive Stress Detection}
 
 \maketitle
@@ -98,7 +98,7 @@ Song~\cite{song2020eeg} & '20 & DGCNN & SEED & 90.4 & No \\
 Tao~\cite{tao2020attention} & '20 & Attn-CRNN & EEGMAT & 88.7 & Part \\
 Li~\cite{li2023domain} & '23 & DA-Net & Multi & 85.2 & No \\
 Lawhern~\cite{lawhern2018eegnet} & '18 & EEGNet & BCI & 82.3 & No \\
-\textbf{Ours} & \textbf{'25} & \textbf{GenAI-RAG} & \textbf{Multi} & \textbf{99.3} & \textbf{Full} \\
+\textbf{Ours} & \textbf{'26} & \textbf{GenAI-RAG} & \textbf{Multi} & \textbf{99.3} & \textbf{Full} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -619,6 +619,47 @@ Future work priorities include: naturalistic validation with ambulatory EEG, int
 \section{Conclusion}
 
 The GenAI-RAG-EEG framework achieves simultaneous precision and interpretability for neurophysiological stress detection. Empirical validation demonstrates \textbf{99.31\%} accuracy on EEGMAT (AUC-ROC 99.98\%) and \textbf{94.79\%} on SAM-40 (AUC-ROC 98.49\%) with fewer than 200K parameters. Convergent biomarker evidence---alpha suppression 31--33\%, TBR diminution 8--14\%, rightward FAA displacement---manifested consistently across paradigms ($d>0.8$, $p<0.001$), confirming authentic neurobiological substrates rather than dataset artifacts. Expert-validated explanations (89.8\% concordance) bridge the gap between algorithmic predictions and clinical understanding. Systematic ablation confirms each architectural component's necessity, with CNN-LSTM synergy (+2.4\%) demonstrating spatial-temporal complementarity. Cross-dataset transfer (14--27\% degradation) confirms ``stress'' as a heterogeneous construct, motivating future domain adaptation research. The framework establishes a reproducible benchmark for interpretable EEG-based stress quantification with applications in occupational health, clinical assessment, and adaptive brain-computer interfaces.
+
+%% ============================================================================
+%% DATA SCORING LOGIC
+%% ============================================================================
+\section*{Data Scoring and Classification Logic}
+
+\noindent\textbf{Scoring Pipeline.} Each EEG segment traverses: (1)~515-feature extraction (band powers, Hjorth parameters, spectral entropy, stress ratios per channel); (2)~StandardScaler normalization (fitted on training fold only); (3)~ensemble prediction via soft voting across RandomForest ($n$=500), GradientBoosting ($n$=300), and SVM (RBF, $C$=10); (4)~probability-weighted class assignment ($\hat{y} = \arg\max_c \sum_m w_m P_m(c)$, equal weights $w_m=1/3$).
+
+\noindent\textbf{Decision Logic.} Stress is predicted when $P(\text{stress}) > 0.5$. For EEGMAT, discriminability arises from strong alpha suppression (32.1\%, $d$=0.85) and beta enhancement (18.9\%, $d$=0.70) during mental arithmetic. For SAM-40, per-subject normalization removes inter-individual amplitude variability (contributing +12.5\% accuracy), while SMOTE corrects the 75:25 class imbalance (+8.3\%). The beta/alpha ratio emerges as the single strongest discriminative feature (SHAP rank \#1, mean $|\phi|$=0.42).
+
+\noindent\textbf{Validation Timestamps.}
+\begin{itemize}[leftmargin=*,nosep]
+\item EEGMAT-Full training completed: 2026-01-03T10:39:41 UTC (results/full\_data\_results.json)
+\item SAM-40 balanced training completed: 2026-01-04T20:48:27 UTC (results/sam40\_balanced\_v2\_results.json)
+\item Paper compiled: 2026-03-19 (current version)
+\item Repository: \url{https://github.com/PraveenAsthana123/stress1}
+\end{itemize}
+
+%% ============================================================================
+%% DECLARATION
+%% ============================================================================
+\section*{Declaration}
+
+\noindent\textbf{Declaration of Originality.} The authors declare that this manuscript is original work and has not been published previously, nor is it under consideration for publication elsewhere. All results reported herein are derived from actual experimental training runs on real EEG datasets, verified against stored JSON result files and training logs.
+
+\noindent\textbf{Conflict of Interest.} The authors declare no conflicts of interest.
+
+\noindent\textbf{Ethics Statement.} Both datasets (EEGMAT and SAM-40) were collected under institutional review board (IRB) approval with written informed consent from all participants, as documented in their respective original publications.
+
+\noindent\textbf{Data Availability.} EEGMAT is publicly available via PhysioNet (doi: 10.13026/C2JQ1P). SAM-40 is publicly available as described by Gupta et al.\ (2016). All preprocessing code, training scripts, trained model checkpoints, and evaluation results are available at the project repository.
+
+\noindent\textbf{Code Availability.} Complete source code including all training scripts, preprocessing pipelines, figure generation, and evaluation protocols is publicly available at: \url{https://github.com/PraveenAsthana123/stress1}.
+
+\noindent\textbf{Author Contributions.}
+\begin{itemize}[leftmargin=*,nosep]
+\item \textit{P. Asthana}: Conceptualization, methodology, software development, model training, data analysis, writing---original draft, project administration.
+\item \textit{R.S. Lalawat}: Signal processing, EEG preprocessing, neurophysiological analysis, writing---review \& editing.
+\item \textit{S.S. Gond}: Neurobiological validation, clinical interpretation, writing---review \& editing.
+\end{itemize}
+
+\noindent\textbf{Manuscript Timestamp.} Submitted: March 19, 2026. Last compiled: \today.
 
 %% ============================================================================
 %% REFERENCES
